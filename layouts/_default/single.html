@@ -1,0 +1,145 @@
+{{ define "main" }}
+
+{{/* Detect if this page is part of any learning path */}}
+{{ $currentURL := .RelPermalink }}
+{{ $pathFound := false }}
+{{ $pathTitle := "" }}
+{{ $pathURL := "" }}
+{{ $stepNum := 0 }}
+{{ $totalSteps := 0 }}
+{{ $prevStep := dict }}
+{{ $nextStep := dict }}
+{{ range where site.RegularPages "Section" "learn" }}
+  {{ $path := . }}
+  {{ range $i, $step := .Params.steps }}
+    {{ if eq $step.url $currentURL }}
+      {{ $pathFound = true }}
+      {{ $pathTitle = $path.Title }}
+      {{ $pathURL = $path.RelPermalink }}
+      {{ $stepNum = add $i 1 }}
+      {{ $totalSteps = len $path.Params.steps }}
+      {{ if gt $i 0 }}
+        {{ $prevStep = index $path.Params.steps (sub $i 1) }}
+      {{ end }}
+      {{ if lt (add $i 1) $totalSteps }}
+        {{ $nextStep = index $path.Params.steps (add $i 1) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<article class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+
+  {{/* Learning path indicator */}}
+  {{ if $pathFound }}
+  <div class="mb-6 p-3 rounded-lg bg-bitcoin/5 border border-bitcoin/20">
+    <div class="flex items-center justify-between flex-wrap gap-2">
+      <a href="{{ $pathURL }}" class="text-sm text-bitcoin hover:underline font-medium">
+        ← {{ $pathTitle }}
+      </a>
+      <div class="flex items-center gap-1.5">
+        {{ range $i, $_ := seq $totalSteps }}
+        <div class="w-2 h-2 rounded-full {{ if eq (add $i 1) $stepNum }}bg-bitcoin{{ else if lt (add $i 1) $stepNum }}bg-bitcoin/40{{ else }}bg-gray-700{{ end }}"></div>
+        {{ end }}
+        <span class="text-xs text-gray-500 ml-1.5">{{ $stepNum }}/{{ $totalSteps }}</span>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- Breadcrumb -->
+  {{ if not $pathFound }}
+  <nav class="mb-6 text-sm text-gray-600 flex flex-wrap items-center gap-1.5" aria-label="breadcrumb">
+    <a href="/" class="hover:text-gray-400 transition-colors">홈</a>
+    <span aria-hidden="true">/</span>
+    {{ with .Parent }}
+    <a href="{{ .Permalink }}" class="hover:text-gray-400 transition-colors">{{ .Title }}</a>
+    <span aria-hidden="true">/</span>
+    {{ end }}
+    <span class="text-gray-500" aria-current="page">{{ .Title }}</span>
+  </nav>
+  {{ end }}
+
+  <!-- Article Header -->
+  <header class="mb-10">
+    <div class="flex items-center gap-2 mb-4">
+      {{ range .Params.tags }}
+      <span class="text-xs px-2 py-0.5 rounded-full bg-gray-800 text-gray-400">{{ . }}</span>
+      {{ end }}
+      {{ with .Params.levels }}
+      <span class="text-xs px-2 py-0.5 rounded-full bg-bitcoin/10 text-bitcoin">{{ . }}</span>
+      {{ end }}
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-bold text-white leading-tight">{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="mt-3 text-lg text-gray-400">{{ . }}</p>
+    {{ end }}
+    <div class="flex items-center gap-3 mt-4 text-sm text-gray-600">
+      {{ if .Date.IsZero | not }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time>
+      <span>·</span>
+      {{ end }}
+      <span>{{ math.Round (div (countwords .Content) 200.0) }}분 소요</span>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="article-prose">
+    {{ .Content }}
+  </div>
+
+  <!-- Navigation -->
+  {{ if $pathFound }}
+  {{/* Path-aware navigation */}}
+  <nav class="mt-16 pt-8 border-t border-bitcoin/20 flex justify-between gap-4">
+    {{ if $prevStep.url }}
+    <a href="{{ $prevStep.url }}" class="group flex-1 p-5 sm:p-6 rounded-xl border border-gray-700/50 bg-gray-900/60 hover:border-gray-600 hover:bg-gray-900/80 transition-all">
+      <span class="flex items-center gap-1.5 text-sm text-gray-400 mb-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        {{ sub $stepNum 1 }}단계
+      </span>
+      <span class="text-base text-gray-300 font-medium group-hover:text-white transition-colors">{{ $prevStep.title }}</span>
+    </a>
+    {{ else }}<div class="flex-1"></div>{{ end }}
+    {{ if $nextStep.url }}
+    <a href="{{ $nextStep.url }}" class="group flex-1 p-5 sm:p-6 rounded-xl border border-bitcoin/30 bg-bitcoin/10 hover:bg-bitcoin/20 hover:border-bitcoin/50 transition-all text-right">
+      <span class="flex items-center justify-end gap-1.5 text-sm text-bitcoin mb-2">
+        {{ add $stepNum 1 }}단계
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </span>
+      <span class="text-base text-white font-semibold group-hover:text-bitcoin-light transition-colors">{{ $nextStep.title }}</span>
+    </a>
+    {{ else }}
+    <a href="{{ $pathURL }}" class="group flex-1 p-5 sm:p-6 rounded-xl border border-bitcoin/40 bg-bitcoin/15 hover:bg-bitcoin/25 hover:border-bitcoin/60 transition-all text-right">
+      <span class="flex items-center justify-end gap-1.5 text-sm text-bitcoin mb-2">
+        ✓ 코스 완료
+      </span>
+      <span class="text-base text-white font-semibold group-hover:text-bitcoin-light transition-colors">{{ $pathTitle }}로 돌아가기</span>
+    </a>
+    {{ end }}
+  </nav>
+  {{ else }}
+  {{/* Default section navigation */}}
+  <nav class="mt-16 pt-8 border-t border-gray-800/50 flex justify-between gap-4">
+    {{ with .NextInSection }}
+    <a href="{{ .Permalink }}" class="group flex-1 p-5 sm:p-6 rounded-xl border border-gray-700/50 bg-gray-900/60 hover:border-gray-600 hover:bg-gray-900/80 transition-all">
+      <span class="flex items-center gap-1.5 text-sm text-gray-400 mb-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        이전
+      </span>
+      <span class="text-base text-gray-300 font-medium group-hover:text-white transition-colors">{{ .Title }}</span>
+    </a>
+    {{ else }}<div class="flex-1"></div>{{ end }}
+    {{ with .PrevInSection }}
+    <a href="{{ .Permalink }}" class="group flex-1 p-5 sm:p-6 rounded-xl border border-gray-700/50 bg-gray-900/60 hover:border-gray-600 hover:bg-gray-900/80 transition-all text-right">
+      <span class="flex items-center justify-end gap-1.5 text-sm text-gray-400 mb-2">
+        다음
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </span>
+      <span class="text-base text-gray-300 font-medium group-hover:text-white transition-colors">{{ .Title }}</span>
+    </a>
+    {{ else }}<div class="flex-1"></div>{{ end }}
+  </nav>
+  {{ end }}
+</article>
+{{ end }}

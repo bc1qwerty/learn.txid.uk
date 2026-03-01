@@ -1,0 +1,66 @@
+<!-- Bitcoin -->
+<div class="sidebar-section sidebar-btc">
+    <span class="sidebar-label">Bitcoin</span>
+    <div class="btc-widget" aria-live="polite" aria-label="비트코인 실시간 정보">
+        <div class="btc-stat">
+            <span class="btc-label">가격</span>
+            <span class="btc-value" id="btcPrice">-</span>
+        </div>
+        <div class="btc-stat">
+            <span class="btc-label">블록 높이</span>
+            <span class="btc-value" id="btcBlock">-</span>
+        </div>
+    </div>
+</div>
+
+<!-- 요즘 -->
+{{ with site.Params.now }}
+<div class="sidebar-section sidebar-now">
+    <span class="sidebar-label">{{ .title | default "요즘" }}</span>
+    <ul class="sidebar-now-list">
+        {{ range .items }}
+        <li>{{ . }}</li>
+        {{ end }}
+    </ul>
+    {{ with .updated }}
+    <span class="sidebar-now-updated">업데이트 {{ . }}</span>
+    {{ end }}
+</div>
+{{ end }}
+
+<!-- Tags -->
+{{ if site.Taxonomies.tags }}
+<div class="sidebar-section">
+    <span class="sidebar-label">태그</span>
+    <div class="sidebar-chips">
+        {{ range site.Taxonomies.tags.ByCount }}
+        <a href="{{ .Page.RelPermalink }}" class="sidebar-chip">{{ .Page.Title }} <span class="text-gray-600">{{ .Count }}</span></a>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+
+<!-- People -->
+<div class="sidebar-section">
+    <span class="sidebar-label">인물</span>
+    <div class="sidebar-recent">
+        {{ range first 5 (where site.RegularPages "Section" "people") }}
+        <a href="{{ .RelPermalink }}" class="sidebar-recent-item">
+            <span class="sidebar-recent-title">{{ .Title }}</span>
+        </a>
+        {{ end }}
+    </div>
+</div>
+
+<!-- Concepts -->
+<div class="sidebar-section">
+    <span class="sidebar-label">개념</span>
+    <div class="sidebar-recent">
+        {{ range first 5 (where site.RegularPages "Section" "ideas").ByDate.Reverse }}
+        <a href="{{ .RelPermalink }}" class="sidebar-recent-item">
+            <span class="sidebar-recent-title">{{ .Title }}</span>
+            {{ with .Params.levels }}<span class="sidebar-recent-level">{{ . }}</span>{{ end }}
+        </a>
+        {{ end }}
+    </div>
+</div>

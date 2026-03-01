@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(hugo server:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(where:*)",
+      "Bash(py:*)",
+      "Bash(py -c:*)",
+      "Bash(npm ls:*)",
+      "Bash(npm install:*)",
+      "Bash(node:*)",
+      "Bash(ls:*)",
+      "Bash(curl:*)",
+      "Bash(xxd:*)",
+      "Bash(head:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" && head -15 \"\"{}\"\"')",
+      "Bash(hugo:*)",
+      "Bash(tr:*)",
+      "Bash(tasklist:*)",
+      "Bash(kill:*)",
+      "Bash(pip install:*)",
+      "Bash(git rm:*)",
+      "WebSearch",
+      "WebFetch(domain:www.aladin.co.kr)",
+      "WebFetch(domain:product.kyobobook.co.kr)",
+      "WebFetch(domain:dev.konsensus.network)",
+      "WebFetch(domain:ko.wikipedia.org)",
+      "WebFetch(domain:namu.wiki)",
+      "WebFetch(domain:kobic.net)",
+      "WebFetch(domain:book.interpark.com)",
+      "Bash(test:*)",
+      "WebFetch(domain:txid.uk)"
+    ]
+  }
+}

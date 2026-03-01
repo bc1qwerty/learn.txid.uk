@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}" data-theme="{{ site.Params.defaultTheme | default "dark" }}" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#09090b">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#f7931a">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+  <!-- SEO -->
+  {{- $description := .Description | default site.Params.description -}}
+  {{- $ogImage := .Params.cover | default .Params.image | default site.Params.ogImage | absURL -}}
+  <meta name="description" content="{{ $description }}">
+  <meta name="author" content="{{ site.Params.author }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{ $description }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ $ogImage }}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:description" content="{{ $description }}">
+  <meta name="twitter:image" content="{{ $ogImage }}">
+  <meta name="twitter:site" content="@bc1qwerty">
+  <meta name="twitter:creator" content="@bc1qwerty">
+
+  {{ with .OutputFormats.Get "RSS" -}}
+  <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }} RSS" href="{{ .RelPermalink }}">
+  {{- end }}
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {{ if .IsHome -}}
+  {"@context":"https://schema.org","@type":"WebSite","name":{{ site.Title | jsonify | safeJS }},"url":{{ site.BaseURL | jsonify | safeJS }},"description":{{ site.Params.description | jsonify | safeJS }},"publisher":{"@type":"Organization","name":{{ site.Params.author | jsonify | safeJS }},"logo":{{ (print site.BaseURL "favicon.svg") | jsonify | safeJS }}}}
+  {{- else if .IsPage -}}
+  {"@context":"https://schema.org","@type":"Article","headline":{{ .Title | jsonify | safeJS }},"description":{{ $description | jsonify | safeJS }},"datePublished":{{ .Date.Format "2006-01-02" | jsonify | safeJS }},"image":{{ $ogImage | jsonify | safeJS }},"author":{"@type":"Person","name":{{ site.Params.author | jsonify | safeJS }},"url":{{ site.BaseURL | jsonify | safeJS }}},"url":{{ .Permalink | jsonify | safeJS }}}
+  {{- else -}}
+  {"@context":"https://schema.org","@type":"CollectionPage","name":{{ .Title | jsonify | safeJS }},"description":{{ $description | jsonify | safeJS }},"url":{{ .Permalink | jsonify | safeJS }}}
+  {{- end }}
+  </script>
+
+  <!-- Early theme restore (prevents flash of wrong theme) -->
+  <script>
+    (function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#09090b':'#fafafa';}}catch(e){}})();
+  </script>
+
+  <!-- CSS via Hugo Pipes -->
+  {{ $css := resources.Get "css/compiled.css" }}
+  {{ if $css }}
+    {{ $css = $css | minify | fingerprint "sha512" }}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ end }}
+
+  {{ block "head" . }}{{ end }}
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <a href="#main-content" class="skip-link">본문으로 건너뛰기</a>
+
+  {{ partial "header.html" . }}
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main id="main-content" class="flex-1">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{ partial "footer.html" . }}
+
+  <!-- Site Data for Command Palette -->
+  <script id="site-data" type="application/json">
+  {
+    "projects": [{{ range $i, $p := site.Params.projects }}{{ if $i }},{{ end }}{"name":{{ $p.name | jsonify | safeJS }},"url":{{ $p.url | jsonify | safeJS }},"type":"project"}{{ end }}],
+    "links": [{{ range $i, $l := site.Params.links }}{{ if $i }},{{ end }}{"name":{{ $l.name | jsonify | safeJS }},"url":{{ $l.url | jsonify | safeJS }},"type":"link"}{{ end }}],
+    "social": [{{ range $i, $s := site.Params.social }}{{ if $i }},{{ end }}{"name":{{ $s.name | jsonify | safeJS }},"url":{{ $s.url | jsonify | safeJS }},"type":"social"}{{ end }}],
+    "posts": [{{ range $i, $p := (where site.RegularPages "Section" "blog").ByDate.Reverse }}{{ if $i }},{{ end }}{"name":{{ $p.Title | jsonify | safeJS }},"url":{{ $p.RelPermalink | jsonify | safeJS }},"type":"post"}{{ end }}],
+    "books": [{{ range $i, $b := site.Params.books }}{{ if $i }},{{ end }}{"name":{{ $b.name | jsonify | safeJS }},"author":{{ $b.author | jsonify | safeJS }},"url":{{ with $b.slug }}{{ (printf "/books/%s/" .) | jsonify | safeJS }}{{ else }}"#"{{ end }},"type":"book"}{{ end }}],
+    "stack": [{{ range $i, $s := site.Params.stack }}{{ if $i }},{{ end }}{"name":{{ $s.name | jsonify | safeJS }},"type":"stack"}{{ end }}],
+    "bookmarks": [{{ range $i, $b := site.Params.bookmarks }}{{ if $i }},{{ end }}{"name":{{ $b.name | jsonify | safeJS }},"url":{{ $b.url | jsonify | safeJS }},"type":"bookmark"}{{ end }}],
+    "ideas": [{{ range $i, $t := (where site.RegularPages "Section" "ideas").ByDate.Reverse }}{{ if $i }},{{ end }}{"name":{{ $t.Title | jsonify | safeJS }},"url":{{ $t.RelPermalink | jsonify | safeJS }},"type":"idea"}{{ end }}],
+    "learn": [{{ range $i, $l := (where site.RegularPages "Section" "learn") }}{{ if $i }},{{ end }}{"name":{{ $l.Title | jsonify | safeJS }},"url":{{ $l.RelPermalink | jsonify | safeJS }},"type":"learn"}{{ end }}],
+    "pages": [{"name":"소개","url":"/about/","type":"page"},{"name":"FAQ","url":"/faq/","type":"page"}]
+  }
+  </script>
+
+  <!-- Command Palette -->
+  <div class="cmd-palette-overlay" id="cmdPalette" hidden role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="cmd-palette">
+      <input type="text" class="cmd-input" id="cmdInput" placeholder="Search&hellip;" autocomplete="off" spellcheck="false" aria-label="Search site">
+      <div class="cmd-results" id="cmdResults" role="listbox"></div>
+      <div class="cmd-footer">
+        <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> 이동</span>
+        <span><kbd>Enter</kbd> 열기</span>
+        <span><kbd>Esc</kbd> 닫기</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&uarr;</button>
+
+  <!-- GoatCounter -->
+  {{ with site.Params.visitor.goatcounter }}
+  <script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  {{ end }}
+
+  <!-- JS via Hugo Pipes -->
+  {{ $js := resources.Get "js/main.js" }}
+  {{ if $js }}
+    {{ $js = $js | minify | fingerprint "sha512" }}
+    <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+  {{ end }}
+</body>
+</html>
