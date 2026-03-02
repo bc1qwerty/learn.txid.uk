@@ -14,7 +14,7 @@ enableGitInfo = true
 
 [params.hero]
   name = '비트선사'
-  tagline = '비트코인, 오스트리아 경제학, 그리고 코드.'
+  tagline = '비트코인, 오스트리아 경제학, 그리고 자유.'
   sidebarTagline = 'fullnoder, solo miner | ₿itcoin Only'
   location = 'Seoul'
   timezone = 'Asia/Seoul'

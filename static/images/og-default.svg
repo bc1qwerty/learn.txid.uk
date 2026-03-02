@@ -26,7 +26,7 @@
   <text x="120" y="260" font-family="'Space Mono', 'SF Mono', monospace" font-weight="700" font-size="72" fill="#f7931a" letter-spacing="-2">TXID<tspan fill="#6b7280">.uk</tspan></text>
 
   <!-- Tagline -->
-  <text x="120" y="310" font-family="'Pretendard Variable', 'Apple SD Gothic Neo', sans-serif" font-weight="400" font-size="28" fill="#9ca3af">비트코인, 오스트리아 경제학, 그리고 코드.</text>
+  <text x="120" y="310" font-family="'Pretendard Variable', 'Apple SD Gothic Neo', sans-serif" font-weight="400" font-size="28" fill="#9ca3af">비트코인, 오스트리아 경제학, 그리고 자유.</text>
 
   <!-- Subtitle -->
   <text x="120" y="370" font-family="'Pretendard Variable', 'Apple SD Gothic Neo', sans-serif" font-weight="400" font-size="20" fill="#4b5563">비트코인과 자유주의를 배우는 곳</text>
