@@ -14,6 +14,19 @@
         </li>
         {{ end }}
       </ul>
+
+      <!-- 도구 드롭다운 -->
+      <div class="tools-dropdown-learn" style="position:relative">
+        <button class="tools-dropdown-btn-learn" style="display:flex;align-items:center;gap:4px;padding:5px 10px;border:1px solid #374151;background:none;color:#9ca3af;font-family:var(--font-sans);font-size:.75rem;border-radius:6px;cursor:pointer;transition:all .2s" onmouseenter="this.nextElementSibling.style.display='block'" onmouseleave="setTimeout(()=>{if(!this.nextElementSibling.matches(':hover'))this.nextElementSibling.style.display='none'},100)">도구 ▾</button>
+        <div class="tools-menu-learn" style="display:none;position:absolute;top:calc(100% + 6px);right:0;background:#111827;border:1px solid #374151;border-radius:8px;min-width:200px;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.5);overflow:hidden" onmouseenter="this.style.display='block'" onmouseleave="this.style.display='none'">
+          <a href="https://txid.uk" style="display:block;padding:9px 14px;color:#9ca3af;font-size:.78rem;text-decoration:none;transition:background .15s;font-family:var(--font-sans)" onmouseenter="this.style.background='#1f2937';this.style.color='#f7931a'" onmouseleave="this.style.background='';this.style.color='#9ca3af'">₿ 탐색기 — 블록·TX·주소</a>
+          <a href="https://tools.txid.uk" style="display:block;padding:9px 14px;color:#9ca3af;font-size:.78rem;text-decoration:none;transition:background .15s;font-family:var(--font-sans)" onmouseenter="this.style.background='#1f2937';this.style.color='#f7931a'" onmouseleave="this.style.background='';this.style.color='#9ca3af'">🔧 Tools — 주소검증·변환기</a>
+          <a href="https://viz.txid.uk" style="display:block;padding:9px 14px;color:#9ca3af;font-size:.78rem;text-decoration:none;transition:background .15s;font-family:var(--font-sans)" onmouseenter="this.style.background='#1f2937';this.style.color='#f7931a'" onmouseleave="this.style.background='';this.style.color='#9ca3af'">⚡ Viz — TX 시각화</a>
+          <a href="https://stats.txid.uk" style="display:block;padding:9px 14px;color:#9ca3af;font-size:.78rem;text-decoration:none;transition:background .15s;font-family:var(--font-sans)" onmouseenter="this.style.background='#1f2937';this.style.color='#f7931a'" onmouseleave="this.style.background='';this.style.color='#9ca3af'">📊 Stats — 온체인 통계</a>
+          <a href="https://nodes.txid.uk" style="display:block;padding:9px 14px;color:#9ca3af;font-size:.78rem;text-decoration:none;transition:background .15s;font-family:var(--font-sans)" onmouseenter="this.style.background='#1f2937';this.style.color='#f7931a'" onmouseleave="this.style.background='';this.style.color='#9ca3af'">🌐 Nodes — 라이트닝</a>
+          <a href="https://portfolio.txid.uk" style="display:block;padding:9px 14px;color:#9ca3af;font-size:.78rem;text-decoration:none;transition:background .15s;font-family:var(--font-sans)" onmouseenter="this.style.background='#1f2937';this.style.color='#f7931a'" onmouseleave="this.style.background='';this.style.color='#9ca3af'">💼 Portfolio — 잔액 추적</a>
+        </div>
+      </div>
       <button class="header-search-btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-gray-800 text-gray-500 hover:text-gray-300 hover:border-gray-600 transition-colors text-xs" id="headerSearchBtn" aria-label="검색 (Ctrl+K)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <kbd class="text-[10px] bg-gray-800 px-1 py-0.5 rounded">Ctrl+K</kbd>
