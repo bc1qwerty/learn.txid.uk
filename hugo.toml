@@ -59,9 +59,6 @@ enableGitInfo = true
   name = 'X'
   url = 'https://x.com/bc1qwerty'
 
-[[params.social]]
-  name = 'GitHub'
-  url = 'https://github.com/bc1qwerty'
 
 [params.reading]
   name = '법'
