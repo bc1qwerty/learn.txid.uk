@@ -61,38 +61,19 @@ body {
 /* ============================================================
    2. LOGO BRAND
    ============================================================ */
-.logo-brand {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.1rem;
-  text-decoration: none;
-}
-
-.logo-name {
+/* ── 통일 로고 (txid.uk 동일 스타일) ── */
+.logo-unified {
   font-family: 'Space Mono', monospace;
   font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: -0.04em;
-  color: var(--color-bitcoin);
-  transition: color 0.2s ease;
+  letter-spacing: 0.05em;
+  color: #f7931a;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
 }
-
-.logo-suffix {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  color: var(--color-gray-500);
-  transition: color 0.2s ease;
-}
-
-.logo-brand:hover .logo-name {
-  color: var(--color-bitcoin-light);
-}
-
-.logo-brand:hover .logo-suffix {
-  color: var(--color-gray-400);
-}
+.logo-unified:hover { opacity: 0.8; }
 
 /* ============================================================
    2.5. MOBILE MENU OVERLAY
@@ -984,7 +965,7 @@ details[open] > *:not(summary) {
 
 .learn-card-arrow {
   margin-left: auto;
-  color: var(--color-gray-600);
+  color: #bc4e00;
   font-size: 0.85rem;
   flex-shrink: 0;
 }
@@ -1391,7 +1372,7 @@ details[open] > *:not(summary) {
 }
 
 [data-theme='light'] .books-list-author {
-  color: var(--color-gray-600);
+  color: #bc4e00;
 }
 
 /* ============================================================
@@ -1700,7 +1681,7 @@ body.sidebar-right-collapsed .scroll-top {
   color: #6b7280;
 }
 
-[data-theme='light'] .logo-suffix {
+[data-theme='light'] .logo-unified {
   color: #6b7280;
 }
 
