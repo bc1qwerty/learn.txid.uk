@@ -10,9 +10,9 @@
   --color-bitcoin-dark: #c47515;
   --color-surface: #111113;
   --color-surface-raised: #18181b;
-  --font-sans: 'Pretendard Variable', 'Pretendard', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Space Mono', monospace;
-  --font-display: 'Outfit', sans-serif;
+  --font-sans: 'Pretendard Variable', 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  --font-mono: 'Space Mono', 'JetBrains Mono', monospace;
+  --font-display: 'Pretendard Variable', 'Pretendard', sans-serif;
 }
 
 /* ============================================================
