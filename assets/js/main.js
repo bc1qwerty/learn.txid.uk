@@ -68,14 +68,32 @@ function throttle(fn, delay) {
     var rightToggle = document.getElementById('sidebarRightToggle');
     var rightColumn = document.getElementById('sidebarRightColumn');
 
+    var rightTogglePortal = null;
+
     function setRight(collapsed) {
         if (!rightColumn) return;
         if (collapsed) {
             rightColumn.classList.add('collapsed');
             document.body.classList.add('sidebar-right-collapsed');
+            // transform 컨텍스트 탈출: 토글 버튼을 body로 이동
+            if (rightToggle && !rightTogglePortal) {
+                rightTogglePortal = document.createElement('div');
+                rightTogglePortal.id = 'right-toggle-portal';
+                rightTogglePortal.style.cssText = 'position:fixed;right:0;top:5rem;z-index:200';
+                rightTogglePortal.appendChild(rightToggle.cloneNode(true));
+                rightTogglePortal.firstChild.addEventListener('click', function() { setRight(false); safeSet('sidebar-right-state', 'open'); });
+                document.body.appendChild(rightTogglePortal);
+                rightToggle.style.display = 'none';
+            }
         } else {
             rightColumn.classList.remove('collapsed');
             document.body.classList.remove('sidebar-right-collapsed');
+            // 원위치 복구
+            if (rightTogglePortal) {
+                rightTogglePortal.remove();
+                rightTogglePortal = null;
+                if (rightToggle) rightToggle.style.display = '';
+            }
         }
         if (rightToggle) rightToggle.setAttribute('aria-expanded', String(!collapsed));
     }
