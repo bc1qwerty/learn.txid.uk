@@ -1,4 +1,4 @@
-<h2 class="tile-title">{{ site.Params.blog.title | default "최근 게시물" }}</h2>
+<h2 class="tile-title"><span data-i18n="최근 게시물">{{ site.Params.blog.title | default "최근 게시물" }}</span></h2>
 <div class="tile-list">
     {{ $maxPosts := site.Params.blog.maxPosts | default 3 }}
     {{ range first $maxPosts (where site.RegularPages "Section" "blog").ByDate.Reverse }}

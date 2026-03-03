@@ -1,4 +1,4 @@
-<h2 class="tile-title">추천도서</h2>
+<h2 class="tile-title"><span data-i18n="추천도서">추천도서</span></h2>
 <div class="book-grid" id="bookGrid">
     {{ range $i, $book := site.Params.books }}
     <a class="book-card" href="{{ with .slug }}/books/{{ . }}/{{ else }}#{{ end }}">

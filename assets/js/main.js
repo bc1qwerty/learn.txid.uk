@@ -714,3 +714,86 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Escape') close();
     });
 })();
+
+// ── i18n ──────────────────────────────────────────────
+(function(){
+  const DICT = {
+    // nav menu
+    '공부방':     {en:'Study',    ja:'学習'},
+    '개념':       {en:'Ideas',    ja:'概念'},
+    '인물':       {en:'People',   ja:'人物'},
+    '추천도서':   {en:'Books',    ja:'おすすめ本'},
+    '블로그':     {en:'Blog',     ja:'ブログ'},
+    'FAQ':        {en:'FAQ',      ja:'FAQ'},
+    '소개':       {en:'About',    ja:'紹介'},
+    // bento titles
+    '요즘':           {en:'Now',          ja:'いま'},
+    '최근 게시물':    {en:'Recent Posts', ja:'最近の記事'},
+    '추천 도서':      {en:'Books',        ja:'おすすめ本'},
+    '개념 목록':      {en:'Ideas',        ja:'概念一覧'},
+    '북마크':         {en:'Bookmarks',    ja:'ブックマーク'},
+    '스택':           {en:'Stack',        ja:'スタック'},
+    // sidebar
+    '방문자':         {en:'Visitors',     ja:'訪問者'},
+    '전체':           {en:'Total',        ja:'合計'},
+    '지금 읽는 책':   {en:'Reading',      ja:'読書中'},
+    // hero nav
+    '북마크':         {en:'Bookmarks',    ja:'ブックマーク'},
+    '도구':           {en:'Tools',        ja:'ツール'},
+    // footer
+    '탐색':           {en:'Navigate',     ja:'ナビ'},
+    '주제':           {en:'Topics',       ja:'トピック'},
+    '비트코인':       {en:'Bitcoin',      ja:'ビットコイン'},
+    '오스트리아 경제학': {en:'Austrian Economics', ja:'オーストリア経済学'},
+    '자유주의':       {en:'Libertarianism', ja:'自由主義'},
+    // ui
+    '업데이트':       {en:'Updated',      ja:'更新'},
+    '전체 보기':      {en:'View all',     ja:'全て見る'},
+    '본문으로 건너뛰기': {en:'Skip to content', ja:'本文へ'},
+    // appbar
+    '탐색기':         {en:'Explorer',     ja:'探索'},
+  };
+
+  let _lang = localStorage.getItem('lang') || 'ko';
+
+  function applyLang(l) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (l === 'ko') {
+        el.textContent = key;
+      } else {
+        const t = DICT[key];
+        if (t) el.textContent = t[l] || t.en || key;
+      }
+    });
+    // lang-btn 텍스트
+    const btn = document.getElementById('lang-btn');
+    if (btn) btn.textContent = {ko:'KO',en:'EN',ja:'JA'}[l] || 'KO';
+    // 앱바 span
+    document.querySelectorAll('[data-ko]').forEach(el => {
+      if (l === 'ko') el.textContent = el.dataset.ko;
+      else if (l === 'en') el.textContent = el.dataset.en || el.dataset.ko;
+      else el.textContent = el.dataset.ja || el.dataset.en || el.dataset.ko;
+    });
+  }
+
+  window.setLang = function(l) {
+    _lang = l; localStorage.setItem('lang', l);
+    const m = document.getElementById('lang-menu');
+    if (m) m.style.display = 'none';
+    applyLang(l);
+  };
+  window.toggleLang = function() {
+    const m = document.getElementById('lang-menu');
+    if (!m) return;
+    m.style.display = m.style.display === 'block' ? 'none' : 'block';
+  };
+
+  document.addEventListener('click', e => {
+    const m = document.getElementById('lang-menu');
+    if (m && !e.target.closest('.lang-dropdown-learn')) m.style.display = 'none';
+  });
+
+  // 초기화 (DOM 준비 후)
+  document.addEventListener('DOMContentLoaded', () => applyLang(_lang));
+})();

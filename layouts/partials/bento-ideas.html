@@ -1,4 +1,4 @@
-<h2 class="tile-title">{{ site.Params.concepts.title | default "개념" }}</h2>
+<h2 class="tile-title"><span data-i18n="개념">{{ site.Params.concepts.title | default "개념" }}</span></h2>
 <div class="tile-list">
     {{ $maxPosts := site.Params.concepts.maxPosts | default 3 }}
     {{ range first $maxPosts (where site.RegularPages "Section" "ideas").ByDate.Reverse }}

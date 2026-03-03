@@ -15,11 +15,11 @@
 
 <!-- Visitors -->
 <div class="sidebar-section">
-    <span class="sidebar-label">방문자</span>
+    <span class="sidebar-label" data-i18n="방문자">방문자</span>
     <div class="sidebar-visitors" aria-live="polite" aria-label="방문자 통계">
         <div class="visitor-stat">
             <span class="visitor-count" id="visitorTotal">-</span>
-            <span class="visitor-label">전체</span>
+            <span class="visitor-label" data-i18n="전체">전체</span>
         </div>
     </div>
 </div>
@@ -27,7 +27,7 @@
 <!-- Currently Reading -->
 {{ with site.Params.reading }}
 <div class="sidebar-section sidebar-reading">
-    <span class="sidebar-label">지금 읽는 책</span>
+    <span class="sidebar-label" data-i18n="지금 읽는 책">지금 읽는 책</span>
     <a href="{{ with .slug }}/books/{{ . }}/{{ else }}#{{ end }}" class="reading-card">
         {{ with .cover }}
         <img src="{{ . }}" alt="{{ $.Site.Params.reading.name }}" class="reading-cover" loading="lazy" width="40" height="56">
