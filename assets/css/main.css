@@ -458,6 +458,15 @@ details[open] > *:not(summary) {
 .sidebar-column.sidebar-right.collapsed {
   transform: translateX(15rem);
 }
+/* 접혔을 때 토글 버튼은 뷰포트 오른쪽 엣지에 고정 */
+.sidebar-column.sidebar-right.collapsed .sidebar-toggle-right {
+  position: fixed;
+  right: 0;
+  left: auto;
+  top: 5rem;
+  border-radius: 0.375rem 0 0 0.375rem;
+  z-index: 50;
+}
 
 /* --- Toggle button (left sidebar: tab on right edge) --- */
 .sidebar-toggle {
