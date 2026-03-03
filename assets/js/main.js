@@ -72,22 +72,27 @@ function throttle(fn, delay) {
 
     function setRight(collapsed) {
         if (!rightColumn) return;
+        var ICON_OPEN   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="15 18 9 12 15 6"/></svg>';
+        var ICON_CLOSED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="9 18 15 12 9 6"/></svg>';
         if (collapsed) {
             rightColumn.classList.add('collapsed');
             document.body.classList.add('sidebar-right-collapsed');
+            if (rightToggle) rightToggle.innerHTML = ICON_OPEN;
             // transform 컨텍스트 탈출: 토글 버튼을 body로 이동
             if (rightToggle && !rightTogglePortal) {
                 rightTogglePortal = document.createElement('div');
                 rightTogglePortal.id = 'right-toggle-portal';
                 rightTogglePortal.style.cssText = 'position:fixed;right:0;top:5rem;z-index:200';
-                rightTogglePortal.appendChild(rightToggle.cloneNode(true));
-                rightTogglePortal.firstChild.addEventListener('click', function() { setRight(false); safeSet('sidebar-right-state', 'open'); });
+                var cloned = rightToggle.cloneNode(true);
+                cloned.addEventListener('click', function() { setRight(false); safeSet('sidebar-right-state', 'open'); });
+                rightTogglePortal.appendChild(cloned);
                 document.body.appendChild(rightTogglePortal);
                 rightToggle.style.display = 'none';
             }
         } else {
             rightColumn.classList.remove('collapsed');
             document.body.classList.remove('sidebar-right-collapsed');
+            if (rightToggle) rightToggle.innerHTML = ICON_CLOSED;
             // 원위치 복구
             if (rightTogglePortal) {
                 rightTogglePortal.remove();
