@@ -1,8 +1,8 @@
 
 <!-- 서브사이트 앱바 (fixed bottom) -->
 <style>
-.learn-appbar{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;padding:8px 10px;border-top:1px solid var(--border,#30363d);background:var(--bg2,#161b22);position:fixed;bottom:0;left:0;right:0;z-index:90;backdrop-filter:blur(10px)}
-.learn-appbar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;border:1px solid var(--border,#30363d);border-radius:8px;text-decoration:none;color:var(--text2,#8b949e);font-size:.58rem;font-family:var(--font-sans);background:var(--bg3,#0d1117);transition:all .2s;text-align:center}
+.learn-appbar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:12px 20px;border-top:1px solid #30363d;background:#161b22;position:fixed;bottom:0;left:0;right:0;z-index:90;backdrop-filter:blur(10px)}
+.learn-appbar a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 12px;border:1px solid #30363d;border-radius:8px;text-decoration:none;color:#8b949e;font-size:.62rem;font-family:var(--font-sans);background:#0d1117;min-width:56px;transition:all .2s}
 .learn-appbar a:hover,.learn-appbar a.active{border-color:#f7931a;color:#f7931a}
 .learn-appbar a svg{flex-shrink:0}
 body{padding-bottom:90px}
