@@ -345,10 +345,6 @@ enableGitInfo = true
     name = 'FAQ'
     url = '/faq/'
     weight = 7
-  [[menu.main]]
-    name = '소개'
-    url = '/about/'
-    weight = 8
 
 [outputs]
   home = ['HTML', 'RSS', 'ROBOTS']
