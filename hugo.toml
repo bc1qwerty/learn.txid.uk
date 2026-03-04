@@ -351,7 +351,7 @@ enableGitInfo = true
     weight = 8
 
 [outputs]
-  home = ['HTML', 'RSS']
+  home = ['HTML', 'RSS', 'ROBOTS']
   section = ['HTML', 'RSS']
   page = ['HTML']
   taxonomy = ['HTML', 'RSS']
@@ -360,3 +360,14 @@ enableGitInfo = true
 [taxonomies]
   tag = 'tags'
   level = 'levels'
+
+[sitemap]
+  changefreq = 'weekly'
+  priority = 0.5
+  filename = 'sitemap.xml'
+
+[outputFormats.ROBOTS]
+  mediaType = 'text/plain'
+  baseName = 'robots'
+  isPlainText = true
+  notAlternative = true
