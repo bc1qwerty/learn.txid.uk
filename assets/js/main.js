@@ -10,7 +10,7 @@ var html = document.documentElement;
 // 시스템 설정 감지 (prefers-color-scheme 지원)
 var savedTheme = safeGet('theme');
 if (savedTheme !== 'dark' && savedTheme !== 'light') {
-    savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    savedTheme = 'dark';
 }
 html.setAttribute('data-theme', savedTheme);
 (function() {
