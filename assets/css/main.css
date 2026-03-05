@@ -41,6 +41,7 @@ input:focus-visible {
 }
 
 body {
+  overflow-x: hidden;
   font-family: var(--font-sans);
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -894,7 +895,7 @@ details[open] > *:not(summary) {
 }
 
 .bento-tile {
-  flex: 1 1 max(18rem, calc(25% - 0.75rem));
+  flex: 1 1 min(18rem, 100%);
   background-color: var(--color-surface-raised);
   border-radius: 0.75rem;
   border: 1px solid rgba(255, 255, 255, 0.06);
