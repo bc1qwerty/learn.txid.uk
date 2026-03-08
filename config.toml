@@ -1,0 +1,16 @@
+baseURL = "https://learn.txid.uk/"
+languageCode = "en-us"
+title = "TXID Learn"
+theme = "your-theme-name"
+
+# robots.txt 자동 생성 활성화
+enableRobotsTXT = true
+
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+[params]
+  description = "Learn about Bitcoin transactions and TXID"
+  author = "TXID Team"
