@@ -33,9 +33,10 @@
 
 <!-- Tags (현재 언어 페이지 기준) -->
 {{ $lang := .Site.Language.Lang }}
+{{ $prefix := printf "/%s/" $lang }}
 {{ $allTags := slice }}
 {{ range $.Site.RegularPages }}
-  {{ if eq .Language.Lang $lang }}
+  {{ if hasPrefix .RelPermalink $prefix }}
     {{ range .Params.tags }}
       {{ $allTags = $allTags | append . }}
     {{ end }}
