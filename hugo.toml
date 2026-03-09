@@ -1,6 +1,24 @@
 baseURL = 'https://learn.txid.uk/'
-languageCode = 'ko'
+defaultContentLanguage = 'ko'
+defaultContentLanguageInSubdir = true
 title = 'TXID'
+
+[languages]
+  [languages.ko]
+    languageCode = 'ko-KR'
+    title = 'TXID'
+    weight = 1
+    contentDir = 'content/ko'
+  [languages.en]
+    languageCode = 'en'
+    title = 'TXID'
+    weight = 2
+    contentDir = 'content/en'
+  [languages.ja]
+    languageCode = 'ja'
+    title = 'TXID'
+    weight = 3
+    contentDir = 'content/ja'
 
 publishDir = 'public'
 enableGitInfo = true
