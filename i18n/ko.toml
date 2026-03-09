@@ -159,3 +159,24 @@ other = "배우기"
 
 [appbar_apps]
 other = "앱모음"
+
+[visitors]
+other = "방문자"
+[visitors_total]
+other = "전체"
+[reading_now]
+other = "지금 읽는 책"
+[projects]
+other = "프로젝트"
+[links]
+other = "링크"
+[social]
+other = "소셜"
+[btc_price]
+other = "가격"
+[btc_block_height]
+other = "블록 높이"
+[updated]
+other = "업데이트"
+[last_build]
+other = "Last build"

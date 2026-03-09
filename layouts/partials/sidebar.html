@@ -1,6 +1,6 @@
 <!-- Sidebar Profile -->
 <div class="sidebar-section sidebar-profile">
-    <div class="sidebar-avatar" id="sidebarAvatar" role="button" tabindex="0" aria-label="프로필 아바타 보기" aria-expanded="false" aria-controls="avatarOverlay"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true"><circle cx="18" cy="18" r="17" fill="#1a1a1f" stroke="var(--color-bitcoin)" stroke-width="0.8"/><g fill="var(--color-bitcoin)"><rect x="16" y="4" width="4" height="2"/><rect x="14" y="6" width="8" height="2"/><rect x="12" y="8" width="12" height="2"/><rect x="10" y="10" width="16" height="2"/><rect x="6" y="12" width="24" height="2"/></g><g fill="currentColor"><rect x="12" y="14" width="12" height="2"/><rect x="12" y="16" width="2" height="2"/><rect x="16" y="16" width="4" height="2"/><rect x="22" y="16" width="2" height="2"/><rect x="16" y="18" width="4" height="2"/><rect x="12" y="20" width="12" height="2"/><rect x="8" y="22" width="2" height="2"/><rect x="12" y="22" width="12" height="2"/><rect x="26" y="22" width="2" height="2"/><rect x="12" y="24" width="12" height="4"/><rect x="12" y="28" width="4" height="2"/><rect x="20" y="28" width="4" height="2"/><rect x="10" y="30" width="4" height="2"/><rect x="22" y="30" width="4" height="2"/></g></svg></div>
+    <div class="sidebar-avatar" id="sidebarAvatar" role="button" tabindex="0" aria-label="profile" aria-expanded="false" aria-controls="avatarOverlay"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true"><circle cx="18" cy="18" r="17" fill="#1a1a1f" stroke="var(--color-bitcoin)" stroke-width="0.8"/><g fill="var(--color-bitcoin)"><rect x="16" y="4" width="4" height="2"/><rect x="14" y="6" width="8" height="2"/><rect x="12" y="8" width="12" height="2"/><rect x="10" y="10" width="16" height="2"/><rect x="6" y="12" width="24" height="2"/></g><g fill="currentColor"><rect x="12" y="14" width="12" height="2"/><rect x="12" y="16" width="2" height="2"/><rect x="16" y="16" width="4" height="2"/><rect x="22" y="16" width="2" height="2"/><rect x="16" y="18" width="4" height="2"/><rect x="12" y="20" width="12" height="2"/><rect x="8" y="22" width="2" height="2"/><rect x="12" y="22" width="12" height="2"/><rect x="26" y="22" width="2" height="2"/><rect x="12" y="24" width="12" height="4"/><rect x="12" y="28" width="4" height="2"/><rect x="20" y="28" width="4" height="2"/><rect x="10" y="30" width="4" height="2"/><rect x="22" y="30" width="4" height="2"/></g></svg></div>
     <div class="sidebar-avatar-overlay" id="avatarOverlay"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><circle cx="18" cy="18" r="17" fill="#1a1a1f" stroke="var(--color-bitcoin)" stroke-width="0.8"/><g fill="var(--color-bitcoin)"><rect x="16" y="4" width="4" height="2"/><rect x="14" y="6" width="8" height="2"/><rect x="12" y="8" width="12" height="2"/><rect x="10" y="10" width="16" height="2"/><rect x="6" y="12" width="24" height="2"/></g><g fill="currentColor"><rect x="12" y="14" width="12" height="2"/><rect x="12" y="16" width="2" height="2"/><rect x="16" y="16" width="4" height="2"/><rect x="22" y="16" width="2" height="2"/><rect x="16" y="18" width="4" height="2"/><rect x="12" y="20" width="12" height="2"/><rect x="8" y="22" width="2" height="2"/><rect x="12" y="22" width="12" height="2"/><rect x="26" y="22" width="2" height="2"/><rect x="12" y="24" width="12" height="4"/><rect x="12" y="28" width="4" height="2"/><rect x="20" y="28" width="4" height="2"/><rect x="10" y="30" width="4" height="2"/><rect x="22" y="30" width="4" height="2"/></g></svg></div>
     <span class="sidebar-name">{{ site.Params.hero.name }}</span>
     <span class="sidebar-tagline">{{ i18n "hero_sidebar_tagline" | default (i18n "site_tagline") }}</span>
@@ -15,11 +15,11 @@
 
 <!-- Visitors -->
 <div class="sidebar-section">
-    <span class="sidebar-label" data-i18n="방문자">방문자</span>
-    <div class="sidebar-visitors" aria-live="polite" aria-label="방문자 통계">
+    <span class="sidebar-label">{{ i18n "visitors" }}</span>
+    <div class="sidebar-visitors" aria-live="polite">
         <div class="visitor-stat">
             <span class="visitor-count" id="visitorTotal">-</span>
-            <span class="visitor-label" data-i18n="전체">전체</span>
+            <span class="visitor-label">{{ i18n "visitors_total" }}</span>
         </div>
     </div>
 </div>
@@ -27,8 +27,8 @@
 <!-- Currently Reading -->
 {{ with site.Params.reading }}
 <div class="sidebar-section sidebar-reading">
-    <span class="sidebar-label" data-i18n="지금 읽는 책">지금 읽는 책</span>
-    <a href="{{ with .slug }}/books/{{ . }}/{{ else }}#{{ end }}" class="reading-card">
+    <span class="sidebar-label">{{ i18n "reading_now" }}</span>
+    <a href="{{ with .slug }}{{ $.Site.LanguagePrefix }}/books/{{ . }}/{{ else }}#{{ end }}" class="reading-card">
         {{ with .cover }}
         <img src="{{ . }}" alt="{{ $.Site.Params.reading.name }}" class="reading-cover" loading="lazy" width="40" height="56">
         {{ end }}
@@ -39,7 +39,7 @@
 
 <!-- Projects -->
 <div class="sidebar-section sidebar-projects">
-    <span class="sidebar-label">프로젝트</span>
+    <span class="sidebar-label">{{ i18n "projects" }}</span>
     <div class="sidebar-project-list">
         {{ range site.Params.projects }}
         <a href="{{ .url }}" class="sidebar-project-item"{{ if .external }} target="_blank" rel="noopener noreferrer"{{ end }}>
@@ -52,7 +52,7 @@
 
 <!-- Links -->
 <div class="sidebar-section sidebar-links">
-    <span class="sidebar-label">링크</span>
+    <span class="sidebar-label">{{ i18n "links" }}</span>
     <div class="sidebar-chips">
         {{ range site.Params.links }}
         <a href="{{ .url }}" class="sidebar-chip" target="_blank" rel="noopener noreferrer">
@@ -64,7 +64,7 @@
 
 <!-- Social -->
 <div class="sidebar-section sidebar-social">
-    <span class="sidebar-label">소셜</span>
+    <span class="sidebar-label">{{ i18n "social" }}</span>
     <div class="sidebar-social-icons">
         <a href="mailto:{{ site.Params.email }}" class="sidebar-icon" aria-label="Email">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -86,5 +86,5 @@
 <!-- Build Info -->
 <div class="sidebar-section sidebar-meta">
     <span class="sidebar-meta-text">&copy; {{ now.Year }} {{ site.Title }}</span>
-    <span class="sidebar-meta-text">Last build {{ now.Format "2006-01-02" }}</span>
+    <span class="sidebar-meta-text">{{ i18n "last_build" }} {{ now.Format "2006-01-02" }}</span>
 </div>

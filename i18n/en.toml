@@ -159,3 +159,24 @@ other = "Learn"
 
 [appbar_apps]
 other = "Apps"
+
+[visitors]
+other = "Visitors"
+[visitors_total]
+other = "Total"
+[reading_now]
+other = "Currently Reading"
+[projects]
+other = "Projects"
+[links]
+other = "Links"
+[social]
+other = "Social"
+[btc_price]
+other = "Price"
+[btc_block_height]
+other = "Block Height"
+[updated]
+other = "Updated"
+[last_build]
+other = "Last build"

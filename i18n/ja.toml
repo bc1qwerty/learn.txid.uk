@@ -159,3 +159,24 @@ other = "学習"
 
 [appbar_apps]
 other = "アプリ"
+
+[visitors]
+other = "訪問者"
+[visitors_total]
+other = "合計"
+[reading_now]
+other = "今読んでいる本"
+[projects]
+other = "プロジェクト"
+[links]
+other = "リンク"
+[social]
+other = "ソーシャル"
+[btc_price]
+other = "価格"
+[btc_block_height]
+other = "ブロック高"
+[updated]
+other = "更新"
+[last_build]
+other = "最終ビルド"
