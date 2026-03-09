@@ -368,7 +368,7 @@ enableGitInfo = true
   type = 'Economics'
 
 [[params.bookmarks]]
-  name = 'Saifedean Blog'
+  name = 'Saifedean'
   url = 'https://saifedean.com'
   type = 'Blog'
 
