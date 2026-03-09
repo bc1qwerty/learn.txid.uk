@@ -13,6 +13,10 @@ description: "운영자 및 사이트 소개"
 
 배운 것을 정리하고 생각을 기록하는 공간이다. Hugo로 만들었고, 소스코드는 [GitHub](https://github.com/bc1qwerty/txid.uk)에 공개되어 있다.
 
+## 왜 오스트리아학파 관점인가?
+
+이 사이트는 오스트리아 경제학파 관점에서 Bitcoin과 화폐를 학습하는 큐레이션 플랫폼입니다. 케인즈학파 등 다른 경제학 시각과 비교 학습을 권장합니다.
+
 ## 연락
 
 [X (구 Twitter)](https://x.com/bc1qwerty)에서 활동하고 있다.
