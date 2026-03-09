@@ -754,7 +754,15 @@ document.addEventListener('DOMContentLoaded', function() {
     '탐색기':         {en:'Explorer',     ja:'探索'},
   };
 
-  let _lang = localStorage.getItem('lang') || 'ko';
+  // URL에서 현재 언어 감지 (Hugo 다국어 경로 기반)
+  function detectLang() {
+    const path = window.location.pathname;
+    if (path.startsWith('/en/') || path === '/en') return 'en';
+    if (path.startsWith('/ja/') || path === '/ja') return 'ja';
+    if (path.startsWith('/ko/') || path === '/ko') return 'ko';
+    return localStorage.getItem('lang') || 'ko';
+  }
+  let _lang = detectLang();
 
   function applyLang(l) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
