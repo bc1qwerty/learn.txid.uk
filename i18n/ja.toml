@@ -164,8 +164,6 @@ other = "アプリ"
 other = "訪問者"
 [visitors_total]
 other = "合計"
-[reading_now]
-other = "今読んでいる本"
 [projects]
 other = "プロジェクト"
 [links]

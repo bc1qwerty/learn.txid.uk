@@ -164,8 +164,6 @@ other = "Apps"
 other = "Visitors"
 [visitors_total]
 other = "Total"
-[reading_now]
-other = "Currently Reading"
 [projects]
 other = "Projects"
 [links]
