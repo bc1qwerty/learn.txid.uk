@@ -3,36 +3,36 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "@id": "{{ .Permalink }}#article",
-  "headline": {{ .Title | jsonify }},
-  "description": {{ with .Description }}{{ . | jsonify }}{{ else }}{{ .Summary | jsonify }}{{ end }},
+  "@id": {{ (print .Permalink "#article") | jsonify | safeJS }},
+  "headline": {{ .Title | jsonify | safeJS }},
+  "description": {{ with .Description }}{{ . | jsonify | safeJS }}{{ else }}{{ .Summary | plainify | jsonify | safeJS }}{{ end }},
   "image": {
     "@type": "ImageObject",
-    "url": "{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ .Site.Params.ogImage | default (printf "%s%s" .Site.BaseURL "images/og-default.png") }}{{ end }}",
+    "url": {{ with .Params.image }}{{ . | absURL | jsonify | safeJS }}{{ else }}{{ (print .Site.BaseURL "images/og-default.png") | jsonify | safeJS }}{{ end }},
     "width": 1200,
     "height": 630
   },
-  "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
-  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "datePublished": {{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" | jsonify | safeJS }},
+  "dateModified": {{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" | jsonify | safeJS }},
   "author": {
     "@type": "Person",
-    "name": "{{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author | default "learn.txid.uk" }}{{ end }}"
+    "name": {{ with .Params.author }}{{ . | jsonify | safeJS }}{{ else }}{{ .Site.Params.author | default "learn.txid.uk" | jsonify | safeJS }}{{ end }}
   },
   "publisher": {
     "@type": "Organization",
-    "name": "{{ .Site.Title }}",
+    "name": {{ .Site.Title | jsonify | safeJS }},
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ .Site.Params.logo | default (printf "%s%s" .Site.BaseURL "images/logo.png") | absURL }}"
+      "url": {{ .Site.Params.logo | default (printf "%s%s" .Site.BaseURL "images/logo.png") | jsonify | safeJS }}
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ .Permalink }}"
+    "@id": {{ .Permalink | jsonify | safeJS }}
   },
-  "inLanguage": "{{ .Site.Language.Lang }}"
+  "inLanguage": {{ .Site.Language.Lang | jsonify | safeJS }}
   {{- with .Params.tags }},
-  "keywords": {{ delimit . ", " | jsonify }}
+  "keywords": {{ delimit . ", " | jsonify | safeJS }}
   {{- end }}
 }
 </script>

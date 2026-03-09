@@ -7,7 +7,7 @@ title = 'TXID'
 [languages]
   [languages.ko]
     languageCode = 'ko-KR'
-    title = 'TXID'
+    title = 'txid.uk - 비트코인 트랜잭션 ID 학습 플랫폼'
     weight = 1
     contentDir = 'content/ko'
     [languages.ko.params]

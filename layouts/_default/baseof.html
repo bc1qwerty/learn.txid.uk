@@ -54,14 +54,13 @@
   {{ range .AllTranslations }}
   <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
   {{ end }}
-  <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
   <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
 
   <!-- Schema.org -->
   <script type="application/ld+json">
   {{ if .IsHome -}}
   {"@context":"https://schema.org","@type":"WebSite","name":{{ site.Title | jsonify | safeJS }},"url":{{ site.BaseURL | jsonify | safeJS }},"description":{{ site.Params.description | jsonify | safeJS }},"publisher":{"@type":"Organization","name":{{ site.Params.author | jsonify | safeJS }},"logo":{{ (print site.BaseURL "favicon.svg") | jsonify | safeJS }}}}
-  {{- else if .IsPage -}}
+  {{- else if and .IsPage (not (or (eq .Section "blog") (eq .Section "learn"))) -}}
   {"@context":"https://schema.org","@type":"Article","headline":{{ .Title | jsonify | safeJS }},"description":{{ $description | jsonify | safeJS }},"datePublished":{{ .Date.Format "2006-01-02" | jsonify | safeJS }},"image":{{ $ogImage | jsonify | safeJS }},"author":{"@type":"Person","name":{{ site.Params.author | jsonify | safeJS }},"url":{{ site.BaseURL | jsonify | safeJS }}},"url":{{ .Permalink | jsonify | safeJS }}}
   {{- else -}}
   {"@context":"https://schema.org","@type":"CollectionPage","name":{{ .Title | jsonify | safeJS }},"description":{{ $description | jsonify | safeJS }},"url":{{ .Permalink | jsonify | safeJS }}}
