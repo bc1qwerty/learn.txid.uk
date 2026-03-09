@@ -5,3 +5,6 @@ User-agent: Yeti
 Allow: /
 
 Sitemap: {{ .Site.BaseURL }}sitemap.xml
+Sitemap: {{ .Site.BaseURL }}ko/sitemap.xml
+Sitemap: {{ .Site.BaseURL }}en/sitemap.xml
+Sitemap: {{ .Site.BaseURL }}ja/sitemap.xml
