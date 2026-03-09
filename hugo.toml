@@ -481,3 +481,293 @@ enableGitInfo = true
   baseName = 'robots'
   isPlainText = true
   notAlternative = true
+
+# ── Books (English) ──────────────────────────────────────────
+[[params.books_en]]
+  name = 'The Bitcoin Standard'
+  author = 'Saifedean Ammous'
+  cover = '/images/books/왜 달러는 비트코인을 싫어하는가.jpg'
+  slug = 'the-bitcoin-standard'
+
+[[params.books_en]]
+  name = 'The Fiat Standard'
+  author = 'Saifedean Ammous'
+  cover = '/images/books/비트코인 화폐의 미래.jpg'
+  slug = 'the-fiat-standard'
+
+[[params.books_en]]
+  name = 'The Book of Satoshi'
+  author = 'Phil Champagne'
+  cover = '/images/books/사토시의 서.jpg'
+  slug = 'the-book-of-satoshi'
+
+[[params.books_en]]
+  name = 'End the Fed'
+  author = 'Ron Paul'
+  cover = '/images/books/우리는 왜 매번 경제위기를 겪어야 하는가.jpg'
+  slug = 'end-the-fed'
+
+[[params.books_en]]
+  name = 'Sapiens'
+  author = 'Yuval Noah Harari'
+  cover = '/images/books/사피엔스.jpg'
+  slug = 'sapiens'
+
+[[params.books_en]]
+  name = 'Bitcoin Whitepaper'
+  author = 'Satoshi Nakamoto'
+  cover = '/images/books/비트코인 백서.jpg'
+  slug = 'bitcoin-whitepaper'
+
+[[params.books_en]]
+  name = 'Daylight Robbery'
+  author = 'Dominic Frisby'
+  cover = '/images/books/세금의 세계사.jpg'
+  slug = 'daylight-robbery'
+
+[[params.books_en]]
+  name = 'Principles'
+  author = 'Ray Dalio'
+  cover = '/images/books/원칙.jpg'
+  slug = 'principles'
+
+[[params.books_en]]
+  name = 'Bitcoin User Guide'
+  author = 'Philemon'
+  cover = '/images/books/비트코인 사용 가이드.jpg'
+  slug = 'bitcoin-guide'
+
+[[params.books_en]]
+  name = 'Homo Deus'
+  author = 'Yuval Noah Harari'
+  cover = '/images/books/호모데우스.jpg'
+  slug = 'homo-deus'
+
+[[params.books_en]]
+  name = 'The Changing World Order'
+  author = 'Ray Dalio'
+  cover = '/images/books/빅 사이클.jpg'
+  slug = 'the-changing-world-order'
+
+[[params.books_en]]
+  name = 'For a New Liberty'
+  author = 'Murray Rothbard'
+  cover = '/images/books/새로운 자유를 찾아서.jpg'
+  slug = 'for-a-new-liberty'
+
+[[params.books_en]]
+  name = 'The Law'
+  author = 'Frédéric Bastiat'
+  cover = '/images/books/법.jpg'
+  slug = 'the-law'
+
+[[params.books_en]]
+  name = 'Just Meat'
+  author = 'Hong Jisu'
+  cover = '/images/books/단지, 소고기.jpg'
+  slug = 'just-meat'
+
+[[params.books_en]]
+  name = 'What Went Wrong with Capitalism'
+  author = 'Ruchir Sharma'
+  cover = '/images/books/무엇이 자본주의를 망가뜨렸나.jpg'
+  slug = 'what-went-wrong-with-capitalism'
+
+[[params.books_en]]
+  name = 'What Has Government Done to Our Money?'
+  author = 'Murray Rothbard'
+  cover = '/images/books/정부는 우리 화폐에 무슨 일을 해왔는가.jpg'
+  slug = 'what-has-government-done-to-our-money'
+
+[[params.books_en]]
+  name = 'The Psychology of Money'
+  author = 'Morgan Housel'
+  cover = '/images/books/돈의 심리학.jpg'
+  slug = 'psychology-of-money'
+
+[[params.books_en]]
+  name = 'Layered Money'
+  author = 'Nik Bhatia'
+  cover = '/images/books/레이어드 머니.jpg'
+  slug = 'layered-money'
+
+[[params.books_en]]
+  name = 'History Is Money'
+  author = 'Hong Chunwook'
+  cover = '/images/books/역사는 돈이다.jpg'
+  slug = 'history-is-money'
+
+[[params.books_en]]
+  name = 'Austrian Business Cycle Theory'
+  author = 'Ludwig von Mises et al.'
+  cover = '/images/books/오스트리아학파의 경기변동 이론.jpg'
+  slug = 'austrian-business-cycle-theory'
+
+[[params.books_en]]
+  name = 'Ludwig von Mises: Last Knight of Liberalism'
+  author = 'Jörg Guido Hülsmann'
+  cover = '/images/books/루트비히 폰 미제스.jpg'
+  slug = 'ludwig-von-mises'
+
+[[params.books_en]]
+  name = 'Bitcoin Handbook'
+  author = 'Jan Friedman'
+  cover = '/images/books/비트코인 핸드북.jpg'
+  slug = 'bitcoin-handbook'
+
+[[params.books_en]]
+  name = '1984'
+  author = 'George Orwell'
+  cover = '/images/books/1984.jpg'
+  slug = '1984'
+
+[[params.books_en]]
+  name = 'The Blocksize War'
+  author = 'Jonathan Bier'
+  cover = '/images/books/비트코인 블록사이즈 전쟁.jpg'
+  slug = 'the-blocksize-war'
+
+# ── Books (Japanese) ─────────────────────────────────────────
+[[params.books_ja]]
+  name = 'ビットコイン・スタンダード'
+  author = 'サイフェディーン・アモウス'
+  cover = '/images/books/왜 달러는 비트코인을 싫어하는가.jpg'
+  slug = 'the-bitcoin-standard'
+
+[[params.books_ja]]
+  name = 'フィアット・スタンダード'
+  author = 'サイフェディーン・アモウス'
+  cover = '/images/books/비트코인 화폐의 미래.jpg'
+  slug = 'the-fiat-standard'
+
+[[params.books_ja]]
+  name = 'サトシの書'
+  author = 'フィル・シャンパーニュ'
+  cover = '/images/books/사토시의 서.jpg'
+  slug = 'the-book-of-satoshi'
+
+[[params.books_ja]]
+  name = 'FRBを廃止せよ'
+  author = 'ロン・ポール'
+  cover = '/images/books/우리는 왜 매번 경제위기를 겪어야 하는가.jpg'
+  slug = 'end-the-fed'
+
+[[params.books_ja]]
+  name = 'サピエンス全史'
+  author = 'ユヴァル・ノア・ハラリ'
+  cover = '/images/books/사피엔스.jpg'
+  slug = 'sapiens'
+
+[[params.books_ja]]
+  name = 'ビットコイン白書'
+  author = 'サトシ・ナカモト'
+  cover = '/images/books/비트코인 백서.jpg'
+  slug = 'bitcoin-whitepaper'
+
+[[params.books_ja]]
+  name = 'デイライト・ロバリー'
+  author = 'ドミニク・フリスビー'
+  cover = '/images/books/세금의 세계사.jpg'
+  slug = 'daylight-robbery'
+
+[[params.books_ja]]
+  name = 'プリンシプルズ'
+  author = 'レイ・ダリオ'
+  cover = '/images/books/원칙.jpg'
+  slug = 'principles'
+
+[[params.books_ja]]
+  name = 'ビットコイン使用ガイド'
+  author = 'フィレモン'
+  cover = '/images/books/비트코인 사용 가이드.jpg'
+  slug = 'bitcoin-guide'
+
+[[params.books_ja]]
+  name = 'ホモ・デウス'
+  author = 'ユヴァル・ノア・ハラリ'
+  cover = '/images/books/호모데우스.jpg'
+  slug = 'homo-deus'
+
+[[params.books_ja]]
+  name = '変わりゆく世界秩序'
+  author = 'レイ・ダリオ'
+  cover = '/images/books/빅 사이클.jpg'
+  slug = 'the-changing-world-order'
+
+[[params.books_ja]]
+  name = '新しい自由のために'
+  author = 'マレー・ロスバード'
+  cover = '/images/books/새로운 자유를 찾아서.jpg'
+  slug = 'for-a-new-liberty'
+
+[[params.books_ja]]
+  name = '法'
+  author = 'フレデリック・バスティア'
+  cover = '/images/books/법.jpg'
+  slug = 'the-law'
+
+[[params.books_ja]]
+  name = 'Just Meat'
+  author = 'Hong Jisu'
+  cover = '/images/books/단지, 소고기.jpg'
+  slug = 'just-meat'
+
+[[params.books_ja]]
+  name = '資本主義に何が起きたのか'
+  author = 'ルチル・シャルマ'
+  cover = '/images/books/무엇이 자본주의를 망가뜨렸나.jpg'
+  slug = 'what-went-wrong-with-capitalism'
+
+[[params.books_ja]]
+  name = '政府は貨幣に何をしてきたか'
+  author = 'マレー・ロスバード'
+  cover = '/images/books/정부는 우리 화폐에 무슨 일을 해왔는가.jpg'
+  slug = 'what-has-government-done-to-our-money'
+
+[[params.books_ja]]
+  name = 'サイコロジー・オブ・マネー'
+  author = 'モーガン・ハウゼル'
+  cover = '/images/books/돈의 심리학.jpg'
+  slug = 'psychology-of-money'
+
+[[params.books_ja]]
+  name = 'レイヤード・マネー'
+  author = 'ニク・バティア'
+  cover = '/images/books/레이어드 머니.jpg'
+  slug = 'layered-money'
+
+[[params.books_ja]]
+  name = '歴史はお金だ'
+  author = 'ホン・チュンウク'
+  cover = '/images/books/역사는 돈이다.jpg'
+  slug = 'history-is-money'
+
+[[params.books_ja]]
+  name = 'オーストリア学派の景気循環理論'
+  author = 'ルートヴィヒ・フォン・ミーゼス 他'
+  cover = '/images/books/오스트리아학파의 경기변동 이론.jpg'
+  slug = 'austrian-business-cycle-theory'
+
+[[params.books_ja]]
+  name = 'ルートヴィヒ・フォン・ミーゼス'
+  author = 'イェルク・グイド・ヒュルスマン'
+  cover = '/images/books/루트비히 폰 미제스.jpg'
+  slug = 'ludwig-von-mises'
+
+[[params.books_ja]]
+  name = 'ビットコイン・ハンドブック'
+  author = 'ヤン・フリードマン'
+  cover = '/images/books/비트코인 핸드북.jpg'
+  slug = 'bitcoin-handbook'
+
+[[params.books_ja]]
+  name = '1984年'
+  author = 'ジョージ・オーウェル'
+  cover = '/images/books/1984.jpg'
+  slug = '1984'
+
+[[params.books_ja]]
+  name = 'ブロックサイズ戦争'
+  author = 'ジョナサン・ビアー'
+  cover = '/images/books/비트코인 블록사이즈 전쟁.jpg'
+  slug = 'the-blocksize-war'
