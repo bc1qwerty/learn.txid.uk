@@ -1,4 +1,4 @@
-<h2 class="tile-title"><span data-i18n="요즘">{{ site.Params.now.title | default "요즘" }}</span></h2>
+<h2 class="tile-title">{{ i18n "now_section_title" }}</h2>
 <ul class="now-list">
     {{ range site.Params.now.items }}
     <li>{{ . }}</li>

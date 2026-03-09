@@ -84,3 +84,33 @@ other = "タグ"
 
 [back_to_top]
 other = "トップへ"
+
+[learn_title]
+other = "学習"
+
+[learn_desc]
+other = "どこから始めればいいか分からない方は、テーマ別の学習パスを進んでください。"
+
+[steps_unit]
+other = "ステップ"
+
+[view_all]
+other = "すべて見る"
+
+[site_desc]
+other = "ビットコイン、オーストリア経済学、\n自由主義を学ぶ"
+
+[blog_section_title]
+other = "最近の投稿"
+
+[ideas_section_title]
+other = "概念"
+
+[people_section_title]
+other = "人物"
+
+[books_section_title]
+other = "推薦図書"
+
+[now_section_title]
+other = "近況"

@@ -84,3 +84,33 @@ other = "태그"
 
 [back_to_top]
 other = "위로"
+
+[learn_title]
+other = "공부방"
+
+[learn_desc]
+other = "어디서부터 시작할지 모르겠다면, 주제별 경로를 따라가세요."
+
+[steps_unit]
+other = "단계"
+
+[view_all]
+other = "전체 보기"
+
+[site_desc]
+other = "비트코인, 오스트리아 경제학,\n자유주의를 배우는 곳"
+
+[blog_section_title]
+other = "최근 게시물"
+
+[ideas_section_title]
+other = "개념"
+
+[people_section_title]
+other = "인물"
+
+[books_section_title]
+other = "추천도서"
+
+[now_section_title]
+other = "요즘"

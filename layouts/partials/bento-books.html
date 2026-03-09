@@ -1,4 +1,4 @@
-<h2 class="tile-title"><span data-i18n="추천도서">추천도서</span></h2>
+<h2 class="tile-title">{{ i18n "books_section_title" }}</h2>
 <div class="book-grid" id="bookGrid">
     {{ range $i, $book := site.Params.books }}
     <a class="book-card" href="{{ with .slug }}/books/{{ . }}/{{ else }}#{{ end }}">
@@ -16,4 +16,4 @@
     </a>
     {{ end }}
 </div>
-<button class="tile-more-btn" id="bookToggle" aria-expanded="false" aria-controls="bookGrid">전체 보기 &#9660;</button>
+<button class="tile-more-btn" id="bookToggle" aria-expanded="false" aria-controls="bookGrid">{{ i18n "view_all" }} &#9660;</button>

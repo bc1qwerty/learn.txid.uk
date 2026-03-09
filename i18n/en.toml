@@ -84,3 +84,33 @@ other = "Tags"
 
 [back_to_top]
 other = "Back to Top"
+
+[learn_title]
+other = "Learn"
+
+[learn_desc]
+other = "Not sure where to start? Follow topic-based learning paths."
+
+[steps_unit]
+other = "steps"
+
+[view_all]
+other = "View All"
+
+[site_desc]
+other = "Learn Bitcoin, Austrian Economics,\nand Libertarianism"
+
+[blog_section_title]
+other = "Recent Posts"
+
+[ideas_section_title]
+other = "Ideas"
+
+[people_section_title]
+other = "People"
+
+[books_section_title]
+other = "Books"
+
+[now_section_title]
+other = "Now"

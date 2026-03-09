@@ -1,4 +1,4 @@
-<h2 class="tile-title"><span data-i18n="개념">{{ site.Params.concepts.title | default "개념" }}</span></h2>
+<h2 class="tile-title">{{ i18n "ideas_section_title" }}</h2>
 <div class="tile-list">
     {{ $maxPosts := site.Params.concepts.maxPosts | default 3 }}
     {{ range first $maxPosts (where site.RegularPages "Section" "ideas").ByDate.Reverse }}
@@ -8,9 +8,9 @@
         <span class="arrow">&rarr;</span>
     </a>
     {{ else }}
-    <p class="tile-empty">아직 개념이 없습니다.</p>
+    <p class="tile-empty">—</p>
     {{ end }}
 </div>
 {{ with site.Params.concepts.moreURL }}
-<a href="{{ . }}" class="tile-more">{{ site.Params.concepts.moreText | default "전체 보기" }} &rarr;</a>
+<a href="{{ . }}" class="tile-more">{{ i18n "view_all" }} &rarr;</a>
 {{ end }}
