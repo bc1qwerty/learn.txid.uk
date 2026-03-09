@@ -1,7 +1,11 @@
 User-agent: *
 Allow: /
+Allow: /favicon.ico
 
 User-agent: Yeti
 Allow: /
 
 Sitemap: https://learn.txid.uk/sitemap.xml
+Sitemap: https://learn.txid.uk/ko/sitemap.xml
+Sitemap: https://learn.txid.uk/en/sitemap.xml
+Sitemap: https://learn.txid.uk/ja/sitemap.xml

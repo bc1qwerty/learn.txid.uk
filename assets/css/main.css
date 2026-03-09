@@ -46,7 +46,7 @@ body {
   word-break: keep-all;
   overflow-wrap: break-word;
   background-color: var(--color-surface);
-  color: var(--color-gray-200);
+  color: #e8e8e8; /* 다크모드 7:1 대비 확보 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

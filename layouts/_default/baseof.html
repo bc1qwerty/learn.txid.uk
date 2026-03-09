@@ -71,6 +71,9 @@
   <!-- Course Schema.org (learn 섹션 코스 페이지) -->
   {{ if and .IsPage (eq .Section "learn") }}{{ partial "schema-course.html" . }}{{ end }}
 
+  <!-- Article Schema.org (blog 섹션 — ISO8601 datePublished, 1200x630 image) -->
+  {{ if and .IsPage (eq .Section "blog") }}{{ partial "schema-article.html" . }}{{ end }}
+
   <!-- Early theme restore (prevents flash of wrong theme) -->
   <script>
     (function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#09090b':'#fafafa';}}catch(e){}})();
