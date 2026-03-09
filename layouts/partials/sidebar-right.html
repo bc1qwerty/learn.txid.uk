@@ -28,13 +28,20 @@
 </div>
 {{ end }}
 
-<!-- Tags -->
-{{ if site.Taxonomies.tags }}
+<!-- Tags (현재 언어 페이지 기준) -->
+{{ $allTags := slice }}
+{{ range site.RegularPages }}
+  {{ range .Params.tags }}
+    {{ $allTags = $allTags | append . }}
+  {{ end }}
+{{ end }}
+{{ $uniqueTags := $allTags | uniq }}
+{{ if $uniqueTags }}
 <div class="sidebar-section">
     <span class="sidebar-label">{{ i18n "tags_title" }}</span>
     <div class="sidebar-chips">
-        {{ range site.Taxonomies.tags.ByCount }}
-        <a href="{{ .Page.RelPermalink }}" class="sidebar-chip">{{ .Page.Title }} <span class="text-gray-600">{{ .Count }}</span></a>
+        {{ range $uniqueTags }}
+        <a href="{{ $.Site.LanguagePrefix }}/tags/{{ . | urlize }}/" class="sidebar-chip">{{ . }}</a>
         {{ end }}
     </div>
 </div>
