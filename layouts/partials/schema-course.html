@@ -19,7 +19,7 @@
       "@type": "CourseInstance",
       "name": {{ $s.title | jsonify | safeJS }},
       "courseMode": "Online",
-      "url": {{ $s.url | jsonify | safeJS }},
+      "url": {{ $s.url | absLangURL | jsonify | safeJS }},
       "description": {{ $s.summary | jsonify | safeJS }}
     }{{ end }}
   ]{{ end }}

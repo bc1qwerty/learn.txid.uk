@@ -2,9 +2,9 @@
 <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
   <!-- Breadcrumb -->
   <nav class="mb-6 text-sm text-gray-600" aria-label="breadcrumb">
-    <a href="/" class="hover:text-gray-400 transition-colors">홈</a>
+    <a href="{{ "/" | relLangURL }}" class="hover:text-gray-400 transition-colors">홈</a>
     <span class="mx-1.5">/</span>
-    <a href="/learn/" class="hover:text-gray-400 transition-colors">공부방</a>
+    <a href="{{ "/learn/" | relLangURL }}" class="hover:text-gray-400 transition-colors">공부방</a>
     <span class="mx-1.5">/</span>
     <span class="text-gray-500">{{ .Title }}</span>
   </nav>
@@ -40,7 +40,7 @@
       </div>
 
       <!-- Step card -->
-      <a href="{{ $step.url }}" class="block p-5 rounded-xl border border-gray-800/50 hover:border-bitcoin/30 bg-gray-900/30 hover:bg-gray-900/60 transition-all group">
+      <a href="{{ $step.url | relLangURL }}" class="block p-5 rounded-xl border border-gray-800/50 hover:border-bitcoin/30 bg-gray-900/30 hover:bg-gray-900/60 transition-all group">
         <h3 class="text-lg font-semibold text-white group-hover:text-bitcoin transition-colors mb-1">
           {{ $step.title }}
         </h3>
@@ -54,7 +54,7 @@
   {{ with .Params.next_path }}
   <div class="mt-16 pt-8 border-t border-gray-800/50">
     <p class="text-sm text-gray-600 mb-3">다음 추천 경로</p>
-    <a href="{{ .url }}" class="inline-flex items-center gap-2 text-bitcoin hover:underline font-medium">
+    <a href="{{ .url | relLangURL }}" class="inline-flex items-center gap-2 text-bitcoin hover:underline font-medium">
       {{ .title }}
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
