@@ -796,6 +796,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (m) m.style.display = 'none';
     // Hugo 다국어 URL이 있으면 페이지 이동
     if (window.__LANG_URLS__ && window.__LANG_URLS__[l]) {
+      try { localStorage.setItem('preferred-lang', l); } catch(e) {}
       window.location.href = window.__LANG_URLS__[l];
       return;
     }
