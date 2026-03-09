@@ -1,0 +1,86 @@
+[site_title]
+other = "TXID"
+
+[site_tagline]
+other = "ビットコイン、オーストリア経済学、そして自由。"
+
+[nav_learn]
+other = "学習"
+
+[nav_ideas]
+other = "概念"
+
+[nav_people]
+other = "人物"
+
+[nav_books]
+other = "推薦図書"
+
+[nav_blog]
+other = "ブログ"
+
+[nav_faq]
+other = "FAQ"
+
+[nav_tools]
+other = "ツール"
+
+[hero_sidebar_tagline]
+other = "fullnoder, solo miner | ₿itcoin Only"
+
+[blog_title]
+other = "最近の投稿"
+
+[blog_more]
+other = "すべて見る"
+
+[concepts_title]
+other = "概念"
+
+[concepts_more]
+other = "すべて見る"
+
+[search_placeholder]
+other = "検索..."
+
+[reading_now]
+other = "今読んでいる本"
+
+[now_title]
+other = "近況"
+
+[quote_by]
+other = "—"
+
+[theme_toggle]
+other = "テーマ"
+
+[lang_ko]
+other = "한국어"
+
+[lang_en]
+other = "English"
+
+[lang_ja]
+other = "日本語"
+
+[books_title]
+other = "推薦図書"
+
+[people_title]
+other = "人物"
+
+[ideas_title]
+other = "概念"
+
+[start_title]
+other = "始める"
+
+[read_more]
+other = "続きを読む"
+
+[tags_title]
+other = "タグ"
+
+[back_to_top]
+other = "トップへ"

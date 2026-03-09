@@ -1,6 +1,12 @@
-<h2 class="tile-title">명언</h2>
+<h2 class="tile-title">{{ if eq .Lang "en" }}Quotes{{ else if eq .Lang "ja" }}名言{{ else }}명언{{ end }}</h2>
 <blockquote class="quote-text" id="quoteText" aria-live="polite"></blockquote>
 <cite class="quote-author" id="quoteAuthor"></cite>
 <script id="quote-data" type="application/json">
+{{ if eq .Lang "en" }}
+[{{ range $i, $q := site.Data.quotes_en.quotes }}{{ if $i }},{{ end }}{"text":{{ $q.text | jsonify }},"author":{{ $q.author | jsonify }}}{{ end }}]
+{{ else if eq .Lang "ja" }}
+[{{ range $i, $q := site.Data.quotes_ja.quotes }}{{ if $i }},{{ end }}{"text":{{ $q.text | jsonify }},"author":{{ $q.author | jsonify }}}{{ end }}]
+{{ else }}
 [{{ range $i, $q := site.Params.quotes }}{{ if $i }},{{ end }}{"text":{{ $q.text | jsonify }},"author":{{ $q.author | jsonify }}}{{ end }}]
+{{ end }}
 </script>

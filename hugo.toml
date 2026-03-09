@@ -9,16 +9,60 @@ title = 'TXID'
     title = 'TXID'
     weight = 1
     contentDir = 'content/ko'
+    [languages.ko.params]
+      description = '비트코인의 진짜 의미를 이해하고 싶다면. 오스트리아 경제학과 자유주의 사상으로 비트코인의 본질을 풀어내는 한국어 학습 사이트.'
+    [[languages.ko.menus.main]]
+      name = '공부방'; url = '/ko/learn/'; weight = 1
+    [[languages.ko.menus.main]]
+      name = '개념'; url = '/ko/ideas/'; weight = 2
+    [[languages.ko.menus.main]]
+      name = '인물'; url = '/ko/people/'; weight = 3
+    [[languages.ko.menus.main]]
+      name = '추천도서'; url = '/ko/books/'; weight = 4
+    [[languages.ko.menus.main]]
+      name = '블로그'; url = '/ko/blog/'; weight = 6
+    [[languages.ko.menus.main]]
+      name = 'FAQ'; url = '/ko/faq/'; weight = 7
+
   [languages.en]
     languageCode = 'en'
     title = 'TXID'
     weight = 2
     contentDir = 'content/en'
+    [languages.en.params]
+      description = 'Understanding Bitcoin through Austrian Economics and libertarian philosophy.'
+    [[languages.en.menus.main]]
+      name = 'Learn'; url = '/en/learn/'; weight = 1
+    [[languages.en.menus.main]]
+      name = 'Ideas'; url = '/en/ideas/'; weight = 2
+    [[languages.en.menus.main]]
+      name = 'People'; url = '/en/people/'; weight = 3
+    [[languages.en.menus.main]]
+      name = 'Books'; url = '/en/books/'; weight = 4
+    [[languages.en.menus.main]]
+      name = 'Blog'; url = '/en/blog/'; weight = 6
+    [[languages.en.menus.main]]
+      name = 'FAQ'; url = '/en/faq/'; weight = 7
+
   [languages.ja]
     languageCode = 'ja'
     title = 'TXID'
     weight = 3
     contentDir = 'content/ja'
+    [languages.ja.params]
+      description = 'オーストリア経済学と自由主義思想でビットコインの本質を解き明かす学習サイト。'
+    [[languages.ja.menus.main]]
+      name = '学習'; url = '/ja/learn/'; weight = 1
+    [[languages.ja.menus.main]]
+      name = '概念'; url = '/ja/ideas/'; weight = 2
+    [[languages.ja.menus.main]]
+      name = '人物'; url = '/ja/people/'; weight = 3
+    [[languages.ja.menus.main]]
+      name = '推薦図書'; url = '/ja/books/'; weight = 4
+    [[languages.ja.menus.main]]
+      name = 'ブログ'; url = '/ja/blog/'; weight = 6
+    [[languages.ja.menus.main]]
+      name = 'FAQ'; url = '/ja/faq/'; weight = 7
 
 publishDir = 'public'
 enableGitInfo = true

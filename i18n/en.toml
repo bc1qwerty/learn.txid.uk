@@ -1,0 +1,86 @@
+[site_title]
+other = "TXID"
+
+[site_tagline]
+other = "Bitcoin, Austrian Economics, and Liberty."
+
+[nav_learn]
+other = "Learn"
+
+[nav_ideas]
+other = "Ideas"
+
+[nav_people]
+other = "People"
+
+[nav_books]
+other = "Books"
+
+[nav_blog]
+other = "Blog"
+
+[nav_faq]
+other = "FAQ"
+
+[nav_tools]
+other = "Tools"
+
+[hero_sidebar_tagline]
+other = "fullnoder, solo miner | ₿itcoin Only"
+
+[blog_title]
+other = "Recent Posts"
+
+[blog_more]
+other = "View All"
+
+[concepts_title]
+other = "Ideas"
+
+[concepts_more]
+other = "View All"
+
+[search_placeholder]
+other = "Search..."
+
+[reading_now]
+other = "Currently Reading"
+
+[now_title]
+other = "Now"
+
+[quote_by]
+other = "—"
+
+[theme_toggle]
+other = "Theme"
+
+[lang_ko]
+other = "한국어"
+
+[lang_en]
+other = "English"
+
+[lang_ja]
+other = "日本語"
+
+[books_title]
+other = "Recommended Books"
+
+[people_title]
+other = "People"
+
+[ideas_title]
+other = "Ideas"
+
+[start_title]
+other = "Get Started"
+
+[read_more]
+other = "Read More"
+
+[tags_title]
+other = "Tags"
+
+[back_to_top]
+other = "Back to Top"
