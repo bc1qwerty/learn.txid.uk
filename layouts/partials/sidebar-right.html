@@ -32,8 +32,9 @@
 {{ end }}
 
 <!-- Tags (현재 언어 페이지 기준) -->
+{{ $lang := .Site.Language.Lang }}
 {{ $allTags := slice }}
-{{ range site.RegularPages }}
+{{ range where $.Site.RegularPages "Lang" $lang }}
   {{ range .Params.tags }}
     {{ $allTags = $allTags | append . }}
   {{ end }}
