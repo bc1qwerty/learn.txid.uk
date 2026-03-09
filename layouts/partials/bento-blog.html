@@ -11,6 +11,6 @@
     <p class="tile-empty">{{ i18n "no_posts" | default "—" }}</p>
     {{ end }}
 </div>
-<a href="{{ site.Params.blog.moreURL | default "/blog/" }}" class="tile-more">
+<a href="{{ $.Site.LanguagePrefix }}/blog/" class="tile-more">
     {{ i18n "view_all" }} &rarr;
 </a>
