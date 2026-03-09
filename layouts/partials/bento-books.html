@@ -1,7 +1,7 @@
 <h2 class="tile-title">{{ i18n "books_section_title" }}</h2>
 <div class="book-grid" id="bookGrid">
     {{ range $i, $book := site.Params.books }}
-    <a class="book-card" href="{{ with .slug }}/books/{{ . }}/{{ else }}#{{ end }}">
+    <a class="book-card" href="{{ with .slug }}{{ $.Site.LanguagePrefix }}/books/{{ . }}/{{ else }}#{{ end }}">
         <div class="book-cover">
             {{ with .cover }}
             <img src="{{ . }}" alt="{{ $book.name }} — {{ $book.author }}" loading="lazy" width="100" height="150">
