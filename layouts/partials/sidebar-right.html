@@ -14,7 +14,10 @@
 </div>
 
 <!-- Now -->
-{{ with site.Params.now }}
+{{ $now := site.Params.now }}
+{{ if eq .Site.Language.Lang "en" }}{{ $now = site.Params.now_en }}{{ end }}
+{{ if eq .Site.Language.Lang "ja" }}{{ $now = site.Params.now_ja }}{{ end }}
+{{ with $now }}
 <div class="sidebar-section sidebar-now">
     <span class="sidebar-label">{{ i18n "now_section_title" }}</span>
     <ul class="sidebar-now-list">

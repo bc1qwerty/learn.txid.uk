@@ -119,11 +119,27 @@ enableGitInfo = true
 
 [params.now]
   title = '요즘'
-  updated = '2026-02'
+  updated = '2026-03'
   items = [
-    '개인 허브 사이트 구축 중',
-    '비트코인 & 자유주의 & 오스트리아 경제학 공부',
-    '자산 관리 봇 운영 및 개선',
+    'txid.uk 사이트 구축',
+    'AI에 대해 배우고, 흐름 따라잡기',
+    '비트코인, 오스트리아 경제학, 자유주의 공부',
+  ]
+
+[params.now_en]
+  updated = '2026-03'
+  items = [
+    'Building txid.uk',
+    'Learning AI and keeping up with the trend',
+    'Studying Bitcoin, Austrian Economics, and Libertarianism',
+  ]
+
+[params.now_ja]
+  updated = '2026-03'
+  items = [
+    'txid.uk サイト構築中',
+    'AIについて学び、トレンドをキャッチアップ',
+    'ビットコイン、オーストリア経済学、自由主義を勉強中',
   ]
 
 [[params.projects]]
