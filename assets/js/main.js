@@ -778,9 +778,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   window.setLang = function(l) {
-    _lang = l; localStorage.setItem('lang', l);
     const m = document.getElementById('lang-menu');
     if (m) m.style.display = 'none';
+    // Hugo 다국어 URL이 있으면 페이지 이동
+    if (window.__LANG_URLS__ && window.__LANG_URLS__[l]) {
+      window.location.href = window.__LANG_URLS__[l];
+      return;
+    }
+    // fallback: 텍스트만 변환
+    _lang = l; localStorage.setItem('lang', l);
     applyLang(l);
   };
   window.toggleLang = function() {
