@@ -114,3 +114,48 @@ other = "Books"
 
 [now_section_title]
 other = "Now"
+
+[bookmarks_title]
+other = "Bookmarks"
+
+[stack_title]
+other = "Tools"
+
+[nav_navigate]
+other = "Navigate"
+
+[nav_topics]
+other = "Topics"
+
+[nav_study]
+other = "Learn"
+
+[appbar_explorer]
+other = "Explorer"
+
+[appbar_tools]
+other = "Tools"
+
+[appbar_viz]
+other = "Viz"
+
+[appbar_stats]
+other = "Stats"
+
+[appbar_nodes]
+other = "Nodes"
+
+[appbar_map]
+other = "Map"
+
+[appbar_portfolio]
+other = "Portfolio"
+
+[appbar_tx]
+other = "TX"
+
+[appbar_learn]
+other = "Learn"
+
+[appbar_apps]
+other = "Apps"

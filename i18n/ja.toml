@@ -114,3 +114,48 @@ other = "推薦図書"
 
 [now_section_title]
 other = "近況"
+
+[bookmarks_title]
+other = "ブックマーク"
+
+[stack_title]
+other = "ツール"
+
+[nav_navigate]
+other = "ナビゲート"
+
+[nav_topics]
+other = "トピック"
+
+[nav_study]
+other = "学習"
+
+[appbar_explorer]
+other = "探索"
+
+[appbar_tools]
+other = "ツール"
+
+[appbar_viz]
+other = "可視化"
+
+[appbar_stats]
+other = "統計"
+
+[appbar_nodes]
+other = "ノード"
+
+[appbar_map]
+other = "マップ"
+
+[appbar_portfolio]
+other = "ポートフォリオ"
+
+[appbar_tx]
+other = "送信"
+
+[appbar_learn]
+other = "学習"
+
+[appbar_apps]
+other = "アプリ"

@@ -114,3 +114,48 @@ other = "추천도서"
 
 [now_section_title]
 other = "요즘"
+
+[bookmarks_title]
+other = "북마크"
+
+[stack_title]
+other = "도구"
+
+[nav_navigate]
+other = "탐색"
+
+[nav_topics]
+other = "주제"
+
+[nav_study]
+other = "공부방"
+
+[appbar_explorer]
+other = "탐색기"
+
+[appbar_tools]
+other = "도구"
+
+[appbar_viz]
+other = "시각화"
+
+[appbar_stats]
+other = "통계"
+
+[appbar_nodes]
+other = "노드"
+
+[appbar_map]
+other = "지도"
+
+[appbar_portfolio]
+other = "포트폴리오"
+
+[appbar_tx]
+other = "전송"
+
+[appbar_learn]
+other = "배우기"
+
+[appbar_apps]
+other = "앱모음"
