@@ -1,0 +1,28 @@
+{{- if .Params.duration -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": {{ .Title | jsonify | safeJS }},
+  "description": {{ .Description | jsonify | safeJS }},
+  "url": {{ .Permalink | jsonify | safeJS }},
+  "provider": {
+    "@type": "Organization",
+    "name": {{ site.Title | jsonify | safeJS }},
+    "url": {{ site.BaseURL | jsonify | safeJS }}
+  },
+  "timeRequired": {{ .Params.duration | jsonify | safeJS }},
+  "educationalLevel": {{ .Params.level | default "Beginner" | jsonify | safeJS }},
+  "teaches": {{ .Description | jsonify | safeJS }}{{ if .Params.steps }},
+  "hasCourseInstance": [{{ range $i, $s := .Params.steps }}{{ if $i }},{{ end }}
+    {
+      "@type": "CourseInstance",
+      "name": {{ $s.title | jsonify | safeJS }},
+      "courseMode": "Online",
+      "url": {{ $s.url | jsonify | safeJS }},
+      "description": {{ $s.summary | jsonify | safeJS }}
+    }{{ end }}
+  ]{{ end }}
+}
+</script>
+{{- end -}}
