@@ -1,4 +1,5 @@
 baseURL = 'https://learn.txid.uk/'
+enableRobotsTXT = true
 defaultContentLanguage = 'ko'
 defaultContentLanguageInSubdir = true
 title = 'TXID'

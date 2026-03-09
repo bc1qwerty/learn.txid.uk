@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://txid.uk/sitemap.xml
+User-agent: Yeti
+Allow: /
+
+Sitemap: https://learn.txid.uk/sitemap.xml
