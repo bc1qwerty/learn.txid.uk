@@ -337,7 +337,10 @@ enableGitInfo = true
   name = 'Python'
 
 [[params.stack]]
-  name = 'Bitcoin'
+  name = 'Bitcoin Core'
+
+[[params.stack]]
+  name = 'Sparrow'
 
 [[params.stack]]
   name = 'JavaScript'
@@ -347,6 +350,12 @@ enableGitInfo = true
 
 [[params.stack]]
   name = 'Docker'
+
+[[params.stack]]
+  name = 'GitHub'
+
+[[params.stack]]
+  name = 'Claude'
 
 [[params.bookmarks]]
   name = 'Bitcoin Whitepaper'
