@@ -1,7 +1,7 @@
 ---
 title: "Minarchy — The Appropriate Scope of the State"
 date: 2026-03-07
-tags: ["libertarianism"]
+tags: ["Libertarianism"]
 description: "Minarchism is the position that the state's role should be limited to the minimum functions necessary to protect individual rights."
 levels: "입문"
 weight: 28

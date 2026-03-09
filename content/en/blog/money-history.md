@@ -2,7 +2,7 @@
 title: "The History of Money: From Barter to Bitcoin"
 date: 2026-02-16T10:00:00+09:00
 description: "How money has evolved throughout history, and where Bitcoin stands in that story."
-tags: ["비트코인", "오스트리아 경제학"]
+tags: ["Bitcoin", "Austrian Economics"]
 draft: false
 ---
 

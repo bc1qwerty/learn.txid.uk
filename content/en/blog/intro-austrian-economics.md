@@ -2,7 +2,7 @@
 title: "What Is Austrian Economics?"
 date: 2026-02-17T10:00:00+09:00
 description: "From Carl Menger to Mises and Hayek — an introduction to the core concepts of the Austrian School of Economics."
-tags: ["오스트리아 경제학"]
+tags: ["Austrian Economics"]
 draft: false
 ---
 

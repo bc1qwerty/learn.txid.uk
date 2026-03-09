@@ -1,7 +1,7 @@
 ---
 title: "SegWit (Segregated Witness) — Scaling Through Signature Separation"
 date: 2026-03-08
-tags: ["bitcoin"]
+tags: ["Bitcoin"]
 description: "SegWit (Segregated Witness) is a Bitcoin protocol upgrade activated in 2017 that increases the practical capacity of blocks by separating signature data from transactions."
 levels: "beginner"
 weight: 36

@@ -2,7 +2,7 @@
 title: "What Bitcoin Fixes"
 description: "Bitcoin is not just an investment asset. It is a fundamental alternative to the structural problems created by the fiat currency system."
 levels: "intermediate"
-tags: ["bitcoin"]
+tags: ["Bitcoin"]
 weight: 18
 ---
 

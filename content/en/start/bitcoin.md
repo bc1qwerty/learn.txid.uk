@@ -3,7 +3,7 @@ title: "What Is Bitcoin?"
 description: "Understanding the basics of Bitcoin — uncensorable digital Sound Money."
 weight: 1
 levels: "입문"
-tags: ["비트코인"]
+tags: ["Bitcoin"]
 ---
 
 ## Bitcoin in One Sentence

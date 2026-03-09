@@ -2,7 +2,7 @@
 title: "Is Bitcoin a Waste of Energy?"
 date: 2026-02-07T10:00:00+09:00
 description: "Before criticizing Bitcoin's energy consumption, let's think about what energy actually is."
-tags: ["비트코인"]
+tags: ["Bitcoin"]
 levels: "입문"
 ---
 

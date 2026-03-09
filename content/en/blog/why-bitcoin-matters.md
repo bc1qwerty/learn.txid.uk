@@ -2,7 +2,7 @@
 title: "Why Bitcoin Matters"
 date: 2026-02-18T10:00:00+09:00
 description: "Why Bitcoin is not merely an investment asset but a tool for monetary sovereignty."
-tags: ["비트코인"]
+tags: ["Bitcoin"]
 draft: false
 ---
 

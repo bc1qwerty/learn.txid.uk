@@ -2,7 +2,7 @@
 title: "Inflation Is a Tax"
 date: 2026-02-18T10:00:00+09:00
 description: "An invisible tax that takes your wealth without a vote, without a notice."
-tags: ["경제학", "자유주의"]
+tags: ["Economics", "Libertarianism"]
 levels: "입문"
 ---
 

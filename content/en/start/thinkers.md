@@ -3,7 +3,7 @@ title: "Thinkers Who Defended Freedom and the Market"
 description: "A bird's-eye view of 200 years of the Austrian School's intellectual lineage — from Bastiat to Rothbard, including Böhm-Bawerk and Hazlitt."
 weight: 4
 levels: "중급"
-tags: ["오스트리아 경제학"]
+tags: ["Austrian Economics"]
 ---
 
 ## Why the Intellectual Lineage Matters
