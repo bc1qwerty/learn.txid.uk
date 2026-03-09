@@ -49,6 +49,12 @@
 
   {{ with .OutputFormats.Get "RSS" -}}
   <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }} RSS" href="{{ .RelPermalink }}">
+  {{/* hreflang: 다국어 SEO */}}
+  {{ range .AllTranslations }}
+  <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+  {{ end }}
+  <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
   {{- end }}
 
   <!-- Schema.org -->
