@@ -78,6 +78,9 @@ function throttle(fn, delay) {
             rightColumn.classList.add('collapsed');
             document.body.classList.add('sidebar-right-collapsed');
             if (rightToggle) rightToggle.innerHTML = ICON_OPEN;
+            // overlay 비활성화
+            if (overlay) { overlay.classList.remove('active'); overlay.style.display = ''; }
+            document.body.style.overflow = '';
             // transform 컨텍스트 탈출: 토글 버튼을 body로 이동
             if (rightToggle && !rightTogglePortal) {
                 rightTogglePortal = document.createElement('div');
@@ -93,6 +96,9 @@ function throttle(fn, delay) {
             rightColumn.classList.remove('collapsed');
             document.body.classList.remove('sidebar-right-collapsed');
             if (rightToggle) rightToggle.innerHTML = ICON_CLOSED;
+            // overlay 활성화 (데스크탑 포함 항상)
+            if (overlay) { overlay.style.display = 'block'; overlay.classList.add('active'); }
+            document.body.style.overflow = 'hidden';
             // 원위치 복구
             if (rightTogglePortal) {
                 rightTogglePortal.remove();
@@ -196,7 +202,7 @@ function throttle(fn, delay) {
             if (leftColumn && !leftColumn.classList.contains('collapsed') && !isDesktop()) {
                 setLeft(true);
             }
-            if (rightColumn && !rightColumn.classList.contains('collapsed') && !isDesktop()) {
+            if (rightColumn && !rightColumn.classList.contains('collapsed')) {
                 setRight(true);
             }
             closeMobileSidebars();
