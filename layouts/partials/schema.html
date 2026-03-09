@@ -1,176 +1,157 @@
-{{- $permalink := .Permalink -}}
-{{- $sitename := .Site.Title -}}
-{{- $description := .Description | default .Summary | default .Site.Params.description -}}
-{{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
+{{- $context := . -}}
+{{- $pageType := .Type -}}
+{{- $isHome := .IsHome -}}
 
-{{- if .IsPage -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Article",
-      "@id": "{{ $permalink }}#article",
-      "headline": "{{ .Title }}",
-      "description": "{{ $description | plainify }}",
-      "inLanguage": "{{ .Site.Language.Lang | default "en" }}",
-      "url": "{{ $permalink }}",
-      {{- with .PublishDate }}
-      "datePublished": "{{ .Format $iso8601 }}",
-      {{- end }}
-      {{- with .Lastmod }}
-      "dateModified": "{{ .Format $iso8601 }}",
-      {{- end }}
-      {{- with .Params.author }}
-      "author": {
-        "@type": "Person",
-        "name": "{{ . }}"
-      },
-      {{- else }}
-      "author": {
-        "@type": "Organization",
-        "name": "{{ $sitename }}"
-      },
-      {{- end }}
-      "publisher": {
-        "@type": "Organization",
-        "name": "{{ $sitename }}",
-        "url": "{{ .Site.BaseURL }}",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "{{ .Site.BaseURL }}{{ .Site.Params.logo | default "images/logo.png" }}"
-        }
-      },
-      {{- with .Params.image }}
-      "image": {
-        "@type": "ImageObject",
-        "url": "{{ . | absURL }}"
-      },
-      {{- end }}
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "{{ $permalink }}"
-      }
-      {{- if or .Params.tutorial .Params.howto (in .Params.tags "tutorial") (in .Params.tags "how-to") }}
-      ,
-      "about": {
-        "@type": "HowTo",
-        "@id": "{{ $permalink }}#howto",
-        "name": "{{ .Title }}",
-        "description": "{{ $description | plainify }}",
-        {{- with .Params.image }}
-        "image": "{{ . | absURL }}",
-        {{- end }}
-        {{- with .Params.totalTime }}
-        "totalTime": "{{ . }}",
-        {{- end }}
-        {{- with .Params.estimatedCost }}
-        "estimatedCost": {
-          "@type": "MonetaryAmount",
-          "currency": "{{ .currency | default "USD" }}",
-          "value": "{{ .value }}"
-        },
-        {{- end }}
-        {{- with .Params.supply }}
-        "supply": [
-          {{- range $index, $item := . }}
-          {{- if $index }},{{ end }}
-          {
-            "@type": "HowToSupply",
-            "name": "{{ $item }}"
-          }
-          {{- end }}
-        ],
-        {{- end }}
-        {{- with .Params.tool }}
-        "tool": [
-          {{- range $index, $item := . }}
-          {{- if $index }},{{ end }}
-          {
-            "@type": "HowToTool",
-            "name": "{{ $item }}"
-          }
-          {{- end }}
-        ],
-        {{- end }}
-        "step": [
-          {{- $content := .Content -}}
-          {{- $steps := findRE `(?s)<h2[^>]*>(.*?)</h2>` $content -}}
-          {{- range $index, $step := $steps }}
-          {{- if $index }},{{ end }}
-          {
-            "@type": "HowToStep",
-            "position": {{ add $index 1 }},
-            "name": "{{ $step | replaceRE `<[^>]+>` "" | plainify }}",
-            "text": "{{ $step | replaceRE `<[^>]+>` "" | plainify }}"
-          }
-          {{- end }}
-        ]
-      }
-      {{- end }}
-    },
-    {
-      "@type": "WebPage",
-      "@id": "{{ $permalink }}#webpage",
-      "url": "{{ $permalink }}",
-      "name": "{{ .Title }}",
-      "description": "{{ $description | plainify }}",
-      "inLanguage": "{{ .Site.Language.Lang | default "en" }}",
-      "isPartOf": {
-        "@type": "WebSite",
-        "@id": "{{ .Site.BaseURL }}#website"
-      },
-      "about": {
-        "@id": "{{ $permalink }}#article"
-      },
-      "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "url": "{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ .Site.BaseURL }}{{ .Site.Params.defaultImage | default "images/default.png" }}{{ end }}"
-      },
-      {{- with .PublishDate }}
-      "datePublished": "{{ .Format $iso8601 }}",
-      {{- end }}
-      {{- with .Lastmod }}
-      "dateModified": "{{ .Format $iso8601 }}",
-      {{- end }}
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "@id": "{{ $permalink }}#breadcrumb",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "{{ .Site.BaseURL }}"
-          }
-          {{- $sections := split (trim .RelPermalink "/") "/" -}}
-          {{- $url := .Site.BaseURL -}}
-          {{- range $index, $section := $sections -}}
-          {{- $url = printf "%s%s/" $url $section -}}
-          ,{
-            "@type": "ListItem",
-            "position": {{ add $index 2 }},
-            "name": "{{ $section | humanize | title }}",
-            "item": "{{ $url }}"
-          }
-          {{- end }}
-        ]
-      }
-    },
+    {{- if $isHome -}}
     {
       "@type": "WebSite",
       "@id": "{{ .Site.BaseURL }}#website",
       "url": "{{ .Site.BaseURL }}",
-      "name": "{{ $sitename }}",
+      "name": "{{ .Site.Title }}",
       "description": "{{ .Site.Params.description }}",
-      "inLanguage": "{{ .Site.Language.Lang | default "en" }}",
       "publisher": {
-        "@type": "Organization",
-        "name": "{{ $sitename }}",
-        "url": "{{ .Site.BaseURL }}"
+        "@id": "{{ .Site.BaseURL }}#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ .Site.BaseURL }}search/?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {{- end -}}
+    {
+      "@type": "Organization",
+      "@id": "{{ .Site.BaseURL }}#organization",
+      "name": "{{ .Site.Title }}",
+      "url": "{{ .Site.BaseURL }}",
+      {{- with .Site.Params.logo -}}
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ . | absURL }}"
+      },
+      {{- end -}}
+      "sameAs": [
+        {{- $social := slice -}}
+        {{- with .Site.Params.social.twitter -}}
+          {{- $social = $social | append (printf "https://twitter.com/%s" .) -}}
+        {{- end -}}
+        {{- with .Site.Params.social.github -}}
+          {{- $social = $social | append (printf "https://github.com/%s" .) -}}
+        {{- end -}}
+        {{- with .Site.Params.social.linkedin -}}
+          {{- $social = $social | append (printf "https://linkedin.com/in/%s" .) -}}
+        {{- end -}}
+        {{- delimit $social ",\n        " -}}
+      ]
+    }
+    {{- if and (not $isHome) (eq $pageType "blog") -}}
+    ,{
+      "@type": "BlogPosting",
+      "@id": "{{ .Permalink }}#article",
+      "headline": "{{ .Title }}",
+      "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ .Site.Params.defaultImage | absURL }}{{ end }}"
+      },
+      "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
+      "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}"
+      },
+      "publisher": {
+        "@id": "{{ .Site.BaseURL }}#organization"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ .Permalink }}"
+      },
+      {{- with .Params.tags -}}
+      "keywords": "{{ delimit . ", " }}",
+      {{- end -}}
+      "articleSection": "{{ with .Section }}{{ . }}{{ end }}",
+      "inLanguage": "{{ .Site.Language.Lang }}",
+      "isPartOf": {
+        "@id": "{{ .Site.BaseURL }}#website"
       }
     }
+    {{- end -}}
+    {{- if eq $pageType "docs" -}}
+    ,{
+      "@type": "TechArticle",
+      "@id": "{{ .Permalink }}#article",
+      "headline": "{{ .Title }}",
+      "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+      "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
+      "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author }}{{ end }}"
+      },
+      "publisher": {
+        "@id": "{{ .Site.BaseURL }}#organization"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ .Permalink }}"
+      }
+    }
+    {{- end -}}
+    ,{
+      "@type": "WebPage",
+      "@id": "{{ .Permalink }}#webpage",
+      "url": "{{ .Permalink }}",
+      "name": "{{ .Title }}",
+      "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}",
+      "inLanguage": "{{ .Site.Language.Lang }}",
+      "isPartOf": {
+        "@id": "{{ .Site.BaseURL }}#website"
+      },
+      "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
+      "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}"
+      {{- if .Params.breadcrumb -}}
+      ,"breadcrumb": {
+        "@id": "{{ .Permalink }}#breadcrumb"
+      }
+      {{- end -}}
+    }
+    {{- if .Params.breadcrumb -}}
+    ,{
+      "@type": "BreadcrumbList",
+      "@id": "{{ .Permalink }}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ .Site.BaseURL }}"
+        }
+        {{- $sections := split .RelPermalink "/" -}}
+        {{- $url := .Site.BaseURL -}}
+        {{- $position := 1 -}}
+        {{- range $index, $section := $sections -}}
+          {{- if and $section (ne $section "") -}}
+            {{- $position = add $position 1 -}}
+            {{- $url = printf "%s%s/" $url $section -}}
+        ,{
+          "@type": "ListItem",
+          "position": {{ $position }},
+          "name": "{{ humanize $section }}",
+          "item": "{{ $url }}"
+        }
+          {{- end -}}
+        {{- end -}}
+      ]
+    }
+    {{- end -}}
   ]
 }
 </script>
-{{- end -}}
