@@ -66,7 +66,7 @@ UTXO를 이해하는 가장 좋은 비유는 지폐와 동전이다.
 
 유명한 비트코인 창세기 블록 주소로 실습해보자:
 ```
-1A1zP1eP5QGefi2DMPTfTL5SLmv7Divfna
+1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
 ```
 이 주소는 사토시 나카모토가 채굴한 최초의 블록에서 생성된 주소다. 이 주소의 UTXO들은 오늘날까지 소비된 적이 없다.
 
