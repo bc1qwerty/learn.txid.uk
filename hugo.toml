@@ -183,7 +183,7 @@ enableGitInfo = true
 
 [[params.social]]
   name = 'Nostr'
-  url = 'https://njump.me/_@txid.uk'
+  url = 'https://njump.me/npub16qucsfagff58mkac3ynwqyy9rkhw6wgnjk6xre2eagfqxkudqngs4gfc2d'
 
 
 [params.reading]
