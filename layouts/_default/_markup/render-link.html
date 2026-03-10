@@ -2,7 +2,7 @@
 {{- $target := "" -}}
 {{- if and (not $isExternal) (hasPrefix .Destination "/") }}{{ with site.GetPage .Destination }}{{ if .Description }}{{ $target = . }}{{ end }}{{ end }}{{ end -}}
 <a href="{{ .Destination | safeURL }}"
-  {{- if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end -}}
+  {{- if or $isExternal (hasPrefix .Destination "/") }} target="_blank" rel="noopener noreferrer"{{ end -}}
   {{- with .Title }} title="{{ . }}"{{ end -}}
   {{- with $target }} data-concept-title="{{ .Title | htmlEscape }}" data-concept-desc="{{ .Description | htmlEscape }}"{{ end -}}
 >{{ .Text | safeHTML }}</a>
