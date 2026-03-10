@@ -910,7 +910,6 @@ details[open] > *:not(summary) {
 }
 
 /* Full-width tiles */
-.bento-books,
 .bento-learn {
   flex: 0 0 100%;
 }
