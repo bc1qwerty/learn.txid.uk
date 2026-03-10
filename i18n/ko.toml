@@ -178,3 +178,12 @@ other = "블록 높이"
 other = "업데이트"
 [last_build]
 other = "Last build"
+
+[topic_bitcoin]
+other = "비트코인"
+[topic_austrian_economics]
+other = "오스트리아 경제학"
+[topic_libertarianism]
+other = "자유주의"
+[topic_faq]
+other = "자주 묻는 질문"

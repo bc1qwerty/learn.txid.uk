@@ -178,3 +178,12 @@ other = "Block Height"
 other = "Updated"
 [last_build]
 other = "Last build"
+
+[topic_bitcoin]
+other = "Bitcoin"
+[topic_austrian_economics]
+other = "Austrian Economics"
+[topic_libertarianism]
+other = "Libertarianism"
+[topic_faq]
+other = "FAQ"

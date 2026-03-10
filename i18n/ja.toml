@@ -178,3 +178,12 @@ other = "ブロック高"
 other = "更新"
 [last_build]
 other = "最終ビルド"
+
+[topic_bitcoin]
+other = "ビットコイン"
+[topic_austrian_economics]
+other = "オーストリア経済学"
+[topic_libertarianism]
+other = "リバタリアニズム"
+[topic_faq]
+other = "よくある質問"
