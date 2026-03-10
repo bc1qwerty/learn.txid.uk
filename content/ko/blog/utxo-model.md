@@ -57,18 +57,22 @@ UTXO를 이해하는 가장 좋은 비유는 지폐와 동전이다.
 
 ## 실습: UTXO 직접 조회하기
 
-[txid.uk](https://txid.uk/) 또는 [mempool.space](https://mempool.space/)에서 비트코인 주소를 검색하면 해당 주소에 연결된 UTXO 목록을 확인할 수 있다.
+[txid.uk](https://txid.uk/)에서 비트코인 주소를 검색하면 해당 주소에 연결된 UTXO 목록을 확인할 수 있다.
 
 **조회 방법:**
-1. txid.uk 접속 후 비트코인 주소 입력
-2. "UTXO" 탭 클릭
-3. 각 UTXO의 금액, 트랜잭션 ID, 확인 수 확인
+1. [txid.uk](https://txid.uk/) 접속 후 검색창에 비트코인 주소 입력
+2. UTXO 탭에서 각 UTXO의 금액, 트랜잭션 ID, 확인 수 확인
+3. 개별 TXID를 클릭하면 해당 트랜잭션의 입출력 구조를 시각적으로 확인 가능
+
+[viz.txid.uk](https://viz.txid.uk/)에서는 트랜잭션의 입출력 관계를 **네트워크 그래프**로 시각화해볼 수 있다. UTXO가 어떻게 생성되고 소비되는지 흐름을 눈으로 추적하기에 좋다.
 
 유명한 비트코인 창세기 블록 주소로 실습해보자:
 ```
 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
 ```
 이 주소는 사토시 나카모토가 채굴한 최초의 블록에서 생성된 주소다. 이 주소의 UTXO들은 오늘날까지 소비된 적이 없다.
+
+여러 주소에 흩어진 UTXO를 한눈에 파악하려면 [portfolio.txid.uk](https://portfolio.txid.uk/)의 멀티주소 추적 기능을 활용할 수 있다.
 
 ## UTXO 선택과 수수료의 관계
 
