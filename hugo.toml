@@ -143,12 +143,12 @@ enableGitInfo = true
     'ビットコイン、オーストリア経済学、自由主義を勉強中',
   ]
 
-[[params.projects]]
-  name = 'Asset management bot'
-  description = 'Private'
-  url = 'https://bot1.txid.uk'
-  external = true
-  status = 'Live'
+# [[params.projects]]
+#   name = 'Asset management bot'
+#   description = 'Private'
+#   url = 'https://bot1.txid.uk'
+#   external = true
+#   status = 'Live'
 
 [[params.links]]
   name = 'ChatGPT'
