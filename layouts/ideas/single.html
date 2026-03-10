@@ -110,7 +110,7 @@
   {{ if $pathFound }}
   <nav class="mt-16 pt-8 border-t border-bitcoin/20 flex justify-between gap-4">
     {{ if $prevStep.url }}
-    <a href="{{ $prevStep.url }}" class="group flex-1 p-5 rounded-xl border border-gray-700/50 bg-gray-900/60 hover:border-gray-600 transition-all">
+    <a href="{{ $prevStep.url | relLangURL }}" class="group flex-1 p-5 rounded-xl border border-gray-700/50 bg-gray-900/60 hover:border-gray-600 transition-all">
       <span class="flex items-center gap-1.5 text-sm text-gray-400 mb-2">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         {{ sub $stepNum 1 }}단계
@@ -119,7 +119,7 @@
     </a>
     {{ else }}<div class="flex-1"></div>{{ end }}
     {{ if $nextStep.url }}
-    <a href="{{ $nextStep.url }}" class="group flex-1 p-5 rounded-xl border border-bitcoin/30 bg-bitcoin/10 hover:bg-bitcoin/20 transition-all text-right">
+    <a href="{{ $nextStep.url | relLangURL }}" class="group flex-1 p-5 rounded-xl border border-bitcoin/30 bg-bitcoin/10 hover:bg-bitcoin/20 transition-all text-right">
       <span class="flex items-center justify-end gap-1.5 text-sm text-bitcoin mb-2">
         {{ add $stepNum 1 }}단계
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
