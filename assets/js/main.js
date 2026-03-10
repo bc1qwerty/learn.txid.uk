@@ -662,7 +662,7 @@ document.addEventListener('DOMContentLoaded', function() {
             '<button class="concept-popover-close" aria-label="닫기">&times;</button>' +
             '<div class="concept-popover-title">' + esc(title) + '</div>' +
             '<div class="concept-popover-desc">' + esc(desc) + '</div>' +
-            '<a class="concept-popover-link" href="' + link.href + '">자세히 보기 &rarr;</a>';
+            '<a class="concept-popover-link" href="' + link.href + '" target="_blank" rel="noopener noreferrer">자세히 보기 &rarr;</a>';
 
         pop.querySelector('.concept-popover-close').addEventListener('click', function(e) {
             e.stopPropagation();
