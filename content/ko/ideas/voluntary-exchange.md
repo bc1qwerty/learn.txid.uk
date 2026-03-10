@@ -1,6 +1,6 @@
 ---
 title: "자발적 교환 (Voluntary Exchange) — 쌍방 이익의 원리"
-date: 2026-03-10
+date: 2026-03-03T13:30:00+09:00
 tags: ["자유주의"]
 description: "자발적 교환 (Voluntary Exchange)이란 강제나 사기 없이 양 당사자의 자유로운 동의에 의해 이루어지는 거래입니다."
 levels: "입문"

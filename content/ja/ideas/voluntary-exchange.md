@@ -1,6 +1,6 @@
 ---
 title: "自発的交換（Voluntary Exchange）— 相互利益の原則"
-date: 2026-03-10
+date: 2026-03-03T13:30:00+09:00
 tags: ["自由主義"]
 description: "自発的交換（Voluntary Exchange）とは、強制や詐欺なしに両当事者の自由な同意によって行われる取引です。"
 levels: "入門"

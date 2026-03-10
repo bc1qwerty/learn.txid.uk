@@ -1,6 +1,6 @@
 ---
 title: "방법론적 개인주의 (Methodological Individualism)"
-date: 2026-03-10
+date: 2026-02-24T11:00:00+09:00
 tags: ["자유주의"]
 description: "방법론적 개인주의는 모든 사회 현상을 궁극적으로 개인의 행동·선택·가치판단으로 환원하여 설명해야 한다는 원칙입니다."
 levels: "입문"

@@ -1,6 +1,6 @@
 ---
 title: "貨幣の硬度（Hardness of Money）— Stock-to-Flow"
-date: 2026-03-10
+date: 2026-02-22T14:15:00+09:00
 tags: ["オーストリア経済学"]
 description: "貨幣の硬度とは、貨幣の既存在庫に対する新規生産量の比率、つまりStock-to-Flow比率で測定される特性です。"
 levels: "入門"

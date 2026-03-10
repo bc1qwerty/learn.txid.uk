@@ -1,6 +1,6 @@
 ---
 title: "Merkle Tree — Efficient Data Verification"
-date: 2026-03-10
+date: 2026-02-25T16:45:00+09:00
 tags: ["Bitcoin"]
 description: "A Merkle tree is a binary hash tree structure that efficiently verifies data integrity by summarizing large amounts of data into a single hash value."
 levels: "Beginner"

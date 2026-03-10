@@ -1,6 +1,6 @@
 ---
 title: "화폐의 경도 (Hardness of Money) — Stock-to-Flow"
-date: 2026-03-10
+date: 2026-02-22T14:15:00+09:00
 tags: ["오스트리아 경제학"]
 description: "화폐의 경도란 화폐의 기존 재고 대비 신규 생산량의 비율, 즉 Stock-to-Flow 비율로 측정되는 속성입니다."
 levels: "입문"

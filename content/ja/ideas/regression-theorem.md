@@ -1,6 +1,6 @@
 ---
 title: "Regression Theorem"
-date: 2026-03-10
+date: 2026-02-28T10:20:00+09:00
 tags: ["Austrian Economics"]
 description: "The Regression Theorem is Mises' theory that demonstrates how the value of all money originally derives from non-monetary uses."
 levels: "Beginner"

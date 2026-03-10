@@ -1,6 +1,6 @@
 ---
 title: "自然権 (Natural Rights) — 国家以前の権利"
-date: 2026-03-10
+date: 2026-03-04T15:00:00+09:00
 tags: ["自由主義"]
 description: "自然権 (Natural Rights)とは、国家や法律によって付与されるのではなく、人間という存在そのものに由来する本来的な権利です。"
 levels: "入門"

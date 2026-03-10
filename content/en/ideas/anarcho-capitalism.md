@@ -1,6 +1,6 @@
 ---
 title: "Anarcho-Capitalism"
-date: 2026-03-10
+date: 2026-03-10T11:00:00+09:00
 tags: ["Liberalism"]
 description: "Anarcho-capitalism is a philosophy that advocates for the complete abolition of the state, with all services including law, security, and national defense entrusted to free market competition."
 levels: "Beginner"
