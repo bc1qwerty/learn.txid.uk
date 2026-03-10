@@ -914,6 +914,11 @@ details[open] > *:not(summary) {
   flex: 0 0 100%;
 }
 
+/* Half-width tile */
+.bento-books {
+  flex: 0 0 calc(50% - 0.5rem);
+}
+
 /* --- Tile description --- */
 .tile-desc {
   font-size: 0.8rem;
