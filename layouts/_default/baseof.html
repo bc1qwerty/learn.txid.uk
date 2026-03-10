@@ -184,6 +184,20 @@ document.addEventListener('mouseover', e => {
     setTimeout(function(){ window.location.href = a.href; }, 160);
   });
 })();
+
+// ── UTM 자동 삽입 (txid.uk 서브도메인 링크에만) ──
+(function() {
+  var UTM = '?utm_source=learn.txid.uk&utm_medium=referral&utm_campaign=internal';
+  document.querySelectorAll('a[href]').forEach(function(a) {
+    var href = a.getAttribute('href');
+    if (!href) return;
+    if (/^https?:\/\/(txid\.uk|tools\.txid\.uk|tx\.txid\.uk|apps\.txid\.uk|map\.txid\.uk|stats\.txid\.uk|viz\.txid\.uk|portfolio\.txid\.uk)/.test(href)) {
+      if (href.indexOf('utm_') === -1) {
+        a.setAttribute('href', href + (href.indexOf('?') === -1 ? '?' : '&') + 'utm_source=learn.txid.uk&utm_medium=referral&utm_campaign=internal');
+      }
+    }
+  });
+})();
 </script>
 </body>
 </html>

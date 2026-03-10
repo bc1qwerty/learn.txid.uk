@@ -2093,3 +2093,16 @@ body.sidebar-right-collapsed .page-layout {
         scroll-behavior: auto !important;
     }
 }
+
+/* ── 320px 초소형 화면 대응 ── */
+@media (max-width: 359px) {
+    body { font-size: 13px; }
+    .container { padding: 0 10px; }
+    .bento-grid { gap: 8px; padding: 10px; }
+    .book-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .post-card { padding: 12px; }
+    .hero-title { font-size: 1.4rem; }
+    .nav-logo { font-size: 1rem; }
+    pre { font-size: .72rem; overflow-x: auto; }
+    .tag-chip { font-size: .65rem; padding: 2px 6px; }
+}
