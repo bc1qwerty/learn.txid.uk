@@ -3,7 +3,7 @@ title: "Bitcoin Whitepaper"
 slug: "bitcoin-whitepaper"
 date: 2026-01-06T10:00:00+09:00
 author: "Satoshi Nakamoto (Commentary by Philemon)"
-cover: "/images/books/bitcoin-whitepaper.jpg"
+cover: "/images/books/비트코인 백서.jpg"
 originalTitle: "Bitcoin: A Peer-to-Peer Electronic Cash System"
 translator: ""
 publisher: "Phileusis"

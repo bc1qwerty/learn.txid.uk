@@ -3,7 +3,7 @@ title: "The Bitcoin Blocksize War"
 slug: "the-blocksize-war"
 date: 2026-02-19T10:00:00+09:00
 author: "Jonathan Bier"
-cover: "/images/books/the-bitcoin-blocksize-war.jpg"
+cover: "/images/books/비트코인 블록사이즈 전쟁.jpg"
 originalTitle: "The Blocksize War"
 translator: "Seung-ju Kim"
 publisher: "Acorn Publishing"

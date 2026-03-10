@@ -3,7 +3,7 @@ title: "Austrian School Theory of Business Cycles"
 slug: "austrian-business-cycle-theory"
 date: 2026-02-19T10:00:00+09:00
 author: "Ludwig von Mises and others"
-cover: "/images/books/austrian-business-cycle-theory.jpg"
+cover: "/images/books/오스트리아학파의 경기변동 이론.jpg"
 originalTitle: "The Austrian Theory of the Trade Cycle"
 publisher: "Jigsik to Mandeun Jigsik"
 publishYear: "2014"

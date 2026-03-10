@@ -3,7 +3,7 @@ title: "Sapiens"
 slug: "sapiens"
 date: 2026-01-05T10:00:00+09:00
 author: "Yuval Noah Harari"
-cover: "/images/books/sapiens.jpg"
+cover: "/images/books/사피엔스.jpg"
 originalTitle: "Sapiens"
 translator: "Cho Hyun-wook"
 publisher: "Kimyoungsa"
