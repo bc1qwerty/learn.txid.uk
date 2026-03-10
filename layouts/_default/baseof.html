@@ -73,6 +73,13 @@
   <!-- Article Schema.org (blog 섹션 — ISO8601 datePublished, 1200x630 image) -->
   {{ if and .IsPage (eq .Section "blog") }}{{ partial "schema-article.html" . }}{{ end }}
 
+  <!-- BreadcrumbList Schema.org (모든 single 페이지 자동 생성) -->
+  {{ if .IsPage }}
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":{{ .Site.Home.Permalink | jsonify | safeJS }}}{{- with .Parent -}},{"@type":"ListItem","position":2,"name":{{ .Title | jsonify | safeJS }},"item":{{ .Permalink | jsonify | safeJS }}}{{- end -}},{"@type":"ListItem","position":{{ if .Parent }}3{{ else }}2{{ end }},"name":{{ $.Title | jsonify | safeJS }}}]}
+  </script>
+  {{ end }}
+
   <!-- Early theme restore (prevents flash of wrong theme) -->
   <script>
     (function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#09090b':'#fafafa';}}catch(e){}})();

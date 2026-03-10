@@ -1,6 +1,27 @@
 ---
 title: "Frequently Asked Questions"
 description: "Answers to common questions and misconceptions about Bitcoin, Austrian economics, and libertarianism."
+faq:
+  - q: "Isn't Bitcoin just a tulip bubble?"
+    a: "Unlike tulips, Bitcoin possesses all properties of sound money — scarcity, durability, divisibility, portability, and verifiability. Its supply is mathematically limited to 21 million, and it has survived over 15 years, growing stronger each cycle. This is a monetization process, not a bubble."
+  - q: "Isn't Bitcoin used by criminals?"
+    a: "Bitcoin's blockchain is a completely public ledger. Law enforcement agencies worldwide use blockchain analysis to track criminals. Illicit Bitcoin transactions are estimated at less than 1% of total volume; criminals still prefer cash."
+  - q: "Can quantum computers destroy Bitcoin?"
+    a: "No quantum computer currently exists that can break Bitcoin's cryptography. Experts estimate at least 10-20 years before it becomes a threat. Bitcoin can be upgraded to quantum-resistant algorithms, and developers are already preparing."
+  - q: "Isn't Bitcoin too slow and expensive for payments?"
+    a: "Bitcoin's base layer intentionally prioritizes decentralization and security. The Lightning Network, a layer-2 solution, enables near-instant, near-free payments for everyday transactions."
+  - q: "Why isn't Austrian economics mainstream?"
+    a: "Austrian economics argues for reduced government intervention, conflicting with political incentive structures. Academic funding often comes from government institutions, which are unlikely to fund research questioning their existence."
+  - q: "Isn't it unscientific to not use mathematics?"
+    a: "The Austrian methodology, praxeology, argues that human action — involving choice and learning — cannot be appropriately modeled with mathematical constants like physical phenomena. Rigor comes from logical consistency, not mathematical formalism."
+  - q: "Isn't deflation dangerous?"
+    a: "There are two types: bad deflation from credit collapse, and good deflation from technological progress. In the late 19th century US under the gold standard, prices fell while the country experienced its fastest industrial growth."
+  - q: "Who builds roads without government?"
+    a: "Most early American roads were built by private turnpike companies. Markets create supply where demand exists, and history proves roads can be built without coercive taxation."
+  - q: "Won't businesses exploit consumers without regulation?"
+    a: "In free markets, the true consumer protector is competition, not regulation. Government regulation often leads to regulatory capture, where large corporations lobby for rules that protect their monopolistic positions."
+  - q: "Doesn't government need to protect the vulnerable?"
+    a: "Before government welfare, mutual aid societies, religious organizations, and communities cared for the vulnerable. Voluntary charity encourages self-reliance, and economic growth from free markets has historically lifted the most people out of poverty."
 ---
 
 When you first encounter Bitcoin, Austrian economics, and libertarianism, it's natural for questions and objections to arise. Below are answers to the most common questions. I take each question seriously, understand why such doubts emerge, and offer alternative perspectives.
