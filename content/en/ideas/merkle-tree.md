@@ -7,23 +7,59 @@ levels: "Beginner"
 weight: 27
 ---
 
-**Merkle Tree** is a binary hash tree structure that efficiently verifies data integrity by summarizing large amounts of data into a single hash value (Merkle root).
+**Merkle Tree** is a binary hash tree structure that efficiently verifies data integrity by summarizing large amounts of data into a single hash value (Merkle root). Invented by Ralph Merkle in 1979, this data structure plays a central role in Bitcoin's block architecture and enables efficient verification by lightweight clients.
 
-How it works in Bitcoin blocks:
-1. Hash each transaction
-2. Combine adjacent hash pairs and hash them again
-3. Repeat this process to eventually obtain a single **Merkle root**
-4. This Merkle root is included in the block header
+## Structure of the Binary Hash Tree
 
-Advantages of Merkle trees:
-- **Lightweight verification (SPV)**: You can verify that a specific transaction is included in a block without downloading the entire block
-- **Efficiency**: Verifying N transactions requires only log₂(N) hashes
-- **Tamper detection**: If any transaction is altered, the Merkle root changes
+A Merkle tree is constructed bottom-up, from the lowest leaf nodes to the topmost root. The specific steps are as follows.
 
-Invented by Ralph Merkle in 1979, this structure is used not only in Bitcoin but also in various systems like Git and IPFS.
+**Step 1 - Leaf Hash Generation**: The txid of each transaction included in the block serves as a leaf node. In Bitcoin, SHA-256 is applied twice (double-SHA256) to generate each transaction's hash.
+
+**Step 2 - Pairwise Combination**: Two adjacent hashes are concatenated, then double-SHA256 is applied again to produce the parent node. For example, if H(A) and H(B) are adjacent leaves, the parent node is SHA256(SHA256(H(A) || H(B))).
+
+**Step 3 - Repetition**: This process repeats until only one node remains. The single hash that ultimately remains is the **Merkle Root**, which is recorded in the block header's hashMerkleRoot field.
+
+The tree depth is log2(N), so a block with 1,000 transactions reaches its Merkle root in just 10 levels of hash computation. This logarithmic-scale efficiency is the core value of Merkle trees.
+
+## How Merkle Proofs Work
+
+A Merkle proof is a data structure that proves a specific transaction is included in a block. Rather than downloading all transactions in the entire block, only the sibling hashes along the path from that transaction to the Merkle root need to be provided.
+
+For example, to prove the inclusion of transaction D in a block with 8 transactions, only three hashes are needed: H(C), H(AB), and H(EFGH). The verifier computes H(D), combines it with H(C) to obtain H(CD), combines that with H(AB) to get H(ABCD), and finally combines with H(EFGH) to calculate the Merkle root. If this result matches the Merkle root in the block header, transaction D's inclusion in that block is proven.
+
+The time complexity is O(log n). Even with 4,000 transactions in a block, the proof completes with approximately 12 hashes. This represents a dramatic efficiency improvement compared to downloading the entire block (several megabytes).
+
+## Application in SPV Lightweight Verification
+
+SPV (Simplified Payment Verification), described in Section 8 of Satoshi Nakamoto's whitepaper, is a lightweight verification method that relies entirely on Merkle proofs. SPV clients download only block headers (80 bytes each) and request Merkle proofs from full nodes for transactions of interest.
+
+The advantage of this approach is that storage and bandwidth requirements are minimal. By storing only the block header chain instead of the entire blockchain, transaction verification is possible with just tens of megabytes of data. This efficiency made lightweight clients such as mobile wallets feasible. However, since SPV depends on full nodes, it is vulnerable to attacks where a full node conceals the existence of specific transactions.
+
+## Bitcoin-Specific Implementation Details
+
+Bitcoin's Merkle tree implementation has several special rules.
+
+**txid Pairing**: Transaction hashes are combined into pairs in sequential order -- the first with the second, the third with the fourth, and so on.
+
+**Odd Number Handling**: When the number of nodes at a given level is odd, the last node is duplicated and paired with itself. For example, with 3 transactions A, B, C, C is duplicated to produce the pairs (A,B) and (C,C).
+
+**Coinbase Transaction**: The first transaction in a block is always the coinbase (mining reward) transaction, and it is included as the first leaf of the Merkle tree.
+
+## CVE-2012-2459 Vulnerability and Resolution
+
+CVE-2012-2459, discovered in 2012, was a vulnerability exploiting Bitcoin's Merkle tree implementation of odd-node duplication. An attacker could create a mutated block with the same Merkle root but a different actual transaction list. Specifically, in a block with an odd number of transactions, duplicating and appending the last transaction would produce an identical Merkle root.
+
+This vulnerability could be used not to make nodes accept invalid blocks, but as a DoS (Denial of Service) vector causing nodes to reject valid blocks as invalid. The fix added validation logic that treats a block as invalid when identical hash pairs are found during Merkle tree computation.
+
+## Taproot's MAST (Merklized Abstract Syntax Trees)
+
+MAST applies the Merkle tree structure to Bitcoin scripts and is a key component of the Taproot upgrade activated in 2021. Previously, Bitcoin scripts had to include all possible spending conditions in the transaction, but MAST places each spending condition as a leaf of a Merkle tree, revealing only the path of the condition actually used.
+
+For example, with complex spending conditions like "3-of-5 multisig OR 2-of-5 multisig after 1 year OR single signature after 2 years," MAST requires only the used condition and its Merkle proof to be disclosed at spending time, so the very existence of other conditions remains hidden. This significantly improves privacy and reduces fees by decreasing the amount of data that must be published.
 
 ## Related Concepts
 
 - [Proof of Work](/ideas/proof-of-work/) — A consensus mechanism that generates blocks by hashing block headers containing the Merkle root
 - [Node](/ideas/node/) — Network participants that verify transaction integrity using Merkle trees
+- [SegWit](/ideas/segwit/) — Protocol upgrade that introduced a separate Merkle tree for witness data
 - [What is Bitcoin?](/start/bitcoin/) — A starting point that introduces the basic concepts and how Bitcoin works

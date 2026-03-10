@@ -7,23 +7,61 @@ levels: "입문"
 weight: 25
 ---
 
-**The Lightning Network** is a layer 2 payment network built on top of the Bitcoin blockchain, enabling small instant payments.
+**The Lightning Network** is a Layer 2 payment network built on top of the Bitcoin blockchain, enabling small instant payments. Proposed in a 2015 whitepaper by Joseph Poon and Thaddeus Dryja, it was made possible by SegWit's resolution of the transaction malleability problem.
 
-How it works:
-1. Two users open a **payment channel** with an on-chain transaction
-2. They exchange unlimited instant transactions within the channel (no on-chain recording needed)
-3. When closing the channel, only the final balance is recorded on-chain
+## HTLC (Hash Time-Locked Contract) Mechanism
 
-Advantages of Lightning:
-- **Speed**: Instant payments in milliseconds
-- **Fees**: Extremely low fees under 1 sat
-- **Scalability**: Can process millions of transactions per second
-- **Privacy**: Intermediate routing transactions are not recorded on-chain
+HTLC is the core mechanism in the Lightning Network that safely routes payments between two parties who do not share a direct channel through intermediary nodes. It is a smart contract combining two conditions.
 
-Bitcoin's base layer serves as the final settlement layer (vault), while Lightning serves as the everyday payment layer (wallet). This is similar to the relationship between gold (settlement) and paper currency (everyday transactions) in the gold standard.
+**Hash Lock**: The recipient publishes the hash of a secret value (preimage). Each node along the payment route can only claim funds by presenting the original secret that corresponds to this hash. When the recipient reveals the secret, this information propagates backward along the route, and each intermediary node sequentially settles funds.
+
+**Time Lock**: Each HTLC has an expiration time. If the secret is not presented within the specified time, funds automatically return to the sender. Each hop along the route has a shorter expiration time than the previous hop, ensuring intermediary nodes have sufficient time to safely claim funds after receiving the secret.
+
+For example, if Alice wants to pay Bob but has no direct channel and must route through Carol: Alice sets up an HTLC with Carol, and Carol sets up an HTLC with Bob. When Bob reveals the secret, Carol settles the HTLC from Bob, and when Carol passes the secret to Alice, Alice's HTLC is also settled. No participant needs to trust any counterparty throughout this process.
+
+## Onion Routing and Privacy
+
+The Lightning Network uses **onion routing (Sphinx)**, inspired by the Tor network, to protect payment privacy. The sender pre-computes the entire payment route and wraps the information each intermediary node can see in layers of encryption.
+
+Each intermediary node can only decrypt its own layer, learning only the next hop's information. This means an intermediary node cannot determine where it is positioned in the payment route, who the final recipient is, or what the total payment amount is. It can only identify the immediately preceding and following nodes.
+
+This onion routing provides far stronger privacy compared to on-chain transactions. On-chain, all transactions are permanently public, but on Lightning, payment information is only partially exposed to relevant nodes and no record remains after payment completion.
+
+## Channel Capacity and Real-World Liquidity Management
+
+The most practical operational challenge of the Lightning Network is **liquidity management**. Payment channels are bidirectional, but funds can only flow from one side to the other. If Alice deposits 1 BTC into a channel and sends 0.8 BTC to Bob, the maximum additional amount Alice can send through this channel is just 0.2 BTC.
+
+**Channel capacity** is the total amount of funds locked on-chain when the channel is opened and cannot be changed without closing and reopening the channel. This is the fundamental reason why routing large payments on the Lightning Network is difficult -- every channel along the route must have sufficient directional liquidity for the given amount.
+
+Liquidity rebalancing is the process by which operators adjust the fund distribution across their multiple channels. Using circular payment techniques, operators can redistribute liquidity direction by performing payments that route through their own channels. However, this process incurs routing fees and is not always possible depending on network conditions.
+
+## The Role of Watchtowers
+
+**Watchtowers** play an important role in the Lightning Network's security model. They monitor for attempts by counterparties to broadcast outdated (already revoked) channel states on-chain in order to unfairly reclaim funds.
+
+In normal channel operation, each time the channel state is updated, **revocation keys** for the previous state are exchanged. If a counterparty broadcasts an outdated state, this revocation key can be used to confiscate all of the counterparty's funds as a penalty. However, this requires the user's node to always be online.
+
+Watchtowers monitor the blockchain on the user's behalf, automatically broadcasting penalty transactions when fraudulent channel closure attempts are detected. This allows users to maintain channel security without needing to be constantly online. From a privacy perspective, it is important to provide watchtowers with only minimal information needed to detect violations without exposing the channel's full balance details.
+
+## The Inbound Liquidity Problem and LSPs (Lightning Service Providers)
+
+To **receive** payments on the Lightning Network, the counterparty must have sufficient balance in a channel directed toward you. This is the **inbound liquidity** problem. When a new node opens a channel, all funds are on its own side, meaning only outbound liquidity exists, and inbound liquidity for receiving payments from others is zero.
+
+**LSPs (Lightning Service Providers)** are service providers that emerged to solve this problem. LSPs open channels that provide inbound liquidity to users and handle channel management and routing optimization. Notable LSP services include Breez, Phoenix, and ACINQ, which enable users to receive payments without worrying about the complexities of Lightning Network liquidity management.
+
+While LSPs significantly increase convenience, they face criticism for introducing a degree of centralization. If users depend on a specific LSP, risks exist if that LSP discontinues service or engages in censorship. This is why an environment with multiple competitive LSPs where users can freely switch between them is important.
+
+## Lightning's Security Model and Limitations
+
+The Lightning Network's security ultimately depends on Bitcoin's base layer. Channel disputes are resolved through on-chain transactions for final settlement, making Bitcoin blockchain security the foundation of Lightning's security.
+
+Key limitations include: **Online requirement**: Nodes must be periodically online to safely protect funds (or use watchtowers). **Difficulty with large payments**: Channel capacity constraints make routing payments over substantial amounts through a single path challenging (partially addressed by multi-path payments). **Force-close costs**: During periods of high on-chain fees, the cost of force-close transactions may exceed the channel balance. **Routing failures**: Payments can fail due to insufficient liquidity along the route, degrading user experience.
+
+Nevertheless, the Lightning Network is growing rapidly as Bitcoin's everyday payment instrument. If Bitcoin's base layer is the final settlement layer (vault), Lightning serves as the everyday payment layer (wallet). This is structurally analogous to the relationship between gold (settlement) and paper currency (everyday transactions) under the gold standard.
 
 ## Related Concepts
 
-- [SegWit](/ideas/segwit/) — The Bitcoin protocol upgrade that enabled the Lightning Network
-- [Node](/ideas/node/) — Participants in the Bitcoin network who validate transactions and blocks
+- [SegWit](/ideas/segwit/) — The upgrade that resolved transaction malleability and enabled the Lightning Network
+- [Mempool](/ideas/mempool/) — The on-chain transaction waiting area that Lightning bypasses
+- [Node](/ideas/node/) — The Bitcoin network verification infrastructure underlying Lightning nodes
 - [What is Bitcoin?](/start/bitcoin/) — A starting point introducing Bitcoin's basic concepts and how it works

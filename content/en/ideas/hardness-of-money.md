@@ -7,19 +7,44 @@ levels: "Beginner"
 weight: 23
 ---
 
-**Hardness of Money** is a property measured by the **Stock-to-Flow (S2F)** ratio, which represents the ratio of existing monetary stock to new production flow.
+**Hardness of Money** refers to how difficult it is to produce new units of a monetary good. The metric used to quantify this property is the **Stock-to-Flow (S2F)** ratio.
 
-The higher the S2F, the "harder" the money:
-- **Gold**: S2F ≈ 60 (it would take approximately 60 years to replicate existing stock at current production rates)
-- **Silver**: S2F ≈ 22
-- **Bitcoin**: S2F ≈ 120 after the 2024 halving (exceeding gold)
+## Definition and Calculation of the S2F Ratio
 
-Why hardness matters:
-- Low-hardness money can be easily created by others, diluting the value held by existing holders
-- Historically, harder money has displaced softer money (the reverse of Gresham's Law)
-- Saifedean Ammous calls this "absolute scarcity"
+The S2F ratio is calculated as follows: **S2F = Existing Stock / Annual New Production (Flow)**. For example, if the total above-ground gold stock is approximately 205,000 tonnes and annual new mining output is roughly 3,500 tonnes, then gold's S2F is about 58.6. This means it would take roughly 59 years at the current production rate to replicate the existing stock. The higher the S2F, the more negligible new supply is relative to existing stock, making value dilution from supply shocks difficult. This is the essence of "hard money."
 
-The S2F of fiat currency can instantaneously approach zero based on central bank decisions. Quantitative easing (QE) is an example of this.
+## Historical Comparison of Monetary S2F
+
+Throughout history, various goods have served as money, and differences in their hardness have influenced the rise and fall of civilizations.
+
+- **Shells, glass beads**: Extremely low S2F. Aggri beads, used as money in parts of Africa, collapsed in value when Europeans mass-produced and imported them. This illustrates the fatal vulnerability of low-hardness money.
+- **Copper**: S2F of roughly 3-5. Industrially useful but relatively easy to produce, limiting its durability as money.
+- **Silver**: S2F of roughly 22. Functioned as money for long periods but was eventually relegated to a subsidiary role under the gold standard due to its lower hardness.
+- **Gold**: S2F of roughly 58-62. Millennia of accumulated stock are vast relative to annual new mining output. This is the core reason gold maintained its position as the supreme monetary good for thousands of years.
+
+## Ammous's Thesis: S2F and Civilization
+
+In *The Bitcoin Standard*, Saifedean Ammous argues that civilizations adopting high-S2F money prospered while those relying on low-S2F money declined. When hard money is used, people's time preference falls. Because the value of savings is preserved, long-term investment, capital accumulation, and technological progress become possible. Soft money, by contrast, erodes the value of savings, incentivizing consumption over saving and discouraging investment in long-term projects. The progressive debasement of silver content in the Roman denarius during the empire's decline is a paradigmatic example.
+
+## Bitcoin's S2F Trajectory
+
+Bitcoin's S2F rises predictably through its halving mechanism, which cuts the block reward in half approximately every four years.
+
+- **2009-2012**: 50 BTC per block, S2F approximately 1 (existing stock itself was tiny)
+- **2012-2016 (after 1st halving)**: 25 BTC per block, S2F approximately 10
+- **2016-2020 (after 2nd halving)**: 12.5 BTC per block, S2F approximately 25
+- **2020-2024 (after 3rd halving)**: 6.25 BTC per block, S2F approximately 56 (comparable to gold)
+- **2024-2028 (after 4th halving)**: 3.125 BTC per block, S2F approximately 120 (exceeding gold)
+
+Ultimately, once all 21 million BTC have been issued, the Flow drops to zero and S2F converges to infinity. This makes Bitcoin the first monetary asset in human history to possess absolute scarcity.
+
+## Limitations and Criticisms of the S2F Model
+
+The S2F pricing model proposed by the pseudonymous analyst PlanB modeled the statistical correlation between Bitcoin's S2F and its market capitalization using log-log regression. While the model attracted significant attention, it faces several criticisms. First, correlation does not imply causation. Second, it entirely ignores the demand side, attempting to explain price through supply variables alone. Third, as S2F converges to infinity over time, the model predicts price converging to infinity as well, which is unrealistic. Fourth, from a statistical standpoint, regression between non-stationary time series carries the risk of spurious regression. The concept of monetary hardness itself is sound, but translating it into a mechanical price-prediction model is a separate matter entirely.
+
+## Relationship with Gresham's Law
+
+Gresham's Law states that "bad money drives out good money." When a government legally fixes the exchange ratio between hard and soft money, people hoard the hard money and spend the soft money. As a result, only soft money remains in circulation while hard money disappears. In a free market, however, this law reverses. Without legal coercion, people prefer hard money, so in the long run hard money displaces soft money. The tendency of Bitcoin holders to spend fiat currency while hoarding bitcoin demonstrates Gresham's Law operating today. In the long run, if the legal privileges of fiat currency weaken, Thiers' Law (the reverse of Gresham's) suggests that Bitcoin could emerge as the dominant money.
 
 ## Related Concepts
 

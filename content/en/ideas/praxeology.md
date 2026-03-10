@@ -7,19 +7,34 @@ levels: "입문"
 weight: 32
 ---
 
-**Praxeology** is a deductive science of human action systematized by Ludwig von Mises. It is the methodological foundation of Austrian Economics.
+**Praxeology** is a deductive science of human action systematized by Ludwig von Mises in his 1949 treatise *Human Action*. It serves as the methodological foundation of Austrian Economics, seeking to reestablish economics not as an imitation of the natural sciences but as a logic of human action.
 
-The starting point is one self-evident axiom: **"Human Action"** — humans consciously choose means to achieve a state better than their current condition.
+## The Action Axiom
 
-What logically follows from this axiom:
-- Action means choice, and choice entails sacrifice (opportunity cost)
-- Action requires time, so time preference exists
-- Humans act under uncertainty, so entrepreneurial judgment is necessary
+The starting point of praxeology is a single self-evident axiom: **"Man Acts."** This is not merely the observation that humans do things. It means that humans experience dissatisfaction with their current state, envision a better state, and consciously choose means to achieve it. This axiom is irrefutable because any attempt to deny it is itself a purposeful action, making the denial self-refuting. Mises regarded this as a **synthetic a priori proposition** in the Kantian sense -- a statement not derived from experience yet containing substantive content about the empirical world.
 
-How Praxeology differs from mainstream economics:
-- It is based on deductive logic, not statistics or experimentation
-- Economic laws are valid across time and space like laws of physics
-- It begins with the actions of individual humans, not aggregate data
+## Core Theorems Derived from the Axiom
+
+From this single axiom, the core theorems of economics are derived through pure logical deduction.
+
+- **Opportunity cost**: Action means choice, and choosing one alternative requires forgoing others. The highest-valued forgone alternative is the opportunity cost.
+- **Time preference**: Action necessarily takes time, so acting humans tend to prefer satisfaction in the nearer future over the more distant future. This is the ultimate origin of interest.
+- **The law of diminishing marginal utility**: Each additional unit of a good satisfies a progressively less urgent want. Combined with subjective value theory, this resolves the diamond-water paradox.
+- **Entrepreneurial judgment**: Because the future is uncertain, acting humans inevitably engage in entrepreneurial speculation about future conditions.
+
+## The Deductive Method vs. Positivism
+
+Praxeology employs a deductive methodology, which stands in fundamental opposition to the positivist approach of mainstream economics. Positivist economics imitates the natural sciences by formulating hypotheses and attempting to verify (or falsify) them with statistical data. Mises argued, however, that controlled experiments are impossible in the domain of human action. Historical data involve countless variables acting simultaneously, making it impossible to isolate a single variable as in physics. Econometrics extracts mathematical relationships from past data, but since human choices change -- unlike natural constants -- there is no guarantee that discovered relationships will hold in the future.
+
+For Mises, economic laws are a priori true, like mathematical theorems, and are not subject to empirical refutation. For example, the proposition "a minimum wage set above the market equilibrium causes unemployment" is not refuted by statistics showing otherwise; rather, other hidden variables have offset the result.
+
+## Criticisms and Counterarguments
+
+The most prominent critique comes from Karl Popper's **falsifiability** criterion. According to Popper, a proposition that is not empirically falsifiable is not science. If praxeological propositions are in principle unfalsifiable, then they are merely logic or tautology, not science. Misesians counter that Euclidean geometry and formal logic are also unfalsifiable yet contain useful truths -- falsifiability is not the sole criterion for all knowledge. Hans-Hermann Hoppe further reinforced the inescapability of the action axiom through his argument from performative contradiction.
+
+## Praxeology and Bitcoin
+
+Praxeology provides a uniquely powerful framework for understanding Bitcoin's monetary properties. Bitcoin's value is explained not by empirical statistical models but by the logic of individual action. When individuals subjectively judge that censorship resistance, self-sovereign custody, and the absolute scarcity of 21 million units are valuable properties, and act to acquire bitcoin, its market value is formed. This is a phenomenon arising from purposeful human action that aggregate statistics or regression analysis cannot capture. Bitcoin's fixed monetary policy connects directly to time preference theory, and its scarcity can be analyzed through the theory of marginal utility.
 
 ## Connected Concepts
 

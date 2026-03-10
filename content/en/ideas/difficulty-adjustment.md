@@ -7,18 +7,45 @@ levels: "입문"
 weight: 21
 ---
 
-**Difficulty Adjustment** is a mechanism that automatically adjusts mining difficulty every 2,016 blocks (approximately 2 weeks) to maintain an average block generation time of 10 minutes.
+**Difficulty Adjustment** is a mechanism that automatically adjusts mining difficulty every 2,016 blocks (approximately 2 weeks) to maintain an average block generation time of roughly 10 minutes. It is the core device that technically guarantees Bitcoin's monetary policy, enabling the network to maintain equilibrium autonomously without any external administrator.
 
-By measuring the actual time taken for the previous 2,016 blocks:
-- If faster than 10 minutes → difficulty increases
-- If slower than 10 minutes → difficulty decreases
+## Difficulty Target and the nBits Field
 
-Why this matters:
-- **Predictable issuance**: No matter how many miners join, the issuance rate doesn't accelerate
-- **Self-regulation**: The network maintains balance on its own without external administrators
-- **Security preservation**: Even if miners decrease, the network adapts and doesn't stop
+Mining is the process of finding a nonce such that the hash of the block header falls below a specific **target**. This target is a 256-bit integer; the lower the target, the harder it is to find a valid hash. In the block header, this target is stored in a compressed 4-byte format called **nBits**.
 
-Gold mining increases when prices rise, but with Bitcoin's difficulty adjustment, increased demand doesn't lead to increased supply. This key design makes Bitcoin a more sound currency than gold.
+The structure of nBits uses its first byte as the exponent and the remaining 3 bytes as the coefficient. For example, if nBits is `0x1b0404cb`, the target is calculated as `0x0404cb x 2^(8x(0x1b-3))`. This compressed format efficiently represents extremely large or small target values in just 4 bytes.
+
+Difficulty is defined as the ratio of the genesis block's maximum target divided by the current target. Difficulty 1 corresponds to the maximum target, and current difficulty levels reach into the tens of trillions, indicating how much harder block production has become compared to the genesis block.
+
+## Mathematical Basis for the 2,016-Block Cycle
+
+Satoshi Nakamoto designed the block generation interval to be 10 minutes. The 2,016-block cycle was calculated to correspond exactly to 2 weeks (14 days): 10 minutes x 2,016 blocks = 20,160 minutes = 336 hours = 14 days. This two-week period was chosen as a balance point that secures sufficient statistical samples while responding to sharp hashrate changes at a reasonable pace.
+
+The adjustment algorithm is straightforward. It divides the actual elapsed time of the previous 2,016 blocks by the target time (20,160 minutes) and adjusts the new target by that ratio. If the actual elapsed time was one week, the target is halved (difficulty doubles); if it was four weeks, the target doubles (difficulty halves).
+
+## The 4x Adjustment Cap
+
+Bitcoin's difficulty adjustment imposes a limit of a maximum 4x increase or 4x decrease per cycle. Regardless of how short or long the previous cycle's elapsed time was, difficulty cannot change by more than a factor of four in a single adjustment.
+
+This limit serves as a safeguard against drastic hashrate fluctuations. Without an upper bound, a sudden departure of large-scale miners could cause difficulty to plummet, weakening security. Conversely, without a lower bound, a sudden influx of hashrate could spike difficulty excessively, causing block production to become extremely slow if miners subsequently departed. The 4x limit is a stabilization mechanism ensuring the network adapts gradually.
+
+## Difficulty Adjustment Gaming Attacks and Defenses
+
+Attempts to exploit the difficulty adjustment mechanism are possible. A prominent attack is **timestamp manipulation**. If miners intentionally set block timestamps into the future, the cycle's elapsed time is calculated as longer than reality, causing an unjustified decrease in difficulty. Bitcoin prevents this by requiring block timestamps to be greater than the median of the previous 11 blocks (Median Time Past) and within 2 hours of the network time.
+
+**Selfish mining** is another strategic attack related to difficulty adjustment. When miners withhold discovered blocks instead of publishing them immediately, they waste other miners' computational effort while potentially distorting the difficulty calculation. However, this attack requires substantial hashrate share and faces practical constraints such as network propagation delays.
+
+## Comparison with Other Cryptocurrencies' Difficulty Algorithms
+
+Bitcoin's 2,016-block cycle adjustment is simple, but other cryptocurrencies have adopted more frequent adjustment algorithms. **ASERT (Absolutely Scheduled Exponentially Rising Targets)**, adopted by Bitcoin Cash, adjusts difficulty every block using an exponential function, responding far more quickly to hashrate fluctuations. Ethereum's PoW-era **Homestead difficulty algorithm** also adjusted every block, while Litecoin uses the same 2,016-block cycle as Bitcoin but with a 2.5-minute block time.
+
+Bitcoin maintains its two-week cycle because more frequent adjustment is not necessarily better. Per-block adjustment responds sensitively to hashrate fluctuations but can simultaneously become more vulnerable to gaming. Bitcoin's conservative two-week cycle reflects a design philosophy that prioritizes stability and predictability.
+
+## Notable Historical Difficulty Episodes
+
+Several events in Bitcoin's history drew particular attention to difficulty changes. In May-June 2021, China's mining ban eliminated approximately 50% of total hashrate, causing difficulty to plunge in consecutive adjustments. Yet thanks to the difficulty adjustment mechanism, the network never stopped. Within months, hashrate was redistributed to other countries and fully recovered.
+
+In early 2009, there were periods when Satoshi Nakamoto was the sole miner, and difficulty remained at its minimum value of 1 for an extended time. With the subsequent advent of GPU mining, FPGAs, and ASICs, difficulty rose exponentially, reaching tens of trillions of times the 2009 level. This difficulty curve is itself a historical record of the energy and resources committed to the Bitcoin network.
 
 ## Related Concepts
 
