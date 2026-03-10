@@ -179,6 +179,15 @@ other = "Updated"
 [last_build]
 other = "Last build"
 
+[lightning_tip]
+other = "Tip via Lightning"
+
+[lightning_copied]
+other = "Lightning address copied!"
+
+[buy_on_aladin]
+other = "Buy on Aladin"
+
 [topic_bitcoin]
 other = "Bitcoin"
 [topic_austrian_economics]

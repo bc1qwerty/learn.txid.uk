@@ -179,6 +179,15 @@ other = "更新"
 [last_build]
 other = "最終ビルド"
 
+[lightning_tip]
+other = "Lightningで応援する"
+
+[lightning_copied]
+other = "Lightningアドレスをコピーしました！"
+
+[buy_on_aladin]
+other = "Aladinで購入"
+
 [topic_bitcoin]
 other = "ビットコイン"
 [topic_austrian_economics]

@@ -179,6 +179,15 @@ other = "업데이트"
 [last_build]
 other = "Last build"
 
+[lightning_tip]
+other = "Lightning으로 후원하기"
+
+[lightning_copied]
+other = "Lightning 주소가 복사되었습니다!"
+
+[buy_on_aladin]
+other = "알라딘에서 구매"
+
 [topic_bitcoin]
 other = "비트코인"
 [topic_austrian_economics]

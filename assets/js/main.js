@@ -721,6 +721,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 })();
 
+// ── Lightning Tip ──────────────────────────────────────
+(function(){
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.sidebar-lightning-tip');
+    if (!btn) return;
+    var addr = btn.getAttribute('data-lightning');
+    if (!addr) return;
+    navigator.clipboard.writeText(addr).then(function() {
+      btn.classList.add('lightning-copied');
+      var orig = btn.getAttribute('title');
+      btn.setAttribute('title', addr + ' ✓');
+      setTimeout(function() {
+        btn.classList.remove('lightning-copied');
+        btn.setAttribute('title', orig);
+      }, 2000);
+    });
+  });
+})();
+
 // ── i18n ──────────────────────────────────────────────
 (function(){
   const DICT = {
