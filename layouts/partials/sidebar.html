@@ -24,18 +24,6 @@
     </div>
 </div>
 
-<!-- Currently Reading -->
-{{ with site.Params.reading }}
-<div class="sidebar-section sidebar-reading">
-    <span class="sidebar-label">{{ i18n "reading_now" }}</span>
-    <a href="{{ with .slug }}{{ $.Site.LanguagePrefix }}/books/{{ . }}/{{ else }}#{{ end }}" class="reading-card">
-        {{ with .cover }}
-        <img src="{{ . }}" alt="{{ $.Site.Params.reading.name }}" class="reading-cover" loading="lazy" width="40" height="56">
-        {{ end }}
-        <span class="reading-title">{{ .name }}</span>
-    </a>
-</div>
-{{ end }}
 
 <!-- Projects (hidden) -->
 {{/* <div class="sidebar-section sidebar-projects">
