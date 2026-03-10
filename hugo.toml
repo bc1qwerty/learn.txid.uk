@@ -177,6 +177,14 @@ enableGitInfo = true
   name = 'X'
   url = 'https://x.com/bc1qwerty'
 
+[[params.social]]
+  name = 'Bluesky'
+  url = 'https://bsky.app/profile/txid.uk'
+
+[[params.social]]
+  name = 'Nostr'
+  url = 'https://njump.me/_@txid.uk'
+
 
 [params.reading]
   name = '법'
