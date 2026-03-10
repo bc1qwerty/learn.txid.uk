@@ -1,6 +1,6 @@
 ---
 title: "方法論的個人主義 (Methodological Individualism)"
-date: 2026-03-13
+date: 2026-03-10
 tags: ["自由主義"]
 description: "方法論的個人主義は、すべての社会現象を究極的には個人の行動・選択・価値判断に還元して説明すべきという原則です。"
 levels: "入門"

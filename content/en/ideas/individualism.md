@@ -1,6 +1,6 @@
 ---
 title: "Methodological Individualism"
-date: 2026-03-13
+date: 2026-03-10
 tags: ["Liberalism"]
 description: "Methodological individualism is the principle that all social phenomena should ultimately be explained by reducing them to the actions, choices, and value judgments of individuals."
 levels: "Beginner"

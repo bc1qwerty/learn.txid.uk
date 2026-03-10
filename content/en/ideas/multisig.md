@@ -1,6 +1,6 @@
 ---
 title: "Multisig (Multisig) — Multi-Signature Security"
-date: 2026-03-17
+date: 2026-03-10
 tags: ["Bitcoin"]
 description: "Multisig is a security mechanism that requires signatures from multiple private keys in Bitcoin transactions, with a threshold number of signatures needed for approval."
 levels: "Beginner"

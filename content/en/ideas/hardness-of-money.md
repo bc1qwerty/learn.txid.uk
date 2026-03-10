@@ -1,6 +1,6 @@
 ---
 title: "Hardness of Money — Stock-to-Flow"
-date: 2026-03-12
+date: 2026-03-10
 tags: ["Austrian Economics"]
 description: "The hardness of money is a property measured by the Stock-to-Flow ratio, which represents the ratio of existing monetary stock to new production."
 levels: "Beginner"

@@ -1,6 +1,6 @@
 ---
 title: "Regression Theorem of Money"
-date: 2026-03-15
+date: 2026-03-10
 tags: ["Austrian Economics"]
 description: "The Regression Theorem of Money is Mises' theory that argues the value of all money originally originated from non-monetary uses."
 levels: "입문"

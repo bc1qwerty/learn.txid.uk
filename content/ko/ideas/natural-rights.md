@@ -1,6 +1,6 @@
 ---
 title: "자연권 (Natural Rights) — 국가 이전의 권리"
-date: 2026-03-19
+date: 2026-03-10
 tags: ["자유주의"]
 description: "자연권 (Natural Rights)이란 국가나 법률에 의해 부여되는 것이 아니라, 인간이라는 존재 자체에서 비롯되는 본래적 권리입니다."
 levels: "입문"

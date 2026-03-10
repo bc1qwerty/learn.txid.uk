@@ -1,6 +1,6 @@
 ---
 title: "화폐 회귀 정리 (Regression Theorem)"
-date: 2026-03-15
+date: 2026-03-10
 tags: ["오스트리아 경제학"]
 description: "화폐 회귀 정리 (Regression Theorem)는 모든 화폐의 가치가 최초에는 비화폐적 용도에서 출발했음을 논증하는 미제스의 이론입니다."
 levels: "입문"

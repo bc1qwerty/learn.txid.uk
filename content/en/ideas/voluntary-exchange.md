@@ -1,6 +1,6 @@
 ---
 title: "Voluntary Exchange — The Principle of Mutual Benefit"
-date: 2026-03-16
+date: 2026-03-10
 tags: ["Liberalism"]
 description: "Voluntary Exchange is a transaction conducted through the free consent of both parties without coercion or fraud."
 levels: "입문"

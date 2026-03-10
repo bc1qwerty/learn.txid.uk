@@ -1,6 +1,6 @@
 ---
 title: "Lightning Network — Bitcoin's Layer 2"
-date: 2026-03-11
+date: 2026-03-10
 tags: ["Bitcoin"]
 description: "The Lightning Network is a layer 2 payment network built on top of the Bitcoin blockchain, enabling small instant payments."
 levels: "입문"
