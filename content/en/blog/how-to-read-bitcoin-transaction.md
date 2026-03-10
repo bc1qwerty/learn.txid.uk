@@ -1,6 +1,6 @@
 ---
 title: "How to Read a Bitcoin Transaction"
-date: 2026-03-11T11:00:00+09:00
+date: 2026-03-10T11:00:00+09:00
 description: "Learn how to break down and read the internal structure of a Bitcoin transaction. Interpret the version, inputs, outputs, and locktime fields one by one, understand fee calculation and what confirmations mean, then practice by looking up a real transaction on txid.uk."
 tags: ["Bitcoin"]
 levels: "beginner"

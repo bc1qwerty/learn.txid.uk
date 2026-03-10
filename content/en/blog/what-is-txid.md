@@ -1,6 +1,6 @@
 ---
 title: "What Is a TXID?"
-date: 2026-03-11T10:00:00+09:00
+date: 2026-03-10T10:00:00+09:00
 description: "The definition of a Bitcoin Transaction ID (TXID), how it is generated, real-world examples, the malleability problem, and how SegWit solved it. Understanding TXIDs is the key to tracking Bitcoin transactions."
 tags: ["Bitcoin"]
 levels: "beginner"
