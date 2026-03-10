@@ -1,39 +1,79 @@
 ---
-title: "Self-Custody"
+title: "Why Self-Custody Is Essential"
 date: 2026-02-24T10:00:00+09:00
-description: "Explaining the meaning and methods of self-custody — holding your own Bitcoin."
+description: "FTX, Mt. Gox, QuadrigaCX... Tens of trillions of won have vanished due to exchange collapses. A practical guide to truly owning your Bitcoin through self-custody."
 tags: ["Bitcoin"]
 draft: false
 ---
 
+On November 11, 2022, FTX — the world's third-largest cryptocurrency exchange — filed for bankruptcy. A company valued at $32 billion just days earlier collapsed in a mere 72 hours. Approximately $8 billion — roughly 10 trillion won — in customer assets evaporated, and more than one million users lost access to their Bitcoin and cryptocurrencies. Some lost their entire life savings; others lost their retirement funds.
+
+Founder Sam Bankman-Fried (SBF) was convicted of fraud in November 2023 and sentenced to 25 years in prison. The bankruptcy trustee recovered a significant portion through Bitcoin price appreciation and other means, and creditor compensation was carried out in 2024–2025. But the very fact that customers could not access their assets for years demonstrates the risk of exchange custody.
+
+The shocking truth is that this was not the first time. And it will not be the last. Over Bitcoin's 15-year history, exchange bankruptcies and hacks have been a recurring pattern. This article explains in detail why you should not leave your Bitcoin on an exchange, and how to get started with self-custody.
+
+## A History of Exchange Failures: Recurring Disasters
+
+A look at Bitcoin's history reveals that exchange bankruptcies and hacks have occurred with alarming frequency. Each incident ruined the lives of thousands or tens of thousands of people.
+
+**Mt. Gox (2014)** is the most notorious case. Headquartered in Tokyo, Japan, this exchange handled 70% of all Bitcoin trades worldwide in 2013. In February 2014, it announced that 850,000 BTC (approximately $470 million at the time, or about $85 billion at current prices) had disappeared. CEO Mark Karpeles was later arrested on charges of embezzling company funds. The Mt. Gox bankruptcy trustee eventually recovered approximately 140,000 BTC and began creditor compensation in 2024, but it took more than 10 years after the damage occurred.
+
+**Bitfinex (2016)** lost approximately 120,000 BTC to a hack. The value at the time was about $72 million. The exchange handled the situation by proportionally distributing the loss across all customers. While some funds were later recovered and compensated, customers could not access their funds for years.
+
+**QuadrigaCX (2019)** was Canada's largest exchange. When founder Gerald Cotten died suddenly during a trip to India, approximately $190 million in customer assets became inaccessible to anyone. He had claimed to keep all private keys on his encrypted laptop alone, without telling anyone the password. The investigation results that emerged later were even more shocking: Cotten had in fact been siphoning customer assets into personal accounts for years to fund a lavish lifestyle. Some have even raised the possibility that his death itself was staged.
+
+**FTX (2022)** was the worst in terms of scale. $8 billion in customer assets were used — without customer consent — for speculative trades by sister company Alameda Research. When Alameda suffered massive losses, FTX diverted even more funds to cover customer deposits, ultimately triggering a bank run and collapse.
+
+The common thread in all of these incidents is clear. Customers believed they "owned" their Bitcoin, but in reality, they merely held numbers recorded in the exchange's ledger. The moment the exchange shut its doors, those numbers became meaningless.
+
 ## "Not Your Keys, Not Your Coins"
 
-This is one of the most quoted phrases in the Bitcoin community. If you keep your Bitcoin on an exchange or third-party service, you don't actually own Bitcoin — you have an IOU that the company owes you.
+There is a saying in the Bitcoin community: "Not your keys, not your coins." To understand the precise meaning of this phrase, you need to understand Bitcoin's ownership structure.
 
-When FTX, the world's third-largest exchange, collapsed in 2022, hundreds of thousands of users lost their Bitcoin. This was not the first time. A string of major and minor exchange hacks and bankruptcies — Mt. Gox (2014), Bitfinex (2016) — has repeated itself over the years.
+On the Bitcoin network, "ownership" means possessing the **private key** associated with a specific Bitcoin address. A private key is a random number 256 bits in length, mathematically almost impossible to guess. To be specific, there are 2^256 — approximately 10^77 — possible combinations. This is on a similar scale to the estimated number of atoms in the observable universe (approximately 10^80).
 
-## What Is a Private Key
+Whoever holds this private key has sole authority to spend the Bitcoin at that address. When creating a Bitcoin transaction, a cryptographic signature must be produced with the private key, and only the holder of that private key can create this signature. Every node in the network verifies this signature using the public key to confirm the transaction's legitimacy.
 
-The core of a Bitcoin wallet is the **private key**. A private key is the cryptographic authority to spend funds at a specific Bitcoin address.
+What happens when you leave your Bitcoin on an exchange? The exchange holds the private keys. What you actually have is merely a **promise** recorded in the exchange's database — "the exchange will return that much Bitcoin to you." This is identical in structure to a traditional bank deposit.
 
-The human-readable representation of this private key is the **seed phrase**. It typically consists of 12 or 24 English words. Anyone who knows these words can recover the corresponding Bitcoin wallet at any time, on any device.
+The important difference is that banks have deposit protection schemes. In Korea, the Korea Deposit Insurance Corporation protects up to 50 million won per financial institution. In the United States, the FDIC guarantees up to $250,000 per bank account. But in most countries, cryptocurrency exchanges have no such safety net. If an exchange goes bankrupt, customers are classified as general creditors and may receive only a fraction of their funds — or nothing at all — through bankruptcy proceedings. This is exactly what many FTX victims experienced.
 
-Self-custody means holding this private key yourself.
+## Self-Custody in Practice: A Step-by-Step Approach
 
-## Software Wallets vs Hardware Wallets
+Self-custody feels difficult because it is unfamiliar. Once you understand the basic principles, it is simpler than you might think.
 
-**Software wallets**: Apps installed on a smartphone or computer. Convenient to access, but there is a risk that private keys could be stolen if the device is infected with malware. Suitable for small amounts.
+**Step 1: Purchase a Hardware Wallet**
 
-**Hardware wallets**: Dedicated devices like Ledger, Trezor, or Coldcard. They store private keys in an environment completely isolated from the internet. Even when signing transactions, private keys never leave the device. Recommended for long-term storage of larger amounts.
+The essential tool for self-custody is a hardware wallet. Choose from Coldcard, Trezor, Ledger, or BitBox02 based on your technical level and budget. The important thing is that you must buy a new product from the official website or an authorized retailer. A used hardware wallet should never be used, as the previous owner may know the seed phrase.
 
-## The Importance of Storing Your Seed Phrase
+**Step 2: Initial Setup and Seed Phrase Generation**
 
-Even if a hardware wallet breaks, you can always recover it as long as you have the seed phrase. Conversely, losing your seed phrase means permanently losing your Bitcoin.
+When setting up a hardware wallet for the first time, a seed phrase consisting of 12 or 24 English words is generated. Write these words down by hand on the paper (Recovery Sheet) provided by the hardware wallet as they appear on the screen. Never photograph them with a digital device or type them out. The reason you must never photograph the seed phrase or store it in the cloud is that it could be leaked through smartphone malware or a cloud service hack. This moment is the most important step in self-custody.
 
-Precautions for storing a seed phrase:
-- Never save it on digital devices (cloud, email, photos)
-- Write it on paper and store it physically in a safe place
-- Engraving it on a metal plate protects against fire and water damage
-- Keep copies distributed in separate locations
+**Step 3: Secure Storage of the Seed Phrase**
 
-Self-custody feels unfamiliar at first, but it is how you realize Bitcoin's most fundamental value: self-sovereignty.
+There are several levels of methods for storing a seed phrase written on paper.
+
+*Basic level*: Write it on paper and store it in a waterproof/fireproof safe. Easy and inexpensive, but potentially vulnerable to fire or flooding.
+
+*Intermediate level*: Engrave the seed phrase on a stainless steel plate or punch it into metal tiles. Products like Cryptosteel and Billfodl are designed for this purpose. They withstand fire (up to approximately 1,200°C) and water.
+
+*Advanced level*: Divide the seed phrase and store it in two or more separate locations. For example, half at home and half at a parent's house or in a bank safe-deposit box. In this case, you must carefully design your backup strategy.
+
+**Step 4: Verification and Practice**
+
+After setting up the hardware wallet, practice sending and receiving small amounts of Bitcoin. You should also actually go through the process of resetting the wallet and restoring it from the seed phrase. Without this practice, you may panic when you truly need to do it.
+
+## Overcoming the Psychological Barriers to Self-Custody
+
+Many people fear self-custody because they worry about "accidentally losing their Bitcoin." This fear is understandable, but it must be weighed against the risks of keeping funds on an exchange.
+
+Exchange custody: You can lose your assets if the exchange goes bankrupt, gets hacked, or freezes withdrawals. This risk depends entirely on the actions of others.
+
+Self-custody: You can lose your assets if you lose or incorrectly record the seed phrase. This risk depends entirely on your own actions.
+
+The starting point of self-custody is the judgment that managing risk proactively is better than depending on others. Bitcoin's most fundamental value — controlling your own property without a third party — is fully realized only through self-custody. The saying "Not your keys, not your coins" is not a mere slogan but a technical fact about Bitcoin.
+
+If you need higher security, you can consider multisig (multi-signature). For example, using a 2-of-3 structure where two out of three keys are required to authorize a transaction means that even if one key is lost or stolen, your assets remain protected.
+
+An often-overlooked issue in Bitcoin self-custody is inheritance. If the owner passes away and no one knows the seed phrase, the assets are permanently lost. You should plan ahead and safely communicate the access method to a trusted family member or attorney.

@@ -1,37 +1,71 @@
 ---
-title: "The Lightning Network"
+title: "Making Everyday Payments with the Lightning Network"
 date: 2026-02-20T10:00:00+09:00
-description: "Explaining how the Lightning Network, Bitcoin's Layer 2 payment solution, works and what it means."
+description: "A detailed explanation of how the Lightning Network — Bitcoin's Layer 2 solution — scales from 7 transactions per second to millions, covering payment channel and routing mechanics to real-world examples from El Salvador."
 tags: ["Bitcoin"]
 draft: false
 ---
 
-## Bitcoin's Scalability Problem
+Imagine trying to pay for a 5,000-won 아메리카노 with Bitcoin at a cafe in 서울. Sending an on-chain transaction would cost an average of 5,000–15,000 won in fees and take at least 10 minutes to an hour for confirmation. The cafe owner cannot wait until the coffee gets cold, and you cannot pay a fee that costs more than the coffee itself. This is the heart of the scalability problem that Bitcoin has long faced.
 
-Bitcoin's blockchain generates a new block approximately every 10 minutes, and the number of transactions that can be processed per block is limited. If billions of people around the world tried to use Bitcoin daily to buy a cup of coffee, the current on-chain structure could not handle it.
+Visa's theoretical maximum processing capacity is approximately 65,000 transactions per second, but its actual average throughput is around 1,700 transactions per second. Bitcoin's on-chain limit is roughly 7 transactions per second. If this gap cannot be bridged, Bitcoin remains "digital gold" and cannot become a means of everyday payment. For 8 billion people worldwide to pay for coffee, transportation, and meals with Bitcoin, an entirely different class of infrastructure is needed. That answer is the **Lightning Network**. Since its mainnet launch in 2018, it has grown for eight years and now operates as Bitcoin's Layer 2 payment network with more than 17,000 nodes and over 5,000 BTC in network capacity.
 
-The **Lightning Network** was created to solve this problem. It is a Layer 2 payment protocol built on top of the blockchain that can process transactions instantly and cheaply without recording every transaction on the blockchain.
+## Why Bitcoin Is Intentionally Slow
 
-## How It Works
+The Bitcoin blockchain is slow not because of technical incompetence but as a deliberate design choice. Approximately one block is generated every 10 minutes, and block size is limited to roughly 1–4 MB. This constraint exists to preserve **decentralization**.
 
-The core of the Lightning Network is the **payment channel**.
+If the block size were increased tenfold, transaction throughput would theoretically also increase tenfold. But at the same time, the hardware performance, storage capacity, and network bandwidth required to run a node would also increase tenfold. That would mean ordinary individuals could no longer run a Bitcoin node from their own computers, and only a handful of large data centers would verify the blockchain. This is effectively centralization. Bitcoin's core values — "verifiability" and "a network anyone can participate in" — would be destroyed.
 
-When two people open a Lightning channel, they lock Bitcoin together. Subsequent transactions between them are processed instantly within the channel without being recorded on the blockchain. Only when the channel is closed is the final balance recorded on the blockchain.
+So the Bitcoin community chose a different path: scaling through a **layered architecture**. Layer 1 (on-chain) handles security and final settlement, while Layer 2 processes fast and cheap everyday transactions. The internet works the same way. The underlying protocol, TCP/IP, is slow and simple, but on top of it, HTTP, email, streaming, gaming, and countless other applications run as layers providing fast and diverse services. The Lightning Network is Bitcoin's HTTP.
 
-Even more remarkable is **routing**. Even if A and C don't have a direct channel open, payment can flow through intermediate nodes like A-B-C. When this entire network connects like a web, anyone holding Bitcoin can send and receive instant payments anywhere in the world.
+## Payment Channels: The Magic of Processing Thousands of Transactions with Just Two
 
-## Advantages of Lightning
+The fundamental building block of the Lightning Network is the **payment channel**. The way it works is simpler than you might think.
 
-**Speed**: Transactions complete in milliseconds. There is no need to wait for block confirmation.
+Alice and Bob open a payment channel. At this point, a single **opening transaction** is recorded on the Bitcoin blockchain. Alice locks 0.01 BTC (approximately 1.3 million won) and Bob locks 0.01 BTC into the channel. A channel with a total capacity of 0.02 BTC is created. Only this transaction is recorded on the blockchain, incurring an on-chain fee.
 
-**Fees**: Fees are extremely low, in satoshi units. Sending amounts of less than a cent is economically viable.
+From that point on, all transactions between Alice and Bob happen off the blockchain. When Alice sends 0.003 BTC (approximately 390,000 won) to Bob, the channel balances are updated: Alice 0.007 BTC, Bob 0.013 BTC. This process involves no blockchain recording, no fees, and no waiting. Both parties simply sign and store the new balance state.
 
-**Privacy**: Lightning transactions are not recorded on the blockchain, making them far harder to trace than on-chain transactions.
+The next day, Bob sends 0.001 BTC back to Alice. The balances update again: Alice 0.008 BTC, Bob 0.012 BTC. Even if this process repeats 10, 100, or 1,000 times a day, no trace is left on the blockchain. All transactions are processed off-chain within the channel.
 
-**Scalability**: Theoretically capable of processing millions of transactions per second, surpassing Visa.
+When the channel is closed, a single **closing transaction** is recorded on the blockchain. The final balances (e.g., Alice 0.008, Bob 0.012) are settled to each party, incurring one more on-chain fee. The result is that only 2 transactions are recorded on the blockchain, yet thousands of payments were made in between. The average fee per transaction equals the opening/closing costs divided by the number of transactions, so if 1,000 transactions were made, the fee per transaction is 1/1,000th of the on-chain cost.
 
-## Current State and Future
+## Routing: Connecting the Entire World Within Six Degrees
 
-The Lightning Network already has thousands of nodes and tens of thousands of channels worldwide. Since El Salvador adopted Bitcoin as legal tender, Lightning's use in everyday payments has grown significantly.
+The natural question is: "Do I need to open a channel with every single person I want to transact with?" This is where Lightning's true innovation — the **routing** mechanism — comes in.
 
-There is still room for improvement in terms of user experience, but the Lightning Network is the key technology evolving Bitcoin from a mere store of value into a true global payment system.
+Suppose Alice wants to send 0.001 BTC to Charlie but has no direct channel with him. However, an Alice-Bob channel and a Bob-Charlie channel each exist. In this case, Alice's payment reaches Charlie via Bob. Alice sends 0.001 BTC to Bob, and Bob sends 0.001 BTC from his channel to Charlie. Bob's balance does not change — he simply relayed the payment along the route.
+
+"What if Bob steals the money in transit?" This concern is resolved by **HTLC (Hash Time-Locked Contracts)**. This is a smart contract that combines a cryptographic hash with a time lock, making it mathematically impossible for intermediate nodes to intercept payments. When Alice sends 0.001 BTC to Charlie, the contract is designed so that Bob can only collect his routing fee if he forwards the funds to Charlie. If he does not forward them, Bob receives nothing. It is cryptography, not trust, that secures the route.
+
+Thanks to this routing mechanism, the Lightning Network operates like the "six degrees of separation" theory. Even without a direct channel, payments can be routed instantly to someone on the other side of the planet through intermediate nodes. As the network grows, more routing paths become available, enabling faster and cheaper payments.
+
+## Lightning's Real-World Performance
+
+The Lightning Network's theoretical advantages are backed by real numbers.
+
+**Speed**: Lightning payments are completed in milliseconds. Compared to Visa card payments, which take several seconds to complete and days for final settlement, Lightning has a genuine speed advantage. Instant completion matters for everyday payments like buying coffee at a cafe or purchasing game items.
+
+**Fees**: Lightning fees are measured in satoshis (0.00000001 BTC). As of 2026, sending 1 million won over Lightning typically costs less than 10 won. Micro-payments are economically viable — transactions of 1 won or content purchases of 10 won become a reality.
+
+**Scalability**: The Lightning Network can theoretically process millions of transactions per second. Compared even to Visa's theoretical maximum capacity of approximately 65,000 transactions per second, Lightning can handle a far greater volume.
+
+**Privacy**: Lightning transactions are not recorded on the Bitcoin blockchain. Privacy is far stronger than on-chain transactions. Tracking who sent how much to whom is extremely difficult from the outside.
+
+## Lightning's Current Challenges and Future
+
+It is premature to call the Lightning Network a finished technology. There are several practical limitations.
+
+**Channel liquidity management.** Because Bitcoin must be locked into channels, capital is tied up. If Alice locks 0.01 BTC into the Alice-Bob channel, that Bitcoin cannot be used for other purposes while the channel is open. Additionally, if channel balances become skewed to one side, payments in that direction may be blocked.
+
+**Routing failures.** Large-value payments may have difficulty finding a route. If the channel capacity of intermediate nodes is insufficient, routing fails. Various technical improvements to address this are underway.
+
+**Channel fraud prevention.** It is theoretically possible for a channel counterparty to attempt to post an outdated transaction state to the blockchain to gain an unfair advantage. To prevent this, a service called a Watchtower exists. Watchtowers monitor channels even when the user is offline, and if a counterparty's fraud attempt is detected, they automatically execute a penalty transaction.
+
+**Hub centralization concerns.** As the Lightning Network has grown, a tendency has been observed for liquidity to concentrate in a small number of large hub nodes. While this increases network efficiency, it could conflict in the long term with Bitcoin's core value of decentralization and remains a challenge to be addressed.
+
+**User experience.** Using Lightning still requires a certain level of technical understanding from ordinary users. Mobile wallets like Phoenix and Breez are lowering this barrier to entry, but they are not yet as intuitive as traditional payment apps.
+
+However, the direction is clear. Since El Salvador adopted Bitcoin as legal tender in 2021, everyday Lightning-based payments have genuinely increased. Services like Strike and Cash App are driving mainstream adoption by using Lightning as a backend hidden from ordinary users.
+
+The Lightning Network is the key pathway through which Bitcoin evolves beyond a mere store of value into a true global payment system. "Store of value like gold, payment convenience like cash" — achieving both simultaneously is the direction Lightning is heading.

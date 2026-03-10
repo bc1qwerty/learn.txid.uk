@@ -1,47 +1,65 @@
 ---
-title: "The History of Money: From Barter to Bitcoin"
+title: "The History of Money: From Seashells to Bitcoin"
 date: 2026-02-16T10:00:00+09:00
-description: "How money has evolved throughout history, and where Bitcoin stands in that story."
-tags: ["Bitcoin", "Austrian Economics"]
+description: "Understanding why gold reigned as the king of money for thousands of years and the inevitable process by which Bitcoin came to inherit that throne, through the lens of the stock-to-flow ratio."
+tags: ["Bitcoin"]
 draft: false
 ---
 
-## Money Was Discovered, Not Invented
+The 10,000-won bill in your wallet is a piece of paper that costs 50 won to produce. So why does every cafe owner, taxi driver, and landlord across the country willingly accept this paper? Why can we exchange it for goods and services of real value? To answer this question, we must understand how money was born and how it has evolved.
 
-Many textbooks teach that "money was invented to solve the inconveniences of barter." But as Carl Menger explained, money was not designed by anyone — it emerged spontaneously from markets.
+The history of money is not merely a record of the past. It is the key to understanding the vulnerabilities of the monetary system we use today and the revolutionary nature of Bitcoin. Let us trace this 10,000-year evolutionary journey.
 
-People naturally began using the most easily tradable goods as intermediate media of exchange. Salt, shells, beads, livestock — different things functioned as money depending on the era and region.
+## Money Was Not Designed — It Was Discovered
 
-## Why Gold Won
+School textbooks typically teach it like this: "In ancient times, people bartered, but it was inconvenient, so they invented money." But this is far from historical fact. Carl Menger, the founder of the Austrian School of Economics, demonstrated in a groundbreaking paper published in 1892 that money did not emerge from central planning or government decree, but arose naturally from the spontaneous order of markets. Beyond Menger's theory, anthropologist David Graeber presented an alternative view in *Debt: The First 5,000 Years*, arguing that money originated not from barter but from debt and credit relationships. The academic debate over the origins of money is still ongoing, but the core lesson is the same: good money emerges spontaneously.
 
-After thousands of years of competition, gold rose to the throne of money. The reason is simple: gold best possessed the properties money requires.
+The actual process was far more interesting. Imagine an ancient fisherman who wants rice. He brings his fish to a rice farmer. But the rice farmer does not need fish at that moment — he needs an axe. The fisherman goes to the blacksmith, but the blacksmith wants grain, not fish. This is what economics calls the "double coincidence of wants" problem.
 
-- **Scarcity**: Annual production is only about 2% of existing stock
-- **Durability**: It doesn't corrode; it survives for thousands of years
-- **Divisibility**: It can be cut to any desired size
-- **Verifiability**: Its weight and purity can be confirmed
+To solve this problem, people gradually began using the goods most widely accepted by others as an intermediate medium of exchange. The fisherman exchanges his fish for seashells first, then trades the seashells for rice. Not because he needs the seashells themselves, but because he knows others will readily accept them.
 
-The most important of these is scarcity. What Saifedean Ammous calls a high "stock-to-flow ratio" — meaning it is difficult to produce new supply — was gold's core strength.
+History reveals an astonishing variety of things that served as money. In West Africa, cowrie shells remained in circulation as late as the 19th century. In ancient Rome, salt was so important that soldiers were paid in salt — and the English word "salary" derives from the Latin *salarium*, meaning salt. On the Pacific island of Yap, massive limestone discs over three meters in diameter served as currency. In modern prisons, cigarettes function as de facto money.
 
-## The Rise and Betrayal of Paper Money
+But all of these "primitive moneys" shared a fatal weakness: someone could produce or collect them in large quantities. There are records of 16th-century Portuguese merchants shipping massive quantities of seashells from the African coast to disrupt the seashell-based economies of the interior. Anything whose supply could easily expand eventually lost its qualification as money.
 
-Gold's weakness was the inconvenience of transporting and dividing it. Gold certificates emerged to solve this, and that is how paper money began.
+## The Triumph of Gold: The Magic of the Stock-to-Flow Ratio
 
-Initially, one dollar in paper could be exchanged for exactly 1/20th of an ounce of gold. But governments slowly broke this promise by printing more and more paper. Through Roosevelt's gold confiscation in 1933, the Bretton Woods system in 1944, and the [Nixon Shock](/ideas/nixon-shock/) of 1971, the link between currency and gold was completely severed.
+After thousands of years of free market experimentation, gold ascended to the throne of money. This was no accident. Gold most perfectly embodied the properties good money requires.
 
-## The Problems of the Fiat Era
+First, scarcity. The amount of gold on Earth is limited, and mining it is difficult. Second, durability. Gold does not corrode and is chemically stable. The 3,300-year-old gold found in Tutankhamun's tomb still shines brilliantly today. Third, divisibility. Gold can be melted and divided into any desired size, then recombined. Fourth, verifiability. Its weight and purity can be measured to confirm authenticity.
 
-In a monetary system that had lost gold as its anchor, governments could print money without limit. The consequences were predictable: inflation, asset bubbles, periodic financial crises, and widening wealth inequality.
+But what truly made gold special was another property. The key concept emphasized by Saifedean Ammous in *The Bitcoin Standard*: the **stock-to-flow ratio**.
 
-[Fiat money](/ideas/fiat-money/) fails to perform money's most important function: storing value. The purchasing power of the money you earn through hard work declines every year.
+This ratio is simple. Divide the total existing quantity (stock) by the annual new production (flow). For gold, this ratio is approximately 60-70. In other words, it would take over 60 years to mine all the gold that currently exists above ground.
 
-## Bitcoin: Digital Gold, and More
+Why does this number matter? Compare it to other commodities. Silver's stock-to-flow ratio varies by estimate but is generally assessed at around 20. Copper is less than 0.5. Suppose the price of copper suddenly doubles. Mining companies would immediately ramp up production, and within less than a year, they could mine more than twice the existing stock. When supply surges, the price falls back down. Copper cannot serve as a store of value.
 
-Bitcoin, created by Satoshi Nakamoto in 2009, inherits all of gold's monetary advantages while solving gold's shortcomings.
+Gold is different. Even if the gold price doubles, mining output does not easily increase. Finding and developing new gold mines takes years. Even if annual mining increases by 10%, that only adds 1.5% to the total stock. The value of existing holders is barely diluted. This is the mathematical secret behind gold's ability to function as a store of value for thousands of years.
 
-- **Absolute scarcity**: More scarce than gold. The 21-million cap is mathematically guaranteed
-- **Portability**: Can be transmitted instantly to anywhere in the world with internet access
-- **Divisibility**: Can be divided down to 1/100,000,000th (one satoshi)
-- **Verifiability**: Anyone can run a node and verify every transaction
+## The Birth and Betrayal of Paper Money
 
-The history of money ultimately points in one direction: toward an evolution to money that is harder, more censorship-resistant, and more decentralized. Bitcoin is the latest — and perhaps final — stage of that evolution.
+Gold was a perfect store of value, but it was inconvenient as a medium of exchange. It was heavy, risky to transport over long distances, and cumbersome to divide for small transactions. The history of paper money begins in the 17th century, when goldsmiths naturally assumed the role of bankers. Receipts issued to those who deposited gold — "bring this certificate and we will return your gold" — became the first banknotes. Because these gold certificates were much lighter and safer to carry than gold itself, they began to be used in trade instead of actual gold.
+
+Then the goldsmiths discovered something. It was exceedingly rare for all depositors to demand their gold back at the same time. So they began issuing more certificates than the gold they actually held. This was the origin of fractional reserve banking. Today's banks operate on essentially the same principle — they hold only a fraction of deposits as reserves and lend out the rest.
+
+Initially, individual banks each issued their own banknotes. But from the 19th century through the 20th, nations established central banks and centralized the authority to issue currency. The link between money and gold grew progressively weaker. Under the Bretton Woods Agreement of 1944, only the dollar remained convertible to gold as the world's reserve currency, and other nations' currencies were pegged to the dollar.
+
+Then, on August 15, 1971, President Nixon's television address severed the last link to gold. The dollar was no longer exchangeable for gold. The global monetary system transitioned to a pure fiat currency regime — a system sustained only by government decree and public trust.
+
+## The Fiat Era: The Gap Between Promise and Reality
+
+The fifty years since 1971 have been a succession of warnings. A monetary system that lost gold as its anchor has repeatedly swung through expansion and contraction. The oil shocks and stagflation of the 1970s, the Latin American debt crises of the 1980s, the Asian financial crisis of the 1990s, the dot-com and housing bubbles of the 2000s, the 2008 global financial crisis, and the pandemic-driven monetary expansion of 2020.
+
+The U.S. M2 money supply has increased approximately 30-fold since 1971. Over the same period, the dollar's purchasing power has fallen about 87%. What $1 could buy in 1971 requires about $7-8 today.
+
+It is true that the world economy since 1971 has achieved remarkable feats — reduction of extreme poverty, increased life expectancy, and more. The question is whether these achievements came because of fiat money, or in spite of it.
+
+This is the lesson that the history of money shows us repeatedly. When the state monopolizes currency issuance, it almost invariably abuses that power. There are cases like the Swiss franc, where relatively stable monetary policy has been maintained, but these are exceedingly rare exceptions. Currency that depends on the self-restraint of a government that has abandoned the gold standard ultimately expands and loses value. Thousands of years of history prove this.
+
+## Bitcoin: A New Chapter in the History of Money
+
+On January 3, 2009, Satoshi Nakamoto inscribed into the Genesis Block a headline from that day's *Times*: "Chancellor on brink of second bailout for banks." It was a declaration. A new kind of money had begun.
+
+Bitcoin implements the lessons learned from the history of money through technology. It preserves gold's scarcity, verifiability, and durability while overcoming gold's limitations — it is heavy, difficult to divide, and hard to move across borders. At the same time, it mathematically blocks the greatest problem of fiat money: unlimited issuance and political manipulation.
+
+The history of money is ultimately a history of evolution toward better money. From seashells to gold, from gold to gold certificates, from gold certificates to fiat currency. And now to Bitcoin. As with every previous transition, the new form of money emerges by overcoming the limitations of its predecessor. Whether Bitcoin stands on that continuum or represents something entirely different is for future history to judge. But anyone who has studied the history of money will find it difficult to dismiss Bitcoin.

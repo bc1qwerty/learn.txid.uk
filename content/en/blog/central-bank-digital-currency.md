@@ -1,37 +1,63 @@
 ---
-title: "Central Bank Digital Currency (CBDC)"
+title: "The Trap of CBDCs"
 date: 2026-03-03T10:00:00+09:00
-description: "What CBDCs are, as governments push forward with them, and how they differ from Bitcoin."
+description: "How are CBDCs, being pursued by over 130 countries, different from Bitcoin? An analysis of programmable money, transaction tracking, and the potential for integration with social credit systems, with real-world examples."
 tags: ["Bitcoin"]
 draft: false
 ---
 
-## What Is a CBDC
+A government announces it will create "faster and more convenient digital money." On the surface, it sounds great. But what if this money came with expiration dates, blocked purchases of certain products, and recorded every detail of your spending in real time on government servers? This is not a hypothetical scenario. These are features that central bank digital currencies (CBDCs) are actually implementing.
 
-A **Central Bank Digital Currency (CBDC)** is a digital form of fiat currency issued directly by a central bank. More than 100 countries are currently researching or developing one, and China's digital yuan (e-CNY) and the Bahamas' Sand Dollar have already launched.
+As of 2026, more than 130 countries worldwide are researching or pilot-testing CBDCs. China's digital yuan is being used by hundreds of millions of people, and the Bahamas, Nigeria, and Jamaica have already officially launched their own CBDCs. The Bank of Korea is also continuing its research on a digital won. The age of digital currency is clearly dawning. But the question is: what kind of digital currency?
 
-On the surface, CBDCs look like digital currencies, much like Bitcoin. But the two are fundamentally different.
+## What Is a CBDC and Why Is It Spreading
 
-## Differences Between CBDCs and Bitcoin
+A Central Bank Digital Currency (CBDC) is a digital form of fiat currency issued and managed directly by a country's central bank. It carries the same legal force as existing cash or bank deposits, but differs in that it exists only on a digital ledger with no physical form.
 
-**Control**: No central authority controls Bitcoin. CBDCs are completely controlled by the central bank, which can set the issuance volume, interest rates, and even expiration dates.
+There are multiple reasons governments are rushing to develop CBDCs. On the surface, they cite responding to declining cash usage, expanding financial inclusion, reducing international remittance costs, and strengthening the tracking of illicit funds. Indeed, in countries like Sweden where cash usage has fallen below 1%, a digital transition of central bank currency has an inevitable aspect.
 
-**Privacy**: Bitcoin transactions provide pseudonymity based on addresses. CBDC transactions are all reported to the government in real time. The government can instantly know who bought what, when, and where.
+But there are more candid reasons as well. Cash is difficult to trace, and cryptocurrency is beyond government control. CBDCs are the solution that combines the convenience of digital with complete government control. The International Monetary Fund (IMF) stated in a 2023 report that CBDCs "can maximize the efficiency of monetary policy and improve tax collection." In other words, the government can perfectly track and manipulate the flow of money.
 
-**Censorship**: Bitcoin transactions are difficult to block at the network level. With a CBDC, the government can immediately block a specific individual's payments or restrict use to only certain stores.
+## CBDCs and Bitcoin: Same Digital Currency, Opposite Philosophies
 
-**Supply**: Bitcoin's supply is fixed in code. A CBDC's supply can be adjusted at will by the central bank.
+CBDCs and Bitcoin are both digital currencies, but their design philosophies are diametrically opposed. Understanding this difference is essential.
 
-## Potential Risks of CBDCs
+**The difference in control structure** comes first. Bitcoin is operated by tens of thousands of independent nodes worldwide, and no single entity can unilaterally change the rules. Changing Bitcoin's 21 million supply cap would require the consensus of the vast majority of node operators around the world. It is virtually impossible. In contrast, with a CBDC, the central bank can instantly modify the issuance volume, interest rates, and terms of use with just a few lines of code. The People's Bank of China actually conducted experiments setting expiration dates on the digital yuan. If not spent by the deadline, the currency disappears.
 
-CBDC proponents tout financial inclusion, payment efficiency, and blocking illicit transactions as advantages. But critics are concerned about more fundamental issues.
+**The level of privacy** is also starkly different. Bitcoin transactions are recorded on a public ledger but provide address-based pseudonymity. Without additional information, it's impossible to know who owns a particular address. CBDCs, by design, record all transactions by real name on a central server. The CBDC model being reviewed by the Bank of Korea also claims to provide an "appropriate level of anonymity," but the government decides what that level is. The completely anonymous transactions that were possible with cash disappear in the CBDC era.
 
-**Programmable money**: CBDCs are programmable currency. If the government wishes, it can create money that expires if not spent within a certain time, or money that can only be used in specific categories.
+**Censorship resistance** also differs clearly. To block a specific person's transactions on the Bitcoin network would require the cooperation of the majority of miners and node operators worldwide. It is nearly impossible both technically and politically. With a CBDC, the central bank can freeze a specific account or block payments in a specific industry at the push of a button. During the 2022 Canadian trucker protests, the government froze the bank accounts of protest participants and their supporters. In a CBDC environment, such measures could be enforced much more swiftly and broadly.
 
-**Total surveillance**: All economic activity comes within the state's view. The transactional privacy provided by cash disappears entirely.
+**Control over the money supply** is also fundamentally different. Bitcoin's total supply of 21 million is fixed by code, and the last Bitcoin is scheduled to be mined around 2140. No one can arbitrarily change this number. CBDCs, like existing fiat currencies, can be issued in whatever quantity the central bank desires. In fact, because they're digital, the speed of issuance can be even faster.
 
-**Tool for social control**: Like China's social credit system, CBDCs can be used as a tool to control behavior.
+## Programmable Money: The Most Dangerous Feature
 
-## Why Bitcoin Is the Alternative
+The most concerning characteristic of CBDCs is that they are **programmable money**. This means conditions for use can be embedded in the currency itself through code. Let's look concretely at what this actually means.
 
-CBDCs combine the convenience of digital currency with complete government control. Bitcoin is the opposite — combining digital convenience with censorship resistance and decentralization. What you want determines which to choose.
+**Expiring money** is possible. In 2020, China distributed digital coupons (hongbao) with expiration dates as part of its digital yuan pilot program. This doesn't mean the e-CNY system itself has a built-in expiration feature by default, but it demonstrated that such functionality can be technically implemented. Money that automatically disappears if not spent within a specified period. The justification is economic stimulus. The logic is that forcing spending will revitalize the economy. But this makes saving itself impossible. The act of accumulating money for the future is institutionally blocked.
+
+**Use restrictions** are also possible. It is technically feasible to automatically block payments for or apply different tax rates to foods the government deems unhealthy (alcohol, tobacco, fast food) or services considered socially problematic (gambling, adult content). "Environmental restriction" provisions that limit purchases of specific products based on carbon footprint can also be implemented. This kind of granular behavioral control — utterly impossible with cash — becomes reality in CBDCs with just a few lines of code.
+
+**Integration with social credit systems.** China already operates both its CBDC, the digital yuan (e-CNY), and its social credit system separately. There is no official confirmation that the two systems have been directly linked, but the technical foundation for combining them exists. It's a structure where individuals' credit scores can be adjusted based on traffic violations, social media posts, political activities, and so on, and this can affect access to financial services. Western democracies say "that could never happen here," but CBDCs provide the technical infrastructure that makes such a system possible.
+
+**The disappearance of cash.** As CBDC adoption becomes widespread, cash usage naturally declines. Eventually, a cashless society may arrive. The complete anonymity and freedom of transaction that cash provides would disappear. When you buy food with cash at a convenience store, no institution records that transaction. In a world where only CBDCs remain, every purchase is tracked and recorded.
+
+## There Are Counterarguments About CBDCs Too
+
+Of course, not every aspect of CBDCs is negative. The arguments of their supporters deserve a hearing as well.
+
+**Greater financial inclusion.** Improving financial inclusion is the strongest case for CBDCs. Approximately 1.4 billion people worldwide live without bank accounts, and the argument that CBDCs can provide them with basic financial services cannot be dismissed. The question is whether the same goal can be achieved through methods that don't compromise privacy.
+
+**Payment efficiency.** International remittances currently pass through intermediary banks, take days, and incur high fees. CBDCs can simplify this process, enabling faster and cheaper international transactions.
+
+**Blocking illicit finance.** It is true that cash is used for money laundering, tax evasion, and drug trafficking. CBDCs can be effective in tracking and blocking illicit financial flows.
+
+Having these benefits should not lead to overlooking the risks of surveillance and control. Technology is neutral, but there is no guarantee that the intentions of those who design and operate it are equally neutral.
+
+## The Alternative Bitcoin Offers
+
+CBDCs and Bitcoin stand on completely different philosophies. CBDCs are the combination of "digital convenience + complete state control," while Bitcoin is the combination of "digital convenience + censorship resistance + decentralization."
+
+The choice depends on what you want. If you accept government surveillance and control and want payment convenience, CBDCs will serve that role. If you want complete control over your own property and want to send and store value without any institution's permission, Bitcoin is the alternative.
+
+The more CBDCs spread, the clearer the value of the financial privacy and censorship resistance that Bitcoin provides will become. The two systems will coexist in competition, but the outcome of that competition will reflect our collective choice about what kind of society we want.

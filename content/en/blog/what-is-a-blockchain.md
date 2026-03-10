@@ -1,34 +1,69 @@
 ---
-title: "What Is a Blockchain"
+title: "How Does a Blockchain Work"
 date: 2026-02-25T10:00:00+09:00
-description: "A simple explanation of how the blockchain, the core technology behind Bitcoin, works."
+description: "A detailed explanation of how the blockchain enables transactions without banks. We take a deep look at block structure, hash functions, and how decentralization actually works."
 tags: ["Bitcoin"]
 draft: false
 ---
 
-## The Essence of a Blockchain
+What actually happens when you send a bank transfer? Your account balance decreases, and the same amount is added to the recipient's account. Nothing physically moves in this process. All that changes are numbers in a database stored somewhere on the bank's servers. "A's balance: 10 million won" becomes "5 million won," and "B's balance: 2 million won" becomes "7 million won."
 
-A blockchain is a distributed ledger. A bank's ledger exists in only one place — the bank's servers. The bank can modify it at will, and it can be hacked or go bankrupt. Bitcoin's blockchain is identically copied across tens of thousands of nodes (computers) worldwide. Hacking any one of them leaves the original intact everywhere else.
+The core of this system is trust. We trust that the bank manages these numbers accurately. But what if the bank makes a mistake? What if it gets hacked? What if the government freezes your account? Your property is essentially just numbers stored on a bank server, and the only thing guaranteeing the accuracy of those numbers is trust in the bank and the government.
 
-## The Structure of a Block
+The 2008 financial crisis demonstrated just how fragile this trust can be. Lehman Brothers, the fourth-largest investment bank in the United States, went bankrupt, and the entire global financial system came to the brink of collapse. That same October, an anonymous figure named Satoshi Nakamoto published the Bitcoin white paper, posing a fundamental question: "Can value be transmitted without trusting a third party?"
 
-As the name suggests, a blockchain is a structure where blocks are linked together like a chain.
+The blockchain is the technical answer to that question.
 
-Each block contains:
-- A batch of transaction records for a period (roughly 2,000 transactions)
-- The hash of the previous block (the connecting link)
-- The result of the Proof of Work
+## Distributed Ledger: Copying the Bank's Ledger to 20,000 Locations
 
-A **hash** is a function that takes any data as input and outputs a unique string of fixed length. If even a single bit of data changes, the hash changes completely. Because each block contains the hash of the previous block, modifying any past block causes the hashes of all subsequent blocks to change in a cascade. This is the core principle that makes the blockchain difficult to tamper with.
+The essence of a blockchain is a distributed ledger. Put simply, it is a system where the transaction ledger that a bank used to manage alone is now simultaneously held by tens of thousands of people worldwide.
 
-## The Meaning of Decentralization
+Take the Bitcoin network as an example. As of 2026, more than approximately 20,000 independent computers worldwide (called nodes) maintain identical copies of the ledger. A node in Seoul, a node in New York, and a node in Kenya all record exactly the same information. When a new transaction occurs, the transaction data propagates across the entire network, and every node verifies it before recording it identically.
 
-Traditional databases are controlled by central servers. Google can delete your email data; a bank can freeze your account.
+Why is this revolutionary? If a single bank server is hacked, the data can be manipulated. The 2016 theft of $81 million from the Bangladesh central bank is a case in point. Hackers infiltrated the SWIFT system and issued fraudulent transfer instructions, exposing the vulnerability of centralized systems.
 
-No single entity controls the Bitcoin blockchain. Changing the rules requires the agreement of a majority of node operators worldwide. This provides resistance to censorship and control.
+But to tamper with Bitcoin's ledger? You would need to simultaneously hack 20,000 independent nodes scattered across the globe. Even if the U.S. government shut down every Bitcoin node within its borders, the nodes in the rest of the world would continue operating without any issues. This is the power of decentralization.
 
-## Blockchain ≠ Bitcoin
+## Anatomy of a Block: Transaction Records Stacking Every 10 Minutes
 
-An important distinction: blockchain is the technology, and Bitcoin is the first and most successful implementation using that technology.
+The name "blockchain" is an accurate description. It is a structure where blocks are linked together like a chain. On the Bitcoin network, a new block is generated approximately every 10 minutes on average.
 
-In the 2010s, the phrase "blockchain is good, but Bitcoin isn't necessary" became fashionable. However, the core values of blockchain — decentralization and minimizing trust — only mean something in a truly decentralized network like Bitcoin. A blockchain controlled from the center is just a slow database.
+Let us examine the structure of each block in detail.
+
+**Transaction data**: Every Bitcoin transaction that occurred during the roughly 10-minute period before the block was created is included. As of 2026, depending on network activity, each block contains an average of 2,000–3,000 transactions. These are records such as "0.5 BTC sent from address 1A2b... to address 3C4d...." Each transaction includes the sender's digital signature, allowing the authenticity of the transaction to be mathematically verified.
+
+**The hash of the previous block**: This is the key mechanism that turns blocks into a "chain." Every block contains the unique identifier (hash) of the block immediately before it. The 1,000th block contains the hash of the 999th block, and the 999th block contains the hash of the 998th block. Follow this chain all the way back and you reach the Genesis Block created by Satoshi Nakamoto on January 3, 2009.
+
+**Nonce and Proof of Work**: This is a special value that miners discover by expending enormous computing power. Only with this value is a block recognized as valid by the network. Proof of Work ensures that creating a block has a real cost (electricity, hardware), making malicious block creation economically prohibitive.
+
+As of February 2026, the Bitcoin blockchain contains more than approximately 880,000 blocks. Seventeen years of complete transaction records form a chronological chain, and the total data size has exceeded roughly 600 GB.
+
+## Hash Functions: The Security Created by Digital Fingerprints
+
+The core of blockchain security is the hash function. Understanding this makes it clear why the blockchain is tamper-proof.
+
+A hash function is a mathematical function that takes data of any size as input and outputs a unique string of fixed length. Bitcoin uses SHA-256 (Secure Hash Algorithm 256-bit). Whether the input is "Hello" or the entire text of the Bible, the output is always a 64-character hexadecimal string.
+
+Let's look at a concrete example:
+- SHA-256 hash of "Bitcoin": `b4056df6691f8dc72e56302ddad345d65fead3ead9299609a826e2344eb63aa4`
+- Hash of "bitcoin" (lowercase b): `6b88c087247aa2f07ee1c5956b8e1a9f4c7f892a70e324f1bb3d161e05ca107b`
+
+Even a single letter difference produces a completely different hash. This property is what makes the blockchain tamper-proof.
+
+If even the smallest piece of data within a block (the transaction records) is changed, the hash of that block changes completely. But since every block contains the hash of the previous block, tampering with any one block causes the hashes of all subsequent blocks to change in a chain reaction. For a tampered chain to be considered valid, all the blocks after the tampered one would need to be recreated with new Proof of Work. This is impossible without controlling more than 51% of the Bitcoin network's total hashrate (approximately 700 EH/s). At the current hashrate, launching a 51% attack would require billions of dollars worth of mining equipment and electricity, and even if the attack succeeded, the resulting crash in Bitcoin's price would destroy the value of the attacker's own hardware investment. The economic incentive for such an attack simply does not exist. This is the principle by which the blockchain's guarantee of "no modified data" works mathematically.
+
+## Decentralization: Why Tens of Thousands of Copies Are Needed
+
+Another key property of the Bitcoin blockchain is complete decentralization. Blockchain data is identically copied across tens of thousands of nodes worldwide. There are approximately 20,000 reachable public nodes, and the actual count is estimated to be even higher when including private nodes. Each node independently holds the complete blockchain data and validates the rules.
+
+Why does this matter? If Google's database is hacked, your emails disappear. If a bank server goes down, transactions are halted. This is because a single point of failure exists. The Bitcoin blockchain is different. Even if one node is hacked or goes offline, the remaining tens of thousands of nodes maintain accurate data. To shut down the Bitcoin network, you would need to simultaneously disable or attack all of these globally distributed nodes. This is practically impossible.
+
+When China completely banned Bitcoin mining and operations in 2021, many predicted the end of Bitcoin. But nodes in other countries continued to operate, and the Bitcoin network maintained normal operations without skipping a single block. This is the real-world resilience of a decentralized blockchain.
+
+## A Blockchain Is Not a Universal Solution
+
+During the blockchain hype of 2017–2018, calls to "apply blockchain to everything" poured in. Supply chain management, medical records, voting systems, real estate registries — projects sprang up like mushrooms after rain, promising to introduce blockchain to nearly every field.
+
+But a blockchain delivers meaningful value only when specific conditions are met. A blockchain is better than a regular database only when multiple parties need to manage shared data without a central trusted authority, and when the immutability of that data is critically important. If those conditions are not met, a blockchain is simply a slow and expensive database.
+
+Bitcoin perfectly satisfies these conditions. Its core function is exchanging value with anyone in the world without a central trusted authority. The blockchain is the technology, and Bitcoin is the application where that technology shines brightest. The claim that "blockchain is great, but Bitcoin isn't necessary" is tantamount to saying that the structure is great but the economic incentives that power it are not needed. It is like saying the engine is great but fuel is unnecessary. A blockchain without incentives is merely a database that nobody maintains.

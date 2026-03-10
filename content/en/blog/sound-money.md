@@ -1,43 +1,77 @@
 ---
-title: "Sound Money"
+title: "What Is Sound Money"
 date: 2026-03-07T10:00:00+09:00
-description: "What sound money is, and why Bitcoin is the most perfect sound money in history."
+description: "Why does the value of your hard-earned savings keep shrinking? Understanding the essence of sound money, and the solution Bitcoin offers."
 tags: ["Bitcoin"]
 draft: false
 ---
 
-## What Is Sound Money
+How much did it cost to buy an apartment in Seoul's Gangnam district in the mid-1970s? At the time, a high-end apartment could be purchased for about 3 million won. If you had simply saved that money, what could you buy with it in 2026? You'd be hard-pressed to buy even a used compact car. Over 55 years, the purchasing power of the Korean won has evaporated by more than 97%. That's an average annual decline of about 6%.
 
-**Sound money** is currency whose value is well-preserved over time, whose supply cannot be arbitrarily increased, and which is independent from political manipulation.
+If the value of your savings keeps shrinking despite working hard and being frugal, the problem is not your ability or luck. It's because the monetary system itself is structurally designed to sacrifice savers. This is why you need to understand the concept of "sound money."
 
-Historically, gold served the longest as sound money. Gold's total supply is limited by natural law, and mining new gold requires enormous energy. As a result, gold preserved its value well for thousands of years.
+## The Essence of Sound Money: It Should Ring True
 
-The opposite concept is **unsound money** — modern fiat currencies with chronic inflation, whose issuance governments can increase at will.
+The expression "sound money" originates from the medieval European practice of testing gold coins. Merchants would drop a gold coin onto a hard surface and judge its authenticity by its sound. Pure gold produced a clear, high-pitched ring, while counterfeits mixed with lead or copper made a dull, muted sound. "Sound" simultaneously carries the meanings of "healthy" and "a noise that rings."
 
-## Characteristics of Sound Money
+In economic terms, sound money must satisfy three core conditions. First, **its value is preserved over time**. The purchasing power of 1 million won today should remain roughly the same 10 years later. Second, **its supply is predictable and beyond anyone's control**. No one should be able to increase the amount in circulation at will. Third, **it is independent of political pressure**. Political events like elections, wars, and economic crises should not affect the money supply.
 
-Austrian economics emphasizes these conditions for sound money:
+The opposite concept is **unsound money** or "weak money." It is money that the government can print as needed, where inflation is structural, and where the purchasing power of holders is continuously eroded. Unfortunately, virtually all modern [fiat currencies](/ideas/fiat-money/) fall into this category.
 
-**Medium of Exchange**: It must be widely used in transactions.
-**Store of Value**: It must maintain purchasing power over time.
-**Unit of Account**: It must serve as the standard for measuring the value of goods and services.
+## The Three Essential Functions of Sound Money
 
-And for all these functions, the most important thing is **scarcity and predictability of supply**. Currency whose quantity now or in the future is unknowable is difficult to trust.
+Masters of the Austrian school of economics, Ludwig von Mises and Carl Menger, articulated that money must fulfill three functions to work properly.
 
-## Why Fiat Currency Is Unsound
+**Medium of Exchange.** This is the most basic role of money. When you want to sell apples and buy shoes, money solves the "double coincidence of wants" problem — the need to find someone who both wants your apples and is selling shoes. Money turns this complex process into two simple transactions. You sell apples for money, then use that money to buy shoes.
 
-Modern fiat currency's supply is determined by political decisions. Governments approaching elections want to stimulate the economy. Nations at war issue currency to fund their campaigns. During financial crises, quantitative easing bails out banks.
+**Store of Value.** This is the critical dividing line between sound and unsound money. You must be able to use the compensation earned from today's work at a similar value tomorrow, next year, or 10 years from now. Money that cannot store value renders saving meaningless. This is why in Argentina, people convert their paychecks into goods the same day they receive them. In an environment with 200% annual inflation, holding money for even a single day means a loss.
 
-In this structure, holders of the currency are always the victims.
+**Unit of Account.** Money must serve as a consistent standard for measuring the value of all goods and services. Just as a meter that changed length every day would make it impossible to build a house, if the value of money fluctuates wildly, businesses cannot make rational investment plans and individuals cannot prepare for retirement.
+
+There is one prerequisite for all three of these functions: **scarcity and predictability of supply**. Something that can be produced in unlimited quantities at any time cannot serve as money. That's why leaves can't be money. At the same time, the supply must not be unpredictable. A currency whose future issuance is unknowable cannot serve as a basis for long-term planning.
+
+## Why Gold Dominated for 5,000 Years: Physical Scarcity
+
+The reason gold dominated as sound money for most of human history is not luck but physical properties. Gold's annual mining output is only about 1.5–2% of total above-ground stock. This low "stock-to-flow ratio" is what stabilized gold's value.
+
+Let's look at a specific example. In the Roman Empire, a single Aureus gold coin could buy a fine toga (outer garment). What can the same weight of gold (about 7–8g) buy in 2026? At about 80,000 won per gram, that's roughly 600,000 won — enough for a decent suit. After 2,000 years, the purchasing power is remarkably similar.
+
+By contrast, to buy in 2026 what $1 could buy in 1913, you'd need about $32. In 110 years, the dollar's purchasing power has declined by 97%. This is the difference between gold and fiat currency.
+
+Gold's physical scarcity was not easily manipulated even by political power. When 16th-century Spain plundered enormous quantities of gold and silver from South America, it managed only to double the total precious metals stock in all of Europe over the course of 50 years. Compare this to modern central banks, which can increase the money supply by 20–30% with a few keystrokes — a constraint of an entirely different order.
+
+## Why Fiat Currency Can Never Be Structurally Sound
+
+After the 1971 [Nixon Shock](/ko/ideas/nixon-shock/), the world's monetary system severed its connection to gold entirely. Since then, fiat currency has revealed through multiple channels why it can never structurally be sound money.
+
+**Absence of issuance constraints.** Under the gold standard, governments could only issue as much currency as the gold they held. This was a natural fiscal discipline. After 1971, that constraint vanished. Central banks can create trillions of dollars with a few keystrokes. Every time a political need arises (war, elections, economic stimulus), the temptation to issue currency appears, and history shows that this temptation is almost always given in to.
+
+**Institutionalized inflation.** The U.S. Federal Reserve sets annual inflation of 2% as its "target." This means making it official policy that savers' purchasing power decreases by 2% every year. After 36 years, the currency's value is cut in half. By definition, such a currency cannot be sound money.
+
+**Vulnerability to political pressure.** Interest rate cuts, quantitative easing, emergency liquidity provision — central bank decisions are legally independent, they say, but in practice they are not free from political pressure. Pressure from politicians wanting to stimulate the economy before elections. Pressure to bail out banks during financial crises. Pressure to finance war costs. All of this erodes the soundness of money.
 
 ## Bitcoin: The Soundest Money in History
 
-Bitcoin meets all the conditions of sound money while possessing properties superior to gold, the original sound money.
+Bitcoin meets every condition of sound money while adding properties that gold never had.
 
-- **Scarcity**: Supply cap of 21 million fixed in code
-- **Predictability**: Issuance schedule precisely known
-- **Neutrality**: No political power can adjust supply
-- **Verifiability**: Anyone can confirm compliance with the rules
-- **Portability**: Crosses borders far more easily than gold
+**Mathematically fixed supply.** Bitcoin's total supply of 21 million is hardcoded in the source code. This is not policy — it is mathematics. No central bank, no government, no crisis can change this number. If gold's scarcity derives from the laws of physics, Bitcoin's scarcity derives from the laws of mathematics. Asteroid mining or the discovery of new gold deposits could increase gold supply, but no technological innovation can increase Bitcoin's supply.
 
-Satoshi Nakamoto's creation of Bitcoin was an attempt to implement sound money suited to the internet age. That attempt gave birth to the soundest money in history.
+**Completely predictable issuance schedule.** Exactly when and how much Bitcoin will be issued is known through the year 2140. No monetary policy this predictable has ever existed in history. This stands in sharp contrast to the impossibility of predicting how much currency any given central bank governor will issue under the pretext of some crisis.
+
+**Political neutrality.** There is no entity with the authority to issue Bitcoin. Tens of thousands of miners who earn block rewards are distributed across the globe, and no single party can manipulate the issuance. This means that for the first time in history, a politically neutral global currency has emerged.
+
+**Complete verifiability.** Anyone can run a Bitcoin node to independently verify the current total supply, the issuance schedule, and all transaction records. "Don't trust — verify" is Bitcoin's principle.
+
+## The Impact of Sound Money on Society
+
+Sound money is not merely a financial tool. It changes a society's time horizon.
+
+When money preserves value, people think long-term. Saving becomes a rational way to prepare for the future. Businesses create 10-year plans instead of obsessing over quarterly earnings. Governments have a reason to invest in infrastructure for the next generation.
+
+In contrast, in an environment of high inflation, everyone acts short-term. They spend money quickly or flee to assets that outpace inflation. Long-term savings, long-term investment, and capital accumulation across generations become difficult.
+
+Bitcoin has not yet become a widely used unit of account, and high price volatility makes this difficult. However, in terms of the soundness of its issuance rules, it meets the strictest standard in human history.
+
+Mainstream economics worries that if a currency's value continuously rises, consumption and investment may be suppressed. But the history of the technology industry (computers, smartphones, etc.) shows that even as prices continuously fall, demand does not decline.
+
+Satoshi Nakamoto created Bitcoin as an attempt to implement sound money suited to the internet age. That attempt gave birth to the soundest money in human history. The experiment is still ongoing, but the direction is clear.
