@@ -12,7 +12,7 @@
   {{- range where site.RegularPages "Section" "learn" -}}
     {{- $path := . -}}
     {{- range $i, $step := .Params.steps -}}
-      {{- if eq $step.url $currentURL -}}
+      {{- if eq ($step.url | relLangURL) $currentURL -}}
         {{- $pathFound = true -}}
         {{- $pathTitle = $path.Title -}}
         {{- $pathURL = $path.RelPermalink -}}
