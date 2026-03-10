@@ -46,7 +46,7 @@ weight: 1
 
 ## 연결되는 개념
 
-- [시간선호](/ideas/time-preference/) — 건전화폐는 낮은 시간선호를 가능하게 합니다
-- [작업증명](/ideas/proof-of-work/) — 비트코인이 건전화폐인 이유의 기술적 근거
-- [법정화폐](/ideas/fiat-money/) — 건전화폐의 반대 개념
-- [반감기](/ideas/halving/) — 비트코인의 건전성을 보장하는 메커니즘
+- [시간선호](/ko/ideas/time-preference/) — 건전화폐는 낮은 시간선호를 가능하게 합니다
+- [작업증명](/ko/ideas/proof-of-work/) — 비트코인이 건전화폐인 이유의 기술적 근거
+- [법정화폐](/ko/ideas/fiat-money/) — 건전화폐의 반대 개념
+- [반감기](/ko/ideas/halving/) — 비트코인의 건전성을 보장하는 메커니즘

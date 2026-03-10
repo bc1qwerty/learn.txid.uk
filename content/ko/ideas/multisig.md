@@ -47,6 +47,6 @@ weight: 29
 
 ## 연결되는 개념
 
-- [노드](/ideas/node/) — 비트코인 네트워크의 독립적 검증 소프트웨어
-- [비트코인이란?](/start/bitcoin/) — 비트코인의 기본 개념과 작동 원리
-- [사유재산권](/ideas/private-property/) — 개인의 재산을 배타적으로 소유할 권리
+- [노드](/ko/ideas/node/) — 비트코인 네트워크의 독립적 검증 소프트웨어
+- [비트코인이란?](/ko/start/bitcoin/) — 비트코인의 기본 개념과 작동 원리
+- [사유재산권](/ko/ideas/private-property/) — 개인의 재산을 배타적으로 소유할 권리

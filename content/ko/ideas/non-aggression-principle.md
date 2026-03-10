@@ -48,6 +48,6 @@ weight: 6
 
 ## 연결되는 개념
 
-- [자유주의란?](/start/libertarianism/) — 비침해 원칙이 속한 더 넓은 철학적 맥락
-- [건전화폐](/ideas/sound-money/) — 인플레이션은 비침해 원칙의 위반인가?
-- [자기 소유권](/ideas/self-ownership/) — 비침해 원칙의 논리적 기초
+- [자유주의란?](/ko/start/libertarianism/) — 비침해 원칙이 속한 더 넓은 철학적 맥락
+- [건전화폐](/ko/ideas/sound-money/) — 인플레이션은 비침해 원칙의 위반인가?
+- [자기 소유권](/ko/ideas/self-ownership/) — 비침해 원칙의 논리적 기초

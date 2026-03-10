@@ -34,7 +34,7 @@ weight: 11
 
 ## 자기 소유권에서 재산권으로
 
-자기 소유권은 재산권의 논리적 출발점입니다. 이 연결 고리를 로크와 [머레이 로스바드(Murray Rothbard)](/people/murray-rothbard/)가 다음과 같이 설명합니다.
+자기 소유권은 재산권의 논리적 출발점입니다. 이 연결 고리를 로크와 [머레이 로스바드(Murray Rothbard)](/ko/people/murray-rothbard/)가 다음과 같이 설명합니다.
 
 ### 개척의 원리 (Homesteading Principle)
 
@@ -93,7 +93,7 @@ weight: 11
 
 ## 연결되는 개념
 
-- [비침해 원칙](/ideas/non-aggression-principle/) — 자기 소유권에서 논리적으로 도출되는 윤리적 원칙
-- [합법적 약탈](/ideas/legal-plunder/) — 자기 소유권이 법에 의해 침해되는 사례
-- [자유주의란?](/start/libertarianism/) — 자기 소유권이 속한 더 넓은 철학적 체계
-- [건전화폐](/ideas/sound-money/) — 경제적 자기 소유권을 보호하는 화폐의 조건
+- [비침해 원칙](/ko/ideas/non-aggression-principle/) — 자기 소유권에서 논리적으로 도출되는 윤리적 원칙
+- [합법적 약탈](/ko/ideas/legal-plunder/) — 자기 소유권이 법에 의해 침해되는 사례
+- [자유주의란?](/ko/start/libertarianism/) — 자기 소유권이 속한 더 넓은 철학적 체계
+- [건전화폐](/ko/ideas/sound-money/) — 경제적 자기 소유권을 보호하는 화폐의 조건

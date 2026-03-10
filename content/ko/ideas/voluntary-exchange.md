@@ -53,7 +53,7 @@ weight: 37
 
 ## 연결되는 개념
 
-- [주관적 가치론](/ideas/subjective-value/) — 가치는 개인의 주관적 판단에서 비롯된다는 이론
-- [자유시장](/ideas/free-market/) — 자발적 교환이 자유롭게 이루어지는 경제 체제
-- [비침해 원칙](/ideas/non-aggression-principle/) — 타인의 신체와 재산을 침해하지 않을 의무
-- [사유재산권](/ideas/private-property/) — 자발적 교환의 전제가 되는 재산 소유권
+- [주관적 가치론](/ko/ideas/subjective-value/) — 가치는 개인의 주관적 판단에서 비롯된다는 이론
+- [자유시장](/ko/ideas/free-market/) — 자발적 교환이 자유롭게 이루어지는 경제 체제
+- [비침해 원칙](/ko/ideas/non-aggression-principle/) — 타인의 신체와 재산을 침해하지 않을 의무
+- [사유재산권](/ko/ideas/private-property/) — 자발적 교환의 전제가 되는 재산 소유권

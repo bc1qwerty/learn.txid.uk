@@ -55,7 +55,7 @@ weight: 7
 
 ### 시간선호와 문명
 
-호페는 시간선호 이론을 문명론으로 확장합니다. **낮은 [시간선호](/ideas/time-preference/)** — 미래를 위해 현재의 만족을 유예하는 성향 — 는 저축, 투자, 장기적 계획을 가능하게 하며, 이것이 문명 발전의 기초입니다.
+호페는 시간선호 이론을 문명론으로 확장합니다. **낮은 [시간선호](/ko/ideas/time-preference/)** — 미래를 위해 현재의 만족을 유예하는 성향 — 는 저축, 투자, 장기적 계획을 가능하게 하며, 이것이 문명 발전의 기초입니다.
 
 호페에 따르면, 국가(특히 민주 국가)는 시간선호를 **인위적으로 높입니다**:
 
@@ -108,7 +108,7 @@ weight: 7
 
 ## 연결되는 개념
 
-- [비침해 원칙](/ideas/non-aggression-principle/) — 논증 윤리학이 도달하는 핵심 원칙
-- [시간선호](/ideas/time-preference/) — 호페의 문명 이론의 핵심 개념
-- [자유주의란?](/start/libertarianism/) — 호페가 기여한 정치철학
-- [건전화폐](/ideas/sound-money/) — 시간선호와 화폐의 관계
+- [비침해 원칙](/ko/ideas/non-aggression-principle/) — 논증 윤리학이 도달하는 핵심 원칙
+- [시간선호](/ko/ideas/time-preference/) — 호페의 문명 이론의 핵심 개념
+- [자유주의란?](/ko/start/libertarianism/) — 호페가 기여한 정치철학
+- [건전화폐](/ko/ideas/sound-money/) — 시간선호와 화폐의 관계

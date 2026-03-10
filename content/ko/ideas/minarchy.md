@@ -59,6 +59,6 @@ weight: 28
 
 ## 연결되는 개념
 
-- [비침해 원칙](/ideas/non-aggression-principle/) — 타인의 신체와 재산에 대한 침해를 금지하는 자유주의의 근본 원칙
-- [무정부 자본주의](/ideas/anarcho-capitalism/) — 국가를 완전히 폐지하자는 더 급진적인 자유주의 입장
-- [자유주의란?](/start/libertarianism/) — 개인의 자유와 자발적 협력을 핵심으로 하는 정치철학의 소개
+- [비침해 원칙](/ko/ideas/non-aggression-principle/) — 타인의 신체와 재산에 대한 침해를 금지하는 자유주의의 근본 원칙
+- [무정부 자본주의](/ko/ideas/anarcho-capitalism/) — 국가를 완전히 폐지하자는 더 급진적인 자유주의 입장
+- [자유주의란?](/ko/start/libertarianism/) — 개인의 자유와 자발적 협력을 핵심으로 하는 정치철학의 소개

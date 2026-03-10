@@ -33,6 +33,6 @@ weight: 24
 
 ## 연결되는 개념
 
-- [주관적 가치론](/ideas/subjective-value/) — 가치는 객관적 속성이 아니라 개인의 주관적 평가에서 비롯된다는 이론
-- [인간행동학](/ideas/praxeology/) — 개인의 합목적적 행동을 출발점으로 삼는 경제학 방법론
-- [오스트리아 경제학이란?](/start/austrian-economics/) — 방법론적 개인주의를 토대로 한 경제학파의 소개
+- [주관적 가치론](/ko/ideas/subjective-value/) — 가치는 객관적 속성이 아니라 개인의 주관적 평가에서 비롯된다는 이론
+- [인간행동학](/ko/ideas/praxeology/) — 개인의 합목적적 행동을 출발점으로 삼는 경제학 방법론
+- [오스트리아 경제학이란?](/ko/start/austrian-economics/) — 방법론적 개인주의를 토대로 한 경제학파의 소개

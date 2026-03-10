@@ -8,7 +8,7 @@ weight: 7
 
 ## 경기변동이론이란?
 
-오스트리아 경기변동이론(ABCT)은 [미제스](/people/ludwig-von-mises/)와 [하이에크](/people/friedrich-hayek/)가 발전시킨 이론으로, **호황-불황 사이클의 원인이 중앙은행의 인위적 신용팽창**에 있다고 설명합니다.
+오스트리아 경기변동이론(ABCT)은 [미제스](/ko/people/ludwig-von-mises/)와 [하이에크](/ko/people/friedrich-hayek/)가 발전시킨 이론으로, **호황-불황 사이클의 원인이 중앙은행의 인위적 신용팽창**에 있다고 설명합니다.
 
 ## 메커니즘
 
@@ -45,6 +45,6 @@ weight: 7
 
 ## 연결되는 개념
 
-- [시간선호](/ideas/time-preference/) — 금리와 시간선호의 관계
-- [건전화폐](/ideas/sound-money/) — 건전화폐가 경기변동을 억제하는 이유
-- [오스트리아 경제학이란?](/start/austrian-economics/) — ABCT의 학문적 배경
+- [시간선호](/ko/ideas/time-preference/) — 금리와 시간선호의 관계
+- [건전화폐](/ko/ideas/sound-money/) — 건전화폐가 경기변동을 억제하는 이유
+- [오스트리아 경제학이란?](/ko/start/austrian-economics/) — ABCT의 학문적 배경

@@ -38,7 +38,7 @@ weight: 32
 
 ## 연결되는 개념
 
-- [주관적 가치론](/ideas/subjective-value/) — 가치는 객관적 속성이 아니라 개인의 판단에서 비롯된다는 이론
-- [한계효용](/ideas/marginal-utility/) — 추가 한 단위의 재화가 주는 효용 체감의 법칙
-- [방법론적 개인주의](/ideas/individualism/) — 사회 현상을 개인의 행동에서 설명하는 접근법
-- [오스트리아 경제학이란?](/start/austrian-economics/) — 인간 행동에 기반한 경제학 학파
+- [주관적 가치론](/ko/ideas/subjective-value/) — 가치는 객관적 속성이 아니라 개인의 판단에서 비롯된다는 이론
+- [한계효용](/ko/ideas/marginal-utility/) — 추가 한 단위의 재화가 주는 효용 체감의 법칙
+- [방법론적 개인주의](/ko/ideas/individualism/) — 사회 현상을 개인의 행동에서 설명하는 접근법
+- [오스트리아 경제학이란?](/ko/start/austrian-economics/) — 인간 행동에 기반한 경제학 학파

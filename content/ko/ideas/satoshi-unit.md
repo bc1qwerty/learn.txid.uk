@@ -41,6 +41,6 @@ weight: 35
 
 ## 연결되는 개념
 
-- [반감기](/ideas/halving/) — 비트코인 발행량을 절반으로 줄이는 주기적 이벤트
-- [비트코인이란?](/start/bitcoin/) — 비트코인의 기본 개념과 작동 원리
-- [사토시 나카모토](/people/satoshi-nakamoto/) — 비트코인을 설계하고 구현한 익명의 창시자
+- [반감기](/ko/ideas/halving/) — 비트코인 발행량을 절반으로 줄이는 주기적 이벤트
+- [비트코인이란?](/ko/start/bitcoin/) — 비트코인의 기본 개념과 작동 원리
+- [사토시 나카모토](/ko/people/satoshi-nakamoto/) — 비트코인을 설계하고 구현한 익명의 창시자

@@ -37,9 +37,9 @@ tags: ["비트코인"]
 
 ## 더 깊이 들어가기
 
-- [건전화폐란 무엇인가](/ideas/sound-money/)
-- [작업증명의 의미](/ideas/proof-of-work/)
-- [시간선호와 비트코인](/ideas/time-preference/)
+- [건전화폐란 무엇인가](/ko/ideas/sound-money/)
+- [작업증명의 의미](/ko/ideas/proof-of-work/)
+- [시간선호와 비트코인](/ko/ideas/time-preference/)
 
 ## 추천 자료
 

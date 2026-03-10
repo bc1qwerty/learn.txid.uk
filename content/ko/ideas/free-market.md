@@ -49,7 +49,7 @@ weight: 22
 
 ## 연결되는 개념
 
-- [주관적 가치론](/ideas/subjective-value/) — 재화의 가치는 객관적 속성이 아니라 개인의 주관적 평가에 의해 결정된다는 이론
-- [자발적 교환](/ideas/voluntary-exchange/) — 강제 없이 양측 모두에게 이익이 되는 거래의 원칙
-- [자생적 질서](/ideas/spontaneous-order/) — 중앙 설계 없이 개인들의 행동에서 자연스럽게 출현하는 질서
-- [사유재산권](/ideas/private-property/) — 개인이 재산을 소유하고 자유롭게 처분할 수 있는 권리
+- [주관적 가치론](/ko/ideas/subjective-value/) — 재화의 가치는 객관적 속성이 아니라 개인의 주관적 평가에 의해 결정된다는 이론
+- [자발적 교환](/ko/ideas/voluntary-exchange/) — 강제 없이 양측 모두에게 이익이 되는 거래의 원칙
+- [자생적 질서](/ko/ideas/spontaneous-order/) — 중앙 설계 없이 개인들의 행동에서 자연스럽게 출현하는 질서
+- [사유재산권](/ko/ideas/private-property/) — 개인이 재산을 소유하고 자유롭게 처분할 수 있는 권리

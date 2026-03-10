@@ -45,6 +45,6 @@ weight: 34
 
 ## 연결되는 개념
 
-- [주관적 가치론](/ideas/subjective-value/) — 가치는 재화의 객관적 속성이 아니라 개인의 판단에서 비롯된다는 이론
-- [건전화폐](/ideas/sound-money/) — 가치 저장 기능을 충실히 수행하는 화폐의 속성
-- [오스트리아 경제학이란?](/start/austrian-economics/) — 인간 행동에 기반한 경제학 학파
+- [주관적 가치론](/ko/ideas/subjective-value/) — 가치는 재화의 객관적 속성이 아니라 개인의 판단에서 비롯된다는 이론
+- [건전화폐](/ko/ideas/sound-money/) — 가치 저장 기능을 충실히 수행하는 화폐의 속성
+- [오스트리아 경제학이란?](/ko/start/austrian-economics/) — 인간 행동에 기반한 경제학 학파

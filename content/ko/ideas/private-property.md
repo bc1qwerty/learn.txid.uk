@@ -57,7 +57,7 @@ weight: 33
 
 ## 연결되는 개념
 
-- [자기 소유권](/ideas/self-ownership/) — 자신의 신체와 노동에 대한 배타적 권리
-- [자연권](/ideas/natural-rights/) — 국가 이전에 존재하는 인간의 본래적 권리
-- [자발적 교환](/ideas/voluntary-exchange/) — 강제 없이 자유로운 동의로 이루어지는 거래
-- [비침해 원칙](/ideas/non-aggression-principle/) — 타인의 신체와 재산을 침해하지 않을 의무
+- [자기 소유권](/ko/ideas/self-ownership/) — 자신의 신체와 노동에 대한 배타적 권리
+- [자연권](/ko/ideas/natural-rights/) — 국가 이전에 존재하는 인간의 본래적 권리
+- [자발적 교환](/ko/ideas/voluntary-exchange/) — 강제 없이 자유로운 동의로 이루어지는 거래
+- [비침해 원칙](/ko/ideas/non-aggression-principle/) — 타인의 신체와 재산을 침해하지 않을 의무

@@ -61,7 +61,7 @@ weight: 20
 
 ## 연결되는 개념
 
-- [비침해 원칙](/ideas/non-aggression-principle/) — 타인의 신체와 재산에 대한 침해를 금지하는 자유주의의 근본 원칙
-- [자기 소유권](/ideas/self-ownership/) — 모든 개인은 자기 자신의 몸과 노동에 대한 절대적 소유권을 가진다는 전제
-- [자유시장](/ideas/free-market/) — 정부 개입 없이 자발적 교환으로 작동하는 경제 체제
-- [머레이 로스바드](/people/murray-rothbard/) — 무정부 자본주의를 체계적으로 정립한 경제학자이자 사상가
+- [비침해 원칙](/ko/ideas/non-aggression-principle/) — 타인의 신체와 재산에 대한 침해를 금지하는 자유주의의 근본 원칙
+- [자기 소유권](/ko/ideas/self-ownership/) — 모든 개인은 자기 자신의 몸과 노동에 대한 절대적 소유권을 가진다는 전제
+- [자유시장](/ko/ideas/free-market/) — 정부 개입 없이 자발적 교환으로 작동하는 경제 체제
+- [머레이 로스바드](/ko/people/murray-rothbard/) — 무정부 자본주의를 체계적으로 정립한 경제학자이자 사상가
