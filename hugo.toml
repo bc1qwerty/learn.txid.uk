@@ -574,7 +574,7 @@ enableGitInfo = true
 [[params.books_en]]
   name = 'Just Meat'
   author = 'Hong Jisu'
-  cover = '/images/books/단지, 소고기.jpg'
+  cover = '/images/books/단지 소고기.jpg'
   slug = 'just-meat'
 
 [[params.books_en]]
@@ -598,7 +598,7 @@ enableGitInfo = true
 [[params.books_en]]
   name = 'Layered Money'
   author = 'Nik Bhatia'
-  cover = '/images/books/레이어드 머니.jpg'
+  cover = '/images/books/레이어드 머니 돈이 진화한다.jpg'
   slug = 'layered-money'
 
 [[params.books_en]]
@@ -719,7 +719,7 @@ enableGitInfo = true
 [[params.books_ja]]
   name = 'Just Meat'
   author = 'Hong Jisu'
-  cover = '/images/books/단지, 소고기.jpg'
+  cover = '/images/books/단지 소고기.jpg'
   slug = 'just-meat'
 
 [[params.books_ja]]
@@ -743,7 +743,7 @@ enableGitInfo = true
 [[params.books_ja]]
   name = 'レイヤード・マネー'
   author = 'ニク・バティア'
-  cover = '/images/books/레이어드 머니.jpg'
+  cover = '/images/books/레이어드 머니 돈이 진화한다.jpg'
   slug = 'layered-money'
 
 [[params.books_ja]]
