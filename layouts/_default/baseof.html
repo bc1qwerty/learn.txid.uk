@@ -152,5 +152,38 @@
     {{ $js = $js | minify | fingerprint "sha512" }}
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
   {{ end }}
+<script>
+// ── 링크 프리패치 (hover 시 미리 로드) ──
+const _prefetched = new Set();
+function prefetch(url) {
+  if (_prefetched.has(url)) return;
+  _prefetched.add(url);
+  const link = document.createElement('link');
+  link.rel = 'prefetch'; link.href = url; link.as = 'document';
+  document.head.appendChild(link);
+}
+document.addEventListener('mouseover', e => {
+  const a = e.target.closest('a[href]');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
+  prefetch(a.href);
+}, { passive: true });
+
+// ── 페이지 전환 페이드 애니메이션 ──
+(function() {
+  document.body.style.cssText += ';opacity:0;transition:opacity 180ms ease';
+  requestAnimationFrame(function(){ document.body.style.opacity = '1'; });
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || a.target === '_blank') return;
+    e.preventDefault();
+    document.body.style.opacity = '0';
+    setTimeout(function(){ window.location.href = a.href; }, 160);
+  });
+})();
+</script>
 </body>
 </html>
