@@ -185,8 +185,11 @@ other = "Lightning으로 후원하기"
 [lightning_copied]
 other = "Lightning 주소가 복사되었습니다!"
 
-[buy_on_aladin]
-other = "알라딘에서 구매"
+[buy_on_coupang]
+other = "쿠팡에서 구매"
+
+[buy_on_yes24]
+other = "Yes24에서 구매"
 
 [topic_bitcoin]
 other = "비트코인"

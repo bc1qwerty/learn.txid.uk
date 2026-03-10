@@ -43,16 +43,27 @@
       </div>
     </div>
     {{- if eq .Lang "ko" -}}
-    {{- $searchWord := .Title | urlquery -}}
-    {{- $aladinUrl := printf "https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&SearchWord=%s" $searchWord -}}
-    {{- $ttbKey := site.Params.aladinTtbKey | default "" -}}
-    {{- if ne $ttbKey "" -}}
-      {{- $aladinUrl = printf "%s&ttbkey=%s" $aladinUrl $ttbKey -}}
-    {{- end -}}
-    <a href="{{ $aladinUrl }}" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      {{ i18n "buy_on_aladin" }}
-    </a>
+    {{- $q := .Title | urlquery -}}
+    <div class="mt-4 flex flex-wrap gap-2">
+      {{- $coupangUrl := printf "https://www.coupang.com/np/search?q=%s" $q -}}
+      {{- $coupangId := site.Params.coupangPartnersId | default "" -}}
+      {{- if ne $coupangId "" -}}
+        {{- $coupangUrl = printf "%s&channel=user&sorter=scoreDesc&listSize=36&filter=&isPrice498498498=false&filterType=&ra=&aid=%s" $coupangUrl $coupangId -}}
+      {{- end -}}
+      <a href="{{ $coupangUrl }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        {{ i18n "buy_on_coupang" }}
+      </a>
+      {{- $yes24Url := printf "https://www.yes24.com/Product/Search?domain=ALL&query=%s" $q -}}
+      {{- $yes24Id := site.Params.yes24PartnersId | default "" -}}
+      {{- if ne $yes24Id "" -}}
+        {{- $yes24Url = printf "%s&pid=%s" $yes24Url $yes24Id -}}
+      {{- end -}}
+      <a href="{{ $yes24Url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        {{ i18n "buy_on_yes24" }}
+      </a>
+    </div>
     {{- end -}}
   </header>
 

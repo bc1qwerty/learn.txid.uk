@@ -185,8 +185,11 @@ other = "Tip via Lightning"
 [lightning_copied]
 other = "Lightning address copied!"
 
-[buy_on_aladin]
-other = "Buy on Aladin"
+[buy_on_coupang]
+other = "Buy on Coupang"
+
+[buy_on_yes24]
+other = "Buy on Yes24"
 
 [topic_bitcoin]
 other = "Bitcoin"

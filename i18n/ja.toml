@@ -185,8 +185,11 @@ other = "Lightningで応援する"
 [lightning_copied]
 other = "Lightningアドレスをコピーしました！"
 
-[buy_on_aladin]
-other = "Aladinで購入"
+[buy_on_coupang]
+other = "Coupangで購入"
+
+[buy_on_yes24]
+other = "Yes24で購入"
 
 [topic_bitcoin]
 other = "ビットコイン"
