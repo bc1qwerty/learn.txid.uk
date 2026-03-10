@@ -1,6 +1,6 @@
 ---
 title: "What Is the Mempool?"
-date: 2026-03-10T12:00:00+09:00
+date: 2026-03-11T00:30:00+09:00
 description: "How the mempool works: the waiting room for Bitcoin transactions before they are included in a block. Covers each node's independent mempool, miner transaction selection, fee competition, RBF and CPFP, and the risks of zero-confirmation transactions."
 tags: ["Bitcoin"]
 levels: "beginner"
