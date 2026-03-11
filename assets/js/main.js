@@ -498,22 +498,6 @@ initClock('sidebarClock');
     });
 })();
 
-// ── Mobile Sidebar FAB ──
-(function() {
-    var fab = document.getElementById('sidebarFab');
-    if (!fab) return;
-    fab.addEventListener('click', function() {
-        // Re-use the existing right sidebar toggle mechanism
-        var portal = document.getElementById('right-toggle-portal');
-        var portalBtn = portal && portal.querySelector('.sidebar-toggle-right');
-        if (portalBtn) {
-            portalBtn.click();
-        } else {
-            var rightToggle = document.getElementById('sidebarRightToggle');
-            if (rightToggle) rightToggle.click();
-        }
-    });
-})();
 
 // ── Scroll Progress Bar ──
 (function() {
