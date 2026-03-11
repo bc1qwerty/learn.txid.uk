@@ -8,3 +8,9 @@
     </a>
     {{ end }}
 </div>
+<h3 class="tile-subtitle">{{ i18n "stack_title" }}</h3>
+<div class="tile-chips">
+    {{ range site.Params.stack }}
+    <span class="chip chip-static">{{ .name }}</span>
+    {{ end }}
+</div>

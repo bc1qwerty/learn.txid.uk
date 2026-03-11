@@ -4,7 +4,6 @@ function safeSet(key, val) { try { localStorage.setItem(key, val); } catch(e) {}
 
 // ── Theme Toggle ──
 var THEME_COLORS = { dark: '#09090b', light: '#fafafa' };
-var themeToggle = document.getElementById('themeToggle');
 var html = document.documentElement;
 
 // 시스템 설정 감지 (prefers-color-scheme 지원)
@@ -18,7 +17,7 @@ html.setAttribute('data-theme', savedTheme);
     if (meta) meta.content = THEME_COLORS[savedTheme];
 })();
 
-if (themeToggle) themeToggle.addEventListener('click', function() {
+function toggleTheme() {
     document.body.classList.add('theme-transition');
     var current = html.getAttribute('data-theme');
     var next = current === 'dark' ? 'light' : 'dark';
@@ -26,10 +25,33 @@ if (themeToggle) themeToggle.addEventListener('click', function() {
     safeSet('theme', next);
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = THEME_COLORS[next];
+    var label = document.getElementById('themeLabel');
+    if (label) label.textContent = next === 'dark' ? 'Dark' : 'Light';
     setTimeout(function() {
         document.body.classList.remove('theme-transition');
     }, 400);
+}
+
+// Settings dropdown (gear icon)
+var settingsBtn = document.getElementById('settings-btn');
+if (settingsBtn) settingsBtn.addEventListener('click', function() {
+    var m = document.getElementById('settings-menu');
+    if (m) m.style.display = m.style.display === 'block' ? 'none' : 'block';
 });
+document.addEventListener('click', function(e) {
+    var m = document.getElementById('settings-menu');
+    if (m && !e.target.closest('.settings-dropdown')) m.style.display = 'none';
+});
+
+// Theme toggle in settings menu
+var themeToggleMenu = document.getElementById('themeToggleMenu');
+if (themeToggleMenu) themeToggleMenu.addEventListener('click', toggleTheme);
+
+// Init theme label
+(function() {
+    var label = document.getElementById('themeLabel');
+    if (label) label.textContent = savedTheme === 'dark' ? 'Dark' : 'Light';
+})();
 
 // ── Throttle Utility ──
 function throttle(fn, delay) {
@@ -444,18 +466,7 @@ initClock('sidebarClock');
 (function() {
     var mobileToggle = document.getElementById('mobileThemeToggle');
     if (!mobileToggle) return;
-    mobileToggle.addEventListener('click', function() {
-        document.body.classList.add('theme-transition');
-        var current = document.documentElement.getAttribute('data-theme');
-        var next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        safeSet('theme', next);
-        var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.content = THEME_COLORS[next];
-        setTimeout(function() {
-            document.body.classList.remove('theme-transition');
-        }, 400);
-    });
+    mobileToggle.addEventListener('click', toggleTheme);
 })();
 
 
@@ -825,7 +836,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   window.setLang = function(l) {
-    const m = document.getElementById('lang-menu');
+    const m = document.getElementById('settings-menu');
     if (m) m.style.display = 'none';
     // Hugo 다국어 URL이 있으면 페이지 이동
     if (window.__LANG_URLS__ && window.__LANG_URLS__[l]) {

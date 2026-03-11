@@ -1158,6 +1158,36 @@ details[open] > *:not(summary) {
   flex-wrap: wrap;
   gap: 0.375rem;
 }
+.tile-subtitle {
+  font-size: .8rem;
+  color: #9ca3af;
+  margin: 1rem 0 .5rem;
+  font-weight: 600;
+}
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.tool-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  font-size: .72rem;
+  color: #9ca3af;
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.03);
+  transition: all .2s;
+}
+.tool-link:hover {
+  color: #f7931a;
+  border-color: #f7931a;
+  background: rgba(247,147,26,.05);
+}
+.tool-link svg { flex-shrink: 0; }
 
 .chip {
   display: inline-flex;
@@ -2122,6 +2152,64 @@ body.sidebar-right-collapsed .page-layout {
     }
 }
 
+/* ── Nav Icon Buttons (unified style) ── */
+.nav-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  border: 1px solid #374151;
+  background: none;
+  color: #9ca3af;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.nav-icon-btn:hover {
+  border-color: #f7931a;
+  color: #f7931a;
+}
+
+/* ── 설정 드롭다운 ── */
+.settings-dropdown { position: relative; }
+.settings-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 140px;
+  background: #1a1f26;
+  border: 1px solid #374151;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  overflow: hidden;
+  z-index: 50;
+}
+.settings-section-label {
+  padding: 6px 12px 2px;
+  font-size: 0.65rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.settings-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 12px;
+  background: transparent;
+  color: #9ca3af;
+  border: none;
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.settings-item:hover { background: #1f2937; color: #f7931a; }
+.settings-item.active { color: #f7931a; }
+.settings-divider { height: 1px; background: #374151; margin: 4px 0; }
+
 /* ── 도구 드롭다운 (tools-dropdown-learn) ── */
 .tools-dropdown-learn {
   position: relative;
@@ -2129,15 +2217,22 @@ body.sidebar-right-collapsed .page-layout {
 .tools-dropdown-learn-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  padding: 5px 10px;
+  height: 32px;
+  padding: 0 8px;
   border: 1px solid #374151;
   background: none;
   color: #9ca3af;
   font-family: var(--font-sans);
-  font-size: .75rem;
+  font-size: .72rem;
   border-radius: 6px;
   cursor: pointer;
+  transition: all .2s;
+}
+.tools-dropdown-learn-btn:hover {
+  border-color: #f7931a;
+  color: #f7931a;
 }
 .tools-dropdown-learn-menu {
   display: none;

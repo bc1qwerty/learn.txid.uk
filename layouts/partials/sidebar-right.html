@@ -54,27 +54,3 @@
 </div>
 {{ end }}
 
-<!-- People -->
-<div class="sidebar-section">
-    <span class="sidebar-label">{{ i18n "people_section_title" }}</span>
-    <div class="sidebar-recent">
-        {{ range first 5 (where site.RegularPages "Section" "people") }}
-        <a href="{{ .RelPermalink }}" class="sidebar-recent-item">
-            <span class="sidebar-recent-title">{{ .Title }}</span>
-        </a>
-        {{ end }}
-    </div>
-</div>
-
-<!-- Concepts -->
-<div class="sidebar-section">
-    <span class="sidebar-label">{{ i18n "ideas_section_title" }}</span>
-    <div class="sidebar-recent">
-        {{ range first 5 (where site.RegularPages "Section" "ideas").ByDate.Reverse }}
-        <a href="{{ .RelPermalink }}" class="sidebar-recent-item">
-            <span class="sidebar-recent-title">{{ .Title }}</span>
-            {{ with .Params.levels }}<span class="sidebar-recent-level">{{ . }}</span>{{ end }}
-        </a>
-        {{ end }}
-    </div>
-</div>

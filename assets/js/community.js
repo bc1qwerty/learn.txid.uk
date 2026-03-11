@@ -25,6 +25,8 @@
       confirm_delete: '정말 삭제하시겠습니까?', pinned: '고정',
       ago_s: '초 전', ago_m: '분 전', ago_h: '시간 전', ago_d: '일 전',
       by: '', write_reply: '답글을 작성하세요...',
+      checkin: '출석체크', already_checked: '오늘 이미 출석했습니다.', checkin_success: '출석 완료!',
+      admin_only_msg: '관리자만 글을 작성할 수 있습니다.',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -38,6 +40,8 @@
       confirm_delete: 'Are you sure?', pinned: 'Pinned',
       ago_s: 's ago', ago_m: 'm ago', ago_h: 'h ago', ago_d: 'd ago',
       by: 'by ', write_reply: 'Write a reply...',
+      checkin: 'Check in', already_checked: 'Already checked in today.', checkin_success: 'Checked in!',
+      admin_only_msg: 'Only admins can post here.',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -51,6 +55,8 @@
       confirm_delete: '本当に削除しますか？', pinned: 'ピン留め',
       ago_s: '秒前', ago_m: '分前', ago_h: '時間前', ago_d: '日前',
       by: '', write_reply: '返信を書く...',
+      checkin: '出席チェック', already_checked: '今日はすでに出席済みです。', checkin_success: '出席完了！',
+      admin_only_msg: '管理者のみ投稿できます。',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
@@ -166,7 +172,7 @@
           <h1 class="text-2xl font-bold text-white">${esc(bName)}</h1>
           <div class="flex items-center gap-3">
             <button class="comm-btn-secondary" onclick="location.hash='search'">${svgSearch}</button>
-            ${currentUser ? `<button class="comm-btn-primary" onclick="location.hash='${slug}/new'">${t('newPost')}</button>` : ''}
+            <button class="comm-btn-primary" id="new-post-btn">${t('newPost')}</button>
           </div>
         </div>
         <div class="flex gap-3 mt-4" id="sort-tabs">
@@ -189,6 +195,23 @@
         renderBoard(slug, 1, btn.dataset.sort);
       }
     });
+
+    // New post button (with admin-only check)
+    const newPostBtn = document.getElementById('new-post-btn');
+    if (newPostBtn) {
+      newPostBtn.addEventListener('click', () => {
+        if (!currentUser) {
+          const loginBtn = document.getElementById('txid-login-btn');
+          if (loginBtn) loginBtn.click();
+          return;
+        }
+        if (board.adminOnly && !currentUser.isAdmin) {
+          alert(t('admin_only_msg'));
+          return;
+        }
+        location.hash = `${slug}/new`;
+      });
+    }
   }
 
   function postCard(p, slug) {

@@ -55,6 +55,9 @@ other = "—"
 [theme_toggle]
 other = "테마"
 
+[lang_label]
+other = "언어"
+
 [lang_ko]
 other = "한국어"
 
@@ -100,6 +103,9 @@ other = "전체 보기"
 [site_desc]
 other = "비트코인, 오스트리아 경제학,\n자유주의를 배우는 곳"
 
+[notice_section_title]
+other = "공지사항"
+
 [blog_section_title]
 other = "최근 게시물"
 
@@ -119,7 +125,7 @@ other = "요즘"
 other = "북마크"
 
 [stack_title]
-other = "도구"
+other = "기술 스택"
 
 [nav_navigate]
 other = "탐색"

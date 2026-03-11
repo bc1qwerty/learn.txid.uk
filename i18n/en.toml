@@ -55,6 +55,9 @@ other = "—"
 [theme_toggle]
 other = "Theme"
 
+[lang_label]
+other = "Language"
+
 [lang_ko]
 other = "한국어"
 
@@ -100,6 +103,9 @@ other = "View All"
 [site_desc]
 other = "Learn Bitcoin, Austrian Economics,\nand Libertarianism"
 
+[notice_section_title]
+other = "Announcements"
+
 [blog_section_title]
 other = "Recent Posts"
 
@@ -119,7 +125,7 @@ other = "Now"
 other = "Bookmarks"
 
 [stack_title]
-other = "Tools"
+other = "Tech Stack"
 
 [nav_navigate]
 other = "Navigate"

@@ -55,6 +55,9 @@ other = "—"
 [theme_toggle]
 other = "テーマ"
 
+[lang_label]
+other = "言語"
+
 [lang_ko]
 other = "한국어"
 
@@ -100,6 +103,9 @@ other = "すべて見る"
 [site_desc]
 other = "ビットコイン、オーストリア経済学、\n自由主義を学ぶ"
 
+[notice_section_title]
+other = "お知らせ"
+
 [blog_section_title]
 other = "最近の投稿"
 
@@ -119,7 +125,7 @@ other = "近況"
 other = "ブックマーク"
 
 [stack_title]
-other = "ツール"
+other = "技術スタック"
 
 [nav_navigate]
 other = "ナビゲート"
