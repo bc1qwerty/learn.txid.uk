@@ -17,6 +17,16 @@ html.setAttribute('data-theme', savedTheme);
     if (meta) meta.content = THEME_COLORS[savedTheme];
 })();
 
+function updateThemeBtn() {
+    var isDark = html.getAttribute('data-theme') !== 'light';
+    var icon = document.getElementById('theme-icon');
+    if (icon) icon.innerHTML = isDark
+        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
+        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+    var label = document.getElementById('themeLabel');
+    if (label) label.textContent = isDark ? 'Light' : 'Dark';
+}
+
 function toggleTheme() {
     document.body.classList.add('theme-transition');
     var current = html.getAttribute('data-theme');
@@ -25,33 +35,41 @@ function toggleTheme() {
     safeSet('theme', next);
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = THEME_COLORS[next];
-    var label = document.getElementById('themeLabel');
-    if (label) label.textContent = next === 'dark' ? 'Dark' : 'Light';
+    updateThemeBtn();
     setTimeout(function() {
         document.body.classList.remove('theme-transition');
     }, 400);
 }
 
-// Settings dropdown (gear icon)
-var settingsBtn = document.getElementById('settings-btn');
-if (settingsBtn) settingsBtn.addEventListener('click', function() {
-    var m = document.getElementById('settings-menu');
-    if (m) m.style.display = m.style.display === 'block' ? 'none' : 'block';
-});
+// Settings panel toggle (txid.uk pattern)
+window.toggleSettings = function() {
+    var panel = document.getElementById('settings-panel');
+    var btn = document.getElementById('settings-btn');
+    if (!panel) return;
+    var open = panel.classList.toggle('open');
+    if (btn) {
+        btn.setAttribute('aria-expanded', open);
+        btn.style.borderColor = open ? '#f7931a' : '';
+        btn.style.color = open ? '#f7931a' : '';
+    }
+};
+window.closeSettings = function() {
+    var panel = document.getElementById('settings-panel');
+    var btn = document.getElementById('settings-btn');
+    if (panel) panel.classList.remove('open');
+    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.style.borderColor = ''; btn.style.color = ''; }
+};
 document.addEventListener('click', function(e) {
-    var m = document.getElementById('settings-menu');
-    if (m && !e.target.closest('.settings-dropdown')) m.style.display = 'none';
+    var dd = document.getElementById('settings-dropdown');
+    if (dd && !dd.contains(e.target)) closeSettings();
 });
 
 // Theme toggle in settings menu
 var themeToggleMenu = document.getElementById('themeToggleMenu');
 if (themeToggleMenu) themeToggleMenu.addEventListener('click', toggleTheme);
 
-// Init theme label
-(function() {
-    var label = document.getElementById('themeLabel');
-    if (label) label.textContent = savedTheme === 'dark' ? 'Dark' : 'Light';
-})();
+// Init theme button (icon + label)
+updateThemeBtn();
 
 // ── Throttle Utility ──
 function throttle(fn, delay) {
@@ -820,8 +838,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   window.setLang = function(l) {
-    const m = document.getElementById('settings-menu');
-    if (m) m.style.display = 'none';
+    if (window.closeSettings) closeSettings();
     // Hugo 다국어 URL이 있으면 페이지 이동
     if (window.__LANG_URLS__ && window.__LANG_URLS__[l]) {
       try { localStorage.setItem('preferred-lang', l); } catch(e) {}

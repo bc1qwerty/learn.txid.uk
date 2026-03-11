@@ -1735,6 +1735,18 @@ body.sidebar-right-collapsed .scroll-top {
   border-top-color: rgba(0, 0, 0, 0.06);
 }
 
+/* ── Light theme: settings panel ── */
+[data-theme='light'] .settings-panel { background: #fff; border-color: rgba(0,0,0,.08); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+[data-theme='light'] .settings-section--border { border-top-color: rgba(0,0,0,.06); }
+[data-theme='light'] .settings-label { color: #6b7280; }
+[data-theme='light'] .settings-lang-btn { background: #f3f4f6; border-color: rgba(0,0,0,.08); color: #6b7280; }
+[data-theme='light'] .settings-lang-btn:hover,
+[data-theme='light'] .settings-lang-btn.active { border-color: #f7931a; color: #f7931a; background: rgba(247,147,26,.08); }
+[data-theme='light'] .settings-item { color: #6b7280; }
+[data-theme='light'] .settings-item:hover { background: rgba(0,0,0,.04); color: #f7931a; }
+[data-theme='light'] .nav-icon-btn { background: #fff; border-color: rgba(0,0,0,.1); color: #6b7280; }
+[data-theme='light'] .nav-icon-btn:hover { border-color: #f7931a; color: #f7931a; }
+
 [data-theme='light'] .cmd-palette {
   background-color: #ffffff;
   border-color: rgba(0, 0, 0, 0.1);
@@ -2165,15 +2177,15 @@ body.sidebar-right-collapsed .page-layout {
     }
 }
 
-/* ── Nav Icon Buttons (unified style) ── */
+/* ── Nav Icon Buttons (unified with txid.uk .icon-btn) ── */
 .nav-icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 32px;
   width: 32px;
-  border: 1px solid #374151;
-  background: none;
+  border: 1px solid #21262d;
+  background: #161b22;
   color: #9ca3af;
   border-radius: 6px;
   cursor: pointer;
@@ -2184,44 +2196,80 @@ body.sidebar-right-collapsed .page-layout {
   color: #f7931a;
 }
 
-/* ── 설정 드롭다운 ── */
+/* ── 설정 드롭다운 (txid.uk 패턴) ── */
 .settings-dropdown { position: relative; }
-.settings-dropdown-menu {
+.settings-panel {
   display: none;
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 8px);
   right: 0;
-  min-width: 140px;
-  background: #1a1f26;
+  background: #161b22;
   border: 1px solid #374151;
-  border-radius: 6px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  border-radius: 10px;
+  min-width: 200px;
+  z-index: 300;
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
   overflow: hidden;
-  z-index: 50;
 }
-.settings-section-label {
-  padding: 6px 12px 2px;
-  font-size: 0.65rem;
+.settings-panel.open { display: block; }
+
+.settings-section { padding: 8px 6px; }
+.settings-section--border { border-top: 1px solid #374151; }
+
+.settings-label {
+  font-size: .68rem;
   color: #6b7280;
+  padding: 2px 8px 6px;
   text-transform: uppercase;
-  letter-spacing: .05em;
+  letter-spacing: .06em;
 }
+
+.settings-lang-row { display: flex; gap: 4px; padding: 2px 8px 4px; }
+.settings-lang-btn {
+  flex: 1;
+  background: #21262d;
+  border: 1px solid #374151;
+  color: #9ca3af;
+  font-size: .72rem;
+  padding: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: var(--font-sans);
+}
+.settings-lang-btn:hover,
+.settings-lang-btn.active {
+  border-color: #f7931a;
+  color: #f7931a;
+  background: rgba(247,147,26,.08);
+}
+
 .settings-item {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 9px;
   width: 100%;
   text-align: left;
-  padding: 6px 12px;
+  padding: 7px 10px;
   background: transparent;
   color: #9ca3af;
   border: none;
-  font-size: 0.8rem;
+  font-size: .78rem;
   font-family: var(--font-sans);
+  border-radius: 6px;
   cursor: pointer;
   transition: background .15s, color .15s;
 }
 .settings-item:hover { background: #1f2937; color: #f7931a; }
 .settings-item.active { color: #f7931a; }
-.settings-divider { height: 1px; background: #374151; margin: 4px 0; }
+.settings-item svg { flex-shrink: 0; width: 14px; height: 14px; }
+
+/* ── 모바일 언어 행 ── */
+.mobile-lang-row {
+  display: flex;
+  gap: 4px;
+  padding: 4px 8px;
+}
 
 /* ── 도구 드롭다운 (tools-dropdown-learn) ── */
 .tools-dropdown-learn {
