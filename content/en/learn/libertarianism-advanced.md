@@ -3,7 +3,7 @@ title: "Libertarianism: Advanced Course"
 description: "From individual rights to anarcho-capitalism — exploring the spectrum of libertarian political philosophy in 6 steps."
 icon: "⚡"
 weight: 8
-duration: "50분"
+duration: "50min"
 steps:
   - title: "Natural Rights"
     url: "/ideas/natural-rights/"

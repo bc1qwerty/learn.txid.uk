@@ -1,36 +1,36 @@
 ---
-title: "개인정보처리방침"
-description: "learn.txid.uk 개인정보처리방침"
+title: "プライバシーポリシー"
+description: "learn.txid.uk プライバシーポリシー"
 ---
 
-## 개인정보처리방침
+## プライバシーポリシー
 
-본 방침은 learn.txid.uk (이하 "사이트")의 개인정보 처리에 관한 사항을 안내합니다.
+本ポリシーは、learn.txid.uk（以下「本サイト」）における個人情報の取り扱いについて説明します。
 
-## 수집하는 정보
+## 収集する情報
 
-본 사이트는 별도의 회원가입이나 로그인을 요구하지 않으며, 개인 식별 정보를 수집하지 않습니다.
+本サイトは会員登録やログインを必要とせず、個人を特定できる情報を収集しません。
 
-사이트 운영을 위해 다음과 같은 정보가 자동으로 수집될 수 있습니다:
+サイト運営のため、以下の情報が自動的に収集される場合があります：
 
-- 방문자 IP 주소 (서버 로그)
-- 브라우저 종류 및 운영체제
-- 방문 페이지 및 시간
+- 訪問者のIPアドレス（サーバーログ）
+- ブラウザの種類およびOS
+- 閲覧ページおよび時刻
 
-## 쿠키
+## Cookie
 
-본 사이트는 언어 설정 저장을 위해 브라우저 로컬 스토리지를 사용합니다. 이 정보는 외부로 전송되지 않습니다.
+本サイトは言語設定の保存にブラウザのローカルストレージを使用しています。この情報は外部に送信されません。
 
-## 제3자 서비스
+## 第三者サービス
 
-본 사이트는 GitHub Pages를 통해 호스팅됩니다. GitHub의 개인정보처리방침은 [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement)를 참고하세요.
+本サイトはGitHub Pagesを通じてホスティングされています。GitHubのプライバシーポリシーについては、[GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement)をご参照ください。
 
-## SNS 연동
+## SNS連携
 
-본 사이트의 콘텐츠는 Threads 등 SNS에 공유될 수 있습니다. 공유 시 개인 식별 정보는 포함되지 않습니다.
+本サイトのコンテンツはThreadsなどのSNSで共有される場合があります。共有時に個人を特定できる情報は含まれません。
 
-## 문의
+## お問い合わせ
 
-개인정보 관련 문의는 X(구 트위터) [@bc1qwerty](https://x.com/bc1qwerty)로 연락주세요.
+プライバシーに関するお問い合わせは、X（旧Twitter）[@bc1qwerty](https://x.com/bc1qwerty)までご連絡ください。
 
-최종 업데이트: 2026년 3월
+最終更新：2026年3月

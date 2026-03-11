@@ -2,7 +2,7 @@
 title: "ビットコインとは？"
 description: "検閲不可能なデジタル健全通貨、ビットコインの基礎を理解します。"
 weight: 1
-levels: "입문"
+levels: "入門"
 tags: ["ビットコイン"]
 ---
 

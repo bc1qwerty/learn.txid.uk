@@ -3,7 +3,7 @@ title: "自由主義 上級コース"
 description: "個人の権利から無政府資本主義まで、自由主義政治哲学のスペクトラムを6ステップで探求します。"
 icon: "⚡"
 weight: 8
-duration: "50분"
+duration: "50分"
 steps:
   - title: "自然権"
     url: "/ideas/natural-rights/"

@@ -2,7 +2,7 @@
 title: "What Is Libertarianism?"
 description: "Understanding libertarianism — the political philosophy centered on individual freedom and property rights."
 weight: 3
-levels: "입문"
+levels: "Beginner"
 tags: ["Libertarianism"]
 ---
 

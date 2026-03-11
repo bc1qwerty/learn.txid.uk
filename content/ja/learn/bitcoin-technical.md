@@ -3,7 +3,7 @@ title: "ビットコイン技術 上級コース"
 description: "ビットコインプロトコルの内部動作原理を深く理解します。フルノードからライトニングネットワークまで6ステップ。"
 icon: "⚙"
 weight: 6
-duration: "50분"
+duration: "50分"
 steps:
   - title: "フルノード"
     url: "/ideas/node/"

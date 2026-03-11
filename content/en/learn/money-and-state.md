@@ -3,7 +3,7 @@ title: "Money and the State: Intermediate Course"
 description: "What happens when the state seizes control of money? An anatomy of monetary power, from the Nixon Shock to Bitcoin."
 icon: "🏦"
 weight: 5
-duration: "60분"
+duration: "60min"
 steps:
   - title: "Why Did Money Become a Tool of the State?"
     url: "/start/money-and-state/"

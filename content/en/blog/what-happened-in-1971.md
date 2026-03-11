@@ -3,7 +3,7 @@ title: "What Happened in 1971"
 date: 2026-02-03T10:00:00+09:00
 description: "The day Nixon abolished the gold standard, every economic indicator in the world changed direction."
 tags: ["Bitcoin"]
-levels: "입문"
+levels: "Beginner"
 ---
 
 ## August 15, 1971

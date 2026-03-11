@@ -3,7 +3,7 @@ title: "Austrian Economics: Introductory Course"
 description: "Learn the essence of value, prices, money, and business cycles in 6 steps, starting from the logic of human action."
 icon: "⚖"
 weight: 2
-duration: "50분"
+duration: "50min"
 steps:
   - title: "What Is Austrian Economics?"
     url: "/start/austrian-economics/"

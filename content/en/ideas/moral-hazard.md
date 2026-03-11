@@ -1,7 +1,7 @@
 ---
 title: "Moral Hazard"
 description: "When people can pass the cost of failure to others, they become more reckless."
-levels: "중급"
+levels: "Intermediate"
 tags: ["Austrian Economics"]
 weight: 13
 ---

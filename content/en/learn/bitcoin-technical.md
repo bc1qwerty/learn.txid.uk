@@ -3,7 +3,7 @@ title: "Bitcoin Technical Deep Dive"
 description: "A deep understanding of Bitcoin protocol internals — from full nodes to the Lightning Network in 6 steps."
 icon: "⚙"
 weight: 6
-duration: "50분"
+duration: "50min"
 steps:
   - title: "Full Node"
     url: "/ideas/node/"

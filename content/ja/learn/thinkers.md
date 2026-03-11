@@ -3,7 +3,7 @@ title: "思想家の系譜 中級コース"
 description: "オーストリア学派の知的系譜を時系列で追います。バスティアからロスバードまで、自由と市場を守った思想家たち。"
 icon: "🏛"
 weight: 4
-duration: "60분"
+duration: "60分"
 steps:
   - title: "自由と市場を守った思想家たち"
     url: "/start/thinkers/"

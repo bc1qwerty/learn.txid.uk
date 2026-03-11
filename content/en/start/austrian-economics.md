@@ -2,7 +2,7 @@
 title: "What Is Austrian Economics?"
 description: "An economics rooted in the logic of human action. Understanding the core of the Austrian School."
 weight: 2
-levels: "입문"
+levels: "Beginner"
 tags: ["Austrian Economics"]
 ---
 

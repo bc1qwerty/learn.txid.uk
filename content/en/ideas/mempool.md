@@ -3,7 +3,7 @@ title: "Mempool — Bitcoin Transaction Waiting Room"
 date: 2026-03-02
 tags: ["Bitcoin"]
 description: "Mempool is a space where unconfirmed transactions that have not yet been included in a block wait."
-levels: "입문"
+levels: "Beginner"
 weight: 26
 ---
 

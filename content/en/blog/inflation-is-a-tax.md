@@ -3,7 +3,7 @@ title: "Inflation Is a Tax"
 date: 2026-02-18T10:00:00+09:00
 description: "An invisible tax that takes your wealth without a vote, without a notice."
 tags: ["Bitcoin"]
-levels: "입문"
+levels: "Beginner"
 ---
 
 ## The Seen and the Unseen

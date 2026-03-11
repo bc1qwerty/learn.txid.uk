@@ -1,7 +1,7 @@
 ---
 title: "Spontaneous Order"
 description: "The principle of complex order that forms naturally without anyone designing it."
-levels: "중급"
+levels: "Intermediate"
 tags: ["Libertarianism", "Austrian Economics"]
 weight: 4
 ---

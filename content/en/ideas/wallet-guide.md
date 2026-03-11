@@ -2,7 +2,7 @@
 title: "The Complete Guide to Bitcoin Wallets"
 description: "A comparison and selection guide for Bitcoin wallet types. Beginner-friendly explanations from hardware wallets to mobile wallets"
 tags: ["Bitcoin"]
-levels: "입문"
+levels: "Beginner"
 weight: 38
 ---
 

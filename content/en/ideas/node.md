@@ -3,7 +3,7 @@ title: "Node (Node) — Bitcoin's Sovereign Verification"
 date: 2026-03-05
 tags: ["Bitcoin"]
 description: "A Node is software that stores a complete copy of the Bitcoin blockchain and independently verifies the validity of all transactions and blocks."
-levels: "입문"
+levels: "Beginner"
 weight: 31
 ---
 

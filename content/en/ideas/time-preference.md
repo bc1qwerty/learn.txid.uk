@@ -1,7 +1,7 @@
 ---
 title: "Time Preference"
 description: "The human nature of preferring the present over the future, and its impact on civilization."
-levels: "입문"
+levels: "Beginner"
 tags: ["Austrian Economics", "Bitcoin"]
 weight: 2
 ---

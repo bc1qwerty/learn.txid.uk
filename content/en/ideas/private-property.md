@@ -3,7 +3,7 @@ title: "Private Property Rights — The Material Foundation of Freedom"
 date: 2026-03-01
 tags: ["Liberalism"]
 description: "Private Property Rights are the rights of individuals to exclusively use, dispose of, and exchange their property."
-levels: "입문"
+levels: "Beginner"
 weight: 33
 ---
 

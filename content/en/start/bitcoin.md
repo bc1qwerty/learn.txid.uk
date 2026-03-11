@@ -2,7 +2,7 @@
 title: "What Is Bitcoin?"
 description: "Understanding the basics of Bitcoin — uncensorable digital Sound Money."
 weight: 1
-levels: "입문"
+levels: "Beginner"
 tags: ["Bitcoin"]
 ---
 

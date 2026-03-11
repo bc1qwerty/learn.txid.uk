@@ -3,7 +3,7 @@ title: "リバタリアニズム 入門コース"
 description: "個人の自由と財産権から出発して、国家権力の本質を6ステップで探求します。"
 icon: "🗽"
 weight: 3
-duration: "45분"
+duration: "45分"
 steps:
   - title: "リバタリアニズムとは？"
     url: "/start/libertarianism/"

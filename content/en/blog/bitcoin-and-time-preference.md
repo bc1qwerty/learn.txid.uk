@@ -3,7 +3,7 @@ title: "Bitcoin and Time Preference"
 date: 2026-03-09T09:00:00+09:00
 description: "Failing to save is not a matter of willpower. A distorted monetary system has warped time preference, and Bitcoin is how a healthy future orientation can be restored."
 tags: ["Bitcoin"]
-levels: "중급"
+levels: "Intermediate"
 draft: false
 ---
 

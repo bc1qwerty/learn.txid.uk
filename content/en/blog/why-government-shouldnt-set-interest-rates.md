@@ -3,7 +3,7 @@ title: "Why Government Shouldn't Set Interest Rates"
 date: 2026-02-12T10:00:00+09:00
 description: "Interest rates are a price reflecting the time preferences of hundreds of millions. What happens when one institution manipulates this?"
 tags: ["Bitcoin"]
-levels: "중급"
+levels: "Intermediate"
 ---
 
 ## Interest Rates Are a Price

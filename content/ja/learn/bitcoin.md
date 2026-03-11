@@ -3,7 +3,7 @@ title: "ビットコイン 入門コース"
 description: "ビットコインがなぜ作られ、どのように機能し、なぜ重要なのかを6ステップで理解します。"
 icon: "₿"
 weight: 1
-duration: "40분"
+duration: "40分"
 steps:
   - title: "ビットコインとは？"
     url: "/start/bitcoin/"

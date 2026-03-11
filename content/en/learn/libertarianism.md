@@ -3,7 +3,7 @@ title: "Libertarianism: Introductory Course"
 description: "Starting from individual freedom and property rights, explore the nature of state power in 6 steps."
 icon: "🗽"
 weight: 3
-duration: "45분"
+duration: "45min"
 steps:
   - title: "What Is Libertarianism?"
     url: "/start/libertarianism/"

@@ -3,7 +3,7 @@ title: "Natural Rights (Natural Rights) — Rights Before the State"
 date: 2026-03-04T15:00:00+09:00
 tags: ["Libertarianism"]
 description: "Natural Rights are inherent rights that originate from human existence itself, not granted by the state or laws."
-levels: "입문"
+levels: "Beginner"
 weight: 30
 ---
 

@@ -2,7 +2,7 @@
 title: "Why Did Money Become a Tool of the State?"
 description: "An overview of how money became entangled with state power and why that is a problem."
 weight: 5
-levels: "중급"
+levels: "Intermediate"
 tags: ["Bitcoin", "Austrian Economics"]
 ---
 

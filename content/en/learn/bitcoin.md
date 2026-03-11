@@ -3,7 +3,7 @@ title: "Bitcoin: Introductory Course"
 description: "Understand why Bitcoin was created, how it works, and why it matters — in 6 steps."
 icon: "₿"
 weight: 1
-duration: "40분"
+duration: "40min"
 steps:
   - title: "What Is Bitcoin?"
     url: "/start/bitcoin/"

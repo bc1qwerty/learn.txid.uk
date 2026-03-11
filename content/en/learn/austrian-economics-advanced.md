@@ -3,7 +3,7 @@ title: "Austrian Economics: Advanced Course"
 description: "A deep exploration of Austrian School methodology and monetary theory — from praxeology to the regression theorem in 6 steps."
 icon: "📐"
 weight: 9
-duration: "55분"
+duration: "55min"
 steps:
   - title: "Praxeology"
     url: "/ideas/praxeology/"

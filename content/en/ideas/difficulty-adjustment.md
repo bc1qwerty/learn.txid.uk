@@ -3,7 +3,7 @@ title: "Difficulty Adjustment — Bitcoin's Constancy"
 date: 2026-02-27
 tags: ["Bitcoin"]
 description: "Difficulty adjustment is a mechanism that automatically adjusts mining difficulty every 2,016 blocks to maintain an average block generation time of 10 minutes."
-levels: "입문"
+levels: "Beginner"
 weight: 21
 ---
 

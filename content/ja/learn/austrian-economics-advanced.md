@@ -3,7 +3,7 @@ title: "オーストリア経済学 上級コース"
 description: "オーストリア学派の方法論と貨幣理論を深く探求します。人間行動学から貨幣回帰定理まで6ステップ。"
 icon: "📐"
 weight: 9
-duration: "55분"
+duration: "55分"
 steps:
   - title: "人間行動学"
     url: "/ideas/praxeology/"

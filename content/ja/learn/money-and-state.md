@@ -3,7 +3,7 @@ title: "貨幣と国家 中級コース"
 description: "国家が貨幣を掌握したら何が起きるのか。ニクソン・ショックからビットコインまで、貨幣権力の解剖。"
 icon: "🏦"
 weight: 5
-duration: "60분"
+duration: "60分"
 steps:
   - title: "なぜ貨幣は国家の道具になったのか"
     url: "/start/money-and-state/"

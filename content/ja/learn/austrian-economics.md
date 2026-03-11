@@ -3,7 +3,7 @@ title: "オーストリア経済学 入門コース"
 description: "価値、価格、貨幣、景気循環の本質を、人間行動の論理から出発して6ステップで学びます。"
 icon: "⚖"
 weight: 2
-duration: "50분"
+duration: "50分"
 steps:
   - title: "オーストリア経済学とは？"
     url: "/start/austrian-economics/"

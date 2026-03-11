@@ -3,7 +3,7 @@ title: "Praxeology — The Logic of Human Action"
 date: 2026-03-09
 tags: ["Austrian Economics"]
 description: "Praxeology is a deductive science of human action systematized by Ludwig von Mises."
-levels: "입문"
+levels: "Beginner"
 weight: 32
 ---
 

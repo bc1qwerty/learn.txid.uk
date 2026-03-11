@@ -3,7 +3,7 @@ title: "Intellectual Lineage of Thinkers: Intermediate Course"
 description: "Tracing the intellectual lineage of the Austrian School in chronological order — from Bastiat to Rothbard, the thinkers who defended freedom and the market."
 icon: "🏛"
 weight: 4
-duration: "60분"
+duration: "60min"
 steps:
   - title: "Thinkers Who Defended Freedom and the Market"
     url: "/start/thinkers/"

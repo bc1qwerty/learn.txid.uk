@@ -3,7 +3,7 @@ title: "Free Market — The Order of Voluntary Exchange"
 date: 2026-02-26
 tags: ["Liberalism"]
 description: "A free market is an economic system in which prices and production are determined by the voluntary exchange of individuals without government intervention."
-levels: "입문"
+levels: "Beginner"
 weight: 22
 ---
 
