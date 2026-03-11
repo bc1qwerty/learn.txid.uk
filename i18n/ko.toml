@@ -208,3 +208,6 @@ other = "오스트리아 경제학"
 other = "자유주의"
 [topic_faq]
 other = "자주 묻는 질문"
+
+[skip_to_content]
+other = "본문으로 건너뛰기"
