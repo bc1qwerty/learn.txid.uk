@@ -99,10 +99,14 @@
     });
   }
 
-  // ─── State ───
+  // ─── State (U-6: use txidAuth public API when available) ───
   let currentUser = null;
 
   async function checkAuth() {
+    if (window.txidAuth) {
+      currentUser = window.txidAuth.getUser();
+      if (currentUser) return;
+    }
     try {
       const data = await api('/auth/me');
       currentUser = data.authenticated ? data : null;
@@ -201,8 +205,7 @@
     if (newPostBtn) {
       newPostBtn.addEventListener('click', () => {
         if (!currentUser) {
-          const loginBtn = document.getElementById('txid-login-btn');
-          if (loginBtn) loginBtn.click();
+          if (window.txidAuth) window.txidAuth.openLogin();
           return;
         }
         if (board.adminOnly && !currentUser.isAdmin) {
@@ -553,6 +556,14 @@
     await checkAuth();
     route();
     window.addEventListener('hashchange', route);
+
+    // U-7: subscribe to auth changes from txid-auth SDK
+    if (window.txidAuth) {
+      window.txidAuth.onAuthChange(function (user) {
+        currentUser = user;
+        route();
+      });
+    }
   }
 
   init();
