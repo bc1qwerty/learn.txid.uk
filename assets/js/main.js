@@ -64,10 +64,6 @@ document.addEventListener('click', function(e) {
     if (dd && !dd.contains(e.target)) closeSettings();
 });
 
-// Theme toggle in settings menu
-var themeToggleMenu = document.getElementById('themeToggleMenu');
-if (themeToggleMenu) themeToggleMenu.addEventListener('click', toggleTheme);
-
 // Init theme button (icon + label)
 updateThemeBtn();
 
