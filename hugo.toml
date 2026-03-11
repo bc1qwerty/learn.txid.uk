@@ -33,6 +33,10 @@ title = 'TXID'
       url = '/ko/blog/'
       weight = 6
     [[languages.ko.menus.main]]
+      name = '커뮤니티'
+      url = '/ko/community/'
+      weight = 5
+    [[languages.ko.menus.main]]
       name = 'FAQ'
       url = '/ko/faq/'
       weight = 7
@@ -65,6 +69,10 @@ title = 'TXID'
       url = '/en/blog/'
       weight = 6
     [[languages.en.menus.main]]
+      name = 'Community'
+      url = '/en/community/'
+      weight = 5
+    [[languages.en.menus.main]]
       name = 'FAQ'
       url = '/en/faq/'
       weight = 7
@@ -96,6 +104,10 @@ title = 'TXID'
       name = 'ブログ'
       url = '/ja/blog/'
       weight = 6
+    [[languages.ja.menus.main]]
+      name = 'コミュニティ'
+      url = '/ja/community/'
+      weight = 5
     [[languages.ja.menus.main]]
       name = 'FAQ'
       url = '/ja/faq/'

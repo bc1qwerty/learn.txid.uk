@@ -1,0 +1,536 @@
+/**
+ * community.js — SPA for learn.txid.uk/community/
+ * Hash-based routing: #free, #free/123, #free/new, #search?q=...
+ */
+(function () {
+  'use strict';
+
+  const API = 'https://api.txid.uk';
+  const app = document.getElementById('community-app');
+  if (!app) return;
+
+  const LANG = app.dataset.lang || 'ko';
+
+  // ─── i18n ───
+  const T = {
+    ko: {
+      boards: '게시판', newPost: '글쓰기', login_required: 'Lightning 로그인이 필요합니다',
+      title: '제목', body: '내용', submit: '등록', cancel: '취소',
+      edit: '수정', delete: '삭제', pin: '고정', unpin: '고정 해제',
+      comments: '댓글', reply: '답글', write_comment: '댓글을 작성하세요...',
+      search: '검색', search_placeholder: '검색어를 입력하세요 (2자 이상)',
+      no_posts: '아직 게시글이 없습니다.', no_results: '검색 결과가 없습니다.',
+      newest: '최신순', votes: '추천순', most_comments: '댓글순',
+      prev: '이전', next: '다음', page: '페이지', of: '/',
+      confirm_delete: '정말 삭제하시겠습니까?', pinned: '고정',
+      ago_s: '초 전', ago_m: '분 전', ago_h: '시간 전', ago_d: '일 전',
+      by: '', write_reply: '답글을 작성하세요...',
+    },
+    en: {
+      boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
+      title: 'Title', body: 'Content', submit: 'Submit', cancel: 'Cancel',
+      edit: 'Edit', delete: 'Delete', pin: 'Pin', unpin: 'Unpin',
+      comments: 'Comments', reply: 'Reply', write_comment: 'Write a comment...',
+      search: 'Search', search_placeholder: 'Search (min 2 chars)',
+      no_posts: 'No posts yet.', no_results: 'No results found.',
+      newest: 'Newest', votes: 'Top', most_comments: 'Most discussed',
+      prev: 'Prev', next: 'Next', page: 'Page', of: '/',
+      confirm_delete: 'Are you sure?', pinned: 'Pinned',
+      ago_s: 's ago', ago_m: 'm ago', ago_h: 'h ago', ago_d: 'd ago',
+      by: 'by ', write_reply: 'Write a reply...',
+    },
+    ja: {
+      boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
+      title: 'タイトル', body: '内容', submit: '投稿', cancel: 'キャンセル',
+      edit: '編集', delete: '削除', pin: 'ピン留め', unpin: 'ピン解除',
+      comments: 'コメント', reply: '返信', write_comment: 'コメントを書く...',
+      search: '検索', search_placeholder: '検索 (2文字以上)',
+      no_posts: 'まだ投稿がありません。', no_results: '結果が見つかりません。',
+      newest: '新着順', votes: '人気順', most_comments: 'コメント順',
+      prev: '前へ', next: '次へ', page: 'ページ', of: '/',
+      confirm_delete: '本当に削除しますか？', pinned: 'ピン留め',
+      ago_s: '秒前', ago_m: '分前', ago_h: '時間前', ago_d: '日前',
+      by: '', write_reply: '返信を書く...',
+    },
+  };
+  const t = (k) => (T[LANG] || T.ko)[k] || k;
+
+  // ─── Helpers ───
+  function esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function timeAgo(ts) {
+    const diff = Math.floor(Date.now() / 1000) - ts;
+    if (diff < 60) return diff + t('ago_s');
+    if (diff < 3600) return Math.floor(diff / 60) + t('ago_m');
+    if (diff < 86400) return Math.floor(diff / 3600) + t('ago_h');
+    return Math.floor(diff / 86400) + t('ago_d');
+  }
+
+  function shortKey(pubkey) {
+    return pubkey.slice(0, 6) + '..' + pubkey.slice(-4);
+  }
+
+  function boardName(b) {
+    if (LANG === 'en') return b.nameEn;
+    if (LANG === 'ja') return b.nameJa || b.nameEn;
+    return b.nameKo;
+  }
+
+  async function api(path, opts) {
+    const res = await fetch(API + path, { credentials: 'include', ...opts });
+    return res.json();
+  }
+
+  async function apiJson(path, body) {
+    return api(path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+  }
+
+  // ─── State ───
+  let currentUser = null;
+
+  async function checkAuth() {
+    try {
+      const data = await api('/auth/me');
+      currentUser = data.authenticated ? data : null;
+    } catch (e) {
+      currentUser = null;
+    }
+  }
+
+  // ─── Router ───
+  async function route() {
+    const hash = location.hash.slice(1) || '';
+    const parts = hash.split('/').filter(Boolean);
+
+    if (!parts.length) return renderHome();
+    if (parts[0] === 'search') return renderSearch();
+    if (parts.length === 1) return renderBoard(parts[0]);
+    if (parts[1] === 'new') return renderNewPost(parts[0]);
+    if (parts.length === 2 && /^\d+$/.test(parts[1])) return renderPost(parts[0], parseInt(parts[1]));
+    if (parts[2] === 'edit') return renderEditPost(parts[0], parseInt(parts[1]));
+
+    renderHome();
+  }
+
+  // ─── Views ───
+
+  async function renderHome() {
+    const data = await api('/board/categories');
+    const boards = data.boards || [];
+
+    app.innerHTML = `
+      <header class="mb-10">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-white">${t('boards')}</h1>
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="comm-btn-secondary" onclick="location.hash='search'">${svgSearch} ${t('search')}</button>
+          </div>
+        </div>
+      </header>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        ${boards.map(b => `
+          <a href="#${b.slug}" class="group p-6 rounded-xl border border-gray-800/50 hover:border-bitcoin/30 bg-gray-900/30 hover:bg-gray-900/60 transition-all">
+            <h3 class="text-lg font-semibold text-white group-hover:text-bitcoin">${esc(boardName(b))}</h3>
+            <p class="text-sm text-gray-500 mt-1">${esc(b.description || '')}</p>
+            <span class="text-xs text-gray-600 mt-3 block">${b.postCount} posts</span>
+          </a>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  async function renderBoard(slug, page, sort) {
+    page = page || parseInt(new URLSearchParams(location.hash.split('?')[1]).get('page')) || 1;
+    sort = sort || new URLSearchParams(location.hash.split('?')[1]).get('sort') || 'newest';
+
+    const data = await api(`/board/${slug}/posts?page=${page}&limit=20&sort=${sort}`);
+    if (data.error) return renderHome();
+
+    const { board, posts, pagination } = data;
+    const bName = boardName(board);
+
+    app.innerHTML = `
+      <header class="mb-8">
+        <nav class="text-sm text-gray-500 mb-4"><a href="#" class="hover:text-bitcoin">${t('boards')}</a> / <span class="text-white">${esc(bName)}</span></nav>
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <h1 class="text-2xl font-bold text-white">${esc(bName)}</h1>
+          <div class="flex items-center gap-3">
+            <button class="comm-btn-secondary" onclick="location.hash='search'">${svgSearch}</button>
+            ${currentUser ? `<button class="comm-btn-primary" onclick="location.hash='${slug}/new'">${t('newPost')}</button>` : ''}
+          </div>
+        </div>
+        <div class="flex gap-3 mt-4" id="sort-tabs">
+          ${['newest', 'votes', 'comments'].map(s => `
+            <button class="comm-tab${sort === s ? ' comm-tab-active' : ''}" data-sort="${s}">${t(s === 'comments' ? 'most_comments' : s)}</button>
+          `).join('')}
+        </div>
+      </header>
+      <div id="post-list">
+        ${posts.length === 0 ? `<p class="text-gray-500 text-sm py-10 text-center">${t('no_posts')}</p>` :
+          posts.map(p => postCard(p, slug)).join('')}
+      </div>
+      ${paginationHtml(pagination, slug, sort)}
+    `;
+
+    document.getElementById('sort-tabs').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-sort]');
+      if (btn) {
+        location.hash = `${slug}?sort=${btn.dataset.sort}`;
+        renderBoard(slug, 1, btn.dataset.sort);
+      }
+    });
+  }
+
+  function postCard(p, slug) {
+    return `
+      <a href="#${slug}/${p.id}" class="block p-5 rounded-xl border border-gray-800/50 hover:border-gray-700 bg-gray-900/20 hover:bg-gray-900/40 transition-all mb-3">
+        <div class="flex items-start gap-4">
+          <div class="flex flex-col items-center gap-0.5 text-xs text-gray-500 min-w-[40px] pt-1">
+            <span class="text-bitcoin font-mono font-semibold">${p.voteScore}</span>
+            <span>votes</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap">
+              ${p.isPinned ? `<span class="text-xs px-2 py-0.5 rounded-full bg-bitcoin/10 text-bitcoin">${t('pinned')}</span>` : ''}
+              <h3 class="text-base font-semibold text-white">${esc(p.title)}</h3>
+            </div>
+            <p class="text-sm text-gray-500 mt-1 line-clamp-2">${esc(p.body)}</p>
+            <div class="flex items-center gap-3 mt-2 text-xs text-gray-600">
+              <span>${t('by')}${esc(p.author.displayName || shortKey(p.author.pubkey))}</span>
+              <span>${timeAgo(p.createdAt)}</span>
+              <span>${svgComment} ${p.commentCount}</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    `;
+  }
+
+  function paginationHtml(pg, slug, sort) {
+    if (pg.totalPages <= 1) return '';
+    let html = '<div class="flex items-center justify-center gap-2 mt-8">';
+    if (pg.page > 1) html += `<button class="comm-btn-secondary comm-page" data-page="${pg.page - 1}">${t('prev')}</button>`;
+    html += `<span class="text-sm text-gray-500">${pg.page} ${t('of')} ${pg.totalPages}</span>`;
+    if (pg.page < pg.totalPages) html += `<button class="comm-btn-secondary comm-page" data-page="${pg.page + 1}">${t('next')}</button>`;
+    html += '</div>';
+
+    setTimeout(() => {
+      document.querySelectorAll('.comm-page').forEach(btn => {
+        btn.addEventListener('click', () => renderBoard(slug, parseInt(btn.dataset.page), sort));
+      });
+    }, 0);
+
+    return html;
+  }
+
+  async function renderPost(slug, postId) {
+    const data = await api(`/board/posts/${postId}`);
+    if (data.error) return renderBoard(slug);
+
+    const { post, comments } = data;
+    const isOwner = currentUser && currentUser.pubkey === post.author.pubkey;
+    const isAdmin = currentUser && currentUser.isAdmin;
+
+    app.innerHTML = `
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href="#" class="hover:text-bitcoin">${t('boards')}</a> /
+        <a href="#${slug}" class="hover:text-bitcoin">${esc(slug)}</a> /
+        <span class="text-white">${esc(post.title)}</span>
+      </nav>
+      <article class="mb-10">
+        <div class="flex items-start gap-4">
+          <div class="flex flex-col items-center gap-1 min-w-[48px]" id="post-vote">
+            <button class="comm-vote${post.userVote === 1 ? ' comm-vote-active' : ''}" data-v="1">${svgUp}</button>
+            <span class="text-sm font-mono font-semibold text-bitcoin" id="post-score">${post.voteScore}</span>
+            <button class="comm-vote${post.userVote === -1 ? ' comm-vote-active' : ''}" data-v="-1">${svgDown}</button>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h1 class="text-xl sm:text-2xl font-bold text-white mb-2">${esc(post.title)}</h1>
+            <div class="flex items-center gap-3 text-xs text-gray-500 mb-6">
+              <span>${esc(post.author.displayName || shortKey(post.author.pubkey))}</span>
+              <span>${timeAgo(post.createdAt)}</span>
+              ${isOwner ? `<a href="#${slug}/${postId}/edit" class="hover:text-bitcoin">${t('edit')}</a>` : ''}
+              ${isOwner || isAdmin ? `<button class="hover:text-red-400" id="delete-post-btn">${t('delete')}</button>` : ''}
+              ${isAdmin ? `<button class="hover:text-bitcoin" id="pin-post-btn">${post.isPinned ? t('unpin') : t('pin')}</button>` : ''}
+            </div>
+            <div class="article-prose text-sm text-gray-300 leading-relaxed whitespace-pre-wrap">${esc(post.body)}</div>
+          </div>
+        </div>
+      </article>
+
+      <div class="border-t border-gray-800/50 pt-8">
+        <h2 class="text-base font-semibold text-white mb-4">${t('comments')} (${comments.length})</h2>
+        ${currentUser ? `
+          <div class="mb-6" id="comment-form-area">
+            <textarea id="comment-input" class="comm-textarea" rows="3" placeholder="${t('write_comment')}"></textarea>
+            <button class="comm-btn-primary mt-2" id="submit-comment">${t('submit')}</button>
+          </div>
+        ` : ''}
+        <div id="comments-list">
+          ${comments.map(c => commentHtml(c, slug, postId)).join('')}
+        </div>
+      </div>
+    `;
+
+    // Vote handlers
+    document.getElementById('post-vote').addEventListener('click', async (e) => {
+      const btn = e.target.closest('[data-v]');
+      if (!btn || !currentUser) return;
+      const value = parseInt(btn.dataset.v);
+      const current = post.userVote;
+      const newVal = current === value ? 0 : value;
+      const res = await apiJson(`/board/posts/${postId}/vote`, { value: newVal });
+      if (res.voteScore !== undefined) {
+        document.getElementById('post-score').textContent = res.voteScore;
+        post.userVote = res.userVote;
+        btn.parentElement.querySelectorAll('.comm-vote').forEach(b => b.classList.remove('comm-vote-active'));
+        if (res.userVote) btn.classList.add('comm-vote-active');
+      }
+    });
+
+    // Delete handler
+    const delBtn = document.getElementById('delete-post-btn');
+    if (delBtn) delBtn.addEventListener('click', async () => {
+      if (!confirm(t('confirm_delete'))) return;
+      await api(`/board/posts/${postId}`, { method: 'DELETE' });
+      location.hash = slug;
+    });
+
+    // Pin handler
+    const pinBtn = document.getElementById('pin-post-btn');
+    if (pinBtn) pinBtn.addEventListener('click', async () => {
+      const res = await apiJson(`/board/posts/${postId}/pin`, {});
+      pinBtn.textContent = res.isPinned ? t('unpin') : t('pin');
+    });
+
+    // Comment submit
+    const submitBtn = document.getElementById('submit-comment');
+    if (submitBtn) submitBtn.addEventListener('click', async () => {
+      const input = document.getElementById('comment-input');
+      const body = input.value.trim();
+      if (!body) return;
+      const res = await apiJson(`/board/posts/${postId}/comments`, { body });
+      if (res.commentId) {
+        input.value = '';
+        renderPost(slug, postId);
+      }
+    });
+
+    // Reply & comment vote handlers (delegated)
+    document.getElementById('comments-list').addEventListener('click', async (e) => {
+      // Reply toggle
+      const replyBtn = e.target.closest('.comm-reply-btn');
+      if (replyBtn && currentUser) {
+        const cId = replyBtn.dataset.cid;
+        const existing = document.getElementById('reply-form-' + cId);
+        if (existing) { existing.remove(); return; }
+        const form = document.createElement('div');
+        form.id = 'reply-form-' + cId;
+        form.className = 'mt-3 ml-12';
+        form.innerHTML = `
+          <textarea class="comm-textarea" rows="2" placeholder="${t('write_reply')}"></textarea>
+          <button class="comm-btn-primary mt-2 comm-submit-reply" data-cid="${cId}">${t('submit')}</button>
+        `;
+        replyBtn.parentElement.parentElement.appendChild(form);
+        return;
+      }
+
+      // Submit reply
+      const submitReply = e.target.closest('.comm-submit-reply');
+      if (submitReply) {
+        const cId = submitReply.dataset.cid;
+        const textarea = submitReply.previousElementSibling;
+        const body = textarea.value.trim();
+        if (!body) return;
+        const res = await apiJson(`/board/posts/${postId}/comments`, { body, parentId: parseInt(cId) });
+        if (res.commentId) renderPost(slug, postId);
+        return;
+      }
+
+      // Comment vote
+      const voteBtn = e.target.closest('.comm-cv');
+      if (voteBtn && currentUser) {
+        const cId = parseInt(voteBtn.dataset.cid);
+        const value = parseInt(voteBtn.dataset.v);
+        const res = await apiJson(`/board/comments/${cId}/vote`, { value });
+        if (res.voteScore !== undefined) {
+          const scoreEl = document.getElementById('cscore-' + cId);
+          if (scoreEl) scoreEl.textContent = res.voteScore;
+        }
+        return;
+      }
+
+      // Comment delete
+      const delCBtn = e.target.closest('.comm-del-comment');
+      if (delCBtn) {
+        if (!confirm(t('confirm_delete'))) return;
+        await api(`/board/comments/${delCBtn.dataset.cid}`, { method: 'DELETE' });
+        renderPost(slug, postId);
+      }
+    });
+  }
+
+  function commentHtml(c, slug, postId) {
+    const isOwner = currentUser && currentUser.pubkey === c.author.pubkey;
+    const isAdmin = currentUser && currentUser.isAdmin;
+    const indent = c.parentId ? 'ml-10 border-l border-gray-800/30 pl-4' : '';
+
+    let html = `
+      <div class="mb-4 ${indent}">
+        <div class="flex items-start gap-3">
+          <div class="flex flex-col items-center gap-0.5 min-w-[28px]">
+            <button class="comm-cv comm-vote-sm" data-cid="${c.id}" data-v="1">${svgUp}</button>
+            <span class="text-xs font-mono text-gray-500" id="cscore-${c.id}">${c.voteScore}</span>
+            <button class="comm-cv comm-vote-sm" data-cid="${c.id}" data-v="-1">${svgDown}</button>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 text-xs text-gray-500 mb-1">
+              <span class="font-semibold text-gray-400">${esc(c.author.displayName || shortKey(c.author.pubkey))}</span>
+              <span>${timeAgo(c.createdAt)}</span>
+            </div>
+            <p class="text-sm text-gray-300 whitespace-pre-wrap">${esc(c.body)}</p>
+            <div class="flex items-center gap-3 mt-1 text-xs text-gray-600">
+              ${!c.parentId && currentUser ? `<button class="hover:text-bitcoin comm-reply-btn" data-cid="${c.id}">${t('reply')}</button>` : ''}
+              ${isOwner || isAdmin ? `<button class="hover:text-red-400 comm-del-comment" data-cid="${c.id}">${t('delete')}</button>` : ''}
+            </div>
+          </div>
+        </div>
+    `;
+    if (c.replies && c.replies.length > 0) {
+      html += c.replies.map(r => commentHtml(r, slug, postId)).join('');
+    }
+    html += '</div>';
+    return html;
+  }
+
+  async function renderNewPost(slug) {
+    if (!currentUser) {
+      app.innerHTML = `<p class="text-center py-20 text-gray-500">${t('login_required')}</p>`;
+      return;
+    }
+
+    app.innerHTML = `
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href="#" class="hover:text-bitcoin">${t('boards')}</a> /
+        <a href="#${slug}" class="hover:text-bitcoin">${esc(slug)}</a> /
+        <span class="text-white">${t('newPost')}</span>
+      </nav>
+      <div class="max-w-3xl">
+        <input id="post-title" class="comm-input mb-4" placeholder="${t('title')}" maxlength="200">
+        <textarea id="post-body" class="comm-textarea" rows="12" placeholder="${t('body')}" maxlength="10000"></textarea>
+        <div class="flex gap-3 mt-4">
+          <button class="comm-btn-primary" id="submit-post">${t('submit')}</button>
+          <button class="comm-btn-secondary" onclick="location.hash='${slug}'">${t('cancel')}</button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('submit-post').addEventListener('click', async () => {
+      const title = document.getElementById('post-title').value.trim();
+      const body = document.getElementById('post-body').value.trim();
+      if (!title || !body) return;
+      const res = await apiJson(`/board/${slug}/posts`, { title, body });
+      if (res.post) location.hash = `${slug}/${res.post.id}`;
+    });
+  }
+
+  async function renderEditPost(slug, postId) {
+    if (!currentUser) return;
+    const data = await api(`/board/posts/${postId}`);
+    if (data.error) return;
+    const { post } = data;
+
+    app.innerHTML = `
+      <nav class="text-sm text-gray-500 mb-6">
+        <a href="#" class="hover:text-bitcoin">${t('boards')}</a> /
+        <a href="#${slug}" class="hover:text-bitcoin">${esc(slug)}</a> /
+        <span class="text-white">${t('edit')}</span>
+      </nav>
+      <div class="max-w-3xl">
+        <input id="post-title" class="comm-input mb-4" value="${esc(post.title)}" maxlength="200">
+        <textarea id="post-body" class="comm-textarea" rows="12" maxlength="10000">${esc(post.body)}</textarea>
+        <div class="flex gap-3 mt-4">
+          <button class="comm-btn-primary" id="save-post">${t('submit')}</button>
+          <button class="comm-btn-secondary" onclick="location.hash='${slug}/${postId}'">${t('cancel')}</button>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('save-post').addEventListener('click', async () => {
+      const title = document.getElementById('post-title').value.trim();
+      const body = document.getElementById('post-body').value.trim();
+      if (!title || !body) return;
+      await api(`/board/posts/${postId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, body }),
+      });
+      location.hash = `${slug}/${postId}`;
+    });
+  }
+
+  async function renderSearch() {
+    const params = new URLSearchParams(location.hash.split('?')[1]);
+    const q = params.get('q') || '';
+
+    app.innerHTML = `
+      <header class="mb-8">
+        <a href="#" class="text-sm text-gray-500 hover:text-bitcoin mb-4 block">← ${t('boards')}</a>
+        <h1 class="text-2xl font-bold text-white mb-4">${t('search')}</h1>
+        <div class="flex gap-3">
+          <input id="search-input" class="comm-input flex-1" value="${esc(q)}" placeholder="${t('search_placeholder')}">
+          <button class="comm-btn-primary" id="do-search">${t('search')}</button>
+        </div>
+      </header>
+      <div id="search-results"></div>
+    `;
+
+    const doSearch = async () => {
+      const val = document.getElementById('search-input').value.trim();
+      if (val.length < 2) return;
+      location.hash = `search?q=${encodeURIComponent(val)}`;
+      const data = await api(`/board/search?q=${encodeURIComponent(val)}`);
+      const container = document.getElementById('search-results');
+      if (!data.posts || data.posts.length === 0) {
+        container.innerHTML = `<p class="text-gray-500 text-sm py-10 text-center">${t('no_results')}</p>`;
+        return;
+      }
+      container.innerHTML = data.posts.map(p => `
+        <a href="#${p.boardSlug}/${p.id}" class="block p-4 rounded-xl border border-gray-800/50 hover:border-gray-700 bg-gray-900/20 hover:bg-gray-900/40 transition-all mb-3">
+          <h3 class="text-base font-semibold text-white">${esc(p.title)}</h3>
+          <p class="text-sm text-gray-500 mt-1">${p.bodySnippet || ''}</p>
+          <div class="text-xs text-gray-600 mt-2">${esc(p.author.displayName || shortKey(p.author.pubkey))} · ${timeAgo(p.createdAt)}</div>
+        </a>
+      `).join('');
+    };
+
+    document.getElementById('do-search').addEventListener('click', doSearch);
+    document.getElementById('search-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
+    if (q) doSearch();
+  }
+
+  // ─── SVG Icons ───
+  const svgUp = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  const svgDown = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>';
+  const svgComment = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-1px"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>';
+  const svgSearch = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+
+  // ─── Init ───
+  async function init() {
+    await checkAuth();
+    route();
+    window.addEventListener('hashchange', route);
+  }
+
+  init();
+})();

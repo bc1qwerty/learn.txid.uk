@@ -2288,3 +2288,78 @@ body.sidebar-right-collapsed .page-layout {
     pre { font-size: .72rem; overflow-x: auto; }
     .tag-chip { font-size: .65rem; padding: 2px 6px; }
 }
+
+/* ═══════════════════════════════════════════
+   COMMUNITY COMPONENTS
+   ═══════════════════════════════════════════ */
+.comm-btn-primary {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; font-size: .8rem; font-weight: 500;
+  border-radius: 8px; border: none; cursor: pointer;
+  background: color-mix(in srgb, var(--color-bitcoin) 15%, transparent);
+  color: var(--color-bitcoin); transition: background .2s;
+}
+.comm-btn-primary:hover { background: color-mix(in srgb, var(--color-bitcoin) 25%, transparent); }
+
+.comm-btn-secondary {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; font-size: .78rem;
+  border-radius: 8px; cursor: pointer;
+  background: var(--color-surface-raised, #161b22);
+  border: 1px solid color-mix(in srgb, #8b949e 20%, transparent);
+  color: #8b949e; transition: border-color .2s, color .2s;
+}
+.comm-btn-secondary:hover { border-color: var(--color-bitcoin); color: var(--color-bitcoin); }
+
+.comm-tab {
+  padding: 6px 14px; font-size: .75rem; border-radius: 6px;
+  background: transparent; border: 1px solid transparent;
+  color: #8b949e; cursor: pointer; transition: all .2s;
+}
+.comm-tab:hover { color: #e6edf3; }
+.comm-tab-active {
+  background: color-mix(in srgb, var(--color-bitcoin) 10%, transparent);
+  border-color: color-mix(in srgb, var(--color-bitcoin) 30%, transparent);
+  color: var(--color-bitcoin);
+}
+
+.comm-input {
+  width: 100%; padding: 10px 14px; font-size: .85rem;
+  border-radius: 8px; border: 1px solid color-mix(in srgb, #8b949e 20%, transparent);
+  background: var(--color-surface, #0d1117);
+  color: #e6edf3; outline: none; font-family: inherit;
+  transition: border-color .2s;
+}
+.comm-input:focus { border-color: var(--color-bitcoin); }
+
+.comm-textarea {
+  width: 100%; padding: 10px 14px; font-size: .82rem;
+  border-radius: 8px; border: 1px solid color-mix(in srgb, #8b949e 20%, transparent);
+  background: var(--color-surface, #0d1117);
+  color: #e6edf3; outline: none; font-family: inherit;
+  resize: vertical; min-height: 60px; line-height: 1.6;
+  transition: border-color .2s;
+}
+.comm-textarea:focus { border-color: var(--color-bitcoin); }
+
+.comm-vote {
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 24px; border-radius: 4px;
+  background: transparent; border: none; color: #6e7681;
+  cursor: pointer; transition: color .2s, background .2s;
+}
+.comm-vote:hover { color: var(--color-bitcoin); background: color-mix(in srgb, var(--color-bitcoin) 10%, transparent); }
+.comm-vote-active { color: var(--color-bitcoin); }
+
+.comm-vote-sm {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 18px; border-radius: 3px;
+  background: transparent; border: none; color: #6e7681;
+  cursor: pointer; transition: color .15s;
+}
+.comm-vote-sm:hover { color: var(--color-bitcoin); }
+
+.line-clamp-2 {
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
