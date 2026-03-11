@@ -19,6 +19,9 @@ other = "推薦図書"
 [nav_blog]
 other = "ブログ"
 
+[nav_privacy]
+other = "プライバシーポリシー"
+
 [nav_faq]
 other = "FAQ"
 

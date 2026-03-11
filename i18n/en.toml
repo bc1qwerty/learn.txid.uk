@@ -19,6 +19,9 @@ other = "Books"
 [nav_blog]
 other = "Blog"
 
+[nav_privacy]
+other = "Privacy Policy"
+
 [nav_faq]
 other = "FAQ"
 

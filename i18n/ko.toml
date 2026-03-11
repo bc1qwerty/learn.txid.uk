@@ -19,6 +19,9 @@ other = "추천도서"
 [nav_blog]
 other = "블로그"
 
+[nav_privacy]
+other = "개인정보처리방침"
+
 [nav_faq]
 other = "FAQ"
 
