@@ -487,6 +487,23 @@ initClock('sidebarClock');
     });
 })();
 
+// ── Mobile Sidebar FAB ──
+(function() {
+    var fab = document.getElementById('sidebarFab');
+    if (!fab) return;
+    fab.addEventListener('click', function() {
+        // Re-use the existing right sidebar toggle mechanism
+        var portal = document.getElementById('right-toggle-portal');
+        var portalBtn = portal && portal.querySelector('.sidebar-toggle-right');
+        if (portalBtn) {
+            portalBtn.click();
+        } else {
+            var rightToggle = document.getElementById('sidebarRightToggle');
+            if (rightToggle) rightToggle.click();
+        }
+    });
+})();
+
 // ── Scroll Progress Bar ──
 (function() {
     var bar = document.getElementById('scrollProgress');
@@ -834,3 +851,87 @@ document.addEventListener('DOMContentLoaded', function() {
   // 초기화 (DOM 준비 후)
   document.addEventListener('DOMContentLoaded', () => applyLang(_lang));
 })();
+
+// ── Learning Progress Tracker ──
+const LearnProgress = (() => {
+  const STORAGE_KEY = 'txid_learn_progress';
+
+  function getProgress() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    } catch { return {}; }
+  }
+
+  function markRead(url) {
+    const progress = getProgress();
+    if (!progress[url]) {
+      progress[url] = { readAt: Date.now() };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    }
+  }
+
+  function isRead(url) {
+    return !!getProgress()[url];
+  }
+
+  function getStats() {
+    const progress = getProgress();
+    return {
+      totalRead: Object.keys(progress).length,
+      pages: progress
+    };
+  }
+
+  // Auto-mark current page as read after 30 seconds
+  function initAutoTrack() {
+    const path = window.location.pathname;
+    // Only track learn, ideas, people sections
+    if (!/\/(learn|ideas|people)\//.test(path)) return;
+
+    let timer = setTimeout(() => {
+      markRead(path);
+      updateProgressIndicators();
+    }, 30000);
+
+    // Also mark on scroll to bottom
+    const onScroll = () => {
+      const scrolled = window.scrollY + window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      if (scrolled >= docHeight - 100) {
+        markRead(path);
+        updateProgressIndicators();
+        window.removeEventListener('scroll', onScroll);
+        clearTimeout(timer);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // Add visual indicators to learn cards on the homepage
+  function updateProgressIndicators() {
+    document.querySelectorAll('.learn-card').forEach(card => {
+      const link = card.querySelector('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (isRead(href)) {
+        card.classList.add('learn-read');
+      }
+    });
+
+    // Update step dots in learning path if present
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && isRead(href)) {
+        link.closest('.tile-item, .sidebar-recent-item')?.classList.add('item-read');
+      }
+    });
+  }
+
+  return { getProgress, markRead, isRead, getStats, initAutoTrack, updateProgressIndicators };
+})();
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+  LearnProgress.initAutoTrack();
+  LearnProgress.updateProgressIndicators();
+});
