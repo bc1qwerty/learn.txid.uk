@@ -43,16 +43,18 @@ window.__LANG_URLS__ = {
           <button id="themeToggleMenu" class="settings-item"><span id="themeLabel">Dark</span></button>
         </div>
       </div>
-      <div id="txid-auth-mount" style="position:relative;display:inline-flex"></div>
     </div>
 
-    <!-- Mobile Menu Button -->
-    <button id="menu-toggle" class="md:hidden w-11 h-11 flex items-center justify-center text-gray-400 hover:text-white" aria-label="메뉴" aria-expanded="false" aria-controls="mobile-menu">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-    </button>
+    <!-- Auth + Mobile Menu -->
+    <div class="flex items-center gap-1">
+      <div id="txid-auth-mount" style="position:relative;display:inline-flex"></div>
+      <button id="menu-toggle" class="md:hidden w-11 h-11 flex items-center justify-center text-gray-400 hover:text-white" aria-label="메뉴" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
   </nav>
 
   <!-- Mobile Menu (overlay dropdown) -->
