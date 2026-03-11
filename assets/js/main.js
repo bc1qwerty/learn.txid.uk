@@ -118,9 +118,9 @@ function throttle(fn, delay) {
             rightColumn.classList.remove('collapsed');
             document.body.classList.remove('sidebar-right-collapsed');
             if (rightToggle) rightToggle.innerHTML = ICON_CLOSED;
-            // overlay 활성화 (데스크탑 포함 항상)
+            // overlay 활성화 (모바일만 스크롤 잠금)
             if (overlay) { overlay.style.display = 'block'; overlay.classList.add('active'); }
-            document.body.style.overflow = 'hidden';
+            if (!isDesktop()) document.body.style.overflow = 'hidden';
             // 원위치 복구
             if (rightTogglePortal) {
                 rightTogglePortal.remove();
