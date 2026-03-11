@@ -88,6 +88,8 @@
 
   async function api(path, opts) {
     const res = await fetch(API + path, { credentials: 'include', ...opts });
+    // 7-1: check res.ok before parsing JSON
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     return res.json();
   }
 
@@ -534,7 +536,7 @@
       container.innerHTML = data.posts.map(p => `
         <a href="#${p.boardSlug}/${p.id}" class="block p-4 rounded-xl border border-gray-800/50 hover:border-gray-700 bg-gray-900/20 hover:bg-gray-900/40 transition-all mb-3">
           <h3 class="text-base font-semibold text-white">${esc(p.title)}</h3>
-          <p class="text-sm text-gray-500 mt-1">${p.bodySnippet || ''}</p>
+          <p class="text-sm text-gray-500 mt-1">${esc(p.bodySnippet || '')}</p>
           <div class="text-xs text-gray-600 mt-2">${esc(p.author.displayName || shortKey(p.author.pubkey))} · ${timeAgo(p.createdAt)}</div>
         </a>
       `).join('');
