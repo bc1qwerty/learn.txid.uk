@@ -30,37 +30,38 @@ window.__LANG_URLS__ = {
 
     <!-- nav-right: 검색 + 설정 + 로그인 + 햄버거 -->
     <div class="nav-right flex items-center gap-1.5 ml-auto flex-shrink-0">
-      <!-- 검색 (데스크톱만) -->
-      <button class="nav-icon-btn hidden md:flex" id="headerSearchBtn" aria-label="검색 (Ctrl+K)" title="검색 (Ctrl+K)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </button>
-      <!-- 설정 (데스크톱만) -->
-      <div class="settings-dropdown hidden md:flex" id="settings-dropdown">
-        <button class="nav-icon-btn" id="settings-btn" onclick="toggleSettings()" aria-label="설정" title="설정" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <!-- 데스크톱 전용: 검색 + 설정 (wrapper로 visibility 제어) -->
+      <div class="hidden md:flex items-center gap-1.5">
+        <button class="nav-icon-btn" id="headerSearchBtn" aria-label="검색 (Ctrl+K)" title="검색 (Ctrl+K)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
-        <div class="settings-panel" id="settings-panel">
-          <div class="settings-section">
-            <div class="settings-label">{{ i18n "lang_label" }}</div>
-            <div class="settings-lang-row">
-              <button class="settings-lang-btn{{ if eq .Site.Language.Lang "ko" }} active{{ end }}" onclick="setLang('ko')">KO</button>
-              <button class="settings-lang-btn{{ if eq .Site.Language.Lang "en" }} active{{ end }}" onclick="setLang('en')">EN</button>
-              <button class="settings-lang-btn{{ if eq .Site.Language.Lang "ja" }} active{{ end }}" onclick="setLang('ja')">日</button>
+        <div class="settings-dropdown" id="settings-dropdown">
+          <button class="nav-icon-btn" id="settings-btn" onclick="toggleSettings()" aria-label="설정" title="설정" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          </button>
+          <div class="settings-panel" id="settings-panel">
+            <div class="settings-section">
+              <div class="settings-label">{{ i18n "lang_label" }}</div>
+              <div class="settings-lang-row">
+                <button class="settings-lang-btn{{ if eq .Site.Language.Lang "ko" }} active{{ end }}" onclick="setLang('ko')">KO</button>
+                <button class="settings-lang-btn{{ if eq .Site.Language.Lang "en" }} active{{ end }}" onclick="setLang('en')">EN</button>
+                <button class="settings-lang-btn{{ if eq .Site.Language.Lang "ja" }} active{{ end }}" onclick="setLang('ja')">日</button>
+              </div>
             </div>
-          </div>
-          <div class="settings-section settings-section--border">
-            <div class="settings-label">{{ i18n "theme_toggle" }}</div>
-            <button class="settings-item" id="themeToggleMenu" onclick="toggleTheme()">
-              <span id="theme-icon"></span>
-              <span id="themeLabel">Dark</span>
-            </button>
+            <div class="settings-section settings-section--border">
+              <div class="settings-label">{{ i18n "theme_toggle" }}</div>
+              <button class="settings-item" id="themeToggleMenu" onclick="toggleTheme()">
+                <span id="theme-icon"></span>
+                <span id="themeLabel">Dark</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <!-- 로그인 -->
       <div id="txid-auth-mount" style="position:relative;display:inline-flex"></div>
       <!-- 햄버거 (모바일만) -->
-      <button id="menu-toggle" class="md:hidden w-11 h-11 flex items-center justify-center text-gray-400 hover:text-white" aria-label="메뉴" aria-expanded="false" aria-controls="mobile-menu">
+      <button id="menu-toggle" class="nav-hamburger-btn" aria-label="메뉴" aria-expanded="false" aria-controls="mobile-menu">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           <path id="menu-icon-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
