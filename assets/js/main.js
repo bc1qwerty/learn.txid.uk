@@ -439,10 +439,9 @@ fadeSections.forEach(function(section) { observer.observe(section); });
     });
 })();
 
-// ── Book Grid Shuffle & Toggle ──
+// ── Book Grid Shuffle ──
 (function() {
     var grid = document.getElementById('bookGrid');
-    var toggle = document.getElementById('bookToggle');
     if (!grid) return;
 
     var cards = Array.from(grid.children);
@@ -453,13 +452,6 @@ fadeSections.forEach(function(section) { observer.observe(section); });
         cards[j] = temp;
     }
     cards.forEach(function(card) { grid.appendChild(card); });
-
-    if (!toggle) return;
-    toggle.addEventListener('click', function() {
-        var expanded = grid.classList.toggle('expanded');
-        toggle.setAttribute('aria-expanded', String(expanded));
-        toggle.textContent = expanded ? '접기 \u25B2' : '전체 보기 \u25BC';
-    });
 })();
 
 // ── Clock Helper ──
