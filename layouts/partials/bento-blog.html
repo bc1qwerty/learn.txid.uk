@@ -3,7 +3,7 @@
     {{ $maxPosts := site.Params.blog.maxPosts | default 3 }}
     {{ range first $maxPosts (where site.RegularPages "Section" "blog").ByDate.Reverse }}
     <a href="{{ .RelPermalink }}" class="tile-item">
-        <time class="tile-item-date">{{ .Date.Format "Jan 2, 2006" }}</time>
+        <time class="tile-item-date">{{ .Date.Format "06.01.02" }}</time>
         <span class="tile-item-name">{{ .Title }}</span>
         <span class="arrow">&rarr;</span>
     </a>

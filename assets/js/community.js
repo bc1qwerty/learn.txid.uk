@@ -32,9 +32,10 @@
       voted_posts: '추천 글', voted_comments: '추천 댓글',
       bookmarks: '북마크', bookmark: '저장', unbookmark: '저장 해제',
       no_items: '항목이 없습니다.',
-      my_info: '내 정보', nickname: '닉네임', nickname_ph: '닉네임 (최대 30자)',
+      my_info: '내 정보', nickname: '닉네임', nickname_ph: '닉네임 (최대 8자)',
       save: '저장', saved: '저장됨!',
       tab_posts: '게시글', tab_comments: '댓글',
+      confirm_nickname: '닉네임을 변경하시겠습니까?', confirm_nickname_clear: '닉네임을 삭제하시겠습니까?',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -55,9 +56,10 @@
       voted_posts: 'Upvoted Posts', voted_comments: 'Upvoted Comments',
       bookmarks: 'Bookmarks', bookmark: 'Bookmark', unbookmark: 'Remove Bookmark',
       no_items: 'No items found.',
-      my_info: 'My Profile', nickname: 'Nickname', nickname_ph: 'Nickname (max 30)',
+      my_info: 'My Profile', nickname: 'Nickname', nickname_ph: 'Nickname (max 8)',
       save: 'Save', saved: 'Saved!',
       tab_posts: 'Posts', tab_comments: 'Comments',
+      confirm_nickname: 'Change nickname?', confirm_nickname_clear: 'Clear nickname?',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -78,9 +80,10 @@
       voted_posts: '推薦した投稿', voted_comments: '推薦したコメント',
       bookmarks: 'ブックマーク', bookmark: 'ブックマーク', unbookmark: 'ブックマーク解除',
       no_items: '項目がありません。',
-      my_info: 'マイページ', nickname: 'ニックネーム', nickname_ph: 'ニックネーム (最大30文字)',
+      my_info: 'マイページ', nickname: 'ニックネーム', nickname_ph: 'ニックネーム (最大8文字)',
       save: '保存', saved: '保存済み!',
       tab_posts: '投稿', tab_comments: 'コメント',
+      confirm_nickname: 'ニックネームを変更しますか？', confirm_nickname_clear: 'ニックネームを削除しますか？',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
@@ -123,7 +126,12 @@
     if (diff < 60) return diff + t('ago_s');
     if (diff < 3600) return Math.floor(diff / 60) + t('ago_m');
     if (diff < 86400) return Math.floor(diff / 3600) + t('ago_h');
-    return Math.floor(diff / 86400) + t('ago_d');
+    if (diff < 604800) return Math.floor(diff / 86400) + t('ago_d');
+    var d = new Date(ts * 1000);
+    var mm = String(d.getMonth() + 1).padStart(2, '0');
+    var dd = String(d.getDate()).padStart(2, '0');
+    if (d.getFullYear() === new Date().getFullYear()) return mm + '.' + dd;
+    return String(d.getFullYear()).slice(2) + '.' + mm + '.' + dd;
   }
 
   function shortKey(pubkey) {
@@ -668,7 +676,7 @@
           ${isOwner ? `
             <label class="text-xs text-gray-500 block mb-1">${t('nickname')}</label>
             <div class="flex gap-2 items-center">
-              <input id="nick-input" class="comm-input" style="max-width:240px;padding:6px 10px;font-size:.8rem" placeholder="${t('nickname_ph')}" maxlength="30" value="${esc(currentUser.displayName || '')}">
+              <input id="nick-input" class="comm-input" style="max-width:180px;padding:6px 10px;font-size:.8rem" placeholder="${t('nickname_ph')}" maxlength="8" value="${esc(currentUser.displayName || '')}">
               <button class="comm-btn-primary" id="nick-save" style="padding:6px 14px;font-size:.78rem">${t('save')}</button>
             </div>
           ` : ''}
@@ -698,6 +706,7 @@
         var input = document.getElementById('nick-input');
         var name = input.value.trim();
         var saveBtn = document.getElementById('nick-save');
+        if (!confirm(name ? name + ' — ' + t('confirm_nickname') : t('confirm_nickname_clear'))) return;
         try {
           await api('/auth/me/display-name', {
             method: 'PUT',
