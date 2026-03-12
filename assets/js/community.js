@@ -829,18 +829,34 @@
 
   // ─── Init ───
   var _loading = null;
+  var _routeVer = 0;
   async function safeRoute() {
-    // Show loading indicator after 150ms (avoid flash for fast responses)
+    var ver = ++_routeVer;
+    // Only show skeleton if there's no real content yet (avoid flicker on re-render)
+    var hasContent = app.children.length > 0 && !app.querySelector('.comm-skeleton');
     _loading = setTimeout(function() {
-      if (!app.querySelector('.comm-skeleton')) {
+      if (ver !== _routeVer) return;
+      if (!hasContent && !app.querySelector('.comm-skeleton')) {
         app.innerHTML = '<div class="comm-skeleton"><div></div><div></div><div></div></div>';
       }
     }, 150);
-    try { await route(); } catch (e) {
+    try {
+      await route();
+    } catch (e) {
+      if (ver !== _routeVer) return; // stale render, discard
       console.error('[community] route error:', e);
       app.innerHTML = '<p class="text-center py-20 text-gray-500">Error: ' + (e.message || 'Unknown') + '</p>';
     } finally {
       clearTimeout(_loading);
+    }
+  }
+
+  function subscribeAuth() {
+    if (window.txidAuth) {
+      window.txidAuth.onAuthChange(function (user) {
+        currentUser = user;
+        safeRoute();
+      });
     }
   }
 
@@ -855,12 +871,17 @@
       if (currentUser) safeRoute();
     });
 
-    // U-7: subscribe to auth changes from txid-auth SDK
+    // Subscribe to auth changes — txid-auth.js loads with defer, so retry if not ready
     if (window.txidAuth) {
-      window.txidAuth.onAuthChange(function (user) {
-        currentUser = user;
-        safeRoute();
-      });
+      subscribeAuth();
+    } else {
+      var _authRetry = 0;
+      var _authTimer = setInterval(function() {
+        if (window.txidAuth || ++_authRetry > 20) {
+          clearInterval(_authTimer);
+          if (window.txidAuth) subscribeAuth();
+        }
+      }, 200);
     }
   }
 
