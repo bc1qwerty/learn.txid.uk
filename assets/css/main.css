@@ -6,6 +6,7 @@
    ============================================================ */
 @theme {
   /* ── Shared Design Tokens (aligned with txid.uk) ── */
+  --container-5xl: 1200px;
   --color-bitcoin: #f7931a;
   --color-bitcoin-light: #ffab40;
   --color-bitcoin-dark: #c47515;
@@ -938,6 +939,8 @@ details[open] > *:not(summary) {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .bento-tile {
