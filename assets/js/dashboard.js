@@ -136,7 +136,7 @@
         app.innerHTML = '<div class="text-center py-20"><p class="text-lg text-red-400">' + t('no_access') + '</p></div>';
       }
     } else {
-      app.innerHTML = '<div class="text-center py-20"><p class="text-lg text-zinc-400">' + t('login_required') + '</p></div>';
+      app.innerHTML = '<div class="text-center py-20"><p class="text-lg text-gray-400">' + t('login_required') + '</p></div>';
       if (window.txidAuth) {
         window.txidAuth.onAuthChange(function (u) {
           if (!u) return;
@@ -168,12 +168,12 @@
   }
 
   function renderNav(active) {
-    var html = '<div class="flex items-center justify-between mb-2"><h1 class="text-2xl font-bold">' + t('dashboard') + '</h1></div>';
-    html += '<nav class="flex gap-1 border-b border-zinc-700 overflow-x-auto">';
+    var html = '<div class="flex items-center justify-between mb-2"><h1 class="text-2xl font-bold text-white">' + t('dashboard') + '</h1></div>';
+    html += '<nav class="flex gap-1 border-b border-gray-800 overflow-x-auto">';
     TABS.forEach(function (tab) {
       var cls = tab === active
-        ? 'px-4 py-2 text-sm font-medium border-b-2 border-amber-500 text-amber-400'
-        : 'px-4 py-2 text-sm text-zinc-400 hover:text-zinc-200';
+        ? 'px-4 py-2 text-sm font-medium border-b-2 border-bitcoin text-bitcoin'
+        : 'px-4 py-2 text-sm text-gray-400 hover:text-gray-200';
       html += '<a href="#' + tab + '" class="' + cls + ' whitespace-nowrap">' + t(tab) + '</a>';
     });
     html += '</nav>';
@@ -181,7 +181,7 @@
   }
 
   function renderLoading() {
-    return '<div class="text-center py-12 text-zinc-500">' + t('loading') + '</div>';
+    return '<div class="text-center py-12 text-gray-500">' + t('loading') + '</div>';
   }
 
   function renderError() {
@@ -193,16 +193,16 @@
     if (el) el.innerHTML = html;
   }
 
-  // ─── CSS classes ───
-  var cardCls = 'bg-zinc-800/60 rounded-lg border border-zinc-700 p-5';
-  var statCls = 'text-3xl font-bold text-zinc-100';
-  var labelCls = 'text-sm text-zinc-400 mt-1';
-  var btnCls = 'px-3 py-1 text-xs rounded bg-zinc-700 hover:bg-zinc-600 text-zinc-200 transition';
-  var btnDanger = 'px-3 py-1 text-xs rounded bg-red-900/40 hover:bg-red-800/60 text-red-300 transition';
-  var btnSuccess = 'px-3 py-1 text-xs rounded bg-emerald-900/40 hover:bg-emerald-800/60 text-emerald-300 transition';
+  // ─── CSS classes (site theme: gray-*, surface, bitcoin) ───
+  var cardCls = 'bento-tile';
+  var statCls = 'text-3xl font-bold text-white';
+  var labelCls = 'text-sm text-gray-400 mt-1';
+  var btnCls = 'px-3 py-1 text-xs rounded bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 transition';
+  var btnDanger = 'px-3 py-1 text-xs rounded bg-red-900/30 hover:bg-red-900/50 text-red-400 border border-red-900/40 transition';
+  var btnSuccess = 'px-3 py-1 text-xs rounded bg-emerald-900/30 hover:bg-emerald-900/50 text-emerald-400 border border-emerald-900/40 transition';
   var tableCls = 'w-full text-sm text-left';
-  var thCls = 'px-3 py-2 text-xs font-medium text-zinc-400 uppercase border-b border-zinc-700';
-  var tdCls = 'px-3 py-2 border-b border-zinc-800 text-zinc-300';
+  var thCls = 'px-3 py-2 text-xs font-medium text-gray-500 uppercase border-b border-gray-800';
+  var tdCls = 'px-3 py-2 border-b border-gray-800/50 text-gray-300';
 
   // ─── Tab Loaders ───
 
@@ -243,33 +243,33 @@
     return '<div class="' + cardCls + '">'
       + '<div class="' + statCls + '">' + value + '</div>'
       + '<div class="' + labelCls + '">' + label + '</div>'
-      + (sub ? '<div class="text-xs text-emerald-400 mt-2">' + sub + '</div>' : '')
+      + (sub ? '<div class="text-xs text-bitcoin mt-2">' + sub + '</div>' : '')
       + '</div>';
   }
 
   function renderBarChart(data) {
     var maxVal = 1;
     data.forEach(function (d) { var v = d.posts + d.comments; if (v > maxVal) maxVal = v; });
-    var html = '<div class="flex items-end gap-2 h-40">';
+    var html = '<div class="flex items-end gap-2" style="height:140px">';
     data.forEach(function (d) {
       var total = d.posts + d.comments;
       var pctPosts = Math.max((d.posts / maxVal) * 100, 0);
       var pctComments = Math.max((d.comments / maxVal) * 100, 0);
-      var dateLabel = d.date.slice(5); // MM-DD
+      var dateLabel = d.date.slice(5);
       html += '<div class="flex-1 flex flex-col items-center gap-1">';
-      html += '<div class="w-full flex flex-col items-center justify-end" style="height:120px">';
-      html += '<div class="text-xs text-zinc-400 mb-1">' + total + '</div>';
+      html += '<div class="w-full flex flex-col items-center justify-end" style="height:110px">';
+      html += '<div class="text-xs text-gray-400 mb-1">' + total + '</div>';
       html += '<div class="w-full flex flex-col items-stretch">';
-      html += '<div class="bg-amber-500/80 rounded-t" style="height:' + pctPosts + 'px" title="' + t('posts') + ': ' + d.posts + '"></div>';
-      html += '<div class="bg-blue-500/60 rounded-b" style="height:' + pctComments + 'px" title="' + t('comments') + ': ' + d.comments + '"></div>';
+      html += '<div class="rounded-t" style="height:' + pctPosts + 'px;background:var(--color-bitcoin)" title="' + t('posts') + ': ' + d.posts + '"></div>';
+      html += '<div class="rounded-b" style="height:' + pctComments + 'px;background:var(--color-bitcoin-dark);opacity:0.6" title="' + t('comments') + ': ' + d.comments + '"></div>';
       html += '</div></div>';
-      html += '<div class="text-xs text-zinc-500">' + dateLabel + '</div>';
+      html += '<div class="text-xs text-gray-500">' + dateLabel + '</div>';
       html += '</div>';
     });
     html += '</div>';
-    html += '<div class="flex gap-4 mt-3 text-xs text-zinc-500">';
-    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-amber-500/80 inline-block"></span>' + t('posts') + '</span>';
-    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-blue-500/60 inline-block"></span>' + t('comments') + '</span>';
+    html += '<div class="flex gap-4 mt-3 text-xs text-gray-500">';
+    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded inline-block" style="background:var(--color-bitcoin)"></span>' + t('posts') + '</span>';
+    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded inline-block" style="background:var(--color-bitcoin-dark);opacity:0.6"></span>' + t('comments') + '</span>';
     html += '</div>';
     return html;
   }
@@ -282,16 +282,16 @@
     // Period selector + placeholder cards
     var html = '<div class="flex gap-1 mb-4">';
     ['7', '30', '90'].forEach(function (p) {
-      var cls = p === analyticsPeriod ? 'bg-amber-600 text-white' : 'bg-zinc-700 text-zinc-300 hover:bg-zinc-600';
+      var cls = p === analyticsPeriod ? 'bg-bitcoin text-gray-900 font-semibold' : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700';
       html += '<button class="px-3 py-1 text-xs rounded ' + cls + '" data-period="' + p + '">' + p + t('days') + '</button>';
     });
     html += '</div>';
-    html += '<div id="a-hits" class="' + cardCls + ' mb-4"><h3 class="font-semibold mb-3">' + t('pageviews') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
-    html += '<div id="a-pages" class="' + cardCls + ' mb-4"><h3 class="font-semibold mb-3">' + t('pages') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
+    html += '<div id="a-hits" class="' + cardCls + ' mb-4"><h3 class="font-semibold mb-3 text-white">' + t('pageviews') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
+    html += '<div id="a-pages" class="' + cardCls + ' mb-4"><h3 class="font-semibold mb-3 text-white">' + t('pages') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
     html += '<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">';
-    html += '<div id="a-browsers" class="' + cardCls + '"><h3 class="font-semibold mb-3">' + t('browsers') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
-    html += '<div id="a-systems" class="' + cardCls + '"><h3 class="font-semibold mb-3">' + t('systems') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
-    html += '<div id="a-locations" class="' + cardCls + '"><h3 class="font-semibold mb-3">' + t('locations') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
+    html += '<div id="a-browsers" class="' + cardCls + '"><h3 class="font-semibold mb-3 text-white">' + t('browsers') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
+    html += '<div id="a-systems" class="' + cardCls + '"><h3 class="font-semibold mb-3 text-white">' + t('systems') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
+    html += '<div id="a-locations" class="' + cardCls + '"><h3 class="font-semibold mb-3 text-white">' + t('locations') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
     html += '</div>';
     setContent(html);
 
@@ -328,7 +328,7 @@
   }
 
   function renderHitsChart(data) {
-    if (!data || !data.hits || !data.hits.length) return '<p class="text-zinc-500 text-sm">' + t('no_data') + '</p>';
+    if (!data || !data.hits || !data.hits.length) return '<p class="text-gray-500 text-sm">' + t('no_data') + '</p>';
     // Aggregate daily totals across all paths
     var dayMap = {};
     data.hits.forEach(function (h) {
@@ -339,19 +339,19 @@
       });
     });
     var days = Object.keys(dayMap).sort();
-    if (!days.length) return '<p class="text-zinc-500 text-sm">' + t('no_data') + '</p>';
+    if (!days.length) return '<p class="text-gray-500 text-sm">' + t('no_data') + '</p>';
     var maxVal = Math.max.apply(null, days.map(function (d) { return dayMap[d]; })) || 1;
     var totalViews = 0;
     days.forEach(function (d) { totalViews += dayMap[d]; });
 
-    var html = '<div class="text-sm text-zinc-400 mb-3">' + t('total') + ': <strong class="text-zinc-100">' + totalViews + '</strong></div>';
-    html += '<div class="flex items-end gap-1" style="height:100px">';
+    var html = '<div class="text-sm text-gray-400 mb-3">' + t('total') + ': <strong class="text-white">' + totalViews + '</strong></div>';
+    html += '<div class="flex items-end gap-1" style="height:120px">';
     days.forEach(function (d) {
-      var pct = Math.max((dayMap[d] / maxVal) * 100, 2);
+      var pct = Math.max((dayMap[d] / maxVal) * 100, 3);
       html += '<div class="flex-1 flex flex-col items-center">';
-      html += '<div class="text-xs text-zinc-500 mb-1">' + dayMap[d] + '</div>';
-      html += '<div class="w-full bg-amber-500/80 rounded-t" style="height:' + pct + '%" title="' + d + ': ' + dayMap[d] + '"></div>';
-      html += '<div class="text-xs text-zinc-600 mt-1 truncate w-full text-center">' + d.slice(5) + '</div>';
+      html += '<div class="text-xs text-gray-400 mb-1">' + dayMap[d] + '</div>';
+      html += '<div class="w-full rounded-t" style="height:' + pct + '%;background:var(--color-bitcoin)" title="' + d + ': ' + dayMap[d] + '"></div>';
+      html += '<div class="text-xs text-gray-600 mt-1 truncate w-full text-center">' + d.slice(5) + '</div>';
       html += '</div>';
     });
     html += '</div>';
@@ -359,7 +359,7 @@
   }
 
   function renderPagesTable(data) {
-    if (!data || !data.hits || !data.hits.length) return '<p class="text-zinc-500 text-sm">' + t('no_data') + '</p>';
+    if (!data || !data.hits || !data.hits.length) return '<p class="text-gray-500 text-sm">' + t('no_data') + '</p>';
     var html = '<div class="overflow-x-auto max-h-80"><table class="' + tableCls + '"><thead><tr>';
     html += '<th class="' + thCls + '">Path</th>';
     html += '<th class="' + thCls + ' text-right">Views</th>';
@@ -373,7 +373,7 @@
   }
 
   function renderStatsBar(data) {
-    if (!data || !data.stats || !data.stats.length) return '<p class="text-zinc-500 text-sm">' + t('no_data') + '</p>';
+    if (!data || !data.stats || !data.stats.length) return '<p class="text-gray-500 text-sm">' + t('no_data') + '</p>';
     var total = 0;
     data.stats.forEach(function (s) { total += (s.count || 0); });
     var html = '';
@@ -381,9 +381,9 @@
       var pct = total > 0 ? ((s.count / total) * 100).toFixed(1) : 0;
       var barW = total > 0 ? Math.max((s.count / total) * 100, 1) : 0;
       html += '<div class="flex items-center gap-2 mb-2">';
-      html += '<div class="w-20 text-xs text-zinc-300 truncate">' + esc(s.name || '-') + '</div>';
-      html += '<div class="flex-1 h-4 bg-zinc-700 rounded overflow-hidden"><div class="h-full bg-amber-500/70 rounded" style="width:' + barW + '%"></div></div>';
-      html += '<div class="text-xs text-zinc-500 w-16 text-right">' + s.count + ' <span class="text-zinc-600">(' + pct + '%)</span></div>';
+      html += '<div class="w-20 text-xs text-gray-300 truncate">' + esc(s.name || '-') + '</div>';
+      html += '<div class="flex-1 h-4 bg-gray-800 rounded overflow-hidden"><div class="h-full rounded" style="width:' + barW + '%;background:var(--color-bitcoin)"></div></div>';
+      html += '<div class="text-xs text-gray-500 w-16 text-right">' + s.count + ' <span class="text-gray-600">(' + pct + '%)</span></div>';
       html += '</div>';
     });
     return html;
@@ -393,7 +393,7 @@
 
   function loadUsers(page, search) {
     var html = '<div class="mb-4">';
-    html += '<input type="text" id="user-search" placeholder="' + t('search_ph') + '" value="' + esc(search) + '" class="bg-zinc-800 border border-zinc-600 rounded px-3 py-2 text-sm text-zinc-200 w-full max-w-sm focus:outline-none focus:border-amber-500">';
+    html += '<input type="text" id="user-search" placeholder="' + t('search_ph') + '" value="' + esc(search) + '" class="bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm text-gray-200 w-full max-w-sm focus:outline-none focus:border-bitcoin">';
     html += '</div>';
     html += '<div id="users-table">' + renderLoading() + '</div>';
     setContent(html);
@@ -423,7 +423,7 @@
   }
 
   function renderUsersTable(d, search) {
-    if (!d.users.length) return '<p class="text-zinc-500 py-8 text-center">' + t('no_data') + '</p>';
+    if (!d.users.length) return '<p class="text-gray-500 py-8 text-center">' + t('no_data') + '</p>';
     var html = '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
     html += '<th class="' + thCls + '">#</th>';
     html += '<th class="' + thCls + '">' + t('nickname') + '</th>';
@@ -436,9 +436,9 @@
     html += '</tr></thead><tbody>';
 
     d.users.forEach(function (u) {
-      html += '<tr class="hover:bg-zinc-800/50">';
-      html += '<td class="' + tdCls + ' font-mono text-zinc-500">' + u.id + '</td>';
-      html += '<td class="' + tdCls + '">' + (esc(u.displayName) || '<span class="text-zinc-600">-</span>') + '</td>';
+      html += '<tr class="hover:bg-gray-800/50">';
+      html += '<td class="' + tdCls + ' font-mono text-gray-500">' + u.id + '</td>';
+      html += '<td class="' + tdCls + '">' + (esc(u.displayName) || '<span class="text-gray-600">-</span>') + '</td>';
       html += '<td class="' + tdCls + ' font-mono text-xs">' + shortPubkey(u.pubkey) + '</td>';
       html += '<td class="' + tdCls + ' text-center">' + u.postCount + '</td>';
       html += '<td class="' + tdCls + ' text-center">' + u.commentCount + '</td>';
@@ -459,7 +459,7 @@
     if (pg.totalPages > 1) {
       html += '<div class="flex justify-center gap-2 mt-4">';
       if (pg.page > 1) html += '<button class="' + btnCls + '" data-upage="' + (pg.page - 1) + '">' + t('prev') + '</button>';
-      html += '<span class="text-sm text-zinc-400 self-center">' + t('page') + ' ' + pg.page + ' / ' + pg.totalPages + '</span>';
+      html += '<span class="text-sm text-gray-400 self-center">' + t('page') + ' ' + pg.page + ' / ' + pg.totalPages + '</span>';
       if (pg.page < pg.totalPages) html += '<button class="' + btnCls + '" data-upage="' + (pg.page + 1) + '">' + t('next') + '</button>';
       html += '</div>';
     }
@@ -497,10 +497,10 @@
       d.boards.forEach(function (b) {
         var name = LANG === 'en' ? b.nameEn : (LANG === 'ja' ? b.nameJa : b.nameKo);
         html += '<div class="' + cardCls + '">';
-        html += '<div class="font-semibold">' + esc(name) + ' <span class="text-zinc-500 text-xs">' + b.slug + '</span></div>';
-        html += '<div class="flex gap-4 mt-2 text-sm text-zinc-400">';
-        html += '<span>' + t('posts') + ': <strong class="text-zinc-200">' + b.postCount + '</strong></span>';
-        html += '<span>' + t('comments') + ': <strong class="text-zinc-200">' + b.commentCount + '</strong></span>';
+        html += '<div class="font-semibold">' + esc(name) + ' <span class="text-gray-500 text-xs">' + b.slug + '</span></div>';
+        html += '<div class="flex gap-4 mt-2 text-sm text-gray-400">';
+        html += '<span>' + t('posts') + ': <strong class="text-gray-200">' + b.postCount + '</strong></span>';
+        html += '<span>' + t('comments') + ': <strong class="text-gray-200">' + b.commentCount + '</strong></span>';
         html += '</div></div>';
       });
       html += '</div>';
@@ -518,11 +518,11 @@
         html += '<th class="' + thCls + '"></th>';
         html += '</tr></thead><tbody>';
         d.recentPosts.forEach(function (p) {
-          html += '<tr class="hover:bg-zinc-800/50">';
-          html += '<td class="' + tdCls + ' font-mono text-zinc-500">' + p.id + '</td>';
+          html += '<tr class="hover:bg-gray-800/50">';
+          html += '<td class="' + tdCls + ' font-mono text-gray-500">' + p.id + '</td>';
           html += '<td class="' + tdCls + ' text-xs">' + p.boardSlug + '</td>';
           html += '<td class="' + tdCls + '">';
-          if (p.isPinned) html += '<span class="text-amber-400 text-xs mr-1">[' + t('pinned') + ']</span>';
+          if (p.isPinned) html += '<span class="text-bitcoin text-xs mr-1">[' + t('pinned') + ']</span>';
           html += esc(p.title) + '</td>';
           html += '<td class="' + tdCls + ' text-xs">' + (esc(p.authorName) || shortPubkey(p.authorPubkey)) + '</td>';
           html += '<td class="' + tdCls + ' text-xs">' + fmtTimeAgo(p.createdAt) + '</td>';
@@ -533,7 +533,7 @@
         });
         html += '</tbody></table></div>';
       } else {
-        html += '<p class="text-zinc-500">' + t('no_data') + '</p>';
+        html += '<p class="text-gray-500">' + t('no_data') + '</p>';
       }
       html += '</div>';
 
@@ -550,8 +550,8 @@
         html += '<th class="' + thCls + '"></th>';
         html += '</tr></thead><tbody>';
         d.recentComments.forEach(function (c) {
-          html += '<tr class="hover:bg-zinc-800/50">';
-          html += '<td class="' + tdCls + ' font-mono text-zinc-500">' + c.id + '</td>';
+          html += '<tr class="hover:bg-gray-800/50">';
+          html += '<td class="' + tdCls + ' font-mono text-gray-500">' + c.id + '</td>';
           html += '<td class="' + tdCls + ' max-w-xs truncate">' + esc(c.bodyPreview) + '</td>';
           html += '<td class="' + tdCls + ' text-xs max-w-[120px] truncate">' + esc(c.postTitle) + '</td>';
           html += '<td class="' + tdCls + ' text-xs">' + (esc(c.authorName) || shortPubkey(c.authorPubkey)) + '</td>';
@@ -562,7 +562,7 @@
         });
         html += '</tbody></table></div>';
       } else {
-        html += '<p class="text-zinc-500">' + t('no_data') + '</p>';
+        html += '<p class="text-gray-500">' + t('no_data') + '</p>';
       }
       html += '</div>';
 
@@ -611,8 +611,8 @@
       html += '<th class="' + thCls + ' text-center">' + t('completed') + '</th>';
       html += '</tr></thead><tbody>';
       d.courses.forEach(function (c) {
-        html += '<tr class="hover:bg-zinc-800/50">';
-        html += '<td class="' + tdCls + '">' + esc(c.title) + ' <span class="text-zinc-500 text-xs">' + c.slug + '</span></td>';
+        html += '<tr class="hover:bg-gray-800/50">';
+        html += '<td class="' + tdCls + '">' + esc(c.title) + ' <span class="text-gray-500 text-xs">' + c.slug + '</span></td>';
         html += '<td class="' + tdCls + ' text-center">' + c.totalSteps + '</td>';
         html += '<td class="' + tdCls + ' text-center font-mono">' + c.completedUsers + '</td>';
         html += '</tr>';
@@ -640,7 +640,7 @@
 
       fetch(API + '/health').then(function (r) { return r.json(); }).then(function (h) {
         var el = document.getElementById('health-result');
-        if (el) el.innerHTML = '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span><span class="text-emerald-400 font-semibold">API OK</span><span class="text-zinc-500 text-sm ml-2">' + new Date(h.timestamp * 1000).toLocaleString() + '</span></div>';
+        if (el) el.innerHTML = '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span><span class="text-emerald-400 font-semibold">API OK</span><span class="text-gray-500 text-sm ml-2">' + new Date(h.timestamp * 1000).toLocaleString() + '</span></div>';
       }).catch(function () {
         var el = document.getElementById('health-result');
         if (el) el.innerHTML = '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span><span class="text-red-400 font-semibold">API DOWN</span></div>';
