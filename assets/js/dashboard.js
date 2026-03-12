@@ -246,28 +246,28 @@
   }
 
   function renderBarChart(data) {
+    var BAR_H = 100; // max bar height in px
     var maxVal = 1;
     data.forEach(function (d) { var v = d.posts + d.comments; if (v > maxVal) maxVal = v; });
-    var html = '<div class="flex items-end gap-2" style="height:140px">';
+    var html = '<div style="display:flex;align-items:flex-end;gap:6px;height:' + (BAR_H + 30) + 'px">';
     data.forEach(function (d) {
       var total = d.posts + d.comments;
-      var pctPosts = Math.max((d.posts / maxVal) * 100, 0);
-      var pctComments = Math.max((d.comments / maxVal) * 100, 0);
+      var hPosts = total > 0 ? Math.max(Math.round((d.posts / maxVal) * BAR_H), d.posts ? 4 : 0) : 0;
+      var hComments = total > 0 ? Math.max(Math.round((d.comments / maxVal) * BAR_H), d.comments ? 4 : 0) : 0;
       var dateLabel = d.date.slice(5);
-      html += '<div class="flex-1 flex flex-col items-center gap-1">';
-      html += '<div class="w-full flex flex-col items-center justify-end" style="height:110px">';
-      html += '<div class="text-xs text-gray-400 mb-1">' + total + '</div>';
-      html += '<div class="w-full flex flex-col items-stretch">';
-      html += '<div class="rounded-t" style="height:' + Math.max(pctPosts, d.posts ? 3 : 0) + 'px;background:#f7931a" title="' + t('posts') + ': ' + d.posts + '"></div>';
-      html += '<div class="rounded-b" style="height:' + Math.max(pctComments, d.comments ? 3 : 0) + 'px;background:#ffab40" title="' + t('comments') + ': ' + d.comments + '"></div>';
-      html += '</div></div>';
-      html += '<div class="text-xs text-gray-500">' + dateLabel + '</div>';
+      html += '<div style="flex:1;display:flex;flex-direction:column;align-items:center">';
+      html += '<div class="text-xs text-gray-400" style="margin-bottom:4px">' + total + '</div>';
+      html += '<div style="width:100%;display:flex;flex-direction:column;margin-top:auto">';
+      html += '<div style="height:' + hPosts + 'px;background:#f7931a;border-radius:3px 3px 0 0" title="' + t('posts') + ': ' + d.posts + '"></div>';
+      html += '<div style="height:' + hComments + 'px;background:#ffab40;border-radius:0 0 3px 3px" title="' + t('comments') + ': ' + d.comments + '"></div>';
+      html += '</div>';
+      html += '<div class="text-xs text-gray-500" style="margin-top:4px">' + dateLabel + '</div>';
       html += '</div>';
     });
     html += '</div>';
-    html += '<div class="flex gap-4 mt-3 text-xs text-gray-500">';
-    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded inline-block" style="background:#f7931a"></span>' + t('posts') + '</span>';
-    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded inline-block" style="background:#ffab40"></span>' + t('comments') + '</span>';
+    html += '<div style="display:flex;gap:16px;margin-top:12px" class="text-xs text-gray-500">';
+    html += '<span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:3px;background:#f7931a;display:inline-block"></span>' + t('posts') + '</span>';
+    html += '<span style="display:flex;align-items:center;gap:4px"><span style="width:12px;height:12px;border-radius:3px;background:#ffab40;display:inline-block"></span>' + t('comments') + '</span>';
     html += '</div>';
     return html;
   }
@@ -352,14 +352,17 @@
     var totalViews = 0;
     days.forEach(function (d) { totalViews += dayMap[d]; });
 
+    var BAR_H = 100;
     var html = '<div class="text-sm text-gray-400 mb-3">' + t('total') + ': <strong class="text-white">' + totalViews + '</strong></div>';
-    html += '<div class="flex items-end gap-1" style="height:120px">';
+    html += '<div style="display:flex;align-items:flex-end;gap:4px;height:' + (BAR_H + 40) + 'px">';
     days.forEach(function (d) {
-      var pct = Math.max((dayMap[d] / maxVal) * 100, 3);
-      html += '<div class="flex-1 flex flex-col items-center">';
-      html += '<div class="text-xs text-gray-400 mb-1">' + dayMap[d] + '</div>';
-      html += '<div class="w-full rounded-t" style="height:' + pct + '%;background:#f7931a" title="' + d + ': ' + dayMap[d] + '"></div>';
-      html += '<div class="text-xs text-gray-600 mt-1 truncate w-full text-center">' + d.slice(5) + '</div>';
+      var barH = Math.max(Math.round((dayMap[d] / maxVal) * BAR_H), dayMap[d] ? 4 : 0);
+      html += '<div style="flex:1;display:flex;flex-direction:column;align-items:center">';
+      html += '<div style="font-size:11px;color:#9ca3af;margin-bottom:4px">' + dayMap[d] + '</div>';
+      html += '<div style="width:100%;margin-top:auto">';
+      html += '<div style="height:' + barH + 'px;background:#f7931a;border-radius:3px 3px 0 0;min-width:8px" title="' + d + ': ' + dayMap[d] + '"></div>';
+      html += '</div>';
+      html += '<div style="font-size:10px;color:#6b7280;margin-top:4px;text-align:center;white-space:nowrap">' + d.slice(5) + '</div>';
       html += '</div>';
     });
     html += '</div>';
