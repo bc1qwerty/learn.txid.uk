@@ -1849,37 +1849,8 @@ body.theme-transition *::after {
 }
 
 /* ============================================================
-   15. PAGE LAYOUT
+   15. (reserved)
    ============================================================ */
-.page-layout {
-  margin-left: 16.5rem;
-  margin-right: 16.5rem;
-  padding: 0 1rem;
-  transition: margin-left 0.3s ease, margin-right 0.3s ease;
-  /* Independent scroll container — keeps scrollbar left of fixed sidebar */
-  height: calc(100vh - 4rem);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.08) transparent;
-}
-
-.page-layout::-webkit-scrollbar { width: 6px; }
-.page-layout::-webkit-scrollbar-track { background: transparent; }
-.page-layout::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
-
-body.sidebar-collapsed .page-layout {
-  margin-left: 5rem;
-}
-
-body.sidebar-right-collapsed .page-layout {
-  margin-right: 2rem;
-}
-
-.content-area {
-  min-width: 0;
-  max-width: 1200px;
-  margin: 0 auto;
-}
 
 /* ============================================================
    16. HERO SECTION
@@ -1975,79 +1946,15 @@ body.sidebar-right-collapsed .page-layout {
 
 /* Desktop >= 1200px */
 @media (min-width: 1200px) {
-  body {
-    overflow: hidden; /* body scroll disabled — .page-layout handles scrolling */
-  }
   .sidebar-overlay {
     display: none !important;
   }
 }
 
-/* Tablet & mobile: sidebars overlay content, no content push */
+/* Tablet & mobile */
 @media (max-width: 1199px) {
-  .page-layout {
-    height: auto;
-    overflow: visible;
-  }
-
-  .sidebar-column {
-    z-index: 40;
-  }
-
-  /* Left sidebar: slide off-screen like right sidebar (no avatar sticking out) */
-  .sidebar-column.sidebar-left.collapsed {
-    width: 15rem;
-    transform: translateX(-15rem);
-  }
-
-  /* Keep content layout intact — sidebar slides as one unit */
-  .sidebar-column.sidebar-left.collapsed .sidebar {
-    overflow-y: auto;
-    padding: 1rem;
-    align-items: stretch;
-  }
-
-  .sidebar-column.sidebar-left.collapsed .sidebar > *:not(.sidebar-profile) {
-    opacity: 1;
-    max-height: none;
-    margin-bottom: 1.25rem;
-    pointer-events: auto;
-    transition: none;
-  }
-
-  .sidebar-column.sidebar-left.collapsed .sidebar-profile {
-    cursor: default;
-    gap: 0.25rem;
-  }
-
-  .sidebar-column.sidebar-left.collapsed .sidebar-profile .sidebar-name,
-  .sidebar-column.sidebar-left.collapsed .sidebar-profile .sidebar-tagline,
-  .sidebar-column.sidebar-left.collapsed .sidebar-profile .sidebar-clock {
-    opacity: 1;
-    max-height: none;
-    pointer-events: auto;
-    transition: none;
-  }
-
-  .sidebar-column.sidebar-left.collapsed .sidebar-toggle {
-    right: -1.5rem;
-  }
-
-  .page-layout {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-
-  body.sidebar-collapsed .page-layout {
-    margin-left: 1rem;
-  }
-
   .scroll-top {
     right: 1.5rem;
-  }
-
-  body.sidebar-right-collapsed .page-layout {
-    margin-right: 1rem;
   }
 }
 
