@@ -639,6 +639,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (iconOpen) iconOpen.classList.remove('hidden');
         if (iconClose) iconClose.classList.add('hidden');
         toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
     }
 
     function openMenu() {
@@ -647,6 +648,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (iconOpen) iconOpen.classList.add('hidden');
         if (iconClose) iconClose.classList.remove('hidden');
         toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
     }
 
     toggle.addEventListener('click', function() {

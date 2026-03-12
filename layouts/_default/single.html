@@ -45,7 +45,7 @@
         {{ range $j, $_ := seq $totalSteps }}
         <div class="w-2 h-2 rounded-full transition-colors duration-300 {{ if eq (add $j 1) $stepNum }}bg-bitcoin{{ else if lt (add $j 1) $stepNum }}bg-bitcoin/40{{ else }}bg-gray-700{{ end }}" data-step-idx="{{ $j }}"></div>
         {{ end }}
-        <span class="text-xs text-gray-500 ml-1.5">{{ $stepNum }}/{{ $totalSteps }}</span>
+        <span class="text-xs text-gray-400 ml-1.5">{{ $stepNum }}/{{ $totalSteps }}</span>
       </div>
     </div>
   </div>
@@ -61,7 +61,7 @@
     <a href="{{ .Permalink }}" class="hover:text-gray-400 transition-colors">{{ .Title }}</a>
     <span aria-hidden="true">/</span>
     {{ end }}
-    <span class="text-gray-500" aria-current="page">{{ .Title }}</span>
+    <span class="text-gray-400" aria-current="page">{{ .Title }}</span>
   </nav>
   {{ end }}
 

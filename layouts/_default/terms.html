@@ -13,13 +13,13 @@
     {{ range $terms }}
     <a href="{{ .Page.Permalink }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-gray-800/50 hover:border-bitcoin/30 bg-gray-900/30 hover:bg-gray-900/60 transition-all group">
       <span class="text-sm font-medium text-gray-300 group-hover:text-bitcoin transition-colors">{{ .Page.Title }}</span>
-      <span class="text-xs px-1.5 py-0.5 rounded-full bg-gray-800 text-gray-500">{{ .Count }}</span>
+      <span class="text-xs px-1.5 py-0.5 rounded-full bg-gray-800 text-gray-400">{{ .Count }}</span>
     </a>
     {{ end }}
   </div>
   {{ else }}
   <div class="py-16 text-center">
-    <p class="text-lg text-gray-500">해당하는 콘텐츠가 없습니다.</p>
+    <p class="text-lg text-gray-400">해당하는 콘텐츠가 없습니다.</p>
   </div>
   {{ end }}
 </div>

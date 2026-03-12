@@ -2,7 +2,7 @@
 <!-- 서브사이트 앱바 (fixed bottom) -->
 <style>
 .learn-appbar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;padding:12px 20px;border-top:1px solid #30363d;background:#161b22;position:fixed;bottom:0;left:0;right:0;z-index:90;backdrop-filter:blur(10px)}
-.learn-appbar a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 12px;border:1px solid #30363d;border-radius:8px;text-decoration:none;color:#8b949e;font-size:.62rem;font-family:var(--font-sans);background:#0d1117;min-width:56px;transition:all .2s}
+.learn-appbar a{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 12px;border:1px solid #30363d;border-radius:8px;text-decoration:none;color:#8b949e;font-size:.7rem;font-family:var(--font-sans);background:#0d1117;min-width:56px;transition:all .2s}
 .learn-appbar a:hover,.learn-appbar a.active{border-color:#f7931a;color:#f7931a}
 @media(max-width:768px){.learn-appbar{display:none !important;}}
 .learn-appbar a svg{flex-shrink:0}
@@ -26,13 +26,13 @@ body{padding-bottom:90px}
       <!-- Brand -->
       <div>
         <a href="{{ .Site.LanguagePrefix }}/" class="logo-unified">txid.uk</a>
-        <p class="mt-2 text-sm text-gray-500">{{ i18n "site_desc" | safeHTML }}</p>
+        <p class="mt-2 text-sm text-gray-400">{{ i18n "site_desc" | safeHTML }}</p>
       </div>
 
       <!-- Navigation -->
       <div>
         <h4 class="text-sm font-semibold text-gray-300 mb-3">{{ i18n "nav_navigate" }}</h4>
-        <ul class="space-y-2 text-sm text-gray-500">
+        <ul class="space-y-2 text-sm text-gray-400">
           <li><a href="{{ .Site.LanguagePrefix }}/learn/" class="hover:text-gray-300 transition-colors">{{ i18n "nav_study" }}</a></li>
           <li><a href="{{ .Site.LanguagePrefix }}/ideas/" class="hover:text-gray-300 transition-colors">{{ i18n "nav_ideas" }}</a></li>
           <li><a href="{{ .Site.LanguagePrefix }}/people/" class="hover:text-gray-300 transition-colors">{{ i18n "nav_people" }}</a></li>
@@ -44,7 +44,7 @@ body{padding-bottom:90px}
       <!-- Topics -->
       <div>
         <h4 class="text-sm font-semibold text-gray-300 mb-3">{{ i18n "nav_topics" }}</h4>
-        <ul class="space-y-2 text-sm text-gray-500">
+        <ul class="space-y-2 text-sm text-gray-400">
           <li><a href="{{ .Site.LanguagePrefix }}/start/bitcoin/" class="hover:text-gray-300 transition-colors">{{ i18n "topic_bitcoin" }}</a></li>
           <li><a href="{{ .Site.LanguagePrefix }}/start/austrian-economics/" class="hover:text-gray-300 transition-colors">{{ i18n "topic_austrian_economics" }}</a></li>
           <li><a href="{{ .Site.LanguagePrefix }}/start/libertarianism/" class="hover:text-gray-300 transition-colors">{{ i18n "topic_libertarianism" }}</a></li>

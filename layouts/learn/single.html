@@ -6,7 +6,7 @@
     <span class="mx-1.5">/</span>
     <a href="{{ "/learn/" | relLangURL }}" class="hover:text-gray-400 transition-colors">공부방</a>
     <span class="mx-1.5">/</span>
-    <span class="text-gray-500">{{ .Title }}</span>
+    <span class="text-gray-400">{{ .Title }}</span>
   </nav>
 
   <!-- Header -->
@@ -22,7 +22,7 @@
 
     <!-- Progress bar -->
     <div class="learn-path-progress mt-4" data-path-id="{{ .RelPermalink }}" data-total="{{ len .Params.steps }}">
-      <div class="flex items-center justify-between text-xs text-gray-500 mb-1.5">
+      <div class="flex items-center justify-between text-xs text-gray-400 mb-1.5">
         <span class="learn-progress-label">진행률</span>
         <span class="learn-progress-count">0/{{ len .Params.steps }}</span>
       </div>
@@ -56,7 +56,7 @@
         <h3 class="text-lg font-semibold text-white group-hover:text-bitcoin transition-colors mb-1">
           {{ $step.title }}
         </h3>
-        <p class="text-sm text-gray-500">{{ $step.summary }}</p>
+        <p class="text-sm text-gray-400">{{ $step.summary }}</p>
       </a>
     </div>
     {{ end }}

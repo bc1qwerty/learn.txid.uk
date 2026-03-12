@@ -41,7 +41,7 @@
         {{ range $i, $_ := seq $totalSteps }}
         <div class="w-2 h-2 rounded-full {{ if eq (add $i 1) $stepNum }}bg-bitcoin{{ else if lt (add $i 1) $stepNum }}bg-bitcoin/40{{ else }}bg-gray-700{{ end }}"></div>
         {{ end }}
-        <span class="text-xs text-gray-500 ml-1.5">{{ $stepNum }}/{{ $totalSteps }}</span>
+        <span class="text-xs text-gray-400 ml-1.5">{{ $stepNum }}/{{ $totalSteps }}</span>
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@
     <span class="mx-1.5">/</span>
     <a href="/ideas/" class="hover:text-gray-400 transition-colors">개념</a>
     <span class="mx-1.5">/</span>
-    <span class="text-gray-500">{{ .Title }}</span>
+    <span class="text-gray-400">{{ .Title }}</span>
   </nav>
   {{ end }}
 

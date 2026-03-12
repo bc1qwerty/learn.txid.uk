@@ -13,7 +13,7 @@
   <div class="flex flex-wrap gap-2 mb-8" id="tagFilter">
     <button class="tag-chip tag-chip-active px-3 py-1.5 rounded-full text-xs font-medium border border-gray-700 bg-gray-800 text-white transition-colors" data-tag="all">전체</button>
     {{ range $allTags.Alphabetical }}
-    <button class="tag-chip px-3 py-1.5 rounded-full text-xs font-medium border border-gray-800 text-gray-500 hover:text-gray-300 hover:border-gray-600 transition-colors" data-tag="{{ .Page.Title }}">{{ .Page.Title }}</button>
+    <button class="tag-chip px-3 py-1.5 rounded-full text-xs font-medium border border-gray-800 text-gray-400 hover:text-gray-300 hover:border-gray-600 transition-colors" data-tag="{{ .Page.Title }}">{{ .Page.Title }}</button>
     {{ end }}
   </div>
   {{ end }}
@@ -32,7 +32,7 @@
       </div>
       <h3 class="text-lg font-semibold text-white mb-1 group-hover:text-bitcoin transition-colors">{{ .Title }}</h3>
       {{ with .Description }}
-      <p class="text-sm text-gray-500 line-clamp-2">{{ . }}</p>
+      <p class="text-sm text-gray-400 line-clamp-2">{{ . }}</p>
       {{ end }}
     </a>
     {{ end }}

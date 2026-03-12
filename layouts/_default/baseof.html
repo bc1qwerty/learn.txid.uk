@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#09090b">
   <!-- CSP: unsafe-inline required because Hugo --minify changes inline script content (breaking hash matching).
        Domain whitelist still protects against unauthorized external script injection. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://apps.txid.uk https://api.txid.uk https://gc.zgo.at https://www.googletagmanager.com; connect-src 'self' https://api.txid.uk https://mempool.space https://gc-proxy.seowondeuk.workers.dev https://txid.goatcounter.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://apps.txid.uk https://api.txid.uk https://gc.zgo.at https://www.googletagmanager.com; connect-src 'self' https://api.txid.uk https://mempool.space https://gc-proxy.seowondeuk.workers.dev https://txid.goatcounter.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
 
   <!-- Fonts -->

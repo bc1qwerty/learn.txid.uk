@@ -21,7 +21,7 @@
     <a href="{{ .Permalink }}" class="group block p-6 rounded-xl border border-gray-800/50 hover:border-bitcoin/30 bg-gray-900/30 hover:bg-gray-900/60 transition-all">
       <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-bitcoin transition-colors">{{ .Title }}</h3>
       {{ with .Description }}
-      <p class="text-sm text-gray-500">{{ . }}</p>
+      <p class="text-sm text-gray-400">{{ . }}</p>
       {{ end }}
       <span class="inline-block mt-3 text-xs text-gray-600">{{ len .Pages }}개 항목</span>
     </a>
@@ -47,7 +47,7 @@
         <a href="{{ .Permalink }}" class="hover:text-bitcoin transition-colors">{{ .Title }}</a>
       </h3>
       {{ with .Description }}
-      <p class="text-sm text-gray-500">{{ . }}</p>
+      <p class="text-sm text-gray-400">{{ . }}</p>
       {{ end }}
       {{ if .Date.IsZero | not }}
       <time datetime="{{ .Date.Format "2006-01-02" }}" class="block mt-2 text-xs text-gray-600">{{ .Date.Format "2006.01.02" }}</time>
@@ -57,7 +57,7 @@
   </div>
   {{ else }}
   <div class="py-16 text-center">
-    <p class="text-lg text-gray-500">해당하는 콘텐츠가 없습니다.</p>
+    <p class="text-lg text-gray-400">해당하는 콘텐츠가 없습니다.</p>
   </div>
   {{ end }}
 </div>
