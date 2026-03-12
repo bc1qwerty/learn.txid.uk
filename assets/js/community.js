@@ -316,7 +316,7 @@
             </div>
           </div>
           <div class="flex items-center gap-2 text-xs text-gray-600 flex-shrink-0">
-            <span>${esc(p.author.displayName || shortKey(p.author.pubkey))}</span>
+            <span class="flex items-center gap-1">${authorAvatar(p.author)} ${esc(p.author.displayName || shortKey(p.author.pubkey))}${p.author.isAdmin ? ' <span class="text-[10px] px-1 py-0.5 rounded bg-bitcoin/20 text-bitcoin font-bold leading-none">ADMIN</span>' : ''}</span>
             <span>${timeAgo(p.createdAt)}</span>
           </div>
         </div>
@@ -365,7 +365,7 @@
           <div class="flex-1 min-w-0">
             <h1 class="text-xl sm:text-2xl font-bold text-white mb-2">${esc(post.title)}</h1>
             <div class="flex items-center gap-3 text-xs text-gray-500 mb-6">
-              <span>${esc(post.author.displayName || shortKey(post.author.pubkey))}</span>
+              <span class="flex items-center gap-1.5">${authorAvatar(post.author)} <span class="${post.author.isAdmin ? 'text-bitcoin font-semibold' : ''}">${esc(post.author.displayName || shortKey(post.author.pubkey))}</span>${post.author.isAdmin ? ' <span class="text-[10px] px-1 py-0.5 rounded bg-bitcoin/20 text-bitcoin font-bold leading-none">ADMIN</span>' : ''}</span>
               <span>${timeAgo(post.createdAt)}</span>
               ${isOwner ? `<a href="#${slug}/${postId}/edit" class="hover:text-bitcoin">${t('edit')}</a>` : ''}
               ${isOwner || isAdmin ? `<button class="hover:text-red-400" id="delete-post-btn">${t('delete')}</button>` : ''}
@@ -533,6 +533,11 @@
     });
   }
 
+  // Avatar SVGs
+  const avatarDefault = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="13" fill="#21262d" stroke="#30363d" stroke-width="1"/><circle cx="14" cy="11" r="4" fill="#6e7681"/><path d="M7 23c0-4 3.5-7 7-7s7 3 7 7" fill="#6e7681"/></svg>`;
+  const avatarAdmin = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="13" fill="#2d1b00" stroke="#f7931a" stroke-width="1.5"/><circle cx="14" cy="12" r="4" fill="#f7931a"/><path d="M7 24c0-4 3.5-7 7-7s7 3 7 7" fill="#f7931a"/><path d="M8 7l2 3 4-4 4 4 2-3 0 4H8z" fill="#f7931a"/></svg>`;
+  function authorAvatar(author) { return author.isAdmin ? avatarAdmin : avatarDefault; }
+
   function commentHtml(c, slug, postId) {
     const isOwner = currentUser && currentUser.pubkey === c.author.pubkey;
     const isAdmin = currentUser && currentUser.isAdmin;
@@ -543,6 +548,10 @@
       ? 'ml-8 pl-3 border-l-2 border-bitcoin/20'
       : 'p-3 rounded-lg border border-gray-800/40 bg-gray-900/20';
 
+    const authorIsAdmin = c.author.isAdmin;
+    const nameClass = authorIsAdmin ? 'font-semibold text-bitcoin' : 'font-semibold text-gray-400 hover:text-bitcoin';
+    const adminBadge = authorIsAdmin ? '<span class="text-[10px] px-1 py-0.5 rounded bg-bitcoin/20 text-bitcoin font-bold leading-none">ADMIN</span>' : '';
+
     let html = `
       <div class="mb-2 ${frame}">
         <div class="flex items-start gap-2">
@@ -551,9 +560,11 @@
             <span class="text-xs font-mono text-gray-500" id="cscore-${c.id}">${c.voteScore}</span>
             <button class="comm-cv comm-vote-sm" data-cid="${c.id}" data-v="-1">${svgDown}</button>
           </div>
+          <div class="flex-shrink-0 mt-0.5">${authorAvatar(c.author)}</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 text-xs text-gray-500 mb-1">
-              <a href="#user/${c.author.pubkey}" class="font-semibold text-gray-400 hover:text-bitcoin">${esc(c.author.displayName || shortKey(c.author.pubkey))}</a>
+              <a href="#user/${c.author.pubkey}" class="${nameClass}">${esc(c.author.displayName || shortKey(c.author.pubkey))}</a>
+              ${adminBadge}
               <span>${timeAgo(c.createdAt)}</span>
               ${!isReply && currentUser ? `<button class="hover:text-bitcoin comm-reply-btn" data-cid="${c.id}">${t('reply')}</button>` : ''}
               ${isOwner || isAdmin ? `<button class="hover:text-red-400 comm-del-comment" data-cid="${c.id}">${t('delete')}</button>` : ''}
