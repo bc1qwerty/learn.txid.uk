@@ -1,6 +1,6 @@
 baseURL = 'https://learn.txid.uk/'
 enableRobotsTXT = true
-defaultContentLanguage = 'ko'
+defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = true
 title = 'TXID'
 
@@ -8,7 +8,7 @@ title = 'TXID'
   [languages.ko]
     languageCode = 'ko-KR'
     title = 'txid.uk - 비트코인 트랜잭션 ID 학습 플랫폼'
-    weight = 1
+    weight = 2
     contentDir = 'content/ko'
     [languages.ko.params]
       description = '비트코인의 진짜 의미를 이해하고 싶다면. 오스트리아 경제학과 자유주의 사상으로 비트코인의 본질을 풀어내는 한국어 학습 사이트.'
@@ -43,8 +43,8 @@ title = 'TXID'
 
   [languages.en]
     languageCode = 'en'
-    title = 'TXID'
-    weight = 2
+    title = 'txid.uk — Learn Bitcoin through Austrian Economics'
+    weight = 1
     contentDir = 'content/en'
     [languages.en.params]
       description = 'Understanding Bitcoin through Austrian Economics and libertarian philosophy.'
@@ -117,7 +117,7 @@ publishDir = 'public'
 enableGitInfo = true
 
 [params]
-  description = '비트코인의 진짜 의미를 이해하고 싶다면. 오스트리아 경제학과 자유주의 사상으로 비트코인의 본질을 풀어내는 한국어 학습 사이트.'
+  description = 'Understanding Bitcoin through Austrian Economics and libertarian philosophy. Learn the true meaning of sound money, free markets, and individual sovereignty.'
   author = 'txid'
   email = 'bc1qwerty@pm.me'
   lightningAddress = 'bc1qwerty@walletofsatoshi.com'
@@ -128,18 +128,18 @@ enableGitInfo = true
 
 [params.hero]
   name = '비트선사'
-  tagline = '비트코인, 오스트리아 경제학, 그리고 자유.'
+  tagline = 'Bitcoin, Austrian Economics, and Freedom.'
   sidebarTagline = 'fullnoder, solo miner | ₿itcoin Only'
   location = 'Seoul'
   timezone = 'Asia/Seoul'
 
 [params.now]
-  title = '요즘'
+  title = 'Now'
   updated = '2026-03'
   items = [
-    'txid.uk 사이트 구축',
-    'AI에 대해 배우고, 흐름 따라잡기',
-    '비트코인, 오스트리아 경제학, 자유주의 공부',
+    'Building txid.uk',
+    'Learning AI and keeping up with the trend',
+    'Studying Bitcoin, Austrian Economics, and Libertarianism',
   ]
 
 [params.now_en]
@@ -148,6 +148,14 @@ enableGitInfo = true
     'Building txid.uk',
     'Learning AI and keeping up with the trend',
     'Studying Bitcoin, Austrian Economics, and Libertarianism',
+  ]
+
+[params.now_ko]
+  updated = '2026-03'
+  items = [
+    'txid.uk 사이트 구축',
+    'AI에 대해 배우고, 흐름 따라잡기',
+    '비트코인, 오스트리아 경제학, 자유주의 공부',
   ]
 
 [params.now_ja]
@@ -199,13 +207,13 @@ enableGitInfo = true
 
 
 [params.reading]
-  name = '법'
+  name = 'The Law'
   cover = '/images/books/법.jpg'
   slug = 'the-law'
 
 [params.blog]
-  title = '최근 게시물'
-  moreText = '전체 보기'
+  title = 'Recent Posts'
+  moreText = 'View All'
   moreURL = '/blog/'
   maxPosts = 3
 
@@ -458,8 +466,8 @@ enableGitInfo = true
   author = '루트비히 폰 미제스'
 
 [params.concepts]
-  title = '개념'
-  moreText = '전체 보기'
+  title = 'Concepts'
+  moreText = 'View All'
   moreURL = '/ideas/'
   maxPosts = 6
 
@@ -475,23 +483,23 @@ enableGitInfo = true
 
 [menu]
   [[menu.main]]
-    name = '공부방'
+    name = 'Learn'
     url = '/learn/'
     weight = 1
   [[menu.main]]
-    name = '개념'
+    name = 'Ideas'
     url = '/ideas/'
     weight = 2
   [[menu.main]]
-    name = '인물'
+    name = 'People'
     url = '/people/'
     weight = 3
   [[menu.main]]
-    name = '추천도서'
+    name = 'Books'
     url = '/books/'
     weight = 4
   [[menu.main]]
-    name = '블로그'
+    name = 'Blog'
     url = '/blog/'
     weight = 6
   [[menu.main]]

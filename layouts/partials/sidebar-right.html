@@ -15,6 +15,7 @@
 
 <!-- Now -->
 {{ $now := site.Params.now }}
+{{ if eq .Site.Language.Lang "ko" }}{{ $now = site.Params.now_ko }}{{ end }}
 {{ if eq .Site.Language.Lang "en" }}{{ $now = site.Params.now_en }}{{ end }}
 {{ if eq .Site.Language.Lang "ja" }}{{ $now = site.Params.now_ja }}{{ end }}
 {{ with $now }}

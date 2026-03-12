@@ -1,6 +1,4 @@
-```markdown
 ---
 title: "TXID.uk"
-description: "If you want to understand the true meaning of Bitcoin. A Korean learning site that unravels the essence of Bitcoin through Austrian economics and libertarian thought."
+description: "Understanding Bitcoin through Austrian Economics and libertarian philosophy. Learn the true meaning of sound money, free markets, and individual sovereignty."
 ---
-```
