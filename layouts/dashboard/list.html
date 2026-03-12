@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+  <div id="dashboard-app" data-lang="{{ .Lang }}">Loading...</div>
+</div>
+{{ $js := resources.Get "js/dashboard.js" | fingerprint }}
+{{ with $js }}<script src="{{ .RelPermalink }}"></script>{{ end }}
+{{ end }}

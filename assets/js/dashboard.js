@@ -1,0 +1,655 @@
+/**
+ * dashboard.js — Admin Dashboard SPA for learn.txid.uk/dashboard/
+ * Hash-based routing: # (overview), #analytics, #users, #content, #courses, #system
+ */
+(function () {
+  'use strict';
+
+  var API = 'https://api.txid.uk';
+  var app = document.getElementById('dashboard-app');
+  if (!app) return;
+
+  var LANG = app.dataset.lang || 'ko';
+
+  // ─── i18n ───
+  var T = {
+    ko: {
+      dashboard: '대시보드', overview: '개요', analytics: '통계', users: '유저',
+      content: '콘텐츠', courses: '코스', system: '시스템',
+      total: '전체', today: '오늘', active_sessions: '활성 세션',
+      posts: '게시글', comments: '댓글', new_users: '신규 가입',
+      weekly_activity: '7일 활동', date: '날짜',
+      login_required: '로그인이 필요합니다.', no_access: '관리자 권한이 필요합니다.',
+      loading: '로딩 중...', error: '데이터를 불러올 수 없습니다.',
+      search: '검색', search_ph: '닉네임 또는 pubkey 검색',
+      admin: '관리자', user: '일반', set_admin: '관리자 지정', remove_admin: '관리자 해제',
+      confirm_admin: '관리자 권한을 변경하시겠습니까?',
+      pubkey: 'Pubkey', nickname: '닉네임', joined: '가입일', last_login: '마지막 로그인',
+      post_count: '게시글', comment_count: '댓글',
+      board: '게시판', recent_posts: '최근 게시글', recent_comments: '최근 댓글',
+      delete: '삭제', pin: '고정', unpin: '해제', confirm_delete: '삭제하시겠습니까?',
+      author: '작성자', title: '제목', body: '내용',
+      course: '코스', completed: '완료', steps: '단계', learners: '학습자',
+      total_pages_read: '총 읽은 페이지', active_learners: '활성 학습자',
+      uptime: '가동 시간', db_size: 'DB 크기', node_ver: 'Node 버전',
+      memory: '메모리', rss: 'RSS', heap: 'Heap',
+      period: '기간', days: '일', visitors: '방문자', pageviews: '페이지뷰',
+      pages: '인기 페이지', browsers: '브라우저', systems: 'OS', locations: '국가', referrers: '레퍼러',
+      prev: '이전', next: '다음', page: '페이지',
+      no_data: '데이터가 없습니다.',
+      pinned: '고정됨',
+    },
+    en: {
+      dashboard: 'Dashboard', overview: 'Overview', analytics: 'Analytics', users: 'Users',
+      content: 'Content', courses: 'Courses', system: 'System',
+      total: 'Total', today: 'Today', active_sessions: 'Active Sessions',
+      posts: 'Posts', comments: 'Comments', new_users: 'New Users',
+      weekly_activity: '7-Day Activity', date: 'Date',
+      login_required: 'Login required.', no_access: 'Admin access required.',
+      loading: 'Loading...', error: 'Failed to load data.',
+      search: 'Search', search_ph: 'Search by nickname or pubkey',
+      admin: 'Admin', user: 'User', set_admin: 'Set Admin', remove_admin: 'Remove Admin',
+      confirm_admin: 'Change admin status?',
+      pubkey: 'Pubkey', nickname: 'Nickname', joined: 'Joined', last_login: 'Last Login',
+      post_count: 'Posts', comment_count: 'Comments',
+      board: 'Board', recent_posts: 'Recent Posts', recent_comments: 'Recent Comments',
+      delete: 'Delete', pin: 'Pin', unpin: 'Unpin', confirm_delete: 'Delete this?',
+      author: 'Author', title: 'Title', body: 'Content',
+      course: 'Course', completed: 'Completed', steps: 'Steps', learners: 'Learners',
+      total_pages_read: 'Total Pages Read', active_learners: 'Active Learners',
+      uptime: 'Uptime', db_size: 'DB Size', node_ver: 'Node Version',
+      memory: 'Memory', rss: 'RSS', heap: 'Heap',
+      period: 'Period', days: 'days', visitors: 'Visitors', pageviews: 'Pageviews',
+      pages: 'Top Pages', browsers: 'Browsers', systems: 'OS', locations: 'Countries', referrers: 'Referrers',
+      prev: 'Prev', next: 'Next', page: 'Page',
+      no_data: 'No data available.',
+      pinned: 'Pinned',
+    },
+  };
+
+  function t(key) { return (T[LANG] || T.ko)[key] || (T.ko)[key] || key; }
+
+  // ─── API Helper ───
+  function api(path, opts) {
+    opts = opts || {};
+    var url = API + path;
+    var fetchOpts = {
+      method: opts.method || 'GET',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+    };
+    if (opts.body) fetchOpts.body = JSON.stringify(opts.body);
+    return fetch(url, fetchOpts).then(function (r) {
+      if (!r.ok) return r.json().then(function (e) { return Promise.reject(e); });
+      return r.json();
+    });
+  }
+
+  // ─── Utilities ───
+  function esc(s) {
+    if (!s) return '';
+    var d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+  }
+  function shortPubkey(pk) { return pk ? pk.slice(0, 8) + '...' : ''; }
+  function fmtDate(ts) {
+    if (!ts) return '-';
+    var d = new Date(ts * 1000);
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function fmtTime(ts) {
+    if (!ts) return '-';
+    var d = new Date(ts * 1000);
+    return fmtDate(ts) + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  }
+  function fmtBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1048576) return (b / 1024).toFixed(1) + ' KB';
+    return (b / 1048576).toFixed(1) + ' MB';
+  }
+  function fmtDuration(sec) {
+    sec = Math.floor(sec);
+    var d = Math.floor(sec / 86400);
+    var h = Math.floor((sec % 86400) / 3600);
+    var m = Math.floor((sec % 3600) / 60);
+    if (d > 0) return d + 'd ' + h + 'h';
+    if (h > 0) return h + 'h ' + m + 'm';
+    return m + 'm';
+  }
+  function fmtTimeAgo(ts) {
+    var diff = Math.floor(Date.now() / 1000) - ts;
+    if (diff < 60) return diff + (LANG === 'en' ? 's ago' : '초 전');
+    if (diff < 3600) return Math.floor(diff / 60) + (LANG === 'en' ? 'm ago' : '분 전');
+    if (diff < 86400) return Math.floor(diff / 3600) + (LANG === 'en' ? 'h ago' : '시간 전');
+    return Math.floor(diff / 86400) + (LANG === 'en' ? 'd ago' : '일 전');
+  }
+
+  // ─── Auth Check ───
+  var currentUser = null;
+
+  function checkAuth() {
+    if (window.txidAuth && window.txidAuth.user) {
+      currentUser = window.txidAuth.user;
+      if (currentUser.isAdmin) {
+        initDashboard();
+      } else {
+        app.innerHTML = '<div class="text-center py-20"><p class="text-lg text-red-400">' + t('no_access') + '</p></div>';
+      }
+    } else {
+      app.innerHTML = '<div class="text-center py-20"><p class="text-lg text-zinc-400">' + t('login_required') + '</p></div>';
+      document.addEventListener('txid:login', function () {
+        currentUser = window.txidAuth.user;
+        if (currentUser && currentUser.isAdmin) initDashboard();
+        else app.innerHTML = '<div class="text-center py-20"><p class="text-lg text-red-400">' + t('no_access') + '</p></div>';
+      });
+    }
+  }
+
+  // ─── Tab Navigation ───
+  var TABS = ['overview', 'analytics', 'users', 'content', 'courses', 'system'];
+
+  function getTab() {
+    var h = location.hash.replace('#', '') || 'overview';
+    return TABS.indexOf(h) >= 0 ? h : 'overview';
+  }
+
+  function initDashboard() {
+    render();
+    window.addEventListener('hashchange', render);
+  }
+
+  function render() {
+    var tab = getTab();
+    app.innerHTML = renderNav(tab) + '<div id="dash-content" class="mt-6">' + renderLoading() + '</div>';
+    loadTab(tab);
+  }
+
+  function renderNav(active) {
+    var html = '<div class="flex items-center justify-between mb-2"><h1 class="text-2xl font-bold">' + t('dashboard') + '</h1></div>';
+    html += '<nav class="flex gap-1 border-b border-zinc-700 overflow-x-auto">';
+    TABS.forEach(function (tab) {
+      var cls = tab === active
+        ? 'px-4 py-2 text-sm font-medium border-b-2 border-amber-500 text-amber-400'
+        : 'px-4 py-2 text-sm text-zinc-400 hover:text-zinc-200';
+      html += '<a href="#' + tab + '" class="' + cls + ' whitespace-nowrap">' + t(tab) + '</a>';
+    });
+    html += '</nav>';
+    return html;
+  }
+
+  function renderLoading() {
+    return '<div class="text-center py-12 text-zinc-500">' + t('loading') + '</div>';
+  }
+
+  function renderError() {
+    return '<div class="text-center py-12 text-red-400">' + t('error') + '</div>';
+  }
+
+  function setContent(html) {
+    var el = document.getElementById('dash-content');
+    if (el) el.innerHTML = html;
+  }
+
+  // ─── CSS classes ───
+  var cardCls = 'bg-zinc-800/60 rounded-lg border border-zinc-700 p-5';
+  var statCls = 'text-3xl font-bold text-zinc-100';
+  var labelCls = 'text-sm text-zinc-400 mt-1';
+  var btnCls = 'px-3 py-1 text-xs rounded bg-zinc-700 hover:bg-zinc-600 text-zinc-200 transition';
+  var btnDanger = 'px-3 py-1 text-xs rounded bg-red-900/40 hover:bg-red-800/60 text-red-300 transition';
+  var btnSuccess = 'px-3 py-1 text-xs rounded bg-emerald-900/40 hover:bg-emerald-800/60 text-emerald-300 transition';
+  var tableCls = 'w-full text-sm text-left';
+  var thCls = 'px-3 py-2 text-xs font-medium text-zinc-400 uppercase border-b border-zinc-700';
+  var tdCls = 'px-3 py-2 border-b border-zinc-800 text-zinc-300';
+
+  // ─── Tab Loaders ───
+
+  function loadTab(tab) {
+    switch (tab) {
+      case 'overview': loadOverview(); break;
+      case 'analytics': loadAnalytics(); break;
+      case 'users': loadUsers(1, ''); break;
+      case 'content': loadContent(); break;
+      case 'courses': loadCourses(); break;
+      case 'system': loadSystem(); break;
+    }
+  }
+
+  // ─── Overview ───
+
+  function loadOverview() {
+    api('/admin/stats/overview').then(function (d) {
+      var html = '<div class="grid grid-cols-2 md:grid-cols-4 gap-4">';
+      html += statCard(t('users'), d.users.total, '+' + d.users.today + ' ' + t('today'));
+      html += statCard(t('posts'), d.posts.total, '+' + d.posts.today + ' ' + t('today'));
+      html += statCard(t('comments'), d.comments.total, '+' + d.comments.today + ' ' + t('today'));
+      html += statCard(t('active_sessions'), d.sessions.active, '');
+      html += '</div>';
+
+      // Activity chart
+      if (d.activity && d.activity.length > 0) {
+        html += '<div class="' + cardCls + ' mt-6">';
+        html += '<h3 class="font-semibold mb-4">' + t('weekly_activity') + '</h3>';
+        html += renderBarChart(d.activity);
+        html += '</div>';
+      }
+      setContent(html);
+    }).catch(function () { setContent(renderError()); });
+  }
+
+  function statCard(label, value, sub) {
+    return '<div class="' + cardCls + '">'
+      + '<div class="' + statCls + '">' + value + '</div>'
+      + '<div class="' + labelCls + '">' + label + '</div>'
+      + (sub ? '<div class="text-xs text-emerald-400 mt-2">' + sub + '</div>' : '')
+      + '</div>';
+  }
+
+  function renderBarChart(data) {
+    var maxVal = 1;
+    data.forEach(function (d) { var v = d.posts + d.comments; if (v > maxVal) maxVal = v; });
+    var html = '<div class="flex items-end gap-2 h-40">';
+    data.forEach(function (d) {
+      var total = d.posts + d.comments;
+      var pctPosts = Math.max((d.posts / maxVal) * 100, 0);
+      var pctComments = Math.max((d.comments / maxVal) * 100, 0);
+      var dateLabel = d.date.slice(5); // MM-DD
+      html += '<div class="flex-1 flex flex-col items-center gap-1">';
+      html += '<div class="w-full flex flex-col items-center justify-end" style="height:120px">';
+      html += '<div class="text-xs text-zinc-400 mb-1">' + total + '</div>';
+      html += '<div class="w-full flex flex-col items-stretch">';
+      html += '<div class="bg-amber-500/80 rounded-t" style="height:' + pctPosts + 'px" title="' + t('posts') + ': ' + d.posts + '"></div>';
+      html += '<div class="bg-blue-500/60 rounded-b" style="height:' + pctComments + 'px" title="' + t('comments') + ': ' + d.comments + '"></div>';
+      html += '</div></div>';
+      html += '<div class="text-xs text-zinc-500">' + dateLabel + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '<div class="flex gap-4 mt-3 text-xs text-zinc-500">';
+    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-amber-500/80 inline-block"></span>' + t('posts') + '</span>';
+    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-blue-500/60 inline-block"></span>' + t('comments') + '</span>';
+    html += '</div>';
+    return html;
+  }
+
+  // ─── Analytics ───
+
+  var analyticsPeriod = '7';
+  var analyticsType = 'hits';
+
+  function loadAnalytics() {
+    var html = '<div class="flex flex-wrap gap-3 mb-4">';
+    // Period selector
+    html += '<div class="flex gap-1">';
+    ['7', '30', '90'].forEach(function (p) {
+      var cls = p === analyticsPeriod ? 'bg-amber-600 text-white' : 'bg-zinc-700 text-zinc-300 hover:bg-zinc-600';
+      html += '<button class="px-3 py-1 text-xs rounded ' + cls + '" data-period="' + p + '">' + p + t('days') + '</button>';
+    });
+    html += '</div>';
+    // Type selector
+    html += '<div class="flex gap-1 flex-wrap">';
+    ['hits', 'pages', 'browsers', 'systems', 'locations', 'referrers'].forEach(function (tp) {
+      var label = t(tp === 'hits' ? 'pageviews' : tp);
+      var cls = tp === analyticsType ? 'bg-amber-600 text-white' : 'bg-zinc-700 text-zinc-300 hover:bg-zinc-600';
+      html += '<button class="px-3 py-1 text-xs rounded ' + cls + '" data-atype="' + tp + '">' + label + '</button>';
+    });
+    html += '</div></div>';
+    html += '<div id="analytics-data" class="' + cardCls + '">' + renderLoading() + '</div>';
+
+    setContent(html);
+
+    // Bind period buttons
+    document.querySelectorAll('[data-period]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        analyticsPeriod = btn.dataset.period;
+        loadAnalytics();
+      });
+    });
+    document.querySelectorAll('[data-atype]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        analyticsType = btn.dataset.atype;
+        loadAnalytics();
+      });
+    });
+
+    fetchAnalytics();
+  }
+
+  function fetchAnalytics() {
+    api('/admin/analytics?period=' + analyticsPeriod + '&type=' + analyticsType)
+      .then(function (data) {
+        var el = document.getElementById('analytics-data');
+        if (!el) return;
+        el.innerHTML = renderAnalyticsData(data);
+      })
+      .catch(function () {
+        var el = document.getElementById('analytics-data');
+        if (el) el.innerHTML = renderError();
+      });
+  }
+
+  function renderAnalyticsData(data) {
+    // GoatCounter API returns different shapes depending on type
+    if (!data) return '<p class="text-zinc-500">' + t('no_data') + '</p>';
+
+    // hits/pages returns { hits: [...] } or { paths: [...] }
+    if (data.hits && Array.isArray(data.hits)) {
+      return renderHitsTable(data.hits);
+    }
+    if (data.stats && Array.isArray(data.stats)) {
+      return renderStatsTable(data.stats);
+    }
+    // browsers/systems/locations return { ... } with various shapes
+    if (typeof data === 'object') {
+      return '<pre class="text-xs text-zinc-300 overflow-auto max-h-96 whitespace-pre-wrap">' + esc(JSON.stringify(data, null, 2)) + '</pre>';
+    }
+    return '<p class="text-zinc-500">' + t('no_data') + '</p>';
+  }
+
+  function renderHitsTable(hits) {
+    if (!hits.length) return '<p class="text-zinc-500">' + t('no_data') + '</p>';
+    var html = '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
+    html += '<th class="' + thCls + '">' + t('pages') + '</th>';
+    html += '<th class="' + thCls + ' text-right">' + t('pageviews') + '</th>';
+    html += '</tr></thead><tbody>';
+    hits.forEach(function (h) {
+      var name = h.path || h.name || h.ref || '-';
+      var count = 0;
+      if (h.count !== undefined) count = h.count;
+      else if (h.stats && h.stats.length) {
+        h.stats.forEach(function (s) {
+          if (s.daily) s.daily.forEach(function (v) { count += v; });
+          else count += (s.count || 0);
+        });
+      }
+      html += '<tr><td class="' + tdCls + ' max-w-xs truncate">' + esc(name) + '</td>';
+      html += '<td class="' + tdCls + ' text-right font-mono">' + count + '</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    return html;
+  }
+
+  function renderStatsTable(stats) {
+    if (!stats.length) return '<p class="text-zinc-500">' + t('no_data') + '</p>';
+    var html = '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
+    html += '<th class="' + thCls + '">Name</th>';
+    html += '<th class="' + thCls + ' text-right">Count</th>';
+    html += '</tr></thead><tbody>';
+    stats.forEach(function (s) {
+      html += '<tr><td class="' + tdCls + '">' + esc(s.name || s.browser || s.system || s.location || '-') + '</td>';
+      html += '<td class="' + tdCls + ' text-right font-mono">' + (s.count || 0) + '</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    return html;
+  }
+
+  // ─── Users ───
+
+  function loadUsers(page, search) {
+    var html = '<div class="mb-4">';
+    html += '<input type="text" id="user-search" placeholder="' + t('search_ph') + '" value="' + esc(search) + '" class="bg-zinc-800 border border-zinc-600 rounded px-3 py-2 text-sm text-zinc-200 w-full max-w-sm focus:outline-none focus:border-amber-500">';
+    html += '</div>';
+    html += '<div id="users-table">' + renderLoading() + '</div>';
+    setContent(html);
+
+    var searchInput = document.getElementById('user-search');
+    var debounceTimer;
+    searchInput.addEventListener('input', function () {
+      clearTimeout(debounceTimer);
+      var val = searchInput.value.trim();
+      debounceTimer = setTimeout(function () { fetchUsers(1, val); }, 300);
+    });
+
+    fetchUsers(page, search);
+  }
+
+  function fetchUsers(page, search) {
+    var qs = '?page=' + page + '&limit=20';
+    if (search) qs += '&search=' + encodeURIComponent(search);
+    api('/admin/stats/users' + qs).then(function (d) {
+      var el = document.getElementById('users-table');
+      if (!el) return;
+      el.innerHTML = renderUsersTable(d, search);
+    }).catch(function () {
+      var el = document.getElementById('users-table');
+      if (el) el.innerHTML = renderError();
+    });
+  }
+
+  function renderUsersTable(d, search) {
+    if (!d.users.length) return '<p class="text-zinc-500 py-8 text-center">' + t('no_data') + '</p>';
+    var html = '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
+    html += '<th class="' + thCls + '">#</th>';
+    html += '<th class="' + thCls + '">' + t('nickname') + '</th>';
+    html += '<th class="' + thCls + '">' + t('pubkey') + '</th>';
+    html += '<th class="' + thCls + ' text-center">' + t('post_count') + '</th>';
+    html += '<th class="' + thCls + ' text-center">' + t('comment_count') + '</th>';
+    html += '<th class="' + thCls + '">' + t('joined') + '</th>';
+    html += '<th class="' + thCls + '">' + t('last_login') + '</th>';
+    html += '<th class="' + thCls + ' text-center">' + t('admin') + '</th>';
+    html += '</tr></thead><tbody>';
+
+    d.users.forEach(function (u) {
+      html += '<tr class="hover:bg-zinc-800/50">';
+      html += '<td class="' + tdCls + ' font-mono text-zinc-500">' + u.id + '</td>';
+      html += '<td class="' + tdCls + '">' + (esc(u.displayName) || '<span class="text-zinc-600">-</span>') + '</td>';
+      html += '<td class="' + tdCls + ' font-mono text-xs">' + shortPubkey(u.pubkey) + '</td>';
+      html += '<td class="' + tdCls + ' text-center">' + u.postCount + '</td>';
+      html += '<td class="' + tdCls + ' text-center">' + u.commentCount + '</td>';
+      html += '<td class="' + tdCls + ' text-xs">' + fmtDate(u.createdAt) + '</td>';
+      html += '<td class="' + tdCls + ' text-xs">' + fmtTimeAgo(u.lastLogin) + '</td>';
+      html += '<td class="' + tdCls + ' text-center">';
+      if (u.isAdmin) {
+        html += '<button class="' + btnDanger + '" data-toggle-admin="' + u.id + '" data-admin="false">' + t('remove_admin') + '</button>';
+      } else {
+        html += '<button class="' + btnSuccess + '" data-toggle-admin="' + u.id + '" data-admin="true">' + t('set_admin') + '</button>';
+      }
+      html += '</td></tr>';
+    });
+    html += '</tbody></table></div>';
+
+    // Pagination
+    var pg = d.pagination;
+    if (pg.totalPages > 1) {
+      html += '<div class="flex justify-center gap-2 mt-4">';
+      if (pg.page > 1) html += '<button class="' + btnCls + '" data-upage="' + (pg.page - 1) + '">' + t('prev') + '</button>';
+      html += '<span class="text-sm text-zinc-400 self-center">' + t('page') + ' ' + pg.page + ' / ' + pg.totalPages + '</span>';
+      if (pg.page < pg.totalPages) html += '<button class="' + btnCls + '" data-upage="' + (pg.page + 1) + '">' + t('next') + '</button>';
+      html += '</div>';
+    }
+
+    // Bind events after render
+    setTimeout(function () {
+      document.querySelectorAll('[data-toggle-admin]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!confirm(t('confirm_admin'))) return;
+          var uid = parseInt(btn.dataset.toggleAdmin);
+          var val = btn.dataset.admin === 'true';
+          api('/admin/users/' + uid + '/admin', { method: 'PUT', body: { isAdmin: val } })
+            .then(function () { fetchUsers(pg.page, search); })
+            .catch(function (e) { alert(e.error || t('error')); });
+        });
+      });
+      document.querySelectorAll('[data-upage]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          fetchUsers(parseInt(btn.dataset.upage), search);
+        });
+      });
+    }, 0);
+
+    return html;
+  }
+
+  // ─── Content ───
+
+  function loadContent() {
+    api('/admin/stats/content').then(function (d) {
+      var html = '';
+
+      // Board stats
+      html += '<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">';
+      d.boards.forEach(function (b) {
+        var name = LANG === 'en' ? b.nameEn : (LANG === 'ja' ? b.nameJa : b.nameKo);
+        html += '<div class="' + cardCls + '">';
+        html += '<div class="font-semibold">' + esc(name) + ' <span class="text-zinc-500 text-xs">' + b.slug + '</span></div>';
+        html += '<div class="flex gap-4 mt-2 text-sm text-zinc-400">';
+        html += '<span>' + t('posts') + ': <strong class="text-zinc-200">' + b.postCount + '</strong></span>';
+        html += '<span>' + t('comments') + ': <strong class="text-zinc-200">' + b.commentCount + '</strong></span>';
+        html += '</div></div>';
+      });
+      html += '</div>';
+
+      // Recent posts
+      html += '<div class="' + cardCls + ' mb-6">';
+      html += '<h3 class="font-semibold mb-3">' + t('recent_posts') + '</h3>';
+      if (d.recentPosts.length) {
+        html += '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
+        html += '<th class="' + thCls + '">#</th>';
+        html += '<th class="' + thCls + '">' + t('board') + '</th>';
+        html += '<th class="' + thCls + '">' + t('title') + '</th>';
+        html += '<th class="' + thCls + '">' + t('author') + '</th>';
+        html += '<th class="' + thCls + '">' + t('date') + '</th>';
+        html += '<th class="' + thCls + '"></th>';
+        html += '</tr></thead><tbody>';
+        d.recentPosts.forEach(function (p) {
+          html += '<tr class="hover:bg-zinc-800/50">';
+          html += '<td class="' + tdCls + ' font-mono text-zinc-500">' + p.id + '</td>';
+          html += '<td class="' + tdCls + ' text-xs">' + p.boardSlug + '</td>';
+          html += '<td class="' + tdCls + '">';
+          if (p.isPinned) html += '<span class="text-amber-400 text-xs mr-1">[' + t('pinned') + ']</span>';
+          html += esc(p.title) + '</td>';
+          html += '<td class="' + tdCls + ' text-xs">' + (esc(p.authorName) || shortPubkey(p.authorPubkey)) + '</td>';
+          html += '<td class="' + tdCls + ' text-xs">' + fmtTimeAgo(p.createdAt) + '</td>';
+          html += '<td class="' + tdCls + ' text-right whitespace-nowrap">';
+          html += '<button class="' + btnCls + ' mr-1" data-pin-post="' + p.id + '">' + (p.isPinned ? t('unpin') : t('pin')) + '</button>';
+          html += '<button class="' + btnDanger + '" data-del-post="' + p.id + '">' + t('delete') + '</button>';
+          html += '</td></tr>';
+        });
+        html += '</tbody></table></div>';
+      } else {
+        html += '<p class="text-zinc-500">' + t('no_data') + '</p>';
+      }
+      html += '</div>';
+
+      // Recent comments
+      html += '<div class="' + cardCls + '">';
+      html += '<h3 class="font-semibold mb-3">' + t('recent_comments') + '</h3>';
+      if (d.recentComments.length) {
+        html += '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
+        html += '<th class="' + thCls + '">#</th>';
+        html += '<th class="' + thCls + '">' + t('body') + '</th>';
+        html += '<th class="' + thCls + '">' + t('posts') + '</th>';
+        html += '<th class="' + thCls + '">' + t('author') + '</th>';
+        html += '<th class="' + thCls + '">' + t('date') + '</th>';
+        html += '<th class="' + thCls + '"></th>';
+        html += '</tr></thead><tbody>';
+        d.recentComments.forEach(function (c) {
+          html += '<tr class="hover:bg-zinc-800/50">';
+          html += '<td class="' + tdCls + ' font-mono text-zinc-500">' + c.id + '</td>';
+          html += '<td class="' + tdCls + ' max-w-xs truncate">' + esc(c.bodyPreview) + '</td>';
+          html += '<td class="' + tdCls + ' text-xs max-w-[120px] truncate">' + esc(c.postTitle) + '</td>';
+          html += '<td class="' + tdCls + ' text-xs">' + (esc(c.authorName) || shortPubkey(c.authorPubkey)) + '</td>';
+          html += '<td class="' + tdCls + ' text-xs">' + fmtTimeAgo(c.createdAt) + '</td>';
+          html += '<td class="' + tdCls + ' text-right">';
+          html += '<button class="' + btnDanger + '" data-del-comment="' + c.id + '">' + t('delete') + '</button>';
+          html += '</td></tr>';
+        });
+        html += '</tbody></table></div>';
+      } else {
+        html += '<p class="text-zinc-500">' + t('no_data') + '</p>';
+      }
+      html += '</div>';
+
+      setContent(html);
+
+      // Bind actions
+      document.querySelectorAll('[data-del-post]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!confirm(t('confirm_delete'))) return;
+          api('/admin/posts/' + btn.dataset.delPost, { method: 'DELETE' })
+            .then(function () { loadContent(); })
+            .catch(function (e) { alert(e.error || t('error')); });
+        });
+      });
+      document.querySelectorAll('[data-pin-post]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          api('/admin/posts/' + btn.dataset.pinPost + '/pin', { method: 'PUT' })
+            .then(function () { loadContent(); })
+            .catch(function (e) { alert(e.error || t('error')); });
+        });
+      });
+      document.querySelectorAll('[data-del-comment]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!confirm(t('confirm_delete'))) return;
+          api('/admin/comments/' + btn.dataset.delComment, { method: 'DELETE' })
+            .then(function () { loadContent(); })
+            .catch(function (e) { alert(e.error || t('error')); });
+        });
+      });
+    }).catch(function () { setContent(renderError()); });
+  }
+
+  // ─── Courses ───
+
+  function loadCourses() {
+    api('/admin/stats/courses').then(function (d) {
+      var html = '<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">';
+      html += statCard(t('total_pages_read'), d.totalPagesRead, '');
+      html += statCard(t('active_learners'), d.activeLearners, '');
+      html += '</div>';
+
+      html += '<div class="' + cardCls + '">';
+      html += '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
+      html += '<th class="' + thCls + '">' + t('course') + '</th>';
+      html += '<th class="' + thCls + ' text-center">' + t('steps') + '</th>';
+      html += '<th class="' + thCls + ' text-center">' + t('completed') + '</th>';
+      html += '</tr></thead><tbody>';
+      d.courses.forEach(function (c) {
+        html += '<tr class="hover:bg-zinc-800/50">';
+        html += '<td class="' + tdCls + '">' + esc(c.title) + ' <span class="text-zinc-500 text-xs">' + c.slug + '</span></td>';
+        html += '<td class="' + tdCls + ' text-center">' + c.totalSteps + '</td>';
+        html += '<td class="' + tdCls + ' text-center font-mono">' + c.completedUsers + '</td>';
+        html += '</tr>';
+      });
+      html += '</tbody></table></div></div>';
+      setContent(html);
+    }).catch(function () { setContent(renderError()); });
+  }
+
+  // ─── System ───
+
+  function loadSystem() {
+    api('/admin/stats/system').then(function (d) {
+      var mem = d.memoryUsage || {};
+      var html = '<div class="grid grid-cols-2 md:grid-cols-4 gap-4">';
+      html += statCard(t('uptime'), fmtDuration(d.uptime), '');
+      html += statCard(t('db_size'), fmtBytes(d.dbSizeBytes), '');
+      html += statCard(t('node_ver'), d.nodeVersion, '');
+      html += statCard(t('memory'), fmtBytes(mem.heapUsed || 0), 'RSS: ' + fmtBytes(mem.rss || 0));
+      html += '</div>';
+
+      // Health check
+      html += '<div class="' + cardCls + ' mt-6" id="health-result">' + renderLoading() + '</div>';
+      setContent(html);
+
+      fetch(API + '/health').then(function (r) { return r.json(); }).then(function (h) {
+        var el = document.getElementById('health-result');
+        if (el) el.innerHTML = '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span><span class="text-emerald-400 font-semibold">API OK</span><span class="text-zinc-500 text-sm ml-2">' + new Date(h.timestamp * 1000).toLocaleString() + '</span></div>';
+      }).catch(function () {
+        var el = document.getElementById('health-result');
+        if (el) el.innerHTML = '<div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span><span class="text-red-400 font-semibold">API DOWN</span></div>';
+      });
+    }).catch(function () { setContent(renderError()); });
+  }
+
+  // ─── Init ───
+
+  // Wait for txidAuth SDK to be ready
+  if (window.txidAuth) {
+    checkAuth();
+  } else {
+    document.addEventListener('txid:ready', checkAuth);
+    // Fallback: SDK may not fire txid:ready if no user
+    setTimeout(function () {
+      if (!currentUser) checkAuth();
+    }, 2000);
+  }
+})();
