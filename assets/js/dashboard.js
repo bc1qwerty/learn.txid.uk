@@ -221,26 +221,26 @@
 
   function loadOverview() {
     api('/admin/stats/overview').then(function (d) {
-      var html = '<div class="grid grid-cols-2 md:grid-cols-4 gap-4">';
+      var html = '<div class="bento-grid">';
       html += statCard(t('users'), d.users.total, '+' + d.users.today + ' ' + t('today'));
       html += statCard(t('posts'), d.posts.total, '+' + d.posts.today + ' ' + t('today'));
       html += statCard(t('comments'), d.comments.total, '+' + d.comments.today + ' ' + t('today'));
       html += statCard(t('active_sessions'), d.sessions.active, '');
-      html += '</div>';
 
-      // Activity chart
+      // Activity chart (full-width)
       if (d.activity && d.activity.length > 0) {
-        html += '<div class="' + cardCls + ' mt-6">';
-        html += '<h3 class="font-semibold mb-4">' + t('weekly_activity') + '</h3>';
+        html += '<div class="bento-tile" style="flex:0 0 100%">';
+        html += '<h3 class="font-semibold mb-4 text-white">' + t('weekly_activity') + '</h3>';
         html += renderBarChart(d.activity);
         html += '</div>';
       }
+      html += '</div>';
       setContent(html);
     }).catch(function () { setContent(renderError()); });
   }
 
   function statCard(label, value, sub) {
-    return '<div class="' + cardCls + '">'
+    return '<div class="bento-tile" style="flex:1 1 8rem;min-width:8rem">'
       + '<div class="' + statCls + '">' + value + '</div>'
       + '<div class="' + labelCls + '">' + label + '</div>'
       + (sub ? '<div class="text-xs text-bitcoin mt-2">' + sub + '</div>' : '')
