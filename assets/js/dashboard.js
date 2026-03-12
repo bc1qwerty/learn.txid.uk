@@ -277,111 +277,115 @@
   // ─── Analytics ───
 
   var analyticsPeriod = '7';
-  var analyticsType = 'hits';
 
   function loadAnalytics() {
-    var html = '<div class="flex flex-wrap gap-3 mb-4">';
-    // Period selector
-    html += '<div class="flex gap-1">';
+    // Period selector + placeholder cards
+    var html = '<div class="flex gap-1 mb-4">';
     ['7', '30', '90'].forEach(function (p) {
       var cls = p === analyticsPeriod ? 'bg-amber-600 text-white' : 'bg-zinc-700 text-zinc-300 hover:bg-zinc-600';
       html += '<button class="px-3 py-1 text-xs rounded ' + cls + '" data-period="' + p + '">' + p + t('days') + '</button>';
     });
     html += '</div>';
-    // Type selector
-    html += '<div class="flex gap-1 flex-wrap">';
-    ['hits', 'pages', 'browsers', 'systems', 'locations', 'referrers'].forEach(function (tp) {
-      var label = t(tp === 'hits' ? 'pageviews' : tp);
-      var cls = tp === analyticsType ? 'bg-amber-600 text-white' : 'bg-zinc-700 text-zinc-300 hover:bg-zinc-600';
-      html += '<button class="px-3 py-1 text-xs rounded ' + cls + '" data-atype="' + tp + '">' + label + '</button>';
-    });
-    html += '</div></div>';
-    html += '<div id="analytics-data" class="' + cardCls + '">' + renderLoading() + '</div>';
-
+    html += '<div id="a-hits" class="' + cardCls + ' mb-4"><h3 class="font-semibold mb-3">' + t('pageviews') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
+    html += '<div id="a-pages" class="' + cardCls + ' mb-4"><h3 class="font-semibold mb-3">' + t('pages') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
+    html += '<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">';
+    html += '<div id="a-browsers" class="' + cardCls + '"><h3 class="font-semibold mb-3">' + t('browsers') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
+    html += '<div id="a-systems" class="' + cardCls + '"><h3 class="font-semibold mb-3">' + t('systems') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
+    html += '<div id="a-locations" class="' + cardCls + '"><h3 class="font-semibold mb-3">' + t('locations') + '</h3><div class="text-zinc-500 text-sm">' + t('loading') + '</div></div>';
+    html += '</div>';
     setContent(html);
 
-    // Bind period buttons
     document.querySelectorAll('[data-period]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         analyticsPeriod = btn.dataset.period;
         loadAnalytics();
       });
     });
-    document.querySelectorAll('[data-atype]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        analyticsType = btn.dataset.atype;
-        loadAnalytics();
-      });
-    });
 
-    fetchAnalytics();
+    // Fetch all types in parallel
+    fetchAnalyticsCard('hits', 'a-hits', renderHitsChart);
+    fetchAnalyticsCard('pages', 'a-pages', renderPagesTable);
+    fetchAnalyticsCard('browsers', 'a-browsers', renderStatsBar);
+    fetchAnalyticsCard('systems', 'a-systems', renderStatsBar);
+    fetchAnalyticsCard('locations', 'a-locations', renderStatsBar);
   }
 
-  function fetchAnalytics() {
-    api('/admin/analytics?period=' + analyticsPeriod + '&type=' + analyticsType)
+  function fetchAnalyticsCard(type, elId, renderFn) {
+    api('/admin/analytics?period=' + analyticsPeriod + '&type=' + type)
       .then(function (data) {
-        var el = document.getElementById('analytics-data');
+        var el = document.getElementById(elId);
         if (!el) return;
-        el.innerHTML = renderAnalyticsData(data);
+        var title = el.querySelector('h3').outerHTML;
+        el.innerHTML = title + renderFn(data);
       })
       .catch(function () {
-        var el = document.getElementById('analytics-data');
-        if (el) el.innerHTML = renderError();
+        var el = document.getElementById(elId);
+        if (el) {
+          var title = el.querySelector('h3').outerHTML;
+          el.innerHTML = title + '<div class="text-red-400 text-sm">' + t('error') + '</div>';
+        }
       });
   }
 
-  function renderAnalyticsData(data) {
-    // GoatCounter API returns different shapes depending on type
-    if (!data) return '<p class="text-zinc-500">' + t('no_data') + '</p>';
+  function renderHitsChart(data) {
+    if (!data || !data.hits || !data.hits.length) return '<p class="text-zinc-500 text-sm">' + t('no_data') + '</p>';
+    // Aggregate daily totals across all paths
+    var dayMap = {};
+    data.hits.forEach(function (h) {
+      if (!h.stats) return;
+      h.stats.forEach(function (s) {
+        if (!dayMap[s.day]) dayMap[s.day] = 0;
+        dayMap[s.day] += (s.daily || 0);
+      });
+    });
+    var days = Object.keys(dayMap).sort();
+    if (!days.length) return '<p class="text-zinc-500 text-sm">' + t('no_data') + '</p>';
+    var maxVal = Math.max.apply(null, days.map(function (d) { return dayMap[d]; })) || 1;
+    var totalViews = 0;
+    days.forEach(function (d) { totalViews += dayMap[d]; });
 
-    // hits/pages returns { hits: [...] } or { paths: [...] }
-    if (data.hits && Array.isArray(data.hits)) {
-      return renderHitsTable(data.hits);
-    }
-    if (data.stats && Array.isArray(data.stats)) {
-      return renderStatsTable(data.stats);
-    }
-    // browsers/systems/locations return { ... } with various shapes
-    if (typeof data === 'object') {
-      return '<pre class="text-xs text-zinc-300 overflow-auto max-h-96 whitespace-pre-wrap">' + esc(JSON.stringify(data, null, 2)) + '</pre>';
-    }
-    return '<p class="text-zinc-500">' + t('no_data') + '</p>';
+    var html = '<div class="text-sm text-zinc-400 mb-3">' + t('total') + ': <strong class="text-zinc-100">' + totalViews + '</strong></div>';
+    html += '<div class="flex items-end gap-1" style="height:100px">';
+    days.forEach(function (d) {
+      var pct = Math.max((dayMap[d] / maxVal) * 100, 2);
+      html += '<div class="flex-1 flex flex-col items-center">';
+      html += '<div class="text-xs text-zinc-500 mb-1">' + dayMap[d] + '</div>';
+      html += '<div class="w-full bg-amber-500/80 rounded-t" style="height:' + pct + '%" title="' + d + ': ' + dayMap[d] + '"></div>';
+      html += '<div class="text-xs text-zinc-600 mt-1 truncate w-full text-center">' + d.slice(5) + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    return html;
   }
 
-  function renderHitsTable(hits) {
-    if (!hits.length) return '<p class="text-zinc-500">' + t('no_data') + '</p>';
-    var html = '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
-    html += '<th class="' + thCls + '">' + t('pages') + '</th>';
-    html += '<th class="' + thCls + ' text-right">' + t('pageviews') + '</th>';
+  function renderPagesTable(data) {
+    if (!data || !data.hits || !data.hits.length) return '<p class="text-zinc-500 text-sm">' + t('no_data') + '</p>';
+    var html = '<div class="overflow-x-auto max-h-80"><table class="' + tableCls + '"><thead><tr>';
+    html += '<th class="' + thCls + '">Path</th>';
+    html += '<th class="' + thCls + ' text-right">Views</th>';
     html += '</tr></thead><tbody>';
-    hits.forEach(function (h) {
-      var name = h.path || h.name || h.ref || '-';
-      var count = 0;
-      if (h.count !== undefined) count = h.count;
-      else if (h.stats && h.stats.length) {
-        h.stats.forEach(function (s) {
-          if (s.daily) s.daily.forEach(function (v) { count += v; });
-          else count += (s.count || 0);
-        });
-      }
-      html += '<tr><td class="' + tdCls + ' max-w-xs truncate">' + esc(name) + '</td>';
-      html += '<td class="' + tdCls + ' text-right font-mono">' + count + '</td></tr>';
+    data.hits.slice(0, 20).forEach(function (h) {
+      html += '<tr><td class="' + tdCls + ' max-w-xs truncate text-xs">' + esc(h.path || '-') + '</td>';
+      html += '<td class="' + tdCls + ' text-right font-mono">' + (h.count || 0) + '</td></tr>';
     });
     html += '</tbody></table></div>';
     return html;
   }
 
-  function renderStatsTable(stats) {
-    if (!stats.length) return '<p class="text-zinc-500">' + t('no_data') + '</p>';
-    var html = '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
-    html += '<th class="' + thCls + '">Name</th>';
-    html += '<th class="' + thCls + ' text-right">Count</th>';
-    html += '</tr></thead><tbody>';
-    stats.forEach(function (s) {
-      html += '<tr><td class="' + tdCls + '">' + esc(s.name || s.browser || s.system || s.location || '-') + '</td>';
-      html += '<td class="' + tdCls + ' text-right font-mono">' + (s.count || 0) + '</td></tr>';
+  function renderStatsBar(data) {
+    if (!data || !data.stats || !data.stats.length) return '<p class="text-zinc-500 text-sm">' + t('no_data') + '</p>';
+    var total = 0;
+    data.stats.forEach(function (s) { total += (s.count || 0); });
+    var html = '';
+    data.stats.slice(0, 8).forEach(function (s) {
+      var pct = total > 0 ? ((s.count / total) * 100).toFixed(1) : 0;
+      var barW = total > 0 ? Math.max((s.count / total) * 100, 1) : 0;
+      html += '<div class="flex items-center gap-2 mb-2">';
+      html += '<div class="w-20 text-xs text-zinc-300 truncate">' + esc(s.name || '-') + '</div>';
+      html += '<div class="flex-1 h-4 bg-zinc-700 rounded overflow-hidden"><div class="h-full bg-amber-500/70 rounded" style="width:' + barW + '%"></div></div>';
+      html += '<div class="text-xs text-zinc-500 w-16 text-right">' + s.count + ' <span class="text-zinc-600">(' + pct + '%)</span></div>';
+      html += '</div>';
     });
-    html += '</tbody></table></div>';
     return html;
   }
 
