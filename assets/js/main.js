@@ -773,42 +773,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ── i18n ──────────────────────────────────────────────
 (function(){
-  const DICT = {
-    // nav menu
-    '공부방':     {en:'Study',    ja:'学習'},
-    '개념':       {en:'Ideas',    ja:'概念'},
-    '인물':       {en:'People',   ja:'人物'},
-    '추천도서':   {en:'Books',    ja:'おすすめ本'},
-    '블로그':     {en:'Blog',     ja:'ブログ'},
-    'FAQ':        {en:'FAQ',      ja:'FAQ'},
-    '소개':       {en:'About',    ja:'紹介'},
-    // bento titles
-    '요즘':           {en:'Now',          ja:'いま'},
-    '최근 게시물':    {en:'Recent Posts', ja:'最近の記事'},
-    '추천 도서':      {en:'Books',        ja:'おすすめ本'},
-    '개념 목록':      {en:'Ideas',        ja:'概念一覧'},
-    '북마크':         {en:'Bookmarks',    ja:'ブックマーク'},
-    '스택':           {en:'Stack',        ja:'スタック'},
-    // sidebar
-    '방문자':         {en:'Visitors',     ja:'訪問者'},
-    '전체':           {en:'Total',        ja:'合計'},
-    '지금 읽는 책':   {en:'Reading',      ja:'読書中'},
-    // hero nav
-    '북마크':         {en:'Bookmarks',    ja:'ブックマーク'},
-    '도구':           {en:'Tools',        ja:'ツール'},
-    // footer
-    '탐색':           {en:'Navigate',     ja:'ナビ'},
-    '주제':           {en:'Topics',       ja:'トピック'},
-    '비트코인':       {en:'Bitcoin',      ja:'ビットコイン'},
-    '오스트리아 경제학': {en:'Austrian Economics', ja:'オーストリア経済学'},
-    '자유주의':       {en:'Libertarianism', ja:'自由主義'},
-    // ui
-    '업데이트':       {en:'Updated',      ja:'更新'},
-    '전체 보기':      {en:'View all',     ja:'全て見る'},
-    '본문으로 건너뛰기': {en:'Skip to content', ja:'本文へ'},
-    // appbar
-    '탐색기':         {en:'Explorer',     ja:'探索'},
-  };
+  // i18n dictionary loaded from Hugo data (data/i18n_js.json → #i18n-data)
+  let DICT = {};
+  try {
+    const i18nEl = document.getElementById('i18n-data');
+    if (i18nEl) DICT = JSON.parse(i18nEl.textContent);
+  } catch(e) { /* fallback: empty dict */ }
 
   // URL에서 현재 언어 감지 (Hugo 다국어 경로 기반)
   function detectLang() {
@@ -898,21 +868,33 @@ const LearnProgress = (() => {
     };
   }
 
-  // Auto-mark current page as read after 30 seconds
-  function initAutoTrack() {
-    const path = window.location.pathname;
-    // Only track learn, ideas, people sections
-    if (!/\/(learn|ideas|people)\//.test(path)) return;
+  // Parse comma-separated step URLs from data attribute
+  function getStepURLs(el) {
+    const raw = el?.getAttribute('data-steps');
+    if (!raw) return [];
+    return raw.split(',').filter(Boolean);
+  }
 
-    let timer = setTimeout(() => {
+  // Count completed steps for a set of URLs
+  function countCompleted(urls) {
+    const progress = getProgress();
+    return urls.filter(function(u) { return !!progress[u]; }).length;
+  }
+
+  // Auto-mark current page as read after 30 seconds or scroll to bottom
+  function initAutoTrack() {
+    var path = window.location.pathname;
+    // Track learn, ideas, people, start, blog sections
+    if (!/\/(learn|ideas|people|start|blog)\//.test(path)) return;
+
+    var timer = setTimeout(function() {
       markRead(path);
       updateProgressIndicators();
     }, 30000);
 
-    // Also mark on scroll to bottom
-    const onScroll = () => {
-      const scrolled = window.scrollY + window.innerHeight;
-      const docHeight = document.documentElement.scrollHeight;
+    var onScroll = function() {
+      var scrolled = window.scrollY + window.innerHeight;
+      var docHeight = document.documentElement.scrollHeight;
       if (scrolled >= docHeight - 100) {
         markRead(path);
         updateProgressIndicators();
@@ -923,31 +905,104 @@ const LearnProgress = (() => {
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // Add visual indicators to learn cards on the homepage
+  // Update all progress indicators on the page
   function updateProgressIndicators() {
-    document.querySelectorAll('.learn-card').forEach(card => {
-      const link = card.querySelector('a[href]');
-      if (!link) return;
-      const href = link.getAttribute('href');
-      if (isRead(href)) {
-        card.classList.add('learn-read');
+    var progress = getProgress();
+
+    // 1. Homepage bento learn cards — show completion count + progress bar
+    document.querySelectorAll('.learn-card[data-steps]').forEach(function(card) {
+      var urls = getStepURLs(card);
+      var total = parseInt(card.getAttribute('data-total')) || urls.length;
+      var done = countCompleted(urls);
+      var pct = total > 0 ? Math.round(done / total * 100) : 0;
+
+      // Progress text
+      var progEl = card.querySelector('.learn-card-progress');
+      if (progEl) {
+        if (done > 0) {
+          progEl.textContent = done + '/' + total + (pct === 100 ? ' \u2713' : '');
+          progEl.style.color = pct === 100 ? 'var(--bitcoin, #f7931a)' : '';
+        }
       }
+
+      // Mark completed
+      if (pct === 100) card.classList.add('learn-complete');
+      if (done > 0) card.classList.add('learn-started');
     });
 
-    // Update step dots in learning path if present
-    document.querySelectorAll('a[href]').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href && isRead(href)) {
-        link.closest('.tile-item, .sidebar-recent-item')?.classList.add('item-read');
+    // 2. Learn path list cards — progress bar
+    document.querySelectorAll('.learn-path-card[data-steps]').forEach(function(card) {
+      var urls = getStepURLs(card);
+      var total = parseInt(card.getAttribute('data-total')) || urls.length;
+      var done = countCompleted(urls);
+      var pct = total > 0 ? Math.round(done / total * 100) : 0;
+      var fill = card.querySelector('.learn-progress-fill');
+      if (fill) fill.style.width = pct + '%';
+    });
+
+    // 3. Learn path single page — progress bar + step checkmarks
+    document.querySelectorAll('.learn-path-progress').forEach(function(el) {
+      var pathId = el.getAttribute('data-path-id');
+      var total = parseInt(el.getAttribute('data-total')) || 0;
+      // Find step URLs from sibling step elements
+      var steps = el.closest('.max-w-3xl')?.querySelectorAll('.learn-step[data-step]') || [];
+      var done = 0;
+      steps.forEach(function(step) {
+        var url = step.getAttribute('data-step');
+        if (progress[url]) {
+          done++;
+          step.classList.add('step-done');
+          // Swap number for checkmark
+          var circle = step.querySelector('.learn-step-circle');
+          if (circle) {
+            circle.classList.add('bg-bitcoin', 'border-bitcoin');
+            circle.classList.remove('bg-gray-900', 'border-bitcoin/50');
+          }
+          var num = step.querySelector('.learn-step-num');
+          var check = step.querySelector('.learn-step-check');
+          if (num) num.classList.add('hidden');
+          if (check) check.classList.remove('hidden');
+        }
+      });
+      var pct = total > 0 ? Math.round(done / total * 100) : 0;
+      var fill = el.querySelector('.learn-progress-fill');
+      var countEl = el.querySelector('.learn-progress-count');
+      if (fill) fill.style.width = pct + '%';
+      if (countEl) countEl.textContent = done + '/' + total;
+    });
+
+    // 4. Single page step dots (in path indicator bar)
+    var pathDataEl = document.getElementById('learn-path-steps-data');
+    if (pathDataEl) {
+      try {
+        var pathStepURLs = JSON.parse(pathDataEl.textContent);
+        var indicator = document.getElementById('learn-path-indicator');
+        if (indicator && pathStepURLs) {
+          var dots = indicator.querySelectorAll('.learn-step-dots > div');
+          dots.forEach(function(dot, i) {
+            if (pathStepURLs[i] && progress[pathStepURLs[i]]) {
+              dot.className = dot.className.replace(/bg-gray-700|bg-bitcoin\/40/g, '').trim() + ' bg-bitcoin';
+            }
+          });
+        }
+      } catch(e) {}
+    }
+
+    // 5. Generic link-based read indicators
+    document.querySelectorAll('a[href]').forEach(function(link) {
+      var href = link.getAttribute('href');
+      if (href && progress[href]) {
+        var parent = link.closest('.tile-item, .sidebar-recent-item');
+        if (parent) parent.classList.add('item-read');
       }
     });
   }
 
-  return { getProgress, markRead, isRead, getStats, initAutoTrack, updateProgressIndicators };
+  return { getProgress, markRead, isRead, getStats, countCompleted, getStepURLs, initAutoTrack, updateProgressIndicators };
 })();
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   LearnProgress.initAutoTrack();
   LearnProgress.updateProgressIndicators();
 });

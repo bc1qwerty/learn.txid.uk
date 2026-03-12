@@ -1,6 +1,6 @@
 {{ define "main" }}
 <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-  <!-- Learning path detection (from txid.uk single.html) -->
+  <!-- Learning path detection -->
   {{- $currentURL := .RelPermalink -}}
   {{- $pathFound := false -}}
   {{- $pathTitle := "" -}}
@@ -9,6 +9,7 @@
   {{- $totalSteps := 0 -}}
   {{- $prevStep := dict -}}
   {{- $nextStep := dict -}}
+  {{- $stepURLs := slice -}}
   {{- range where site.RegularPages "Section" "learn" -}}
     {{- $path := . -}}
     {{- range $i, $step := .Params.steps -}}
@@ -18,6 +19,9 @@
         {{- $pathURL = $path.RelPermalink -}}
         {{- $stepNum = add $i 1 -}}
         {{- $totalSteps = len $path.Params.steps -}}
+        {{- range $path.Params.steps -}}
+          {{- $stepURLs = $stepURLs | append (.url | relLangURL) -}}
+        {{- end -}}
         {{- if gt $i 0 -}}
           {{- $prevStep = index $path.Params.steps (sub $i 1) -}}
         {{- end -}}
@@ -30,10 +34,10 @@
 
   <!-- Learning path indicator -->
   {{ if $pathFound }}
-  <div class="mb-6 p-3 rounded-lg bg-bitcoin/5 border border-bitcoin/20">
+  <div id="learn-path-indicator" class="mb-6 p-3 rounded-lg border" style="background:rgba(247,147,26,0.05);border-color:rgba(247,147,26,0.2)">
     <div class="flex items-center justify-between flex-wrap gap-2">
       <a href="{{ $pathURL }}" class="text-sm text-bitcoin hover:underline font-medium">← {{ $pathTitle }}</a>
-      <div class="flex items-center gap-1.5">
+      <div class="flex items-center gap-1.5 learn-step-dots">
         {{ range $i, $_ := seq $totalSteps }}
         <div class="w-2 h-2 rounded-full {{ if eq (add $i 1) $stepNum }}bg-bitcoin{{ else if lt (add $i 1) $stepNum }}bg-bitcoin/40{{ else }}bg-gray-700{{ end }}"></div>
         {{ end }}
@@ -41,6 +45,7 @@
       </div>
     </div>
   </div>
+  <script id="learn-path-steps-data" type="application/json">{{ $stepURLs | jsonify | safeJS }}</script>
   {{ end }}
 
   <!-- Breadcrumb (non-path pages) -->

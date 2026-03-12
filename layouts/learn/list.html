@@ -16,7 +16,7 @@
   <!-- Path Cards -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     {{ range .RegularPages }}
-    <a href="{{ .Permalink }}" class="group block p-6 rounded-xl border border-gray-800/50 hover:border-bitcoin/30 bg-gray-900/30 hover:bg-gray-900/60 transition-all">
+    <a href="{{ .Permalink }}" class="learn-path-card group block p-6 rounded-xl border border-gray-800/50 hover:border-bitcoin/30 bg-gray-900/30 hover:bg-gray-900/60 transition-all" data-path-id="{{ .RelPermalink }}" data-total="{{ with .Params.steps }}{{ len . }}{{ end }}" data-steps="{{ with .Params.steps }}{{ range $i, $s := . }}{{ if $i }},{{ end }}{{ $s.url | relLangURL }}{{ end }}{{ end }}">
       {{ with .Params.icon }}
       <div class="w-10 h-10 rounded-lg bg-bitcoin/10 flex items-center justify-center mb-4">
         <span class="text-bitcoin text-lg">{{ . }}</span>
@@ -26,10 +26,14 @@
       {{ with .Description }}
       <p class="text-sm text-gray-500 leading-relaxed mb-4">{{ . }}</p>
       {{ end }}
-      <div class="flex items-center gap-3 text-xs text-gray-600">
+      <div class="flex items-center gap-3 text-xs text-gray-600 mb-3">
         {{ with .Params.steps }}<span>{{ len . }}단계</span>{{ end }}
         {{ if and .Params.steps .Params.duration }}<span>·</span>{{ end }}
         {{ with .Params.duration }}<span>{{ . }}</span>{{ end }}
+      </div>
+      <!-- Progress mini bar -->
+      <div class="h-1 rounded-full bg-gray-800 overflow-hidden">
+        <div class="learn-progress-fill h-full rounded-full bg-bitcoin transition-all duration-500" style="width:0%"></div>
       </div>
     </a>
     {{ end }}

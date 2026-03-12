@@ -19,6 +19,17 @@
     <p class="text-lg text-gray-400">{{ . }}</p>
     {{ end }}
     <p class="mt-3 text-sm text-gray-600">{{ len .Params.steps }}단계 · 약 {{ .Params.duration }}</p>
+
+    <!-- Progress bar -->
+    <div class="learn-path-progress mt-4" data-path-id="{{ .RelPermalink }}" data-total="{{ len .Params.steps }}">
+      <div class="flex items-center justify-between text-xs text-gray-500 mb-1.5">
+        <span class="learn-progress-label">진행률</span>
+        <span class="learn-progress-count">0/{{ len .Params.steps }}</span>
+      </div>
+      <div class="h-1.5 rounded-full bg-gray-800 overflow-hidden">
+        <div class="learn-progress-fill h-full rounded-full bg-bitcoin transition-all duration-500" style="width:0%"></div>
+      </div>
+    </div>
   </header>
 
   {{ with .Content }}
@@ -28,15 +39,16 @@
   {{ end }}
 
   <!-- Learning Path Steps -->
-  <div class="relative">
+  <div class="relative learn-path-steps">
     <!-- Vertical line -->
     <div class="absolute left-5 top-0 bottom-0 w-px bg-gray-800"></div>
 
     {{ range $i, $step := .Params.steps }}
-    <div class="relative pl-14 pb-10 {{ if eq $i (sub (len $.Params.steps) 1) }}pb-0{{ end }}">
+    <div class="relative pl-14 pb-10 learn-step {{ if eq $i (sub (len $.Params.steps) 1) }}pb-0{{ end }}" data-step="{{ $step.url | relLangURL }}">
       <!-- Step number circle -->
-      <div class="absolute left-0 w-10 h-10 rounded-full bg-gray-900 border-2 border-bitcoin/50 flex items-center justify-center z-10">
-        <span class="text-sm font-bold text-bitcoin">{{ add $i 1 }}</span>
+      <div class="learn-step-circle absolute left-0 w-10 h-10 rounded-full bg-gray-900 border-2 border-bitcoin/50 flex items-center justify-center z-10 transition-all duration-300">
+        <span class="learn-step-num text-sm font-bold text-bitcoin">{{ add $i 1 }}</span>
+        <svg class="learn-step-check hidden w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
       </div>
 
       <!-- Step card -->

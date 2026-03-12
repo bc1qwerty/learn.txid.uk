@@ -2,11 +2,12 @@
 <p class="tile-desc">{{ i18n "learn_desc" }}</p>
 <div class="learn-cards">
     {{ range (where site.RegularPages "Section" "learn") }}
-    <a href="{{ .RelPermalink }}" class="learn-card">
+    <a href="{{ .RelPermalink }}" class="learn-card" data-steps="{{ with .Params.steps }}{{ range $i, $s := . }}{{ if $i }},{{ end }}{{ $s.url | relLangURL }}{{ end }}{{ end }}" data-total="{{ with .Params.steps }}{{ len . }}{{ end }}">
         {{ with .Params.icon }}<span class="learn-card-icon">{{ . }}</span>{{ end }}
         <div class="learn-card-body">
             <span class="learn-card-title">{{ .Title }}</span>
             <span class="learn-card-meta">{{ with .Params.steps }}{{ len . }} {{ i18n "steps_unit" }}{{ end }}{{ with .Params.duration }} · {{ . }}{{ end }}</span>
+            <span class="learn-card-progress"></span>
         </div>
         <span class="learn-card-arrow">&rarr;</span>
     </a>

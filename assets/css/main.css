@@ -1069,6 +1069,52 @@ details[open] > *:not(summary) {
   font-size: .7em;
 }
 
+/* Learn card progress text */
+.learn-card-progress {
+  display: block;
+  font-size: .65rem;
+  color: var(--color-gray-500, #6b7280);
+  margin-top: 2px;
+}
+.learn-started .learn-card-progress {
+  color: var(--color-bitcoin, #f7931a);
+}
+.learn-complete {
+  border-color: rgba(247, 147, 26, 0.3) !important;
+}
+.learn-complete .learn-card-icon {
+  position: relative;
+}
+.learn-complete .learn-card-icon::after {
+  content: '\2713';
+  position: absolute;
+  bottom: -2px;
+  right: -4px;
+  font-size: .5rem;
+  background: #3fb950;
+  color: #fff;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Learn path step done state */
+.learn-step.step-done a {
+  border-color: rgba(247, 147, 26, 0.2);
+  background: rgba(247, 147, 26, 0.04);
+}
+.learn-step.step-done h3 {
+  color: var(--color-gray-500, #6b7280);
+}
+.learn-step.step-done h3::after {
+  content: ' \2713';
+  color: #3fb950;
+  font-size: .85em;
+}
+
 /* --- Tile content --- */
 .tile-title {
   font-size: 0.8rem;
@@ -2357,4 +2403,65 @@ body.theme-transition *::after {
 .line-clamp-2 {
   display: -webkit-box; -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ============================================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================================ */
+
+/* Minimum touch target size (WCAG 2.5.8 Target Size) */
+button,
+a.nav-link,
+.mobile-menu a,
+.tag-chip,
+.cmd-result,
+.sidebar-link,
+.mnav-item,
+.scroll-top,
+.settings-item {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Image alt fallback visual cue */
+img:not([alt]) {
+  outline: 3px dashed #ef4444;
+  outline-offset: 2px;
+}
+
+/* Improved color contrast for muted text */
+[data-theme="dark"] .text-muted,
+[data-theme="dark"] .stat-sub,
+[data-theme="dark"] .footer-text {
+  color: #9ca3af; /* contrast ratio 4.6:1 vs #0d1117 */
+}
+
+/* Ensure readable link color on dark background */
+[data-theme="dark"] a:not([class]) {
+  color: #58a6ff;
+}
+
+/* Light theme contrast */
+[data-theme="light"] .text-muted,
+[data-theme="light"] .stat-sub,
+[data-theme="light"] .footer-text {
+  color: #4b5563; /* contrast ratio 5.9:1 vs #fafafa */
+}
+
+/* Focus indicator for TOC links */
+.toc a:focus-visible {
+  outline: 2px solid var(--color-bitcoin);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-progress { display: none; }
 }
