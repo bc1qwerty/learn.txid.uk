@@ -29,6 +29,13 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Site header */
+.site-header {
+  background: rgba(13,17,23,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
 /* Focus visible for keyboard navigation */
 *:focus-visible {
   outline: 2px solid var(--color-bitcoin);
@@ -1749,6 +1756,12 @@ body.sidebar-right-collapsed .scroll-top {
 [data-theme='light'] .settings-item:hover { background: rgba(0,0,0,.04); color: #f7931a; }
 [data-theme='light'] .nav-icon-btn { background: #fff; border-color: rgba(0,0,0,.1); color: #6b7280; }
 [data-theme='light'] .nav-icon-btn:hover { border-color: #f7931a; color: #f7931a; }
+[data-theme='light'] .site-header { background: rgba(255,255,255,0.95); border-bottom-color: rgba(0,0,0,.08); }
+[data-theme='light'] .site-header a, [data-theme='light'] .site-header span { color: #374151; }
+[data-theme='light'] .site-header a:hover { color: #f7931a; }
+[data-theme='light'] .mobile-menu { background: rgba(255,255,255,0.97); border-color: rgba(0,0,0,.08); }
+[data-theme='light'] .mobile-menu-link { color: #374151; }
+[data-theme='light'] .mobile-menu-link:hover { color: #f7931a; }
 
 [data-theme='light'] .cmd-palette {
   background-color: #ffffff;
