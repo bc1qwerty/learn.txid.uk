@@ -2191,6 +2191,10 @@ body.theme-transition *::after {
   font-size: .72rem;
   white-space: nowrap;
 }
+#txid-login-btn.nav-icon-btn svg,
+#txid-user-btn.nav-icon-btn svg {
+  flex-shrink: 0;
+}
 
 /* ── 햄버거 버튼 (모바일만) ── */
 .nav-hamburger-btn {
