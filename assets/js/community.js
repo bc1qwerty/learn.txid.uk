@@ -534,9 +534,17 @@
   }
 
   // Avatar SVGs
-  const avatarDefault = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="13" fill="#21262d" stroke="#30363d" stroke-width="1"/><circle cx="14" cy="11" r="4" fill="#6e7681"/><path d="M7 23c0-4 3.5-7 7-7s7 3 7 7" fill="#6e7681"/></svg>`;
-  const avatarAdmin = `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="13" fill="#2d1b00" stroke="#f7931a" stroke-width="1.5"/><circle cx="14" cy="12" r="4" fill="#f7931a"/><path d="M7 24c0-4 3.5-7 7-7s7 3 7 7" fill="#f7931a"/><path d="M8 7l2 3 4-4 4 4 2-3 0 4H8z" fill="#f7931a"/></svg>`;
-  function authorAvatar(author) { return author.isAdmin ? avatarAdmin : avatarDefault; }
+  function avatarSvg(size, isAdmin) {
+    const s = size, h = s/2, r = s/2-1;
+    const headR = Math.round(s*0.143), headY = Math.round(s*0.393);
+    const bodyY = Math.round(s*0.821), bodyW = Math.round(s*0.25);
+    if (isAdmin) {
+      const crownY = Math.round(s*0.18), crownH = Math.round(s*0.143);
+      return `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${h}" cy="${h}" r="${r}" fill="#2d1b00" stroke="#f7931a" stroke-width="1.5"/><circle cx="${h}" cy="${headY}" r="${headR}" fill="#f7931a"/><path d="M${bodyW} ${bodyY}c0-${Math.round(s*0.143)} ${Math.round(s*0.125)}-${h} ${h}-${h}s${h} ${Math.round(s*0.107)} ${h} ${h}" fill="#f7931a"/><path d="M${Math.round(s*0.286)} ${crownY}l${Math.round(s*0.071)} ${Math.round(s*0.107)} ${Math.round(s*0.143)}-${crownH} ${Math.round(s*0.143)} ${crownH} ${Math.round(s*0.071)}-${Math.round(s*0.107)} 0 ${crownH}H${Math.round(s*0.286)}z" fill="#f7931a"/></svg>`;
+    }
+    return `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" fill="none"><circle cx="${h}" cy="${h}" r="${r}" fill="#21262d" stroke="#30363d" stroke-width="1"/><circle cx="${h}" cy="${headY}" r="${headR}" fill="#6e7681"/><path d="M${bodyW} ${bodyY}c0-${Math.round(s*0.143)} ${Math.round(s*0.125)}-${h} ${h}-${h}s${h} ${Math.round(s*0.107)} ${h} ${h}" fill="#6e7681"/></svg>`;
+  }
+  function authorAvatar(author, size) { return avatarSvg(size || 28, author.isAdmin); }
 
   function commentHtml(c, slug, postId) {
     const isOwner = currentUser && currentUser.pubkey === c.author.pubkey;
@@ -725,9 +733,9 @@
 
         <div class="p-5 rounded-xl border border-gray-800/50 bg-gray-900/30 mb-6">
           <div class="flex items-center gap-4${isOwner ? ' mb-4' : ''}">
-            <div class="w-10 h-10 rounded-full bg-bitcoin/20 flex items-center justify-center text-bitcoin font-bold text-sm">${esc(initials)}</div>
+            <div class="flex-shrink-0">${authorAvatar({isAdmin: profile.isAdmin}, 40)}</div>
             <div>
-              <div class="text-white font-semibold" id="profile-name">${esc(displayName)}</div>
+              <div class="text-white font-semibold flex items-center gap-2" id="profile-name">${esc(displayName)}${profile.isAdmin ? ' <span class="text-[10px] px-1 py-0.5 rounded bg-bitcoin/20 text-bitcoin font-bold leading-none">ADMIN</span>' : ''}</div>
               <div class="text-xs text-gray-500 font-mono">${shortKey(pubkey)}</div>
               <div class="text-xs text-gray-600 mt-1">${profile.postCount} ${t('tab_posts')} · ${profile.commentCount} ${t('tab_comments')}</div>
             </div>
