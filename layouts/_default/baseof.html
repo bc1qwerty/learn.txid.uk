@@ -166,7 +166,7 @@
     {{ $pe = $pe | minify | fingerprint "sha512" }}
     <script src="{{ $pe.RelPermalink }}" integrity="{{ $pe.Data.Integrity }}" defer></script>
   {{ end }}
-<script src="https://api.txid.uk/txid-auth.js" integrity="sha384-drfRpJmRJJvYg611jf4uBzMTKo4Rl9FRZOv/EqkLwS6abvbYmfzhIhQPu28GYU6K" crossorigin="anonymous" defer></script>
+<script src="https://api.txid.uk/txid-auth.js" integrity="sha384-tgJZ4SWLVUy1PI6um6T1hcmidHbIFLSQg1YymTlgTm0J3sTIPp3W4ljsjhkJOQp/" crossorigin="anonymous" defer></script>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js").catch(function(){})}</script>
 </body>
 </html>
