@@ -382,7 +382,7 @@
         <h2 class="text-base font-semibold text-white mb-4">${t('comments')} (${comments.length})</h2>
         ${currentUser ? `
           <div class="mb-6" id="comment-form-area">
-            <textarea id="comment-input" class="comm-textarea" rows="3" placeholder="${t('write_comment')}"></textarea>
+            <textarea id="comment-input" class="comm-textarea" rows="2" placeholder="${t('write_comment')}"></textarea>
             <div class="flex justify-end mt-2"><button class="comm-btn-primary" id="submit-comment">${t('submit')}</button></div>
           </div>
         ` : ''}
