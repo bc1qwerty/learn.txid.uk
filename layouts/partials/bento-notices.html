@@ -1,22 +1,22 @@
-<h2 class="tile-title">{{ i18n "notice_section_title" }}</h2>
-<div class="tile-list" id="notices-list">
+<h2 class="tile-title">{{ i18n "free_board_title" }}</h2>
+<div class="tile-list" id="free-board-list">
     <p class="tile-empty">—</p>
 </div>
-<a href="{{ $.Site.LanguagePrefix }}/community/#notice" class="tile-more">
+<a href="{{ $.Site.LanguagePrefix }}/community/#free" class="tile-more">
     {{ i18n "view_all" }} &rarr;
 </a>
 <script>
 (function(){
-  var el = document.getElementById('notices-list');
+  var el = document.getElementById('free-board-list');
   if (!el) return;
-  fetch('https://api.txid.uk/board/notice/posts?limit=3&sort=newest', {credentials:'include'})
+  fetch('https://api.txid.uk/board/free/posts?limit=3&sort=newest', {credentials:'include'})
     .then(function(r){return r.json()})
     .then(function(d){
       if (!d.posts || !d.posts.length) return;
       el.innerHTML = d.posts.map(function(p){
         var dt = new Date(p.createdAt * 1000);
         var ds = dt.toLocaleDateString('en-CA');
-        return '<a href="{{ $.Site.LanguagePrefix }}/community/#notice/' + p.id + '" class="tile-item">'
+        return '<a href="{{ $.Site.LanguagePrefix }}/community/#free/' + p.id + '" class="tile-item">'
           + '<time class="tile-item-date">' + ds + '</time>'
           + '<span class="tile-item-name">' + p.title.replace(/</g,'&lt;') + '</span>'
           + '<span class="arrow">&rarr;</span></a>';
