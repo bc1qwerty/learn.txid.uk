@@ -843,6 +843,10 @@ document.addEventListener('DOMContentLoaded', function() {
 // ── Learning Progress Tracker ──
 const LearnProgress = (() => {
   const STORAGE_KEY = 'txid_learn_progress';
+  const SYNC_API = 'https://api.txid.uk';
+  var syncTimer = null;
+  var isSyncing = false;
+  var isLoggedIn = false;
 
   function getProgress() {
     try {
@@ -855,7 +859,89 @@ const LearnProgress = (() => {
     if (!progress[url]) {
       progress[url] = { readAt: Date.now() };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+      scheduleSyncToServer();
     }
+  }
+
+  function scheduleSyncToServer() {
+    if (!isLoggedIn) return;
+    if (syncTimer) clearTimeout(syncTimer);
+    syncTimer = setTimeout(syncToServer, 5000);
+  }
+
+  function syncToServer() {
+    if (!isLoggedIn || isSyncing) return;
+    isSyncing = true;
+    fetch(SYNC_API + '/progress', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ progress: getProgress() }),
+    })
+    .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+    .then(function(data) {
+      if (data && data.progress) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data.progress));
+        updateProgressIndicators();
+      }
+    })
+    .catch(function() {})
+    .finally(function() { isSyncing = false; });
+  }
+
+  function fetchAndMergeFromServer() {
+    if (!isLoggedIn || isSyncing) return;
+    isSyncing = true;
+    fetch(SYNC_API + '/progress', {
+      method: 'PUT',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ progress: getProgress() }),
+    })
+    .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+    .then(function(data) {
+      if (data && data.progress) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data.progress));
+        updateProgressIndicators();
+      }
+    })
+    .catch(function() {})
+    .finally(function() { isSyncing = false; });
+  }
+
+  function initSync() {
+    if (!window.txidAuth) {
+      if (!initSync._r) initSync._r = 0;
+      if (initSync._r++ < 5) setTimeout(initSync, 200);
+      return;
+    }
+    var user = window.txidAuth.getUser();
+    if (user) {
+      isLoggedIn = true;
+      fetchAndMergeFromServer();
+    }
+    window.txidAuth.onAuthChange(function(u) {
+      if (u) {
+        isLoggedIn = true;
+        fetchAndMergeFromServer();
+      } else {
+        isLoggedIn = false;
+      }
+    });
+
+    // Flush pending sync on page unload
+    window.addEventListener('beforeunload', function() {
+      if (!isLoggedIn || !syncTimer) return;
+      clearTimeout(syncTimer);
+      syncTimer = null;
+      fetch(SYNC_API + '/progress', {
+        method: 'PUT',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ progress: getProgress() }),
+        keepalive: true,
+      });
+    });
   }
 
   function isRead(url) {
@@ -1000,11 +1086,12 @@ const LearnProgress = (() => {
     });
   }
 
-  return { getProgress, markRead, isRead, getStats, countCompleted, getStepURLs, initAutoTrack, updateProgressIndicators };
+  return { getProgress, markRead, isRead, getStats, countCompleted, getStepURLs, initAutoTrack, updateProgressIndicators, initSync };
 })();
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
   LearnProgress.initAutoTrack();
   LearnProgress.updateProgressIndicators();
+  LearnProgress.initSync();
 });
