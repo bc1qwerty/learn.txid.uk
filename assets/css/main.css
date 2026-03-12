@@ -2153,9 +2153,10 @@ body.theme-transition *::after {
   letter-spacing: .06em;
 }
 
-.settings-lang-row { display: flex; gap: 4px; padding: 2px 8px 4px; }
+.settings-lang-row { display: flex; gap: 4px; padding: 2px 8px 4px; width: 100%; box-sizing: border-box; }
 .settings-lang-btn {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   background: #21262d;
   border: 1px solid #374151;
   color: #9ca3af;
@@ -2165,6 +2166,7 @@ body.theme-transition *::after {
   cursor: pointer;
   transition: all .2s;
   font-family: var(--font-sans);
+  text-align: center;
 }
 .settings-lang-btn:hover,
 .settings-lang-btn.active {
@@ -2198,6 +2200,8 @@ body.theme-transition *::after {
   display: flex;
   gap: 4px;
   padding: 4px 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* ── 도구 드롭다운 (tools-dropdown-learn) ── */
