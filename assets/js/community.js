@@ -32,6 +32,8 @@
       voted_posts: '추천 글', voted_comments: '추천 댓글',
       bookmarks: '북마크', bookmark: '저장', unbookmark: '저장 해제',
       no_items: '항목이 없습니다.',
+      my_info: '내 정보', nickname: '닉네임', nickname_ph: '닉네임 (최대 30자)',
+      save: '저장', saved: '저장됨!',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -52,6 +54,8 @@
       voted_posts: 'Upvoted Posts', voted_comments: 'Upvoted Comments',
       bookmarks: 'Bookmarks', bookmark: 'Bookmark', unbookmark: 'Remove Bookmark',
       no_items: 'No items found.',
+      my_info: 'My Profile', nickname: 'Nickname', nickname_ph: 'Nickname (max 30)',
+      save: 'Save', saved: 'Saved!',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -72,6 +76,8 @@
       voted_posts: '推薦した投稿', voted_comments: '推薦したコメント',
       bookmarks: 'ブックマーク', bookmark: 'ブックマーク', unbookmark: 'ブックマーク解除',
       no_items: '項目がありません。',
+      my_info: 'マイページ', nickname: 'ニックネーム', nickname_ph: 'ニックネーム (最大30文字)',
+      save: '保存', saved: '保存済み!',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
@@ -172,11 +178,11 @@
     if (parts[0] === 'search') return renderSearch();
     if (parts[0] === 'me') {
       if (!currentUser) return renderHome();
-      if (parts[1] === 'posts') return renderMyPage(t('my_posts'), '/board/me/posts', 'posts');
-      if (parts[1] === 'comments') return renderMyPage(t('my_comments'), '/board/me/comments', 'comments');
-      if (parts[1] === 'voted-posts') return renderMyPage(t('voted_posts'), '/board/me/voted-posts', 'posts');
-      if (parts[1] === 'voted-comments') return renderMyPage(t('voted_comments'), '/board/me/voted-comments', 'comments');
-      if (parts[1] === 'bookmarks') return renderMyPage(t('bookmarks'), '/board/me/bookmarks', 'posts');
+      if (!parts[1] || parts[1] === 'posts') return renderMyPage(t('my_posts'), '/board/me/posts', 'posts', 'me/posts');
+      if (parts[1] === 'comments') return renderMyPage(t('my_comments'), '/board/me/comments', 'comments', 'me/comments');
+      if (parts[1] === 'voted-posts') return renderMyPage(t('voted_posts'), '/board/me/voted-posts', 'posts', 'me/voted-posts');
+      if (parts[1] === 'voted-comments') return renderMyPage(t('voted_comments'), '/board/me/voted-comments', 'comments', 'me/voted-comments');
+      if (parts[1] === 'bookmarks') return renderMyPage(t('bookmarks'), '/board/me/bookmarks', 'posts', 'me/bookmarks');
       return renderHome();
     }
     if (parts.length === 1) return renderBoard(parts[0]);
@@ -621,7 +627,7 @@
 
   // ─── My Activity ───
 
-  async function renderMyPage(title, apiPath, type) {
+  async function renderMyPage(title, apiPath, type, activeTab) {
     if (!currentUser) {
       app.innerHTML = `<p class="text-center py-20 text-gray-500">${t('login_required')}</p>`;
       return;
@@ -630,18 +636,33 @@
     var data = await api(apiPath + '?page=' + page + '&limit=20');
     var items = data.posts || data.comments || [];
     var pg = data.pagination;
-    var hashBase = apiPath.replace('/board/', '');
+    var initials = (currentUser.displayName || currentUser.pubkey.slice(0, 2)).slice(0, 2).toUpperCase();
 
     app.innerHTML = `
       <header class="mb-8">
-        <nav class="text-sm text-gray-500 mb-4"><a href="#" class="hover:text-bitcoin">${t('boards')}</a> / <span class="text-white">${esc(title)}</span></nav>
-        <h1 class="text-2xl font-bold text-white mb-4">${esc(title)}</h1>
+        <nav class="text-sm text-gray-500 mb-4"><a href="#" class="hover:text-bitcoin">${t('boards')}</a> / <span class="text-white">${t('my_info')}</span></nav>
+
+        <div class="p-5 rounded-xl border border-gray-800/50 bg-gray-900/30 mb-6">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 rounded-full bg-bitcoin/20 flex items-center justify-center text-bitcoin font-bold text-sm">${esc(initials)}</div>
+            <div>
+              <div class="text-white font-semibold" id="profile-name">${esc(currentUser.displayName || shortKey(currentUser.pubkey))}</div>
+              <div class="text-xs text-gray-500 font-mono">${shortKey(currentUser.pubkey)}</div>
+            </div>
+          </div>
+          <label class="text-xs text-gray-500 block mb-1">${t('nickname')}</label>
+          <div class="flex gap-2 items-center">
+            <input id="nick-input" class="comm-input" style="max-width:240px;padding:6px 10px;font-size:.8rem" placeholder="${t('nickname_ph')}" maxlength="30" value="${esc(currentUser.displayName || '')}">
+            <button class="comm-btn-primary" id="nick-save" style="padding:6px 14px;font-size:.78rem">${t('save')}</button>
+          </div>
+        </div>
+
         <div class="flex gap-2 flex-wrap text-xs">
-          ${myTabLink('me/posts', t('my_posts'))}
-          ${myTabLink('me/comments', t('my_comments'))}
-          ${myTabLink('me/voted-posts', t('voted_posts'))}
-          ${myTabLink('me/voted-comments', t('voted_comments'))}
-          ${myTabLink('me/bookmarks', t('bookmarks'))}
+          ${myTabLink('me/posts', t('my_posts'), activeTab)}
+          ${myTabLink('me/comments', t('my_comments'), activeTab)}
+          ${myTabLink('me/voted-posts', t('voted_posts'), activeTab)}
+          ${myTabLink('me/voted-comments', t('voted_comments'), activeTab)}
+          ${myTabLink('me/bookmarks', t('bookmarks'), activeTab)}
         </div>
       </header>
       <div>
@@ -649,12 +670,36 @@
           type === 'comments' ? items.map(commentCard).join('') :
           items.map(function(p) { return postCard(p, p.boardSlug); }).join('')}
       </div>
-      ${pg && pg.totalPages > 1 ? myPagHtml(pg, hashBase) : ''}
+      ${pg && pg.totalPages > 1 ? myPagHtml(pg, activeTab) : ''}
     `;
+
+    // Nickname save
+    document.getElementById('nick-save').addEventListener('click', async function() {
+      var input = document.getElementById('nick-input');
+      var name = input.value.trim();
+      var saveBtn = document.getElementById('nick-save');
+      try {
+        await api('/auth/me/display-name', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ displayName: name }),
+        });
+        currentUser.displayName = name || null;
+        document.getElementById('profile-name').textContent = name || shortKey(currentUser.pubkey);
+        if (window.txidAuth && window.txidAuth.updateDisplayName) {
+          window.txidAuth.updateDisplayName(name || null);
+        }
+        saveBtn.textContent = t('saved');
+        setTimeout(function() { saveBtn.textContent = t('save'); }, 1500);
+      } catch(e) {
+        saveBtn.textContent = '!';
+        setTimeout(function() { saveBtn.textContent = t('save'); }, 1500);
+      }
+    });
   }
 
-  function myTabLink(hash, label) {
-    var active = location.hash.split('?')[0] === '#' + hash;
+  function myTabLink(hash, label, activeTab) {
+    var active = activeTab === hash;
     return '<a href="#' + hash + '" class="comm-tab' + (active ? ' comm-tab-active' : '') + '">' + label + '</a>';
   }
 
