@@ -1,7 +1,7 @@
 ---
 title: "비트코인 자기주권 실전 코스"
 description: "비트코인을 실제로 안전하게 보관하고 사용하는 실전 지식을 6단계로 익힙니다."
-icon: "🔐"
+icon: "🛡"
 weight: 7
 duration: "45분"
 steps:

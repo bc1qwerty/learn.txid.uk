@@ -1,7 +1,7 @@
 ---
 title: "Libertarianism: Advanced Course"
 description: "From individual rights to anarcho-capitalism — exploring the spectrum of libertarian political philosophy in 6 steps."
-icon: "⚡"
+icon: "🏴"
 weight: 8
 duration: "50min"
 steps:

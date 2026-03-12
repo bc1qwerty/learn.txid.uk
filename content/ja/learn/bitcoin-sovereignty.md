@@ -1,7 +1,7 @@
 ---
 title: "ビットコイン自己主権 実践コース"
 description: "ビットコインを実際に安全に保管し使用する実践知識を6ステップで学びます。"
-icon: "🔐"
+icon: "🛡"
 weight: 7
 duration: "45分"
 steps:

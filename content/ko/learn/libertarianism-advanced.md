@@ -1,7 +1,7 @@
 ---
 title: "자유주의 심화 코스"
 description: "개인의 권리에서 무정부 자본주의까지, 자유주의 정치철학의 스펙트럼을 6단계로 탐구합니다."
-icon: "⚡"
+icon: "🏴"
 weight: 8
 duration: "50분"
 steps:

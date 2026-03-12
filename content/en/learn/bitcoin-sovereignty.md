@@ -1,7 +1,7 @@
 ---
 title: "Bitcoin Self-Sovereignty in Practice"
 description: "Practical knowledge for safely storing and using Bitcoin — in 6 steps."
-icon: "🔐"
+icon: "🛡"
 weight: 7
 duration: "45min"
 steps:
