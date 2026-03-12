@@ -163,18 +163,16 @@
 
   function render() {
     var tab = getTab();
-    app.innerHTML = renderNav(tab) + '<div id="dash-content" class="mt-6">' + renderLoading() + '</div>';
+    app.innerHTML = renderNav(tab) + '<div id="dash-content" class="mt-8">' + renderLoading() + '</div>';
     loadTab(tab);
   }
 
   function renderNav(active) {
-    var html = '<div class="flex items-center justify-between mb-2"><h1 class="text-2xl font-bold text-white">' + t('dashboard') + '</h1></div>';
-    html += '<nav class="flex gap-1 border-b border-gray-800 overflow-x-auto">';
+    var html = '<div class="flex items-center justify-between mb-4"><h1 class="text-2xl font-bold text-white">' + t('dashboard') + '</h1></div>';
+    html += '<nav class="flex gap-2 flex-wrap">';
     TABS.forEach(function (tab) {
-      var cls = tab === active
-        ? 'px-4 py-2 text-sm font-medium border-b-2 border-bitcoin text-bitcoin'
-        : 'px-4 py-2 text-sm text-gray-400 hover:text-gray-200';
-      html += '<a href="#' + tab + '" class="' + cls + ' whitespace-nowrap">' + t(tab) + '</a>';
+      var cls = tab === active ? 'comm-tab comm-tab-active' : 'comm-tab';
+      html += '<a href="#' + tab + '" class="' + cls + '">' + t(tab) + '</a>';
     });
     html += '</nav>';
     return html;
@@ -279,19 +277,22 @@
   var analyticsPeriod = '7';
 
   function loadAnalytics() {
-    // Period selector + placeholder cards
-    var html = '<div class="flex gap-1 mb-4">';
+    var tileH = ' class="font-semibold mb-3 text-white"';
+    var ldg = '<div class="text-gray-500 text-sm">' + t('loading') + '</div>';
+    // Period selector
+    var html = '<div class="flex gap-2 mb-6">';
     ['7', '30', '90'].forEach(function (p) {
-      var cls = p === analyticsPeriod ? 'bg-bitcoin text-gray-900 font-semibold' : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700';
-      html += '<button class="px-3 py-1 text-xs rounded ' + cls + '" data-period="' + p + '">' + p + t('days') + '</button>';
+      var cls = p === analyticsPeriod ? 'comm-tab comm-tab-active' : 'comm-tab';
+      html += '<button class="' + cls + '" data-period="' + p + '">' + p + t('days') + '</button>';
     });
     html += '</div>';
-    html += '<div id="a-hits" class="' + cardCls + ' mb-4"><h3 class="font-semibold mb-3 text-white">' + t('pageviews') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
-    html += '<div id="a-pages" class="' + cardCls + ' mb-4"><h3 class="font-semibold mb-3 text-white">' + t('pages') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
-    html += '<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">';
-    html += '<div id="a-browsers" class="' + cardCls + '"><h3 class="font-semibold mb-3 text-white">' + t('browsers') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
-    html += '<div id="a-systems" class="' + cardCls + '"><h3 class="font-semibold mb-3 text-white">' + t('systems') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
-    html += '<div id="a-locations" class="' + cardCls + '"><h3 class="font-semibold mb-3 text-white">' + t('locations') + '</h3><div class="text-gray-500 text-sm">' + t('loading') + '</div></div>';
+    // Bento grid
+    html += '<div class="bento-grid">';
+    html += '<div id="a-hits" class="bento-tile" style="flex:0 0 100%"><h3' + tileH + '>' + t('pageviews') + '</h3>' + ldg + '</div>';
+    html += '<div id="a-pages" class="bento-tile" style="flex:0 0 100%"><h3' + tileH + '>' + t('pages') + '</h3>' + ldg + '</div>';
+    html += '<div id="a-browsers" class="bento-tile"><h3' + tileH + '>' + t('browsers') + '</h3>' + ldg + '</div>';
+    html += '<div id="a-systems" class="bento-tile"><h3' + tileH + '>' + t('systems') + '</h3>' + ldg + '</div>';
+    html += '<div id="a-locations" class="bento-tile"><h3' + tileH + '>' + t('locations') + '</h3>' + ldg + '</div>';
     html += '</div>';
     setContent(html);
 
@@ -392,10 +393,10 @@
   // ─── Users ───
 
   function loadUsers(page, search) {
-    var html = '<div class="mb-4">';
-    html += '<input type="text" id="user-search" placeholder="' + t('search_ph') + '" value="' + esc(search) + '" class="bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm text-gray-200 w-full max-w-sm focus:outline-none focus:border-bitcoin">';
+    var html = '<div class="mb-6">';
+    html += '<input type="text" id="user-search" placeholder="' + t('search_ph') + '" value="' + esc(search) + '" class="comm-input" style="max-width:20rem">';
     html += '</div>';
-    html += '<div id="users-table">' + renderLoading() + '</div>';
+    html += '<div class="bento-grid"><div class="bento-tile" style="flex:0 0 100%" id="users-table">' + renderLoading() + '</div></div>';
     setContent(html);
 
     var searchInput = document.getElementById('user-search');
@@ -490,24 +491,22 @@
 
   function loadContent() {
     api('/admin/stats/content').then(function (d) {
-      var html = '';
+      var html = '<div class="bento-grid">';
 
       // Board stats
-      html += '<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">';
       d.boards.forEach(function (b) {
         var name = LANG === 'en' ? b.nameEn : (LANG === 'ja' ? b.nameJa : b.nameKo);
-        html += '<div class="' + cardCls + '">';
-        html += '<div class="font-semibold">' + esc(name) + ' <span class="text-gray-500 text-xs">' + b.slug + '</span></div>';
+        html += '<div class="bento-tile" style="flex:1 1 10rem;min-width:10rem">';
+        html += '<div class="font-semibold text-white">' + esc(name) + ' <span class="text-gray-500 text-xs">' + b.slug + '</span></div>';
         html += '<div class="flex gap-4 mt-2 text-sm text-gray-400">';
-        html += '<span>' + t('posts') + ': <strong class="text-gray-200">' + b.postCount + '</strong></span>';
-        html += '<span>' + t('comments') + ': <strong class="text-gray-200">' + b.commentCount + '</strong></span>';
+        html += '<span>' + t('posts') + ': <strong class="text-white">' + b.postCount + '</strong></span>';
+        html += '<span>' + t('comments') + ': <strong class="text-white">' + b.commentCount + '</strong></span>';
         html += '</div></div>';
       });
-      html += '</div>';
 
       // Recent posts
-      html += '<div class="' + cardCls + ' mb-6">';
-      html += '<h3 class="font-semibold mb-3">' + t('recent_posts') + '</h3>';
+      html += '<div class="bento-tile" style="flex:0 0 100%">';
+      html += '<h3 class="font-semibold mb-3 text-white">' + t('recent_posts') + '</h3>';
       if (d.recentPosts.length) {
         html += '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
         html += '<th class="' + thCls + '">#</th>';
@@ -538,8 +537,8 @@
       html += '</div>';
 
       // Recent comments
-      html += '<div class="' + cardCls + '">';
-      html += '<h3 class="font-semibold mb-3">' + t('recent_comments') + '</h3>';
+      html += '<div class="bento-tile" style="flex:0 0 100%">';
+      html += '<h3 class="font-semibold mb-3 text-white">' + t('recent_comments') + '</h3>';
       if (d.recentComments.length) {
         html += '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
         html += '<th class="' + thCls + '">#</th>';
@@ -565,6 +564,7 @@
         html += '<p class="text-gray-500">' + t('no_data') + '</p>';
       }
       html += '</div>';
+      html += '</div>'; // close bento-grid
 
       setContent(html);
 
@@ -599,12 +599,11 @@
 
   function loadCourses() {
     api('/admin/stats/courses').then(function (d) {
-      var html = '<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">';
+      var html = '<div class="bento-grid">';
       html += statCard(t('total_pages_read'), d.totalPagesRead, '');
       html += statCard(t('active_learners'), d.activeLearners, '');
-      html += '</div>';
 
-      html += '<div class="' + cardCls + '">';
+      html += '<div class="bento-tile" style="flex:0 0 100%">';
       html += '<div class="overflow-x-auto"><table class="' + tableCls + '"><thead><tr>';
       html += '<th class="' + thCls + '">' + t('course') + '</th>';
       html += '<th class="' + thCls + ' text-center">' + t('steps') + '</th>';
@@ -618,6 +617,7 @@
         html += '</tr>';
       });
       html += '</tbody></table></div></div>';
+      html += '</div>'; // close bento-grid
       setContent(html);
     }).catch(function () { setContent(renderError()); });
   }
@@ -627,15 +627,15 @@
   function loadSystem() {
     api('/admin/stats/system').then(function (d) {
       var mem = d.memoryUsage || {};
-      var html = '<div class="grid grid-cols-2 md:grid-cols-4 gap-4">';
+      var html = '<div class="bento-grid">';
       html += statCard(t('uptime'), fmtDuration(d.uptime), '');
       html += statCard(t('db_size'), fmtBytes(d.dbSizeBytes), '');
       html += statCard(t('node_ver'), d.nodeVersion, '');
       html += statCard(t('memory'), fmtBytes(mem.heapUsed || 0), 'RSS: ' + fmtBytes(mem.rss || 0));
-      html += '</div>';
 
       // Health check
-      html += '<div class="' + cardCls + ' mt-6" id="health-result">' + renderLoading() + '</div>';
+      html += '<div class="bento-tile" style="flex:0 0 100%" id="health-result">' + renderLoading() + '</div>';
+      html += '</div>'; // close bento-grid
       setContent(html);
 
       fetch(API + '/health').then(function (r) { return r.json(); }).then(function (h) {
