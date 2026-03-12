@@ -225,7 +225,7 @@ details[open] > *:not(summary) {
   left: 0;
   height: 0.125rem;
   background-color: var(--color-bitcoin);
-  z-index: 50;
+  z-index: 1001;
   width: 0%;
   transition: width 0.1s linear;
   pointer-events: none;
@@ -237,7 +237,7 @@ details[open] > *:not(summary) {
 .cmd-palette-overlay {
   position: fixed;
   inset: 0;
-  z-index: 50;
+  z-index: 1100;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -360,7 +360,7 @@ details[open] > *:not(summary) {
 /* --- Column layout (fixed to browser edges) --- */
 .sidebar-column {
   position: fixed;
-  top: 4rem;
+  top: calc(var(--gnav-h, 0px) + 2.75rem);
   bottom: 0;
   width: 15rem;
   z-index: 30;
@@ -1948,7 +1948,7 @@ body.sidebar-right-collapsed .page-layout {
   position: fixed;
   top: 0.5rem;
   left: 0.5rem;
-  z-index: 9999;
+  z-index: 1100;
   width: auto;
   height: auto;
   padding: 0.75rem 1.25rem;
