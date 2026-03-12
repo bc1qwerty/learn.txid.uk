@@ -7,7 +7,7 @@
   </div>
 </div>
 
-{{ $js := resources.Get "js/community.js" }}
+{{ $js := resources.Get "js/community.js" | fingerprint }}
 {{ with $js }}
 <script src="{{ .RelPermalink }}"></script>
 {{ end }}
