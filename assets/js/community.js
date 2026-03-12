@@ -740,16 +740,23 @@
   const svgBookmark = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>';
 
   // ─── Init ───
+  async function safeRoute() {
+    try { await route(); } catch (e) {
+      console.error('[community] route error:', e);
+      app.innerHTML = '<p class="text-center py-20 text-gray-500">Error: ' + (e.message || 'Unknown') + '</p>';
+    }
+  }
+
   async function init() {
     await checkAuth();
-    route();
-    window.addEventListener('hashchange', route);
+    await safeRoute();
+    window.addEventListener('hashchange', safeRoute);
 
     // U-7: subscribe to auth changes from txid-auth SDK
     if (window.txidAuth) {
       window.txidAuth.onAuthChange(function (user) {
         currentUser = user;
-        route();
+        safeRoute();
       });
     }
   }
