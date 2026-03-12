@@ -1,6 +1,7 @@
 /**
  * community.js — SPA for learn.txid.uk/community/
  * Hash-based routing: #free, #free/123, #free/new, #search?q=..., #user/{pubkey}
+ * v2 — avatars, admin badges, layout improvements
  */
 (function () {
   'use strict';
