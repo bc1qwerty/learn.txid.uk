@@ -28,6 +28,10 @@
       checkin: '출석체크', already_checked: '오늘 이미 출석했습니다.', checkin_success: '출석 완료!',
       admin_only_msg: '관리자만 글을 작성할 수 있습니다.',
       blocked_word: '부적절한 표현이 포함되어 있습니다.',
+      my_posts: '작성 글', my_comments: '작성 댓글',
+      voted_posts: '추천 글', voted_comments: '추천 댓글',
+      bookmarks: '북마크', bookmark: '저장', unbookmark: '저장 해제',
+      no_items: '항목이 없습니다.',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -44,6 +48,10 @@
       checkin: 'Check in', already_checked: 'Already checked in today.', checkin_success: 'Checked in!',
       admin_only_msg: 'Only admins can post here.',
       blocked_word: 'Inappropriate language detected.',
+      my_posts: 'My Posts', my_comments: 'My Comments',
+      voted_posts: 'Upvoted Posts', voted_comments: 'Upvoted Comments',
+      bookmarks: 'Bookmarks', bookmark: 'Bookmark', unbookmark: 'Remove Bookmark',
+      no_items: 'No items found.',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -60,6 +68,10 @@
       checkin: '出席チェック', already_checked: '今日はすでに出席済みです。', checkin_success: '出席完了！',
       admin_only_msg: '管理者のみ投稿できます。',
       blocked_word: '不適切な表現が含まれています。',
+      my_posts: '自分の投稿', my_comments: '自分のコメント',
+      voted_posts: '推薦した投稿', voted_comments: '推薦したコメント',
+      bookmarks: 'ブックマーク', bookmark: 'ブックマーク', unbookmark: 'ブックマーク解除',
+      no_items: '項目がありません。',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
@@ -69,6 +81,32 @@
     const d = document.createElement('div');
     d.textContent = s;
     return d.innerHTML;
+  }
+
+  function renderMarkdown(text) {
+    var html = esc(text);
+    var blocks = [], codes = [];
+    html = html.replace(/```\w*\n?([\s\S]*?)```/g, function(_, c) {
+      blocks.push('<pre class="md-pre"><code>' + c.trim() + '</code></pre>');
+      return '\uE000B' + (blocks.length - 1) + '\uE000';
+    });
+    html = html.replace(/`([^`\n]+)`/g, function(_, c) {
+      codes.push('<code class="md-code">' + c + '</code>');
+      return '\uE000C' + (codes.length - 1) + '\uE000';
+    });
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
+    html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, function(_, t, u) {
+      return '<a href="' + u.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener noreferrer" class="text-bitcoin hover:underline">' + t + '</a>';
+    });
+    html = html.replace(/^### (.+)$/gm, '<h4 class="md-h">$1</h4>');
+    html = html.replace(/^## (.+)$/gm, '<h3 class="md-h">$1</h3>');
+    html = html.replace(/^# (.+)$/gm, '<h2 class="md-h">$1</h2>');
+    html = html.replace(/^&gt; (.+)$/gm, '<blockquote class="md-quote">$1</blockquote>');
+    html = html.replace(/^---$/gm, '<hr class="md-hr">');
+    codes.forEach(function(c, i) { html = html.replace('\uE000C' + i + '\uE000', c); });
+    blocks.forEach(function(b, i) { html = html.replace('\uE000B' + i + '\uE000', b); });
+    return html;
   }
 
   function timeAgo(ts) {
@@ -128,10 +166,19 @@
   // ─── Router ───
   async function route() {
     const hash = location.hash.slice(1) || '';
-    const parts = hash.split('/').filter(Boolean);
+    const parts = hash.split('?')[0].split('/').filter(Boolean);
 
     if (!parts.length) return renderHome();
     if (parts[0] === 'search') return renderSearch();
+    if (parts[0] === 'me') {
+      if (!currentUser) return renderHome();
+      if (parts[1] === 'posts') return renderMyPage(t('my_posts'), '/board/me/posts', 'posts');
+      if (parts[1] === 'comments') return renderMyPage(t('my_comments'), '/board/me/comments', 'comments');
+      if (parts[1] === 'voted-posts') return renderMyPage(t('voted_posts'), '/board/me/voted-posts', 'posts');
+      if (parts[1] === 'voted-comments') return renderMyPage(t('voted_comments'), '/board/me/voted-comments', 'comments');
+      if (parts[1] === 'bookmarks') return renderMyPage(t('bookmarks'), '/board/me/bookmarks', 'posts');
+      return renderHome();
+    }
     if (parts.length === 1) return renderBoard(parts[0]);
     if (parts[1] === 'new') return renderNewPost(parts[0]);
     if (parts.length === 2 && /^\d+$/.test(parts[1])) return renderPost(parts[0], parseInt(parts[1]));
@@ -298,8 +345,9 @@
               ${isOwner ? `<a href="#${slug}/${postId}/edit" class="hover:text-bitcoin">${t('edit')}</a>` : ''}
               ${isOwner || isAdmin ? `<button class="hover:text-red-400" id="delete-post-btn">${t('delete')}</button>` : ''}
               ${isAdmin ? `<button class="hover:text-bitcoin" id="pin-post-btn">${post.isPinned ? t('unpin') : t('pin')}</button>` : ''}
+              ${currentUser ? `<button class="hover:text-bitcoin${post.isBookmarked ? ' text-bitcoin' : ''}" id="bookmark-btn">${svgBookmark} ${post.isBookmarked ? t('unbookmark') : t('bookmark')}</button>` : ''}
             </div>
-            <div class="article-prose text-sm text-gray-300 leading-relaxed whitespace-pre-wrap">${esc(post.body)}</div>
+            <div class="article-prose text-sm text-gray-300 leading-relaxed whitespace-pre-wrap">${renderMarkdown(post.body)}</div>
           </div>
         </div>
       </article>
@@ -348,6 +396,22 @@
       const res = await apiJson(`/board/posts/${postId}/pin`, {});
       pinBtn.textContent = res.isPinned ? t('unpin') : t('pin');
     });
+
+    // Bookmark handler
+    const bmBtn = document.getElementById('bookmark-btn');
+    if (bmBtn && currentUser) {
+      bmBtn.addEventListener('click', async () => {
+        if (post.isBookmarked) {
+          await api(`/board/posts/${postId}/bookmark`, { method: 'DELETE' });
+          post.isBookmarked = false;
+        } else {
+          await apiJson(`/board/posts/${postId}/bookmark`, {});
+          post.isBookmarked = true;
+        }
+        bmBtn.className = 'hover:text-bitcoin' + (post.isBookmarked ? ' text-bitcoin' : '');
+        bmBtn.innerHTML = svgBookmark + ' ' + (post.isBookmarked ? t('unbookmark') : t('bookmark'));
+      });
+    }
 
     // Comment submit
     const submitBtn = document.getElementById('submit-comment');
@@ -555,11 +619,80 @@
     if (q) doSearch();
   }
 
+  // ─── My Activity ───
+
+  async function renderMyPage(title, apiPath, type) {
+    if (!currentUser) {
+      app.innerHTML = `<p class="text-center py-20 text-gray-500">${t('login_required')}</p>`;
+      return;
+    }
+    var page = parseInt(new URLSearchParams(location.hash.split('?')[1]).get('page')) || 1;
+    var data = await api(apiPath + '?page=' + page + '&limit=20');
+    var items = data.posts || data.comments || [];
+    var pg = data.pagination;
+    var hashBase = apiPath.replace('/board/', '');
+
+    app.innerHTML = `
+      <header class="mb-8">
+        <nav class="text-sm text-gray-500 mb-4"><a href="#" class="hover:text-bitcoin">${t('boards')}</a> / <span class="text-white">${esc(title)}</span></nav>
+        <h1 class="text-2xl font-bold text-white mb-4">${esc(title)}</h1>
+        <div class="flex gap-2 flex-wrap text-xs">
+          ${myTabLink('me/posts', t('my_posts'))}
+          ${myTabLink('me/comments', t('my_comments'))}
+          ${myTabLink('me/voted-posts', t('voted_posts'))}
+          ${myTabLink('me/voted-comments', t('voted_comments'))}
+          ${myTabLink('me/bookmarks', t('bookmarks'))}
+        </div>
+      </header>
+      <div>
+        ${items.length === 0 ? '<p class="text-gray-500 text-sm py-10 text-center">' + t('no_items') + '</p>' :
+          type === 'comments' ? items.map(commentCard).join('') :
+          items.map(function(p) { return postCard(p, p.boardSlug); }).join('')}
+      </div>
+      ${pg && pg.totalPages > 1 ? myPagHtml(pg, hashBase) : ''}
+    `;
+  }
+
+  function myTabLink(hash, label) {
+    var active = location.hash.split('?')[0] === '#' + hash;
+    return '<a href="#' + hash + '" class="comm-tab' + (active ? ' comm-tab-active' : '') + '">' + label + '</a>';
+  }
+
+  function commentCard(c) {
+    return `
+      <a href="#${c.boardSlug}/${c.postId}" class="block p-5 rounded-xl border border-gray-800/50 hover:border-gray-700 bg-gray-900/20 hover:bg-gray-900/40 transition-all mb-3">
+        <div class="flex items-start gap-4">
+          <div class="flex flex-col items-center gap-0.5 text-xs text-gray-500 min-w-[40px] pt-1">
+            <span class="text-bitcoin font-mono font-semibold">${c.voteScore}</span>
+            <span>votes</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm text-gray-300 line-clamp-2">${esc(c.body)}</p>
+            <div class="flex items-center gap-3 mt-2 text-xs text-gray-600">
+              <span>${svgComment} ${esc(c.postTitle)}</span>
+              <span>${timeAgo(c.createdAt)}</span>
+            </div>
+          </div>
+        </div>
+      </a>`;
+  }
+
+  function myPagHtml(pg, hashBase) {
+    if (pg.totalPages <= 1) return '';
+    var html = '<div class="flex items-center justify-center gap-2 mt-8">';
+    if (pg.page > 1) html += '<a href="#' + hashBase + '?page=' + (pg.page - 1) + '" class="comm-btn-secondary">' + t('prev') + '</a>';
+    html += '<span class="text-sm text-gray-500">' + pg.page + ' ' + t('of') + ' ' + pg.totalPages + '</span>';
+    if (pg.page < pg.totalPages) html += '<a href="#' + hashBase + '?page=' + (pg.page + 1) + '" class="comm-btn-secondary">' + t('next') + '</a>';
+    html += '</div>';
+    return html;
+  }
+
   // ─── SVG Icons ───
   const svgUp = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
   const svgDown = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>';
   const svgComment = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-1px"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>';
   const svgSearch = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+  const svgBookmark = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>';
 
   // ─── Init ───
   async function init() {
