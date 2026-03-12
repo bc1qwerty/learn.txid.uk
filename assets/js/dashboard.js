@@ -286,14 +286,21 @@
       html += '<button class="' + cls + '" data-period="' + p + '">' + p + t('days') + '</button>';
     });
     html += '</div>';
-    // Bento grid
+    // Hits chart full-width
     html += '<div class="bento-grid">';
     html += '<div id="a-hits" class="bento-tile" style="flex:0 0 100%"><h3' + tileH + '>' + t('pageviews') + '</h3>' + ldg + '</div>';
-    html += '<div id="a-pages" class="bento-tile" style="flex:0 0 100%"><h3' + tileH + '>' + t('pages') + '</h3>' + ldg + '</div>';
+    html += '</div>';
+    // Two-column: pages left, breakdown cards right
+    html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem" class="analytics-two-col">';
+    html += '<div id="a-pages" class="bento-tile" style="align-self:start"><h3' + tileH + '>' + t('pages') + '</h3>' + ldg + '</div>';
+    html += '<div style="display:flex;flex-direction:column;gap:1rem">';
     html += '<div id="a-browsers" class="bento-tile"><h3' + tileH + '>' + t('browsers') + '</h3>' + ldg + '</div>';
     html += '<div id="a-systems" class="bento-tile"><h3' + tileH + '>' + t('systems') + '</h3>' + ldg + '</div>';
     html += '<div id="a-locations" class="bento-tile"><h3' + tileH + '>' + t('locations') + '</h3>' + ldg + '</div>';
     html += '</div>';
+    html += '</div>';
+    // Responsive: single column on mobile
+    html += '<style>.analytics-two-col{grid-template-columns:1fr 1fr}@media(max-width:768px){.analytics-two-col{grid-template-columns:1fr!important}}</style>';
     setContent(html);
 
     document.querySelectorAll('[data-period]').forEach(function (btn) {
