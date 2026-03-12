@@ -34,6 +34,7 @@
       no_items: '항목이 없습니다.',
       my_info: '내 정보', nickname: '닉네임', nickname_ph: '닉네임 (최대 30자)',
       save: '저장', saved: '저장됨!',
+      tab_posts: '게시글', tab_comments: '댓글',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -56,6 +57,7 @@
       no_items: 'No items found.',
       my_info: 'My Profile', nickname: 'Nickname', nickname_ph: 'Nickname (max 30)',
       save: 'Save', saved: 'Saved!',
+      tab_posts: 'Posts', tab_comments: 'Comments',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -78,6 +80,7 @@
       no_items: '項目がありません。',
       my_info: 'マイページ', nickname: 'ニックネーム', nickname_ph: 'ニックネーム (最大30文字)',
       save: '保存', saved: '保存済み!',
+      tab_posts: '投稿', tab_comments: 'コメント',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
@@ -176,15 +179,11 @@
 
     if (!parts.length) return renderHome();
     if (parts[0] === 'search') return renderSearch();
-    if (parts[0] === 'me') {
-      if (!currentUser) return renderHome();
-      if (!parts[1] || parts[1] === 'posts') return renderMyPage(t('my_posts'), '/board/me/posts', 'posts', 'me/posts');
-      if (parts[1] === 'comments') return renderMyPage(t('my_comments'), '/board/me/comments', 'comments', 'me/comments');
-      if (parts[1] === 'voted-posts') return renderMyPage(t('voted_posts'), '/board/me/voted-posts', 'posts', 'me/voted-posts');
-      if (parts[1] === 'voted-comments') return renderMyPage(t('voted_comments'), '/board/me/voted-comments', 'comments', 'me/voted-comments');
-      if (parts[1] === 'bookmarks') return renderMyPage(t('bookmarks'), '/board/me/bookmarks', 'posts', 'me/bookmarks');
-      return renderHome();
+    if (parts[0] === 'me' && currentUser) {
+      location.hash = 'user/' + currentUser.pubkey;
+      return;
     }
+    if (parts[0] === 'user' && parts[1]) return renderUserProfile(parts[1], parts[2] || 'posts');
     if (parts.length === 1) return renderBoard(parts[0]);
     if (parts[1] === 'new') return renderNewPost(parts[0]);
     if (parts.length === 2 && /^\d+$/.test(parts[1])) return renderPost(parts[0], parseInt(parts[1]));
@@ -295,7 +294,7 @@
             </div>
             <p class="text-sm text-gray-500 mt-1 line-clamp-2">${esc(p.body)}</p>
             <div class="flex items-center gap-3 mt-2 text-xs text-gray-600">
-              <span>${t('by')}${esc(p.author.displayName || shortKey(p.author.pubkey))}</span>
+              <a href="#user/${p.author.pubkey}" class="hover:text-bitcoin" onclick="event.stopPropagation()">${t('by')}${esc(p.author.displayName || shortKey(p.author.pubkey))}</a>
               <span>${timeAgo(p.createdAt)}</span>
               <span>${svgComment} ${p.commentCount}</span>
             </div>
@@ -501,7 +500,7 @@
           </div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 text-xs text-gray-500 mb-1">
-              <span class="font-semibold text-gray-400">${esc(c.author.displayName || shortKey(c.author.pubkey))}</span>
+              <a href="#user/${c.author.pubkey}" class="font-semibold text-gray-400 hover:text-bitcoin">${esc(c.author.displayName || shortKey(c.author.pubkey))}</a>
               <span>${timeAgo(c.createdAt)}</span>
             </div>
             <p class="text-sm text-gray-300 whitespace-pre-wrap">${esc(c.body)}</p>
@@ -625,44 +624,65 @@
     if (q) doSearch();
   }
 
-  // ─── My Activity ───
+  // ─── User Profile ───
 
-  async function renderMyPage(title, apiPath, type, activeTab) {
-    if (!currentUser) {
-      app.innerHTML = `<p class="text-center py-20 text-gray-500">${t('login_required')}</p>`;
-      return;
+  async function renderUserProfile(pubkey, tab) {
+    var profile = await api('/board/users/' + pubkey);
+    var isOwner = currentUser && currentUser.pubkey === pubkey;
+
+    // Determine API path based on tab
+    var apiPath, type;
+    if (tab === 'comments') {
+      apiPath = '/board/users/' + pubkey + '/comments'; type = 'comments';
+    } else if (tab === 'voted-posts' && isOwner) {
+      apiPath = '/board/me/voted-posts'; type = 'posts';
+    } else if (tab === 'voted-comments' && isOwner) {
+      apiPath = '/board/me/voted-comments'; type = 'comments';
+    } else if (tab === 'bookmarks' && isOwner) {
+      apiPath = '/board/me/bookmarks'; type = 'posts';
+    } else {
+      tab = 'posts';
+      apiPath = '/board/users/' + pubkey + '/posts'; type = 'posts';
     }
+
     var page = parseInt(new URLSearchParams(location.hash.split('?')[1]).get('page')) || 1;
     var data = await api(apiPath + '?page=' + page + '&limit=20');
     var items = data.posts || data.comments || [];
     var pg = data.pagination;
-    var initials = (currentUser.displayName || currentUser.pubkey.slice(0, 2)).slice(0, 2).toUpperCase();
+    var displayName = profile.displayName || shortKey(pubkey);
+    var initials = (profile.displayName || pubkey.slice(0, 2)).slice(0, 2).toUpperCase();
+    var base = 'user/' + pubkey;
 
     app.innerHTML = `
       <header class="mb-8">
-        <nav class="text-sm text-gray-500 mb-4"><a href="#" class="hover:text-bitcoin">${t('boards')}</a> / <span class="text-white">${t('my_info')}</span></nav>
+        <nav class="text-sm text-gray-500 mb-4"><a href="#" class="hover:text-bitcoin">${t('boards')}</a> / <span class="text-white">${esc(displayName)}</span></nav>
 
         <div class="p-5 rounded-xl border border-gray-800/50 bg-gray-900/30 mb-6">
-          <div class="flex items-center gap-4 mb-4">
+          <div class="flex items-center gap-4${isOwner ? ' mb-4' : ''}">
             <div class="w-10 h-10 rounded-full bg-bitcoin/20 flex items-center justify-center text-bitcoin font-bold text-sm">${esc(initials)}</div>
             <div>
-              <div class="text-white font-semibold" id="profile-name">${esc(currentUser.displayName || shortKey(currentUser.pubkey))}</div>
-              <div class="text-xs text-gray-500 font-mono">${shortKey(currentUser.pubkey)}</div>
+              <div class="text-white font-semibold" id="profile-name">${esc(displayName)}</div>
+              <div class="text-xs text-gray-500 font-mono">${shortKey(pubkey)}</div>
+              <div class="text-xs text-gray-600 mt-1">${profile.postCount} ${t('tab_posts')} · ${profile.commentCount} ${t('tab_comments')}</div>
             </div>
           </div>
-          <label class="text-xs text-gray-500 block mb-1">${t('nickname')}</label>
-          <div class="flex gap-2 items-center">
-            <input id="nick-input" class="comm-input" style="max-width:240px;padding:6px 10px;font-size:.8rem" placeholder="${t('nickname_ph')}" maxlength="30" value="${esc(currentUser.displayName || '')}">
-            <button class="comm-btn-primary" id="nick-save" style="padding:6px 14px;font-size:.78rem">${t('save')}</button>
-          </div>
+          ${isOwner ? `
+            <label class="text-xs text-gray-500 block mb-1">${t('nickname')}</label>
+            <div class="flex gap-2 items-center">
+              <input id="nick-input" class="comm-input" style="max-width:240px;padding:6px 10px;font-size:.8rem" placeholder="${t('nickname_ph')}" maxlength="30" value="${esc(currentUser.displayName || '')}">
+              <button class="comm-btn-primary" id="nick-save" style="padding:6px 14px;font-size:.78rem">${t('save')}</button>
+            </div>
+          ` : ''}
         </div>
 
         <div class="flex gap-2 flex-wrap text-xs">
-          ${myTabLink('me/posts', t('my_posts'), activeTab)}
-          ${myTabLink('me/comments', t('my_comments'), activeTab)}
-          ${myTabLink('me/voted-posts', t('voted_posts'), activeTab)}
-          ${myTabLink('me/voted-comments', t('voted_comments'), activeTab)}
-          ${myTabLink('me/bookmarks', t('bookmarks'), activeTab)}
+          <a href="#${base}/posts" class="comm-tab${tab === 'posts' ? ' comm-tab-active' : ''}">${t('tab_posts')}</a>
+          <a href="#${base}/comments" class="comm-tab${tab === 'comments' ? ' comm-tab-active' : ''}">${t('tab_comments')}</a>
+          ${isOwner ? `
+            <a href="#${base}/voted-posts" class="comm-tab${tab === 'voted-posts' ? ' comm-tab-active' : ''}">${t('voted_posts')}</a>
+            <a href="#${base}/voted-comments" class="comm-tab${tab === 'voted-comments' ? ' comm-tab-active' : ''}">${t('voted_comments')}</a>
+            <a href="#${base}/bookmarks" class="comm-tab${tab === 'bookmarks' ? ' comm-tab-active' : ''}">${t('bookmarks')}</a>
+          ` : ''}
         </div>
       </header>
       <div>
@@ -670,37 +690,34 @@
           type === 'comments' ? items.map(commentCard).join('') :
           items.map(function(p) { return postCard(p, p.boardSlug); }).join('')}
       </div>
-      ${pg && pg.totalPages > 1 ? myPagHtml(pg, activeTab) : ''}
+      ${pg && pg.totalPages > 1 ? myPagHtml(pg, base + '/' + tab) : ''}
     `;
 
-    // Nickname save
-    document.getElementById('nick-save').addEventListener('click', async function() {
-      var input = document.getElementById('nick-input');
-      var name = input.value.trim();
-      var saveBtn = document.getElementById('nick-save');
-      try {
-        await api('/auth/me/display-name', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ displayName: name }),
-        });
-        currentUser.displayName = name || null;
-        document.getElementById('profile-name').textContent = name || shortKey(currentUser.pubkey);
-        if (window.txidAuth && window.txidAuth.updateDisplayName) {
-          window.txidAuth.updateDisplayName(name || null);
+    // Nickname save (owner only)
+    if (isOwner) {
+      document.getElementById('nick-save').addEventListener('click', async function() {
+        var input = document.getElementById('nick-input');
+        var name = input.value.trim();
+        var saveBtn = document.getElementById('nick-save');
+        try {
+          await api('/auth/me/display-name', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ displayName: name }),
+          });
+          currentUser.displayName = name || null;
+          document.getElementById('profile-name').textContent = name || shortKey(pubkey);
+          if (window.txidAuth && window.txidAuth.updateDisplayName) {
+            window.txidAuth.updateDisplayName(name || null);
+          }
+          saveBtn.textContent = t('saved');
+          setTimeout(function() { saveBtn.textContent = t('save'); }, 1500);
+        } catch(e) {
+          saveBtn.textContent = '!';
+          setTimeout(function() { saveBtn.textContent = t('save'); }, 1500);
         }
-        saveBtn.textContent = t('saved');
-        setTimeout(function() { saveBtn.textContent = t('save'); }, 1500);
-      } catch(e) {
-        saveBtn.textContent = '!';
-        setTimeout(function() { saveBtn.textContent = t('save'); }, 1500);
-      }
-    });
-  }
-
-  function myTabLink(hash, label, activeTab) {
-    var active = activeTab === hash;
-    return '<a href="#' + hash + '" class="comm-tab' + (active ? ' comm-tab-active' : '') + '">' + label + '</a>';
+      });
+    }
   }
 
   function commentCard(c) {
