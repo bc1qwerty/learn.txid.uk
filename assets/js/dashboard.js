@@ -127,8 +127,9 @@
   var currentUser = null;
 
   function checkAuth() {
-    if (window.txidAuth && window.txidAuth.user) {
-      currentUser = window.txidAuth.user;
+    var user = window.txidAuth && window.txidAuth.getUser();
+    if (user) {
+      currentUser = user;
       if (currentUser.isAdmin) {
         initDashboard();
       } else {
@@ -136,11 +137,14 @@
       }
     } else {
       app.innerHTML = '<div class="text-center py-20"><p class="text-lg text-zinc-400">' + t('login_required') + '</p></div>';
-      document.addEventListener('txid:login', function () {
-        currentUser = window.txidAuth.user;
-        if (currentUser && currentUser.isAdmin) initDashboard();
-        else app.innerHTML = '<div class="text-center py-20"><p class="text-lg text-red-400">' + t('no_access') + '</p></div>';
-      });
+      if (window.txidAuth) {
+        window.txidAuth.onAuthChange(function (u) {
+          if (!u) return;
+          currentUser = u;
+          if (currentUser.isAdmin) initDashboard();
+          else app.innerHTML = '<div class="text-center py-20"><p class="text-lg text-red-400">' + t('no_access') + '</p></div>';
+        });
+      }
     }
   }
 
@@ -643,13 +647,17 @@
   // ─── Init ───
 
   // Wait for txidAuth SDK to be ready
-  if (window.txidAuth) {
+  if (window.txidAuth && window.txidAuth.getUser()) {
     checkAuth();
   } else {
-    document.addEventListener('txid:ready', checkAuth);
-    // Fallback: SDK may not fire txid:ready if no user
-    setTimeout(function () {
-      if (!currentUser) checkAuth();
-    }, 2000);
+    // SDK loads async — poll until ready, then check auth
+    var initTimer = setInterval(function () {
+      if (window.txidAuth) {
+        clearInterval(initTimer);
+        checkAuth();
+      }
+    }, 200);
+    // Stop polling after 5s
+    setTimeout(function () { clearInterval(initTimer); if (!currentUser) checkAuth(); }, 5000);
   }
 })();
