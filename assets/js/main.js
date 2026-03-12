@@ -471,7 +471,11 @@ function initClock(id) {
         }
     }
     update();
-    setInterval(update, 30000);
+    var timer = setInterval(update, 30000);
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) { clearInterval(timer); }
+        else { update(); timer = setInterval(update, 30000); }
+    });
 }
 initClock('sidebarClock');
 
@@ -557,20 +561,35 @@ initClock('sidebarClock');
     } catch(e) { /* silent */ }
 })();
 
-// ── Bitcoin Widget ──
+// ── Bitcoin Widget (with 60s localStorage cache) ──
 (function() {
     var priceEl = document.getElementById('btcPrice');
     var blockEl = document.getElementById('btcBlock');
     if (!priceEl && !blockEl) return;
 
+    var BTC_KEY = 'cache_btc';
+    var BTC_TTL = 60000; // 1 min
+    try {
+        var c = JSON.parse(localStorage.getItem(BTC_KEY));
+        if (c && Date.now() - c.ts < BTC_TTL) {
+            if (priceEl && c.price) priceEl.textContent = '$' + c.price.toLocaleString();
+            if (blockEl && c.block) blockEl.textContent = parseInt(c.block).toLocaleString();
+            return;
+        }
+    } catch(e){}
+
+    var cached = {};
+
     if (priceEl) {
         var ctrl1 = new AbortController();
-        var t1 = setTimeout(function() { ctrl1.abort(); }, 5000);
+        var t1 = setTimeout(function() { ctrl1.abort(); }, 3000);
         fetch('https://mempool.space/api/v1/prices', { signal: ctrl1.signal })
             .then(function(r) { clearTimeout(t1); if (!r.ok) throw new Error(r.status); return r.json(); })
             .then(function(data) {
                 if (data && typeof data.USD === 'number') {
                     priceEl.textContent = '$' + data.USD.toLocaleString();
+                    cached.price = data.USD;
+                    try { localStorage.setItem(BTC_KEY, JSON.stringify({ts:Date.now(),price:cached.price,block:cached.block})); } catch(e){}
                 }
             })
             .catch(function() { clearTimeout(t1); });
@@ -578,12 +597,14 @@ initClock('sidebarClock');
 
     if (blockEl) {
         var ctrl2 = new AbortController();
-        var t2 = setTimeout(function() { ctrl2.abort(); }, 5000);
+        var t2 = setTimeout(function() { ctrl2.abort(); }, 3000);
         fetch('https://mempool.space/api/blocks/tip/height', { signal: ctrl2.signal })
             .then(function(r) { clearTimeout(t2); if (!r.ok) throw new Error(r.status); return r.text(); })
             .then(function(height) {
                 if (height && !isNaN(height)) {
                     blockEl.textContent = parseInt(height).toLocaleString();
+                    cached.block = height;
+                    try { localStorage.setItem(BTC_KEY, JSON.stringify({ts:Date.now(),price:cached.price,block:cached.block})); } catch(e){}
                 }
             })
             .catch(function() { clearTimeout(t2); });

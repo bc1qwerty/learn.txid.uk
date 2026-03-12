@@ -5,19 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#09090b">
-  <!-- CSP: unsafe-inline required because Hugo --minify changes inline script content (breaking hash matching).
-       Domain whitelist still protects against unauthorized external script injection. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://apps.txid.uk https://api.txid.uk https://gc.zgo.at https://www.googletagmanager.com; connect-src 'self' https://api.txid.uk https://mempool.space https://gc-proxy.seowondeuk.workers.dev https://txid.goatcounter.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
+  <!-- CSP is enforced via Cloudflare Pages _headers file (single source of truth) -->
   <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="preload" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"></noscript>
+  <!-- Preconnect: eliminate DNS+TLS latency for critical origins -->
+  <link rel="preconnect" href="https://api.txid.uk" crossorigin>
+  <link rel="preconnect" href="https://apps.txid.uk" crossorigin>
+  <link rel="dns-prefetch" href="https://mempool.space">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -105,7 +99,7 @@
     gtag('js', new Date());
     gtag('config', 'G-V5NL9WRTYR');
   </script>
-  <script src="https://apps.txid.uk/global-nav.js" defer></script>
+  <script src="https://apps.txid.uk/global-nav.js" integrity="sha384-yxxlCQmTpGUKXOJDoou1pbzCcwLCEd+pipHpYIJrcEIJnPbIPCFkpE9H+J0ej0rz" crossorigin="anonymous" defer></script>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col">
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -167,54 +161,12 @@
     {{ $js = $js | minify | fingerprint "sha512" }}
     <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
   {{ end }}
-<script>
-// ── 링크 프리패치 (hover 시 미리 로드) ──
-const _prefetched = new Set();
-function prefetch(url) {
-  if (_prefetched.has(url)) return;
-  _prefetched.add(url);
-  const link = document.createElement('link');
-  link.rel = 'prefetch'; link.href = url; link.as = 'document';
-  document.head.appendChild(link);
-}
-document.addEventListener('mouseover', e => {
-  const a = e.target.closest('a[href]');
-  if (!a) return;
-  const href = a.getAttribute('href');
-  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')) return;
-  prefetch(a.href);
-}, { passive: true });
-
-// ── 페이지 전환 페이드 애니메이션 ──
-(function() {
-  document.body.style.cssText += ';opacity:0;transition:opacity 180ms ease';
-  requestAnimationFrame(function(){ document.body.style.opacity = '1'; });
-  document.addEventListener('click', function(e) {
-    var a = e.target.closest('a[href]');
-    if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
-    var href = a.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || a.target === '_blank') return;
-    e.preventDefault();
-    document.body.style.opacity = '0';
-    setTimeout(function(){ window.location.href = a.href; }, 160);
-  });
-})();
-
-// ── UTM 자동 삽입 (txid.uk 서브도메인 링크에만) ──
-(function() {
-  var UTM = '?utm_source=learn.txid.uk&utm_medium=referral&utm_campaign=internal';
-  document.querySelectorAll('a[href]').forEach(function(a) {
-    var href = a.getAttribute('href');
-    if (!href) return;
-    if (/^https?:\/\/(txid\.uk|tools\.txid\.uk|tx\.txid\.uk|apps\.txid\.uk|map\.txid\.uk|stats\.txid\.uk|viz\.txid\.uk|portfolio\.txid\.uk)/.test(href)) {
-      if (href.indexOf('utm_') === -1) {
-        a.setAttribute('href', href + (href.indexOf('?') === -1 ? '?' : '&') + 'utm_source=learn.txid.uk&utm_medium=referral&utm_campaign=internal');
-      }
-    }
-  });
-})();
-</script>
-<script src="https://api.txid.uk/txid-auth.js" defer></script>
+  {{ $pe := resources.Get "js/page-enhancements.js" }}
+  {{ if $pe }}
+    {{ $pe = $pe | minify | fingerprint "sha512" }}
+    <script src="{{ $pe.RelPermalink }}" integrity="{{ $pe.Data.Integrity }}" defer></script>
+  {{ end }}
+<script src="https://api.txid.uk/txid-auth.js" integrity="sha384-drfRpJmRJJvYg611jf4uBzMTKo4Rl9FRZOv/EqkLwS6abvbYmfzhIhQPu28GYU6K" crossorigin="anonymous" defer></script>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js").catch(function(){})}</script>
 </body>
 </html>

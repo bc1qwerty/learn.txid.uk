@@ -9,7 +9,7 @@ This policy describes how learn.txid.uk (the "Site") handles personal informatio
 
 ## Information We Collect
 
-This site does not require registration or login, and does not collect personally identifiable information.
+This site does not collect personally identifiable information such as email addresses or passwords.
 
 The following information may be collected automatically for site operation:
 
@@ -17,20 +17,33 @@ The following information may be collected automatically for site operation:
 - Browser type and operating system
 - Pages visited and timestamps
 
-## Cookies
+## Login and Authentication
 
-This site uses browser local storage to save language preferences. This information is not transmitted externally.
+This site supports passwordless authentication based on LNURL-auth. Only a public key (pubkey) is used during login; no email or personally identifiable information is required.
 
-## Third-Party Services
+## Local Storage
 
-This site is hosted via GitHub Pages. Please refer to the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement) for GitHub's privacy policy.
+This site uses browser local storage for the following purposes:
+
+- Saving language and theme preferences
+- Saving learning progress
+
+This information may be synchronized with the server when logged in, but is not used for personal identification.
+
+## Analytics
+
+This site uses analytics tools for visitor statistics. The information collected is anonymized and is not used to identify individuals.
+
+## Hosting
+
+This site is hosted via a CDN service. Community features are operated on a separate server.
 
 ## Social Media
 
-Content on this site may be shared on social media such as Threads. No personally identifiable information is included when sharing.
+Content on this site may be shared on social media. No personally identifiable information is included when sharing.
 
 ## Contact
 
-For privacy-related inquiries, please contact us on X (formerly Twitter) at [@bc1qwerty](https://x.com/bc1qwerty).
+For privacy-related inquiries, please use the contact information provided at the bottom of the site.
 
 Last updated: March 2026

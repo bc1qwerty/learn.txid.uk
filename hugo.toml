@@ -461,7 +461,7 @@ enableGitInfo = true
   title = '개념'
   moreText = '전체 보기'
   moreURL = '/ideas/'
-  maxPosts = 3
+  maxPosts = 6
 
 [markup]
   [markup.goldmark]
@@ -499,8 +499,14 @@ enableGitInfo = true
     url = '/faq/'
     weight = 7
 
+[outputFormats.sw]
+  mediaType = "text/javascript"
+  baseName = "sw"
+  isPlainText = true
+  notAlternative = true
+
 [outputs]
-  home = ['HTML', 'RSS', 'ROBOTS']
+  home = ['HTML', 'RSS', 'ROBOTS', 'sw']
   section = ['HTML', 'RSS']
   page = ['HTML']
   taxonomy = ['HTML', 'RSS']

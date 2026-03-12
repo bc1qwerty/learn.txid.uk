@@ -145,6 +145,12 @@
   }
 
   async function api(path, opts) {
+    if (!opts) opts = {};
+    if (!opts.signal) {
+      var ac = new AbortController();
+      setTimeout(function(){ ac.abort(); }, 8000);
+      opts.signal = ac.signal;
+    }
     const res = await fetch(API + path, { credentials: 'include', ...opts });
     if (!res.ok) {
       var errData = {};
@@ -202,9 +208,19 @@
 
   // ─── Views ───
 
-  async function renderHome() {
+  var _categoriesCache = null;
+  var _categoriesCacheTs = 0;
+
+  async function getCategories() {
+    if (_categoriesCache && Date.now() - _categoriesCacheTs < 600000) return _categoriesCache;
     const data = await api('/board/categories');
-    const boards = data.boards || [];
+    _categoriesCache = data.boards || [];
+    _categoriesCacheTs = Date.now();
+    return _categoriesCache;
+  }
+
+  async function renderHome() {
+    const boards = await getCategories();
 
     app.innerHTML = `
       <header class="mb-10">
@@ -760,17 +776,32 @@
   const svgBookmark = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>';
 
   // ─── Init ───
+  var _loading = null;
   async function safeRoute() {
+    // Show loading indicator after 150ms (avoid flash for fast responses)
+    _loading = setTimeout(function() {
+      if (!app.querySelector('.comm-skeleton')) {
+        app.innerHTML = '<div class="comm-skeleton"><div></div><div></div><div></div></div>';
+      }
+    }, 150);
     try { await route(); } catch (e) {
       console.error('[community] route error:', e);
       app.innerHTML = '<p class="text-center py-20 text-gray-500">Error: ' + (e.message || 'Unknown') + '</p>';
+    } finally {
+      clearTimeout(_loading);
     }
   }
 
   async function init() {
-    await checkAuth();
+    // Render page immediately (non-blocking), auth in parallel
+    var authDone = checkAuth();
     await safeRoute();
     window.addEventListener('hashchange', safeRoute);
+
+    // Re-render once auth resolves (shows login-dependent UI)
+    authDone.then(function() {
+      if (currentUser) safeRoute();
+    });
 
     // U-7: subscribe to auth changes from txid-auth SDK
     if (window.txidAuth) {

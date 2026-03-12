@@ -1,5 +1,4 @@
-const CACHE = 'learn-txid-v1';
-const OFFLINE_URL = '/offline/';
+const CACHE = 'learn-txid-{{ now.Unix }}';
 
 // Precache critical assets
 const PRECACHE = [

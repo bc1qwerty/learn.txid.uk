@@ -1,6 +1,6 @@
 <h2 class="tile-title">{{ i18n "free_board_title" }}</h2>
 <div class="tile-list" id="free-board-list">
-    <p class="tile-empty">—</p>
+    <div class="tile-skeleton"><span></span><span></span><span></span></div>
 </div>
 <a href="{{ $.Site.LanguagePrefix }}/community/#free" class="tile-more">
     {{ i18n "view_all" }} &rarr;
@@ -9,23 +9,39 @@
 (function(){
   var el = document.getElementById('free-board-list');
   if (!el) return;
-  fetch('https://api.txid.uk/board/free/posts?limit=3&sort=newest', {credentials:'include'})
+  var CACHE_KEY = 'cache_board_free';
+  var CACHE_TTL = 300000; // 5 min
+
+  function renderPosts(posts) {
+    el.innerHTML = posts.map(function(p){
+      var dt = new Date(p.createdAt * 1000);
+      var mm = String(dt.getMonth()+1).padStart(2,'0');
+      var dd = String(dt.getDate()).padStart(2,'0');
+      var ds = dt.getFullYear() === new Date().getFullYear()
+        ? mm+'.'+dd
+        : String(dt.getFullYear()).slice(2)+'.'+mm+'.'+dd;
+      return '<a href="{{ $.Site.LanguagePrefix }}/community/#free/' + p.id + '" class="tile-item">'
+        + '<time class="tile-item-date">' + ds + '</time>'
+        + '<span class="tile-item-name">' + p.title.replace(/</g,'&lt;') + '</span>'
+        + '<span class="arrow">&rarr;</span></a>';
+    }).join('');
+  }
+
+  // Try cache first
+  try {
+    var cached = JSON.parse(localStorage.getItem(CACHE_KEY));
+    if (cached && Date.now() - cached.ts < CACHE_TTL) { renderPosts(cached.data); return; }
+  } catch(e){}
+
+  var ac = new AbortController();
+  setTimeout(function(){ ac.abort(); }, 3000);
+  fetch('https://api.txid.uk/board/free/posts?limit=3&sort=newest', {credentials:'include', signal:ac.signal})
     .then(function(r){return r.json()})
     .then(function(d){
-      if (!d.posts || !d.posts.length) return;
-      el.innerHTML = d.posts.map(function(p){
-        var dt = new Date(p.createdAt * 1000);
-        var mm = String(dt.getMonth()+1).padStart(2,'0');
-        var dd = String(dt.getDate()).padStart(2,'0');
-        var ds = dt.getFullYear() === new Date().getFullYear()
-          ? mm+'.'+dd
-          : String(dt.getFullYear()).slice(2)+'.'+mm+'.'+dd;
-        return '<a href="{{ $.Site.LanguagePrefix }}/community/#free/' + p.id + '" class="tile-item">'
-          + '<time class="tile-item-date">' + ds + '</time>'
-          + '<span class="tile-item-name">' + p.title.replace(/</g,'&lt;') + '</span>'
-          + '<span class="arrow">&rarr;</span></a>';
-      }).join('');
+      if (!d.posts || !d.posts.length) { el.innerHTML = '<p class="tile-empty">\u2014</p>'; return; }
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ts:Date.now(),data:d.posts})); } catch(e){}
+      renderPosts(d.posts);
     })
-    .catch(function(){});
+    .catch(function(){ el.innerHTML = '<p class="tile-empty">\u2014</p>'; });
 })();
 </script>

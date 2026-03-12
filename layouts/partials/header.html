@@ -14,15 +14,15 @@ window.__LANG_URLS__ = {
         <rect x="10" y="18.5" width="29" height="3" fill="#0d1117"/>
         <rect x="1" y="18.5" width="6" height="3" fill="#0d1117"/>
       </svg>txid.uk</a>
-    <span style="color:#30363d;font-family:'Space Mono',monospace;font-size:.9rem;margin:0 2px">/</span>
-    <span style="font-family:'Space Mono',monospace;font-size:.8rem;color:#848d97">Learn</span>
+    <span style="color:#30363d;font-family:var(--font-mono);font-size:.9rem;margin:0 2px">/</span>
+    <span style="font-family:var(--font-mono);font-size:.8rem;color:#848d97">Learn</span>
 
     <!-- Desktop Nav — 메뉴 링크만 -->
     <div class="hidden md:flex items-center gap-3 ml-auto">
       <ul class="flex items-center gap-8">
         {{ range .Site.Menus.main }}
         <li>
-          <a href="{{ .URL }}" class="text-sm text-gray-400 hover:text-white transition-colors{{ if $.IsMenuCurrent "main" . }} text-white{{ end }}">
+          <a href="{{ .URL }}" class="text-sm text-gray-300 hover:text-white transition-colors{{ if $.IsMenuCurrent "main" . }} text-white{{ end }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>
             <span data-i18n="{{ .Name }}">{{ .Name }}</span>
           </a>
         </li>
@@ -77,7 +77,7 @@ window.__LANG_URLS__ = {
     <ul class="mobile-menu-list">
       {{ range .Site.Menus.main }}
       <li>
-        <a href="{{ .URL }}" class="mobile-menu-link">
+        <a href="{{ .URL }}" class="mobile-menu-link"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>
           <span data-i18n="{{ .Name }}">{{ .Name }}</span>
         </a>
       </li>
