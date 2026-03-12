@@ -563,12 +563,12 @@
     let html = `
       <div class="mb-2 ${frame}">
         <div class="flex items-start gap-2">
-          <div class="flex-shrink-0 mt-0.5">${authorAvatar(c.author)}</div>
           <div class="flex flex-col items-center gap-0.5 min-w-[24px]">
             <button class="comm-cv comm-vote-sm" data-cid="${c.id}" data-v="1">${svgUp}</button>
             <span class="text-xs font-mono text-gray-500" id="cscore-${c.id}">${c.voteScore}</span>
             <button class="comm-cv comm-vote-sm" data-cid="${c.id}" data-v="-1">${svgDown}</button>
           </div>
+          <div class="flex-shrink-0 mt-0.5">${authorAvatar(c.author)}</div>
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 text-xs text-gray-500 mb-1">
               <a href="#user/${c.author.pubkey}" class="${nameClass}">${esc(c.author.displayName || shortKey(c.author.pubkey))}</a>
