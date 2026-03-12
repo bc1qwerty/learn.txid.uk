@@ -486,10 +486,15 @@
     const isAdmin = currentUser && currentUser.isAdmin;
     const indent = c.parentId ? 'ml-10 border-l border-gray-800/30 pl-4' : '';
 
+    const isReply = !!c.parentId;
+    const frame = isReply
+      ? 'ml-8 pl-3 border-l-2 border-bitcoin/20'
+      : 'p-3 rounded-lg border border-gray-800/40 bg-gray-900/20';
+
     let html = `
-      <div class="mb-4 ${indent}">
-        <div class="flex items-start gap-3">
-          <div class="flex flex-col items-center gap-0.5 min-w-[28px]">
+      <div class="mb-2 ${frame}">
+        <div class="flex items-start gap-2">
+          <div class="flex flex-col items-center gap-0.5 min-w-[24px]">
             <button class="comm-cv comm-vote-sm" data-cid="${c.id}" data-v="1">${svgUp}</button>
             <span class="text-xs font-mono text-gray-500" id="cscore-${c.id}">${c.voteScore}</span>
             <button class="comm-cv comm-vote-sm" data-cid="${c.id}" data-v="-1">${svgDown}</button>
@@ -498,17 +503,15 @@
             <div class="flex items-center gap-2 text-xs text-gray-500 mb-1">
               <a href="#user/${c.author.pubkey}" class="font-semibold text-gray-400 hover:text-bitcoin">${esc(c.author.displayName || shortKey(c.author.pubkey))}</a>
               <span>${timeAgo(c.createdAt)}</span>
-            </div>
-            <p class="text-sm text-gray-300 whitespace-pre-wrap">${esc(c.body)}</p>
-            <div class="flex items-center gap-3 mt-1 text-xs text-gray-600">
-              ${!c.parentId && currentUser ? `<button class="hover:text-bitcoin comm-reply-btn" data-cid="${c.id}">${t('reply')}</button>` : ''}
+              ${!isReply && currentUser ? `<button class="hover:text-bitcoin comm-reply-btn" data-cid="${c.id}">${t('reply')}</button>` : ''}
               ${isOwner || isAdmin ? `<button class="hover:text-red-400 comm-del-comment" data-cid="${c.id}">${t('delete')}</button>` : ''}
             </div>
+            <p class="text-sm text-gray-300 whitespace-pre-wrap">${esc(c.body)}</p>
           </div>
         </div>
     `;
     if (c.replies && c.replies.length > 0) {
-      html += c.replies.map(r => commentHtml(r, slug, postId)).join('');
+      html += '<div class="mt-2">' + c.replies.map(r => commentHtml(r, slug, postId)).join('') + '</div>';
     }
     html += '</div>';
     return html;
@@ -718,18 +721,13 @@
 
   function commentCard(c) {
     return `
-      <a href="#${c.boardSlug}/${c.postId}" class="block p-5 rounded-xl border border-gray-800/50 hover:border-gray-700 bg-gray-900/20 hover:bg-gray-900/40 transition-all mb-3">
-        <div class="flex items-start gap-4">
-          <div class="flex flex-col items-center gap-0.5 text-xs text-gray-500 min-w-[40px] pt-1">
-            <span class="text-bitcoin font-mono font-semibold">${c.voteScore}</span>
-            <span>votes</span>
-          </div>
-          <div class="flex-1 min-w-0">
-            <p class="text-sm text-gray-300 line-clamp-2">${esc(c.body)}</p>
-            <div class="flex items-center gap-3 mt-2 text-xs text-gray-600">
-              <span>${svgComment} ${esc(c.postTitle)}</span>
-              <span>${timeAgo(c.createdAt)}</span>
-            </div>
+      <a href="#${c.boardSlug}/${c.postId}" class="block px-4 py-3 rounded-lg border border-gray-800/50 hover:border-gray-700 bg-gray-900/20 hover:bg-gray-900/40 transition-all mb-2">
+        <div class="flex items-center gap-3">
+          <span class="text-bitcoin font-mono font-semibold text-xs min-w-[28px] text-center">${c.voteScore}</span>
+          <p class="text-sm text-gray-300 truncate flex-1 min-w-0">${esc(c.body)}</p>
+          <div class="flex items-center gap-2 text-xs text-gray-600 flex-shrink-0">
+            <span>${esc(c.postTitle)}</span>
+            <span>${timeAgo(c.createdAt)}</span>
           </div>
         </div>
       </a>`;
