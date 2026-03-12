@@ -27,6 +27,7 @@
       by: '', write_reply: '답글을 작성하세요...',
       checkin: '출석체크', already_checked: '오늘 이미 출석했습니다.', checkin_success: '출석 완료!',
       admin_only_msg: '관리자만 글을 작성할 수 있습니다.',
+      blocked_word: '부적절한 표현이 포함되어 있습니다.',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -42,6 +43,7 @@
       by: 'by ', write_reply: 'Write a reply...',
       checkin: 'Check in', already_checked: 'Already checked in today.', checkin_success: 'Checked in!',
       admin_only_msg: 'Only admins can post here.',
+      blocked_word: 'Inappropriate language detected.',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -57,6 +59,7 @@
       by: '', write_reply: '返信を書く...',
       checkin: '出席チェック', already_checked: '今日はすでに出席済みです。', checkin_success: '出席完了！',
       admin_only_msg: '管理者のみ投稿できます。',
+      blocked_word: '不適切な表現が含まれています。',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
@@ -88,8 +91,13 @@
 
   async function api(path, opts) {
     const res = await fetch(API + path, { credentials: 'include', ...opts });
-    // 7-1: check res.ok before parsing JSON
-    if (!res.ok) throw new Error('HTTP ' + res.status);
+    if (!res.ok) {
+      var errData = {};
+      try { errData = await res.json(); } catch {}
+      var msg = errData.error || 'HTTP ' + res.status;
+      if (msg === 'Inappropriate language detected') msg = t('blocked_word');
+      throw new Error(msg);
+    }
     return res.json();
   }
 
