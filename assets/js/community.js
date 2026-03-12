@@ -281,23 +281,19 @@
 
   function postCard(p, slug) {
     return `
-      <a href="#${slug}/${p.id}" class="block p-5 rounded-xl border border-gray-800/50 hover:border-gray-700 bg-gray-900/20 hover:bg-gray-900/40 transition-all mb-3">
-        <div class="flex items-start gap-4">
-          <div class="flex flex-col items-center gap-0.5 text-xs text-gray-500 min-w-[40px] pt-1">
-            <span class="text-bitcoin font-mono font-semibold">${p.voteScore}</span>
-            <span>votes</span>
-          </div>
+      <a href="#${slug}/${p.id}" class="block px-4 py-3 rounded-lg border border-gray-800/50 hover:border-gray-700 bg-gray-900/20 hover:bg-gray-900/40 transition-all mb-2">
+        <div class="flex items-center gap-3">
+          <span class="text-bitcoin font-mono font-semibold text-xs min-w-[28px] text-center">${p.voteScore}</span>
           <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-2 flex-wrap">
-              ${p.isPinned ? `<span class="text-xs px-2 py-0.5 rounded-full bg-bitcoin/10 text-bitcoin">${t('pinned')}</span>` : ''}
-              <h3 class="text-base font-semibold text-white">${esc(p.title)}</h3>
+            <div class="flex items-center gap-2">
+              ${p.isPinned ? `<span class="text-xs px-1.5 py-0.5 rounded bg-bitcoin/10 text-bitcoin">${t('pinned')}</span>` : ''}
+              <h3 class="text-sm font-semibold text-white truncate">${esc(p.title)}</h3>
+              ${p.commentCount > 0 ? `<span class="text-xs text-gray-500">[${p.commentCount}]</span>` : ''}
             </div>
-            <p class="text-sm text-gray-500 mt-1 line-clamp-2">${esc(p.body)}</p>
-            <div class="flex items-center gap-3 mt-2 text-xs text-gray-600">
-              <a href="#user/${p.author.pubkey}" class="hover:text-bitcoin" onclick="event.stopPropagation()">${t('by')}${esc(p.author.displayName || shortKey(p.author.pubkey))}</a>
-              <span>${timeAgo(p.createdAt)}</span>
-              <span>${svgComment} ${p.commentCount}</span>
-            </div>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-gray-600 flex-shrink-0">
+            <span>${esc(p.author.displayName || shortKey(p.author.pubkey))}</span>
+            <span>${timeAgo(p.createdAt)}</span>
           </div>
         </div>
       </a>
