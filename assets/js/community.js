@@ -438,7 +438,7 @@
       });
     }
 
-    // Comment submit
+    // Comment submit (optimistic update)
     const submitBtn = document.getElementById('submit-comment');
     if (submitBtn) submitBtn.addEventListener('click', async () => {
       const input = document.getElementById('comment-input');
@@ -447,7 +447,19 @@
       const res = await apiJson(`/board/posts/${postId}/comments`, { body });
       if (res.commentId) {
         input.value = '';
-        renderPost(slug, postId);
+        var newComment = {
+          id: res.commentId, body: body, voteScore: 0,
+          parentId: null, createdAt: Math.floor(Date.now() / 1000),
+          author: { id: currentUser.id, pubkey: currentUser.pubkey, displayName: currentUser.displayName },
+          userVote: null, replies: [],
+        };
+        var list = document.getElementById('comments-list');
+        list.insertAdjacentHTML('beforeend', commentHtml(newComment, slug, postId));
+        var countEl = list.parentElement.querySelector('h2');
+        if (countEl) {
+          var m = countEl.textContent.match(/\((\d+)\)/);
+          if (m) countEl.innerHTML = countEl.innerHTML.replace('(' + m[1] + ')', '(' + (parseInt(m[1]) + 1) + ')');
+        }
       }
     });
 
@@ -470,7 +482,7 @@
         return;
       }
 
-      // Submit reply
+      // Submit reply (optimistic update)
       const submitReply = e.target.closest('.comm-submit-reply');
       if (submitReply) {
         const cId = submitReply.dataset.cid;
@@ -478,7 +490,17 @@
         const body = textarea.value.trim();
         if (!body) return;
         const res = await apiJson(`/board/posts/${postId}/comments`, { body, parentId: parseInt(cId) });
-        if (res.commentId) renderPost(slug, postId);
+        if (res.commentId) {
+          var newReply = {
+            id: res.commentId, body: body, voteScore: 0,
+            parentId: parseInt(cId), createdAt: Math.floor(Date.now() / 1000),
+            author: { id: currentUser.id, pubkey: currentUser.pubkey, displayName: currentUser.displayName },
+            userVote: null, replies: [],
+          };
+          var form = submitReply.parentElement;
+          form.insertAdjacentHTML('beforebegin', commentHtml(newReply, slug, postId));
+          form.remove();
+        }
         return;
       }
 
@@ -495,12 +517,18 @@
         return;
       }
 
-      // Comment delete
+      // Comment delete (optimistic update)
       const delCBtn = e.target.closest('.comm-del-comment');
       if (delCBtn) {
         if (!confirm(t('confirm_delete'))) return;
         await api(`/board/comments/${delCBtn.dataset.cid}`, { method: 'DELETE' });
-        renderPost(slug, postId);
+        var commentEl = delCBtn.closest('.mb-2');
+        if (commentEl) commentEl.remove();
+        var countEl2 = document.getElementById('comments-list').parentElement.querySelector('h2');
+        if (countEl2) {
+          var m2 = countEl2.textContent.match(/\((\d+)\)/);
+          if (m2) countEl2.innerHTML = countEl2.innerHTML.replace('(' + m2[1] + ')', '(' + Math.max(0, parseInt(m2[1]) - 1) + ')');
+        }
       }
     });
   }
@@ -650,7 +678,6 @@
   // ─── User Profile ───
 
   async function renderUserProfile(pubkey, tab) {
-    var profile = await api('/board/users/' + pubkey);
     var isOwner = currentUser && currentUser.pubkey === pubkey;
 
     // Determine API path based on tab
@@ -669,7 +696,12 @@
     }
 
     var page = parseInt(new URLSearchParams(location.hash.split('?')[1]).get('page')) || 1;
-    var data = await api(apiPath + '?page=' + page + '&limit=20');
+    var results = await Promise.all([
+      api('/board/users/' + pubkey),
+      api(apiPath + '?page=' + page + '&limit=20'),
+    ]);
+    var profile = results[0];
+    var data = results[1];
     var items = data.posts || data.comments || [];
     var pg = data.pagination;
     var displayName = profile.displayName || shortKey(pubkey);
