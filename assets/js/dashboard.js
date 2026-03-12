@@ -258,16 +258,16 @@
       html += '<div class="w-full flex flex-col items-center justify-end" style="height:110px">';
       html += '<div class="text-xs text-gray-400 mb-1">' + total + '</div>';
       html += '<div class="w-full flex flex-col items-stretch">';
-      html += '<div class="rounded-t" style="height:' + pctPosts + 'px;background:var(--color-bitcoin)" title="' + t('posts') + ': ' + d.posts + '"></div>';
-      html += '<div class="rounded-b" style="height:' + pctComments + 'px;background:var(--color-bitcoin-dark);opacity:0.6" title="' + t('comments') + ': ' + d.comments + '"></div>';
+      html += '<div class="rounded-t" style="height:' + Math.max(pctPosts, d.posts ? 3 : 0) + 'px;background:#f7931a" title="' + t('posts') + ': ' + d.posts + '"></div>';
+      html += '<div class="rounded-b" style="height:' + Math.max(pctComments, d.comments ? 3 : 0) + 'px;background:#ffab40" title="' + t('comments') + ': ' + d.comments + '"></div>';
       html += '</div></div>';
       html += '<div class="text-xs text-gray-500">' + dateLabel + '</div>';
       html += '</div>';
     });
     html += '</div>';
     html += '<div class="flex gap-4 mt-3 text-xs text-gray-500">';
-    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded inline-block" style="background:var(--color-bitcoin)"></span>' + t('posts') + '</span>';
-    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded inline-block" style="background:var(--color-bitcoin-dark);opacity:0.6"></span>' + t('comments') + '</span>';
+    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded inline-block" style="background:#f7931a"></span>' + t('posts') + '</span>';
+    html += '<span class="flex items-center gap-1"><span class="w-3 h-3 rounded inline-block" style="background:#ffab40"></span>' + t('comments') + '</span>';
     html += '</div>';
     return html;
   }
@@ -358,7 +358,7 @@
       var pct = Math.max((dayMap[d] / maxVal) * 100, 3);
       html += '<div class="flex-1 flex flex-col items-center">';
       html += '<div class="text-xs text-gray-400 mb-1">' + dayMap[d] + '</div>';
-      html += '<div class="w-full rounded-t" style="height:' + pct + '%;background:var(--color-bitcoin)" title="' + d + ': ' + dayMap[d] + '"></div>';
+      html += '<div class="w-full rounded-t" style="height:' + pct + '%;background:#f7931a" title="' + d + ': ' + dayMap[d] + '"></div>';
       html += '<div class="text-xs text-gray-600 mt-1 truncate w-full text-center">' + d.slice(5) + '</div>';
       html += '</div>';
     });
