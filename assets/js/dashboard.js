@@ -385,13 +385,17 @@
     var total = 0;
     data.stats.forEach(function (s) { total += (s.count || 0); });
     var html = '';
+    // Find longest name to set label width
+    var maxName = 0;
+    data.stats.slice(0, 8).forEach(function (s) { var n = (s.name || '-').length; if (n > maxName) maxName = n; });
+    var labelW = Math.min(Math.max(maxName * 0.55, 3), 8); // em units, 3~8em
     data.stats.slice(0, 8).forEach(function (s) {
       var pct = total > 0 ? ((s.count / total) * 100).toFixed(1) : 0;
       var barW = total > 0 ? Math.max((s.count / total) * 100, 1) : 0;
-      html += '<div class="flex items-center gap-2 mb-2">';
-      html += '<div class="w-20 text-xs text-gray-300 truncate">' + esc(s.name || '-') + '</div>';
-      html += '<div class="flex-1 h-4 bg-gray-800 rounded overflow-hidden"><div class="h-full rounded" style="width:' + barW + '%;background:var(--color-bitcoin)"></div></div>';
-      html += '<div class="text-xs text-gray-500 w-16 text-right">' + s.count + ' <span class="text-gray-600">(' + pct + '%)</span></div>';
+      html += '<div style="display:grid;grid-template-columns:' + labelW + 'em 1fr auto;gap:0.5rem;align-items:center;margin-bottom:0.4rem">';
+      html += '<div class="text-xs text-gray-300 truncate">' + esc(s.name || '-') + '</div>';
+      html += '<div class="h-4 bg-gray-800 rounded overflow-hidden"><div class="h-full rounded" style="width:' + barW + '%;background:var(--color-bitcoin)"></div></div>';
+      html += '<div class="text-xs text-gray-500 text-right" style="min-width:4.5em">' + s.count + ' <span class="text-gray-600">(' + pct + '%)</span></div>';
       html += '</div>';
     });
     return html;
