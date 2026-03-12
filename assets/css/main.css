@@ -2183,6 +2183,14 @@ body.theme-transition *::after {
   border-color: #f7931a;
   color: #f7931a;
 }
+#txid-login-btn.nav-icon-btn,
+#txid-user-btn.nav-icon-btn {
+  width: auto;
+  padding: 0 10px;
+  gap: 6px;
+  font-size: .72rem;
+  white-space: nowrap;
+}
 
 /* ── 햄버거 버튼 (모바일만) ── */
 .nav-hamburger-btn {
