@@ -361,38 +361,6 @@ enableGitInfo = true
   cover = '/images/books/비트코인 블록사이즈 전쟁.jpg'
   slug = 'the-blocksize-war'
 
-[[params.stack]]
-  name = 'Hugo'
-[[params.stack]]
-  name = 'Tailwind CSS'
-[[params.stack]]
-  name = 'JavaScript'
-[[params.stack]]
-  name = 'Node.js'
-[[params.stack]]
-  name = 'Express'
-[[params.stack]]
-  name = 'SQLite'
-[[params.stack]]
-  name = 'Cloudflare Pages'
-[[params.stack]]
-  name = 'Cloudflare DNS'
-[[params.stack]]
-  name = 'Oracle Cloud'
-[[params.stack]]
-  name = 'Caddy'
-[[params.stack]]
-  name = 'PM2'
-[[params.stack]]
-  name = 'LNURL-auth'
-[[params.stack]]
-  name = 'secp256k1'
-[[params.stack]]
-  name = 'GitHub Actions'
-[[params.stack]]
-  name = 'Linux'
-[[params.stack]]
-  name = 'Claude Code'
 
 [[params.bookmarks]]
   name = 'Bitcoin Whitepaper'

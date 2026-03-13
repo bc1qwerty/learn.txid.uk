@@ -304,7 +304,7 @@ fadeSections.forEach(function(section) { observer.observe(section); });
     var items = [];
     try {
         var raw = JSON.parse(document.getElementById('site-data').textContent);
-        items = [].concat(raw.projects || [], raw.links || [], raw.social || [], raw.posts || [], raw.books || [], raw.stack || [], raw.bookmarks || [], raw.ideas || [], raw.pages || []);
+        items = [].concat(raw.projects || [], raw.links || [], raw.social || [], raw.posts || [], raw.books || [], raw.bookmarks || [], raw.ideas || [], raw.pages || []);
     } catch(e) { return; }
 
     var activeIndex = 0;
