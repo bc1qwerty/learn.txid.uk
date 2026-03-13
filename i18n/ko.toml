@@ -16,6 +16,9 @@ other = "인물"
 [nav_books]
 other = "추천도서"
 
+[nav_community]
+other = "커뮤니티"
+
 [nav_blog]
 other = "블로그"
 

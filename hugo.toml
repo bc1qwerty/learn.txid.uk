@@ -34,7 +34,7 @@ title = 'TXID'
       weight = 6
     [[languages.ko.menus.main]]
       name = '커뮤니티'
-      url = '/ko/community/'
+      url = '/ko/community/#free'
       weight = 5
     [[languages.ko.menus.main]]
       name = 'FAQ'
@@ -70,7 +70,7 @@ title = 'TXID'
       weight = 6
     [[languages.en.menus.main]]
       name = 'Community'
-      url = '/en/community/'
+      url = '/en/community/#free'
       weight = 5
     [[languages.en.menus.main]]
       name = 'FAQ'
@@ -106,7 +106,7 @@ title = 'TXID'
       weight = 6
     [[languages.ja.menus.main]]
       name = 'コミュニティ'
-      url = '/ja/community/'
+      url = '/ja/community/#free'
       weight = 5
     [[languages.ja.menus.main]]
       name = 'FAQ'

@@ -16,6 +16,9 @@ other = "People"
 [nav_books]
 other = "Books"
 
+[nav_community]
+other = "Community"
+
 [nav_blog]
 other = "Blog"
 

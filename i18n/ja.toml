@@ -16,6 +16,9 @@ other = "人物"
 [nav_books]
 other = "推薦図書"
 
+[nav_community]
+other = "コミュニティ"
+
 [nav_blog]
 other = "ブログ"
 
