@@ -41,14 +41,18 @@
       icon_selected: '사용 중', icon_default: '기본',
       nostr_pubkey: 'Nostr 공개키', view_on_nostr: 'Nostr에서 보기', copy: '복사', copied: '복사됨',
       change_icon: '아이콘 변경', nostr_edit: '변경', nostr_reset: '기본값 복원', nostr_save: '저장', nostr_invalid: '올바른 npub 형식이 아닙니다',
-      nip05: 'NIP-05 인증', nip05_desc: '@txid.uk 주소를 구매하세요',
+      nip05: 'NIP-05 인증', nip05_desc: 'Nostr 인증 주소 @txid.uk',
       nip05_username: '유저네임', nip05_register: '등록', nip05_renew: '갱신',
       nip05_checking: '확인 중...', nip05_available: '사용 가능', nip05_taken: '이미 사용 중',
       nip05_pay: '결제 대기 중...', nip05_open_wallet: '지갑으로 열기',
-      nip05_success: '등록 완료!', nip05_expires: '만료',
+      nip05_success: '등록 완료!', nip05_expires: '만료일',
       nip05_sats: 'sats/년', nip05_invalid: '3-16자, 영소문자/숫자/하이픈',
       nip05_expired: '만료됨', nip05_change: '변경', nip05_change_info: '30일에 1회 변경 가능',
       nip05_change_cooldown: '일 후 변경 가능',
+      nip05_purchased: '구매일', nip05_plan: '연간 플랜',
+      nip05_price_promo: '🔥 기간한정 할인 중!', nip05_price_original: '정가', nip05_price_now: '할인가',
+      nip05_confirm: '결제 확인', nip05_confirm_msg: '아래 내용으로 등록합니다.',
+      nip05_confirm_proceed: '결제 진행', nip05_not_purchased: '미구매',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -77,7 +81,7 @@
       icon_selected: 'In Use', icon_default: 'Default',
       nostr_pubkey: 'Nostr Public Key', view_on_nostr: 'View on Nostr', copy: 'Copy', copied: 'Copied',
       change_icon: 'Change Icon', nostr_edit: 'Edit', nostr_reset: 'Reset to default', nostr_save: 'Save', nostr_invalid: 'Invalid npub format',
-      nip05: 'NIP-05 Verification', nip05_desc: 'Get your @txid.uk address',
+      nip05: 'NIP-05 Verification', nip05_desc: 'Nostr verification @txid.uk',
       nip05_username: 'Username', nip05_register: 'Register', nip05_renew: 'Renew',
       nip05_checking: 'Checking...', nip05_available: 'Available', nip05_taken: 'Taken',
       nip05_pay: 'Awaiting payment...', nip05_open_wallet: 'Open Wallet',
@@ -85,6 +89,10 @@
       nip05_sats: 'sats/year', nip05_invalid: '3-16 chars, lowercase/numbers/hyphens',
       nip05_expired: 'Expired', nip05_change: 'Change', nip05_change_info: 'Can change once every 30 days',
       nip05_change_cooldown: ' days until change available',
+      nip05_purchased: 'Purchased', nip05_plan: 'Annual Plan',
+      nip05_price_promo: '🔥 Limited-time discount!', nip05_price_original: 'Regular', nip05_price_now: 'Now',
+      nip05_confirm: 'Confirm', nip05_confirm_msg: 'You are registering the following.',
+      nip05_confirm_proceed: 'Proceed to Payment', nip05_not_purchased: 'Not purchased',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -113,7 +121,7 @@
       icon_selected: '使用中', icon_default: 'デフォルト',
       nostr_pubkey: 'Nostr公開鍵', view_on_nostr: 'Nostrで見る', copy: 'コピー', copied: 'コピー済み',
       change_icon: 'アイコン変更', nostr_edit: '変更', nostr_reset: 'デフォルトに戻す', nostr_save: '保存', nostr_invalid: '無効なnpub形式です',
-      nip05: 'NIP-05認証', nip05_desc: '@txid.ukアドレスを取得',
+      nip05: 'NIP-05認証', nip05_desc: 'Nostr認証アドレス @txid.uk',
       nip05_username: 'ユーザー名', nip05_register: '登録', nip05_renew: '更新',
       nip05_checking: '確認中...', nip05_available: '利用可能', nip05_taken: '使用中',
       nip05_pay: '支払い待ち...', nip05_open_wallet: 'ウォレットを開く',
@@ -121,6 +129,10 @@
       nip05_sats: 'sats/年', nip05_invalid: '3-16文字、小文字/数字/ハイフン',
       nip05_expired: '期限切れ', nip05_change: '変更', nip05_change_info: '30日に1回変更可能',
       nip05_change_cooldown: '日後に変更可能',
+      nip05_purchased: '購入日', nip05_plan: '年間プラン',
+      nip05_price_promo: '🔥 期間限定割引中！', nip05_price_original: '定価', nip05_price_now: '割引価格',
+      nip05_confirm: '確認', nip05_confirm_msg: '以下の内容で登録します。',
+      nip05_confirm_proceed: '支払いへ進む', nip05_not_purchased: '未購入',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
@@ -229,10 +241,11 @@
     if (!sec) return;
     api('/nip05/my').then(function(data) {
       if (data.registered && data.status === 'active') {
+        var paidDate = data.paidAt ? new Date(data.paidAt * 1000).toLocaleDateString() : '-';
         var expDate = new Date(data.expiresAt * 1000).toLocaleDateString();
         var changeHtml = '';
         if (data.canChangeUsername) {
-          changeHtml = '<div class="mt-2" id="nip05-change-area">' +
+          changeHtml = '<div class="mt-3 pt-3 border-t border-gray-800/30" id="nip05-change-area">' +
             '<div class="flex gap-2 items-center">' +
             '<input id="nip05-change-input" class="comm-input" style="max-width:120px;padding:4px 8px;font-size:.75rem" placeholder="' + t('nip05_username') + '" maxlength="16">' +
             '<span class="text-[10px] text-gray-500">@txid.uk</span>' +
@@ -242,13 +255,19 @@
         } else if (data.usernameChangedAt) {
           var elapsed = Math.floor(Date.now() / 1000) - data.usernameChangedAt;
           var daysLeft = Math.ceil((30 * 86400 - elapsed) / 86400);
-          changeHtml = '<div class="text-[10px] text-gray-600 mt-1">' + daysLeft + t('nip05_change_cooldown') + '</div>';
+          changeHtml = '<div class="text-[10px] text-gray-600 mt-2">' + daysLeft + t('nip05_change_cooldown') + '</div>';
         }
-        sec.innerHTML = '<div class="flex items-center justify-between flex-wrap gap-2">' +
-          '<div><span class="text-purple-400 text-xs font-bold">' + t('nip05') + '</span>' +
+        sec.innerHTML = '<div>' +
+          '<span class="text-purple-400 text-xs font-bold">' + t('nip05') + '</span>' +
           '<div class="text-sm text-green-400 font-mono mt-1">✓ ' + esc(data.identifier) + '</div>' +
-          '<div class="text-[10px] text-gray-500 mt-0.5">' + t('nip05_expires') + ': ' + expDate + '</div></div>' +
-          '<button id="nip05-renew" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_renew') + ' (' + data.priceSats + ' sats)</button>' +
+          '<div class="grid grid-cols-2 gap-x-4 gap-y-1 mt-2 text-[10px]">' +
+            '<div class="text-gray-500">' + t('nip05_purchased') + '</div><div class="text-gray-300">' + paidDate + '</div>' +
+            '<div class="text-gray-500">' + t('nip05_expires') + '</div><div class="text-gray-300">' + expDate + '</div>' +
+            '<div class="text-gray-500">' + t('nip05_plan') + '</div><div class="text-gray-300">' + data.priceSats + ' ' + t('nip05_sats') + '</div>' +
+          '</div>' +
+          '<div class="mt-2">' +
+            '<button id="nip05-renew" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_renew') + '</button>' +
+          '</div>' +
           '</div>' + changeHtml;
         document.getElementById('nip05-renew').addEventListener('click', function() { startNip05Renewal(sec); });
         if (data.canChangeUsername) {
@@ -272,10 +291,15 @@
           });
         }
       } else if (data.registered && data.status === 'expired') {
-        sec.innerHTML = '<div class="flex items-center justify-between flex-wrap gap-2">' +
-          '<div><span class="text-purple-400 text-xs font-bold">' + t('nip05') + '</span>' +
-          '<div class="text-sm text-red-400 font-mono mt-1">✗ ' + esc(data.identifier) + ' <span class="text-[10px]">(' + t('nip05_expired') + ')</span></div></div>' +
-          '<button id="nip05-renew" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_renew') + ' (' + data.priceSats + ' sats)</button>' +
+        var expDate2 = data.expiresAt ? new Date(data.expiresAt * 1000).toLocaleDateString() : '-';
+        sec.innerHTML = '<div>' +
+          '<span class="text-purple-400 text-xs font-bold">' + t('nip05') + '</span>' +
+          '<div class="text-sm text-red-400 font-mono mt-1">✗ ' + esc(data.identifier) + ' <span class="text-[10px]">(' + t('nip05_expired') + ')</span></div>' +
+          '<div class="text-[10px] text-gray-500 mt-1">' + t('nip05_expires') + ': ' + expDate2 + '</div>' +
+          nip05PriceHtml() +
+          '<div class="mt-2">' +
+            '<button id="nip05-renew" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_renew') + '</button>' +
+          '</div>' +
           '</div>';
         document.getElementById('nip05-renew').addEventListener('click', function() { startNip05Renewal(sec); });
       } else {
@@ -284,10 +308,20 @@
     }).catch(function() { showNip05RegisterForm(sec); });
   }
 
+  function nip05PriceHtml() {
+    return '<div class="mt-2 p-2 rounded bg-gray-800/30 text-[10px]">' +
+      '<div class="text-yellow-400 font-semibold">' + t('nip05_price_promo') + '</div>' +
+      '<div class="mt-1 text-gray-400">' + t('nip05_price_original') + ': <span class="line-through">10,000 sats</span>/' + t('nip05_sats').replace('sats/', '') + '</div>' +
+      '<div class="text-green-400 font-bold">' + t('nip05_price_now') + ': 5,000 sats/' + t('nip05_sats').replace('sats/', '') + '</div>' +
+      '</div>';
+  }
+
   function showNip05RegisterForm(sec) {
     sec.innerHTML = '<div><span class="text-purple-400 text-xs font-bold">' + t('nip05') + '</span>' +
-      '<div class="text-[10px] text-gray-500 mt-0.5 mb-2">' + t('nip05_desc') + '</div>' +
-      '<div class="flex gap-2 items-center">' +
+      '<div class="text-[10px] text-gray-500 mt-0.5">' + t('nip05_desc') + '</div>' +
+      '<div class="text-[10px] text-gray-600 mt-0.5">' + t('nip05_not_purchased') + '</div>' +
+      nip05PriceHtml() +
+      '<div class="flex gap-2 items-center mt-2">' +
       '<input id="nip05-input" class="comm-input" style="max-width:140px;padding:5px 8px;font-size:.78rem" placeholder="' + t('nip05_username') + '" maxlength="16">' +
       '<span class="text-xs text-gray-500">@txid.uk</span>' +
       '<button id="nip05-reg-btn" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_register') + '</button>' +
@@ -311,8 +345,30 @@
         return;
       }
 
-      btn.disabled = true;
-      btn.textContent = '...';
+      // Confirmation step
+      showNip05Confirm(sec, username);
+    });
+  }
+
+  function showNip05Confirm(sec, username) {
+    var identifier = username + '@txid.uk';
+    sec.innerHTML = '<div><span class="text-purple-400 text-xs font-bold">' + t('nip05_confirm') + '</span>' +
+      '<div class="text-[10px] text-gray-400 mt-1">' + t('nip05_confirm_msg') + '</div>' +
+      '<div class="mt-2 p-3 rounded bg-gray-800/40 border border-gray-700/50">' +
+        '<div class="text-sm text-white font-mono">' + esc(identifier) + '</div>' +
+        '<div class="text-[10px] text-gray-400 mt-1">' + t('nip05_plan') + ' · 5,000 sats</div>' +
+      '</div>' +
+      '<div class="flex gap-2 mt-3">' +
+        '<button id="nip05-confirm-btn" class="comm-btn-primary" style="padding:5px 14px;font-size:.75rem">⚡ ' + t('nip05_confirm_proceed') + '</button>' +
+        '<button id="nip05-confirm-cancel" class="comm-btn" style="padding:5px 12px;font-size:.75rem">' + t('cancel') + '</button>' +
+      '</div>' +
+      '<div id="nip05-status" class="text-[10px] mt-1 h-4"></div>' +
+      '</div>';
+
+    document.getElementById('nip05-confirm-btn').addEventListener('click', function() {
+      var cbtn = document.getElementById('nip05-confirm-btn');
+      var status = document.getElementById('nip05-status');
+      cbtn.disabled = true; cbtn.textContent = '...';
       api('/nip05/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -322,9 +378,12 @@
       }).catch(function(e) {
         status.textContent = e.message || 'Error';
         status.className = 'text-[10px] mt-1 h-4 text-red-400';
-        btn.disabled = false;
-        btn.textContent = t('nip05_register');
+        cbtn.disabled = false; cbtn.textContent = '⚡ ' + t('nip05_confirm_proceed');
       });
+    });
+
+    document.getElementById('nip05-confirm-cancel').addEventListener('click', function() {
+      showNip05RegisterForm(sec);
     });
   }
 
