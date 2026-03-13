@@ -1445,10 +1445,13 @@ details[open] > *:not(summary) {
   color: var(--color-bitcoin);
 }
 
-/* Book grid — small mobile */
-@media (max-width: 479px) {
+/* Book grid — mobile: 1행 3권만 */
+@media (max-width: 767px) {
   .book-grid {
     gap: 0.75rem;
+  }
+  .book-card:nth-child(n+4) {
+    display: none;
   }
 }
 
