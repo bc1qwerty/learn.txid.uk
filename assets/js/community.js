@@ -45,7 +45,7 @@
       nip05_checking: '확인 중...', nip05_available: '사용 가능', nip05_taken: '이미 사용 중',
       nip05_pay: '결제 대기 중...', nip05_open_wallet: '지갑으로 열기',
       nip05_success: '등록 완료!', nip05_expires: '만료',
-      nip05_sats: 'sats/년', nip05_invalid: '3-30자, 영소문자/숫자/하이픈',
+      nip05_sats: 'sats/년', nip05_invalid: '3-16자, 영소문자/숫자/하이픈',
       nip05_expired: '만료됨', nip05_change: '변경', nip05_change_info: '30일에 1회 변경 가능',
       nip05_change_cooldown: '일 후 변경 가능',
     },
@@ -80,7 +80,7 @@
       nip05_checking: 'Checking...', nip05_available: 'Available', nip05_taken: 'Taken',
       nip05_pay: 'Awaiting payment...', nip05_open_wallet: 'Open Wallet',
       nip05_success: 'Registered!', nip05_expires: 'Expires',
-      nip05_sats: 'sats/year', nip05_invalid: '3-30 chars, lowercase/numbers/hyphens',
+      nip05_sats: 'sats/year', nip05_invalid: '3-16 chars, lowercase/numbers/hyphens',
       nip05_expired: 'Expired', nip05_change: 'Change', nip05_change_info: 'Can change once every 30 days',
       nip05_change_cooldown: ' days until change available',
     },
@@ -115,7 +115,7 @@
       nip05_checking: '確認中...', nip05_available: '利用可能', nip05_taken: '使用中',
       nip05_pay: '支払い待ち...', nip05_open_wallet: 'ウォレットを開く',
       nip05_success: '登録完了！', nip05_expires: '有効期限',
-      nip05_sats: 'sats/年', nip05_invalid: '3-30文字、小文字/数字/ハイフン',
+      nip05_sats: 'sats/年', nip05_invalid: '3-16文字、小文字/数字/ハイフン',
       nip05_expired: '期限切れ', nip05_change: '変更', nip05_change_info: '30日に1回変更可能',
       nip05_change_cooldown: '日後に変更可能',
     },
@@ -231,7 +231,7 @@
         if (data.canChangeUsername) {
           changeHtml = '<div class="mt-2" id="nip05-change-area">' +
             '<div class="flex gap-2 items-center">' +
-            '<input id="nip05-change-input" class="comm-input" style="max-width:120px;padding:4px 8px;font-size:.75rem" placeholder="' + t('nip05_username') + '" maxlength="30">' +
+            '<input id="nip05-change-input" class="comm-input" style="max-width:120px;padding:4px 8px;font-size:.75rem" placeholder="' + t('nip05_username') + '" maxlength="16">' +
             '<span class="text-[10px] text-gray-500">@txid.uk</span>' +
             '<button id="nip05-change-btn" class="comm-btn" style="padding:4px 10px;font-size:.72rem">' + t('nip05_change') + '</button></div>' +
             '<div class="text-[10px] text-gray-600 mt-1">' + t('nip05_change_info') + '</div>' +
@@ -285,7 +285,7 @@
     sec.innerHTML = '<div><span class="text-purple-400 text-xs font-bold">' + t('nip05') + '</span>' +
       '<div class="text-[10px] text-gray-500 mt-0.5 mb-2">' + t('nip05_desc') + '</div>' +
       '<div class="flex gap-2 items-center">' +
-      '<input id="nip05-input" class="comm-input" style="max-width:140px;padding:5px 8px;font-size:.78rem" placeholder="' + t('nip05_username') + '" maxlength="30">' +
+      '<input id="nip05-input" class="comm-input" style="max-width:140px;padding:5px 8px;font-size:.78rem" placeholder="' + t('nip05_username') + '" maxlength="16">' +
       '<span class="text-xs text-gray-500">@txid.uk</span>' +
       '<button id="nip05-reg-btn" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_register') + '</button>' +
       '</div>' +
@@ -953,24 +953,42 @@
       <header class="mb-8">
         <nav class="text-sm text-gray-500 mb-4"><a href="#" class="hover:text-bitcoin">${t('boards')}</a> / <span class="text-white">${esc(displayName)}</span></nav>
 
-        <div class="p-5 rounded-xl border border-gray-800/50 bg-gray-900/30 mb-6">
-          <div class="flex items-center gap-4${isOwner ? ' mb-4' : ''}">
-            <div class="flex-shrink-0">${authorAvatar({isAdmin: profile.isAdmin, selectedIcon: profile.selectedIcon}, 32)}</div>
-            <div>
-              <div class="text-white font-semibold flex items-center gap-2" id="profile-name">${esc(displayName)}${profile.isAdmin ? ' <span class="text-[10px] px-1 py-0.5 rounded bg-bitcoin/20 text-bitcoin font-bold leading-none">ADMIN</span>' : ''}</div>
-              <div class="text-xs text-gray-500 font-mono">${shortKey(pubkey)}</div>
-              <div class="text-xs text-gray-600 mt-1">${profile.postCount} ${t('tab_posts')} · ${profile.commentCount} ${t('tab_comments')}</div>
-              <div id="nostr-pubkey-row" class="hidden text-xs text-gray-600 mt-1 flex items-center gap-1"><span class="text-purple-400">⚡</span> <span id="nostr-npub" class="font-mono"></span> <button id="nostr-copy" class="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-400">${t('copy')}</button></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div class="p-5 rounded-xl border border-gray-800/50 bg-gray-900/30${isOwner ? '' : ' md:col-span-2'}">
+            <div class="flex items-center gap-4${isOwner ? ' mb-4' : ''}">
+              <div class="flex-shrink-0">${authorAvatar({isAdmin: profile.isAdmin, selectedIcon: profile.selectedIcon}, 32)}</div>
+              <div>
+                <div class="text-white font-semibold flex items-center gap-2" id="profile-name">${esc(displayName)}${profile.isAdmin ? ' <span class="text-[10px] px-1 py-0.5 rounded bg-bitcoin/20 text-bitcoin font-bold leading-none">ADMIN</span>' : ''}</div>
+                <div class="text-xs text-gray-500 font-mono">${shortKey(pubkey)}</div>
+                <div class="text-xs text-gray-600 mt-1">${profile.postCount} ${t('tab_posts')} · ${profile.commentCount} ${t('tab_comments')}</div>
+              </div>
             </div>
+            ${isOwner ? `
+              <label class="text-xs text-gray-500 block mb-1">${t('nickname')}</label>
+              <div class="flex gap-2 items-center">
+                <input id="nick-input" class="comm-input" style="max-width:180px;padding:6px 10px;font-size:.8rem" placeholder="${t('nickname_ph')}" maxlength="8" value="${esc(currentUser.displayName || '')}">
+                <button class="comm-btn-primary" id="nick-save" style="padding:6px 14px;font-size:.78rem">${t('save')}</button>
+              </div>
+            ` : ''}
           </div>
           ${isOwner ? `
-            <label class="text-xs text-gray-500 block mb-1">${t('nickname')}</label>
-            <div class="flex gap-2 items-center">
-              <input id="nick-input" class="comm-input" style="max-width:180px;padding:6px 10px;font-size:.8rem" placeholder="${t('nickname_ph')}" maxlength="8" value="${esc(currentUser.displayName || '')}">
-              <button class="comm-btn-primary" id="nick-save" style="padding:6px 14px;font-size:.78rem">${t('save')}</button>
+          <div class="p-5 rounded-xl border border-gray-800/50 bg-gray-900/30">
+            <div id="nip05-section"></div>
+          </div>
+          <div class="p-5 rounded-xl border border-gray-800/50 bg-gray-900/30" id="nostr-card">
+            <span class="text-purple-400 text-xs font-bold">Nostr</span>
+            <div id="nostr-pubkey-row" class="mt-2 flex items-center gap-2">
+              <span class="text-xs text-gray-500">...</span>
             </div>
+          </div>
+          <div class="p-5 rounded-xl border border-gray-800/50 bg-gray-900/30">
+            <span class="text-bitcoin text-xs font-bold">${t('icons')}</span>
+            <div class="mt-2 flex items-center gap-3">
+              <div class="flex-shrink-0">${authorAvatar({isAdmin: profile.isAdmin, selectedIcon: profile.selectedIcon}, 24)}</div>
+              <a href="#${base}/icons" class="text-xs text-gray-400 hover:text-white transition-colors">${t('icons')} →</a>
+            </div>
+          </div>
           ` : ''}
-          ${isOwner ? '<div id="nip05-section" class="mt-4 pt-4 border-t border-gray-800/50"></div>' : ''}
         </div>
 
         <div class="flex gap-2 flex-wrap text-xs">
@@ -995,23 +1013,27 @@
     // Nostr pubkey display (fetch async)
     if (isOwner) {
       api('/nostr/me').then(function(data) {
+        var row = document.getElementById('nostr-pubkey-row');
+        if (!row) return;
         if (data && data.npub) {
-          var row = document.getElementById('nostr-pubkey-row');
-          var npubEl = document.getElementById('nostr-npub');
-          if (row && npubEl) {
-            row.classList.remove('hidden');
-            npubEl.textContent = data.npub.slice(0, 12) + '…' + data.npub.slice(-6);
-            npubEl.title = data.npub;
-            document.getElementById('nostr-copy').addEventListener('click', function(e) {
-              e.preventDefault();
-              navigator.clipboard.writeText(data.npub).then(function() {
-                e.target.textContent = t('copied');
-                setTimeout(function() { e.target.textContent = t('copy'); }, 1500);
-              });
+          row.innerHTML = '<span class="text-xs text-gray-400 font-mono">' + data.npub.slice(0, 16) + '…' + data.npub.slice(-6) + '</span>' +
+            ' <button id="nostr-copy" class="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-400">' + t('copy') + '</button>';
+          row.title = data.npub;
+          document.getElementById('nostr-copy').addEventListener('click', function(e) {
+            e.preventDefault();
+            navigator.clipboard.writeText(data.npub).then(function() {
+              e.target.textContent = t('copied');
+              setTimeout(function() { e.target.textContent = t('copy'); }, 1500);
             });
-          }
+          });
+        } else {
+          var card = document.getElementById('nostr-card');
+          if (card) card.style.display = 'none';
         }
-      }).catch(function() { /* Nostr not configured or error — hide silently */ });
+      }).catch(function() {
+        var card = document.getElementById('nostr-card');
+        if (card) card.style.display = 'none';
+      });
 
       // NIP-05 section
       loadNip05Section();
