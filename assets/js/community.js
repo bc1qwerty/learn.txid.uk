@@ -40,6 +40,7 @@
       icons: '아이콘', select_icon: '적용', icon_locked: '미획득',
       icon_selected: '사용 중', icon_default: '기본',
       nostr_pubkey: 'Nostr 공개키', view_on_nostr: 'Nostr에서 보기', copy: '복사', copied: '복사됨',
+      change_icon: '아이콘 변경', nostr_edit: '변경', nostr_reset: '기본값 복원', nostr_save: '저장', nostr_invalid: '올바른 npub 형식이 아닙니다',
       nip05: 'NIP-05 인증', nip05_desc: '@txid.uk 주소를 구매하세요',
       nip05_username: '유저네임', nip05_register: '등록', nip05_renew: '갱신',
       nip05_checking: '확인 중...', nip05_available: '사용 가능', nip05_taken: '이미 사용 중',
@@ -75,6 +76,7 @@
       icons: 'Icons', select_icon: 'Apply', icon_locked: 'Locked',
       icon_selected: 'In Use', icon_default: 'Default',
       nostr_pubkey: 'Nostr Public Key', view_on_nostr: 'View on Nostr', copy: 'Copy', copied: 'Copied',
+      change_icon: 'Change Icon', nostr_edit: 'Edit', nostr_reset: 'Reset to default', nostr_save: 'Save', nostr_invalid: 'Invalid npub format',
       nip05: 'NIP-05 Verification', nip05_desc: 'Get your @txid.uk address',
       nip05_username: 'Username', nip05_register: 'Register', nip05_renew: 'Renew',
       nip05_checking: 'Checking...', nip05_available: 'Available', nip05_taken: 'Taken',
@@ -110,6 +112,7 @@
       icons: 'アイコン', select_icon: '適用', icon_locked: '未獲得',
       icon_selected: '使用中', icon_default: 'デフォルト',
       nostr_pubkey: 'Nostr公開鍵', view_on_nostr: 'Nostrで見る', copy: 'コピー', copied: 'コピー済み',
+      change_icon: 'アイコン変更', nostr_edit: '変更', nostr_reset: 'デフォルトに戻す', nostr_save: '保存', nostr_invalid: '無効なnpub形式です',
       nip05: 'NIP-05認証', nip05_desc: '@txid.ukアドレスを取得',
       nip05_username: 'ユーザー名', nip05_register: '登録', nip05_renew: '更新',
       nip05_checking: '確認中...', nip05_available: '利用可能', nip05_taken: '使用中',
@@ -969,6 +972,10 @@
                 <input id="nick-input" class="comm-input" style="max-width:180px;padding:6px 10px;font-size:.8rem" placeholder="${t('nickname_ph')}" maxlength="8" value="${esc(currentUser.displayName || '')}">
                 <button class="comm-btn-primary" id="nick-save" style="padding:6px 14px;font-size:.78rem">${t('save')}</button>
               </div>
+              <div class="flex items-center gap-2 mt-3">
+                <div class="flex-shrink-0">${authorAvatar({isAdmin: profile.isAdmin, selectedIcon: profile.selectedIcon}, 20)}</div>
+                <a href="#${base}/icons" class="text-xs text-gray-400 hover:text-bitcoin transition-colors">${t('change_icon')}</a>
+              </div>
             ` : ''}
           </div>
           ${isOwner ? `
@@ -979,13 +986,6 @@
             <span class="text-purple-400 text-xs font-bold">Nostr</span>
             <div id="nostr-pubkey-row" class="mt-2 flex items-center gap-2">
               <span class="text-xs text-gray-500">...</span>
-            </div>
-          </div>
-          <div class="p-5 rounded-xl border border-gray-800/50 bg-gray-900/30">
-            <span class="text-bitcoin text-xs font-bold">${t('icons')}</span>
-            <div class="mt-2 flex items-center gap-3">
-              <div class="flex-shrink-0">${authorAvatar({isAdmin: profile.isAdmin, selectedIcon: profile.selectedIcon}, 24)}</div>
-              <a href="#${base}/icons" class="text-xs text-gray-400 hover:text-white transition-colors">${t('icons')} →</a>
             </div>
           </div>
           ` : ''}
@@ -1016,16 +1016,9 @@
         var row = document.getElementById('nostr-pubkey-row');
         if (!row) return;
         if (data && data.npub) {
-          row.innerHTML = '<span class="text-xs text-gray-400 font-mono">' + data.npub.slice(0, 16) + '…' + data.npub.slice(-6) + '</span>' +
-            ' <button id="nostr-copy" class="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-400">' + t('copy') + '</button>';
-          row.title = data.npub;
-          document.getElementById('nostr-copy').addEventListener('click', function(e) {
-            e.preventDefault();
-            navigator.clipboard.writeText(data.npub).then(function() {
-              e.target.textContent = t('copied');
-              setTimeout(function() { e.target.textContent = t('copy'); }, 1500);
-            });
-          });
+          var displayNpub = data.customNpub || data.npub;
+          var isCustom = !!data.customNpub;
+          renderNostrRow(row, displayNpub, isCustom, data.npub);
         } else {
           var card = document.getElementById('nostr-card');
           if (card) card.style.display = 'none';
@@ -1037,6 +1030,65 @@
 
       // NIP-05 section
       loadNip05Section();
+    }
+
+    function renderNostrRow(row, displayNpub, isCustom, derivedNpub) {
+      row.innerHTML = '<span class="text-xs text-gray-400 font-mono">' + displayNpub.slice(0, 16) + '…' + displayNpub.slice(-6) + '</span>' +
+        ' <button id="nostr-copy" class="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-400">' + t('copy') + '</button>' +
+        ' <button id="nostr-edit-btn" class="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-purple-400">' + t('nostr_edit') + '</button>' +
+        (isCustom ? ' <button id="nostr-reset-btn" class="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-red-400">' + t('nostr_reset') + '</button>' : '');
+      row.title = displayNpub;
+
+      document.getElementById('nostr-copy').addEventListener('click', function(e) {
+        e.preventDefault();
+        navigator.clipboard.writeText(displayNpub).then(function() {
+          e.target.textContent = t('copied');
+          setTimeout(function() { e.target.textContent = t('copy'); }, 1500);
+        });
+      });
+
+      document.getElementById('nostr-edit-btn').addEventListener('click', function() {
+        row.innerHTML = '<div class="flex gap-2 items-center flex-wrap">' +
+          '<input id="nostr-input" class="comm-input" style="max-width:240px;padding:4px 8px;font-size:.75rem" placeholder="npub1..." value="' + (isCustom ? esc(displayNpub) : '') + '">' +
+          '<button id="nostr-save-btn" class="text-[10px] px-2 py-1 rounded bg-purple-600 hover:bg-purple-500 text-white">' + t('nostr_save') + '</button>' +
+          '<button id="nostr-cancel-btn" class="text-[10px] px-2 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-400">' + t('cancel') + '</button>' +
+          '</div>';
+
+        document.getElementById('nostr-save-btn').addEventListener('click', async function() {
+          var input = document.getElementById('nostr-input');
+          var val = input.value.trim();
+          try {
+            var res = await api('/nostr/me', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ customNpub: val || null }),
+            });
+            var newNpub = res.customNpub || derivedNpub;
+            renderNostrRow(row, newNpub, !!res.customNpub, derivedNpub);
+          } catch(e) {
+            input.style.borderColor = '#ef4444';
+            input.placeholder = t('nostr_invalid');
+          }
+        });
+
+        document.getElementById('nostr-cancel-btn').addEventListener('click', function() {
+          renderNostrRow(row, displayNpub, isCustom, derivedNpub);
+        });
+      });
+
+      var resetBtn = document.getElementById('nostr-reset-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', async function() {
+          try {
+            await api('/nostr/me', {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ customNpub: null }),
+            });
+            renderNostrRow(row, derivedNpub, false, derivedNpub);
+          } catch(e) { /* ignore */ }
+        });
+      }
     }
 
     // Nickname save (owner only)
