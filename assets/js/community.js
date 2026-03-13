@@ -46,7 +46,8 @@
       nip05_pay: '결제 대기 중...', nip05_open_wallet: '지갑으로 열기',
       nip05_success: '등록 완료!', nip05_expires: '만료',
       nip05_sats: 'sats/년', nip05_invalid: '3-30자, 영소문자/숫자/하이픈',
-      nip05_expired: '만료됨',
+      nip05_expired: '만료됨', nip05_change: '변경', nip05_change_info: '30일에 1회 변경 가능',
+      nip05_change_cooldown: '일 후 변경 가능',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -80,7 +81,8 @@
       nip05_pay: 'Awaiting payment...', nip05_open_wallet: 'Open Wallet',
       nip05_success: 'Registered!', nip05_expires: 'Expires',
       nip05_sats: 'sats/year', nip05_invalid: '3-30 chars, lowercase/numbers/hyphens',
-      nip05_expired: 'Expired',
+      nip05_expired: 'Expired', nip05_change: 'Change', nip05_change_info: 'Can change once every 30 days',
+      nip05_change_cooldown: ' days until change available',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -114,7 +116,8 @@
       nip05_pay: '支払い待ち...', nip05_open_wallet: 'ウォレットを開く',
       nip05_success: '登録完了！', nip05_expires: '有効期限',
       nip05_sats: 'sats/年', nip05_invalid: '3-30文字、小文字/数字/ハイフン',
-      nip05_expired: '期限切れ',
+      nip05_expired: '期限切れ', nip05_change: '変更', nip05_change_info: '30日に1回変更可能',
+      nip05_change_cooldown: '日後に変更可能',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
@@ -224,13 +227,47 @@
     api('/nip05/my').then(function(data) {
       if (data.registered && data.status === 'active') {
         var expDate = new Date(data.expiresAt * 1000).toLocaleDateString();
+        var changeHtml = '';
+        if (data.canChangeUsername) {
+          changeHtml = '<div class="mt-2" id="nip05-change-area">' +
+            '<div class="flex gap-2 items-center">' +
+            '<input id="nip05-change-input" class="comm-input" style="max-width:120px;padding:4px 8px;font-size:.75rem" placeholder="' + t('nip05_username') + '" maxlength="30">' +
+            '<span class="text-[10px] text-gray-500">@txid.uk</span>' +
+            '<button id="nip05-change-btn" class="comm-btn" style="padding:4px 10px;font-size:.72rem">' + t('nip05_change') + '</button></div>' +
+            '<div class="text-[10px] text-gray-600 mt-1">' + t('nip05_change_info') + '</div>' +
+            '<div id="nip05-change-status" class="text-[10px] mt-1 h-4"></div></div>';
+        } else if (data.usernameChangedAt) {
+          var elapsed = Math.floor(Date.now() / 1000) - data.usernameChangedAt;
+          var daysLeft = Math.ceil((30 * 86400 - elapsed) / 86400);
+          changeHtml = '<div class="text-[10px] text-gray-600 mt-1">' + daysLeft + t('nip05_change_cooldown') + '</div>';
+        }
         sec.innerHTML = '<div class="flex items-center justify-between flex-wrap gap-2">' +
           '<div><span class="text-purple-400 text-xs font-bold">' + t('nip05') + '</span>' +
           '<div class="text-sm text-green-400 font-mono mt-1">✓ ' + esc(data.identifier) + '</div>' +
           '<div class="text-[10px] text-gray-500 mt-0.5">' + t('nip05_expires') + ': ' + expDate + '</div></div>' +
           '<button id="nip05-renew" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_renew') + ' (' + data.priceSats + ' sats)</button>' +
-          '</div>';
+          '</div>' + changeHtml;
         document.getElementById('nip05-renew').addEventListener('click', function() { startNip05Renewal(sec); });
+        if (data.canChangeUsername) {
+          document.getElementById('nip05-change-btn').addEventListener('click', function() {
+            var newName = document.getElementById('nip05-change-input').value.toLowerCase().trim();
+            var cStatus = document.getElementById('nip05-change-status');
+            var cBtn = document.getElementById('nip05-change-btn');
+            if (!newName || newName.length < 3 || !/^[a-z0-9][a-z0-9_-]*[a-z0-9]$/.test(newName)) {
+              cStatus.textContent = t('nip05_invalid'); cStatus.className = 'text-[10px] mt-1 h-4 text-red-400'; return;
+            }
+            cBtn.disabled = true; cBtn.textContent = '...';
+            api('/nip05/username', {
+              method: 'PUT', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ username: newName }),
+            }).then(function(r) {
+              loadNip05Section();
+            }).catch(function(e) {
+              cStatus.textContent = e.message || 'Error'; cStatus.className = 'text-[10px] mt-1 h-4 text-red-400';
+              cBtn.disabled = false; cBtn.textContent = t('nip05_change');
+            });
+          });
+        }
       } else if (data.registered && data.status === 'expired') {
         sec.innerHTML = '<div class="flex items-center justify-between flex-wrap gap-2">' +
           '<div><span class="text-purple-400 text-xs font-bold">' + t('nip05') + '</span>' +
