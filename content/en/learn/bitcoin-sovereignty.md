@@ -28,4 +28,8 @@ next_path:
   url: "/learn/libertarianism-advanced/"
 ---
 
-If you understand Bitcoin's value, it's time to **hold it in your own hands**. This course covers the practical knowledge needed to realize self-sovereignty — from unit systems and wallet selection to multisig and inheritance planning.
+Knowing *why* Bitcoin matters is only half the story. The other half is holding it yourself — not on an exchange, not in someone else's custody, but in your own hands, under your own control.
+
+This is where most people get nervous. What if I lose my keys? What if I make a mistake? What happens to my bitcoin when I die? These are fair questions, and every one of them has a practical answer.
+
+This course walks you through the real-world skills of self-sovereignty — from understanding how Bitcoin balances actually work (it's not like a bank account) to choosing the right wallet, setting up multisig for serious security, and creating a backup and inheritance plan so nothing is ever lost.

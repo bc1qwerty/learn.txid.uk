@@ -1,4 +1,4 @@
 ---
 title: "Recommended Books"
-description: "Recommended book list and reviews related to Bitcoin, Libertarianism, and Austrian Economics"
+description: "Essential reading list for understanding Bitcoin, Austrian Economics, and Libertarianism — from The Bitcoin Standard to Human Action, with key takeaways and reviews."
 ---

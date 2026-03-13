@@ -3,7 +3,7 @@ title: "The Law"
 slug: "the-law"
 date: 2026-02-18T10:00:00+09:00
 author: "Frédéric Bastiat"
-cover: "/images/books/법.jpg"
+cover: "/images/books/en/the-law.jpg"
 originalTitle: "The Law"
 translator: "Kim Jung-ho"
 publisher: "Free Enterprise Institute"
@@ -13,12 +13,26 @@ weight: 13
 draft: false
 ---
 
-## Key Points
+Written in 1850 and still sharper than anything published this year about government overreach. Bastiat was a French economist with a gift for cutting through nonsense, and *The Law* is his masterpiece — a furious, witty, 80-page argument that most of what governments do with law is steal.
 
-A classic work by 19th-century French economist Frédéric Bastiat discussing the nature and purpose of law. He argues that the legitimate role of law is to protect individuals' lives, liberty, and property, and warns that once law exceeds this purpose, it becomes a tool of legal plunder. He sharply critiques how socialism and protectionism distort the law to concentrate benefits on specific groups.
+## What You'll Discover
 
-## Things to Consider
+Bastiat's framework is elegant. Law exists for one purpose: to protect life, liberty, and property. That's it. When law does anything beyond this — when it takes from one person to give to another — it becomes what Bastiat calls "legal plunder." And he gives you a dead-simple test to spot it: does the law let the government do something that would be a crime if you or I did it? Then it's plunder wearing a suit.
 
-- Why government redistribution policies constitute legal plunder can be examined in comparison to the law's original purpose
-- Despite being written 150 years ago, the critique applies directly to modern welfare states and regulatory expansion
-- Bitcoin suggests a technological solution to legal plunder through the state's monopoly on currency.
+From this starting point, Bastiat dismantles socialism, protectionism, and every flavor of central planning with a precision that feels almost unfair. Politicians, he argues, treat citizens like clay to be molded according to grand designs. But people aren't clay. Society organizes itself perfectly well when individuals are left free to cooperate voluntarily. The arrogance of the planner is the real threat.
+
+What's startling is how little has changed. Swap out Bastiat's examples of 1850s French socialism for modern bailouts, quantitative easing, or regulatory capture, and his critique lands with the same force. The mechanism of legal plunder just got more sophisticated — inflation being the most invisible form of all.
+
+## Worth Every Minute
+
+You can read this in a single sitting. You'll be quoting it for years. And if you've ever wondered why Bitcoiners talk so much about "separating money and state," Bastiat laid the philosophical groundwork 170 years before the genesis block.
+
+## Related Concepts
+
+- [Legal Plunder](/ideas/legal-plunder/) - The central concept of the book
+- [Natural Rights](/ideas/natural-rights/) - The philosophical foundation Bastiat builds upon
+- [Private Property](/ideas/private-property/) - The right that law must protect
+- [Non-Aggression Principle](/ideas/non-aggression-principle/) - The ethical standard against which law is measured
+- [Inflation Tax](/ideas/inflation-tax/) - A modern form of legal plunder through currency
+- [Free Market](/ideas/free-market/) - The voluntary order Bastiat defends
+- [Libertarianism](/learn/libertarianism/) - The political tradition Bastiat helped define

@@ -28,6 +28,10 @@ next_path:
   url: "/learn/bitcoin/"
 ---
 
+Money existed long before governments did. People chose gold, silver, and other scarce goods as money through centuries of voluntary trade. Then the state stepped in — first by stamping coins with a king's face, then by replacing gold with paper promises, and finally by severing the last link to anything real on August 15, 1971.
+
+What happened next is a story of slow-motion theft. Purchasing power evaporates. Wealth silently flows upward. Governments wage wars they could never afford with honest money. And most people never notice, because the mechanism is invisible.
+
 {{< mermaid >}}
 graph LR
     S1["Step 1<br/>Nixon Shock"] --> S2["Step 2<br/>Inflation Tax"]
@@ -39,4 +43,4 @@ graph LR
     style S6 fill:#3fb950,stroke:#3fb950,color:#fff
 {{< /mermaid >}}
 
-Money originally arose spontaneously in the marketplace. But the state seized money, and the result is recurring inflation, inequality, and business cycles. This course traces the process by which money became a tool of the state and its consequences, while exploring why Bitcoin emerged as an alternative.
+This course traces how money became a tool of the state, what that has cost ordinary people, and why Bitcoin was designed as a structural exit from the whole arrangement.

@@ -28,4 +28,8 @@ next_path:
   url: "/learn/bitcoin/"
 ---
 
-With the basics of Austrian economics under your belt, it's time to explore the **roots of its methodology** and the **deeper layers of monetary theory**. This course starts from praxeology — the school's unique method — digs into the nature of money, and introduces two thinkers who illuminated this tradition.
+Mainstream economists run regressions and build models. Austrian economists do something different — they *deduce*. Starting from the self-evident fact that humans act purposefully, they derive economic laws the way a mathematician derives theorems: step by logical step, no data set required.
+
+This method — called praxeology — is what gives Austrian economics its unusual clarity and its fierce critics. If you've finished the introductory course and want to understand *why* Austrian reasoning works the way it does, this is where to dig in.
+
+The course starts with methodology, moves into the deeper theory of money (what makes one form of money "harder" than another, and where money's value originally came from), and closes with two thinkers — Böhm-Bawerk and Hazlitt — who each made the Austrian tradition sharper and more accessible.

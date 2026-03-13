@@ -3,7 +3,7 @@ title: "What Went Wrong with Capitalism"
 slug: "what-went-wrong-with-capitalism"
 date: 2026-02-18T10:00:00+09:00
 author: "Ruchir Sharma"
-cover: "/images/books/무엇이 자본주의를 망가뜨렸나.jpg"
+cover: "/images/books/en/what-went-wrong-with-capitalism.jpg"
 originalTitle: "What Went Wrong with Capitalism"
 translator: "Kim Tae-hun"
 publisher: "Korea Economic Daily"
@@ -13,12 +13,27 @@ weight: 15
 draft: false
 ---
 
-## Key Points
+What broke capitalism? Not too little government — too much of it. That's the counterintuitive argument Ruchir Sharma makes, and he brings the receipts. As one of Wall Street's most respected global investors, Sharma has the credibility and the data to make this case from inside the system, which is exactly what makes it so damning.
 
-A book in which Wall Street's top investor Ruchir Sharma diagnoses the flaws and solutions of modern capitalism. It analyzes how excessive government intervention, endless bailouts, and low interest rate policies have destroyed the self-correcting mechanisms of the free market. Through data and historical examples, it argues that the answer lies not in bigger government but in better markets.
+## The Core Argument
 
-## Things to Consider
+Each crisis gets a bigger bailout. The savings and loan crisis. 2008. COVID. Every time, the government response grows larger, and each time it prevents the creative destruction that capitalism needs to stay healthy. The result? Capital gets trapped in zombie companies — unproductive firms that should have failed but didn't, consuming resources that ought to flow to innovative new businesses. Sharma shows their share of developed economies has risen dramatically.
 
-- You can understand the vicious cycle where government market intervention becomes the seed of the next crisis rather than solving it
-- It specifically demonstrates the mechanism by which bailouts and quantitative easing intensify wealth inequality
-- It indirectly presents evidence that Bitcoin could be an alternative to the central bank's indiscriminate monetary policy
+Meanwhile, government spending as a share of GDP ratchets steadily upward in every developed nation. Each crisis justifies a permanent expansion of the state. And the primary mechanism distorting everything, Sharma argues, is artificially low interest rates. Cheap money inflates asset prices, punishes savers, rewards borrowers, and widens the wealth gap.
+
+Here's the most devastating insight in the book: the very policies designed to reduce inequality — bailouts, stimulus, low rates — are actually the primary drivers of inequality. They inflate the asset prices that benefit the wealthy while eroding the purchasing power of everyone else. It's a vicious cycle where each intervention plants the seed of the next crisis, requiring an even bigger intervention.
+
+## The Bottom Line
+
+Sharma isn't a Bitcoin maximalist or an Austrian economist. He's a mainstream financial insider saying the quiet part out loud. That makes this book a uniquely credible complement to theoretical critiques of interventionism — and an indirect but powerful case for why the world needs an alternative to central bank discretion.
+
+## Related Concepts
+
+- [Moral Hazard](/ideas/moral-hazard/) - How bailouts create incentives for reckless behavior
+- [ABCT](/ideas/abct/) - The Austrian theory explaining why artificial credit expansion fails
+- [Cantillon Effect](/ideas/cantillon-effect/) - Why money creation benefits those closest to the source
+- [Fiat Money](/ideas/fiat-money/) - The monetary system enabling endless intervention
+- [Inflation Tax](/ideas/inflation-tax/) - How low-rate policies erode purchasing power
+- [Free Market](/ideas/free-market/) - The self-correcting system that intervention destroys
+- [Sound Money](/ideas/sound-money/) - The constraint that would prevent the bailout cycle
+- [Austrian Economics](/learn/austrian-economics/) - The intellectual tradition that predicted these problems

@@ -3,7 +3,7 @@ title: "Sapiens"
 slug: "sapiens"
 date: 2026-01-05T10:00:00+09:00
 author: "Yuval Noah Harari"
-cover: "/images/books/사피엔스.jpg"
+cover: "/images/books/en/sapiens.jpg"
 originalTitle: "Sapiens"
 translator: "Cho Hyun-wook"
 publisher: "Kimyoungsa"
@@ -13,12 +13,25 @@ weight: 5
 draft: false
 ---
 
-## Key Content
+Here's the idea that will rewire your brain: money is a story. Not backed by a story. Not representing a story. Money *is* a story — a shared fiction that works because enough people believe in it. Yuval Noah Harari makes this case in *Sapiens*, and once it clicks, you'll never think about Bitcoin (or dollars) the same way again.
 
-The narrative centers on three revolutions—the Cognitive Revolution, Agricultural Revolution, and Scientific Revolution—to explain how Homo sapiens came to dominate the Earth. It illustrates how the "fictional orders" created by humans—currency, religion, the state, and law—serve as the key mechanism enabling large-scale cooperation.
+## The 70,000-Year View
 
-## Points to Consider
+Harari starts at the beginning — literally. About 70,000 years ago, something changed in the Homo sapiens brain. We developed the ability to believe in things that don't physically exist: gods, nations, human rights, corporations. And money. This capacity for shared fiction is what let strangers cooperate at massive scale. It's why a sapiens can walk into a store in a foreign country and exchange colored paper for food. Both parties believe the same story.
 
-- The perspective that currency is humanity's most successful "fictional story" helps in understanding Bitcoin
-- The provocative argument that the Agricultural Revolution was not progress but "the greatest fraud in history" challenges conventional views
-- Viewing humanity through an enormous timescale allows us to contextualize contemporary problems
+That framing alone is worth the book. But Harari doesn't stop there. He calls the Agricultural Revolution "history's biggest fraud" — it multiplied the total human population but made individual lives harder, shorter, and less satisfying. He traces how empires, religions, and trade networks knitted isolated tribes into a single global civilization, with money always serving as the most powerful unifying force of all. And he follows the thread through the Scientific Revolution, showing how the willingness to say "I don't know" created the modern world.
+
+The Bitcoin connection isn't forced — it's inevitable. If money is a shared fiction, then Bitcoin is a new fiction competing for belief. One with rules that can't be changed by politicians or central bankers. One that might be more trustworthy precisely because it doesn't require trusting anyone.
+
+## Why This Book Changes the Conversation
+
+Read *Sapiens* and the question stops being "does Bitcoin have real value?" The question becomes: does *any* money have value outside of collective belief? And if not, which story do you want to believe in?
+
+## Related Concepts
+
+- [Sound Money](/ideas/sound-money/) - The evolution of monetary fictions toward harder forms
+- [Fiat Money](/ideas/fiat-money/) - The current dominant monetary fiction
+- [Subjective Value](/ideas/subjective-value/) - Why value depends on human belief, not physical properties
+- [Spontaneous Order](/ideas/spontaneous-order/) - How complex social systems emerge without central planning
+- [Money and State](/learn/money-and-state/) - The institutional fiction of government-controlled money
+- [Bitcoin](/learn/bitcoin/) - The latest chapter in humanity's monetary story

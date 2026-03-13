@@ -28,4 +28,8 @@ next_path:
   url: "/learn/austrian-economics-advanced/"
 ---
 
-The introductory course explored individual freedom and the nature of state power. This course goes further, tracing the full spectrum of libertarian political philosophy — from **natural rights to anarcho-capitalism** — in logical order.
+The introductory course ended with a provocation: the state takes your money through inflation and calls it policy. But that raises a harder question — *how much* state is acceptable? Is a small government enough, or does the logic of liberty lead somewhere more radical?
+
+Libertarians have been debating this for centuries, and their answers span a wide spectrum. On one end: a minimal state limited to courts, police, and defense. On the other: no state at all — just voluntary agreements, private property, and free markets handling everything, including law and security.
+
+This course walks that spectrum step by step, from the philosophical bedrock of natural rights to the anarcho-capitalist vision where the market replaces the state entirely. You don't have to agree with every stop along the way — but you should understand the arguments.

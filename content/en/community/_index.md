@@ -1,5 +1,5 @@
 ---
 title: "Community"
-description: "Discuss anything about Bitcoin."
+description: "Join the Bitcoin community — discuss Austrian Economics, sound money, self-custody, and everything Bitcoin with fellow learners."
 layout: "list"
 ---

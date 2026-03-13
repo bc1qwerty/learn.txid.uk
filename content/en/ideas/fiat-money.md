@@ -8,11 +8,11 @@ weight: 8
 
 ## What is Fiat Money?
 
-Fiat Money is **money that is accepted as currency by legal decree (fiat) of the government**. It is not backed by physical assets like gold or silver, and only government force guarantees its value.
+Take a dollar bill out of your wallet. What backs it? Not gold — that link was cut in 1971. Not silver, not oil, not anything you can touch. The only thing backing that bill is a government decree: *"This is money because we say so."*
 
-"Fiat" is Latin for "let it be done."
+That's what "fiat" means. It's Latin for "let it be done" — an order from above. Fiat money is currency that has value **because the law demands you accept it**, not because it's scarce, useful, or chosen by the market.
 
-All currencies in the world today — won, dollars, euros, yen — are fiat currencies.
+Every currency in the world today — dollars, euros, yen, won — works this way.
 
 {{< chart-line title="US Dollar Purchasing Power (1913 = $100)" labels="1913,1933,1950,1971,1980,2000,2024" values="100,80,52,20,12,7,3.2" unit="$" >}}
 

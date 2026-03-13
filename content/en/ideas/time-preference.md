@@ -8,10 +8,12 @@ weight: 2
 
 ## What is Time Preference?
 
-Time Preference refers to **the degree to which people prefer goods in the present over goods in the future**. Every human has some degree of time preference.
+Would you rather have $1,000 today or $1,000 a year from now? Almost everyone picks today. That instinct — valuing the present over the future — is **time preference**, and it's one of the most powerful ideas in economics.
 
-- **High time preference**: Seeking immediate satisfaction. Preferring consumption over saving
-- **Low time preference**: Restraint in the present for greater future rewards. Preferring saving and investment
+Everyone has it to some degree. The question is *how much*.
+
+- **High time preference**: "I want it now." Spend today, worry about tomorrow later. More consumption, less saving.
+- **Low time preference**: "I can wait." Pass up something good today for something better tomorrow. More saving, more investment, more building.
 
 {{< mermaid >}}
 graph TD

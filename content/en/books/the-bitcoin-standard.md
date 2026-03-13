@@ -3,7 +3,7 @@ title: "Why the Dollar Hates Bitcoin"
 slug: "the-bitcoin-standard"
 date: 2026-01-01T10:00:00+09:00
 author: "Saifedean Ammous"
-cover: "/images/books/왜 달러는 비트코인을 싫어하는가.jpg"
+cover: "/images/books/en/the-bitcoin-standard.jpg"
 originalTitle: "The Bitcoin Standard"
 translator: "Wei Dae-seon"
 publisher: "Turning Point"
@@ -13,12 +13,27 @@ weight: 1
 draft: false
 ---
 
-## Key Points
+If you only read one book about Bitcoin, make it this one. Saifedean Ammous doesn't start with code or cryptography. He starts with seashells, glass beads, and cattle — and by the time he reaches Bitcoin, you understand exactly why a fixed supply of 21 million coins matters more than any feature on any altcoin's roadmap.
 
-A book that explains the importance of sound money through the history of currency and argues why Bitcoin is the most sound money in history. It covers the collapse of the gold standard, the problems with fiat money, and how Bitcoin's monetary policy solves these issues.
+## The Argument That Changes Everything
 
-## Points to Consider
+The core idea is deceptively simple: the hardest money wins. Throughout history, whatever commodity was most difficult to produce more of became the dominant form of money. Gold beat silver. Silver beat copper. And now Bitcoin, with its mathematically enforced scarcity, beats them all.
 
-- Through the concept of monetary hardness, we can understand why certain commodities were chosen as money
-- The insights on the relationship between time preference and civilizational development are impressive
-- We can deeply understand the economic significance of Bitcoin's 21 million supply cap
+But Ammous takes this further than you'd expect. He connects sound money to something called "time preference" — the degree to which people value the future over the present. When money holds its value, people plan ahead. They invest in education, build cathedrals, compose symphonies. When money is debased, society eats its seed corn. The implications stretch far beyond economics into culture, art, and the very structure of civilization.
+
+The book is rooted in Austrian economics — Menger, Mises, Hayek — but you don't need an economics degree to follow it. Ammous is a gifted storyteller who makes the Nixon Shock of 1971 feel like a heist movie and the invention of Bitcoin feel like the inevitable conclusion to a 5,000-year saga.
+
+## Who Should Read This
+
+Anyone who has ever dismissed Bitcoin as "just speculation" needs this book. It reframes Bitcoin not as a tech product but as the latest chapter in humanity's long search for money that governments cannot destroy. You'll never look at your savings account the same way again.
+
+## Related Concepts
+
+- [Sound Money](/ideas/sound-money/) - The core thesis of the entire book
+- [Time Preference](/ideas/time-preference/) - How sound money encourages long-term thinking
+- [Hardness of Money](/ideas/hardness-of-money/) - Stock-to-flow ratio explained
+- [Halving](/ideas/halving/) - Bitcoin's supply schedule that drives its hardness
+- [Nixon Shock](/ideas/nixon-shock/) - The pivotal moment when fiat money began
+- [Fiat Money](/ideas/fiat-money/) - The system Bitcoin aims to replace
+- [Proof of Work](/ideas/proof-of-work/) - The mechanism securing Bitcoin's monetary policy
+- [Austrian Economics](/learn/austrian-economics/) - The intellectual tradition behind the book

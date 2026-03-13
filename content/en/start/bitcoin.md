@@ -6,42 +6,35 @@ levels: "Beginner"
 tags: ["Bitcoin"]
 ---
 
-## Bitcoin in One Sentence
+Think about the money in your bank account right now. Someone — a central banker, a committee, a politician — can decide to create more of it tomorrow. When they do, every unit you hold quietly loses a sliver of its purchasing power. You did nothing wrong; you just saved. And yet you got poorer.
 
-Bitcoin is **digital money that operates without a central authority**. It was created in 2009 by an anonymous figure known as Satoshi Nakamoto, and no one can counterfeit or confiscate it.
+Bitcoin was built to fix that. In 2009, an anonymous figure called [Satoshi Nakamoto](/people/satoshi-nakamoto/) released software that does something no money has ever done before: it **removes human discretion from the money supply**. There will only ever be 21 million bitcoin — not because a government promised, but because the math enforces it.
 
-## Why Bitcoin?
+## What makes Bitcoin different?
 
-Existing money (fiat money) can be printed by governments in any quantity they desire. This is the root cause of inflation.
+No government, bank, or corporation is in charge. The network is maintained by thousands of independent computers around the world, each checking everyone else's work. The result is money that is:
 
-Bitcoin is different:
+- **Capped** — 21 million coins, forever. No one can print more.
+- **Permissionless** — Anyone can send money to anyone, anywhere, without asking for approval.
+- **Verifiable** — You don't have to trust anyone's word. You can audit the entire history yourself.
 
-- **Hard cap of 21 million coins** — No one can print more
-- **Decentralized** — No government, bank, or corporation controls Bitcoin
-- **Censorship-resistant** — Anyone can send money anywhere in the world without permission
-- **Verifiable** — Anyone can independently verify the entire transaction history
+## How it works — the short version
 
-## Core Concepts
+**Blocks and chains.** Transactions are bundled into blocks, and each block is cryptographically chained to the one before it. Altering an old transaction would mean re-doing all the work since — practically impossible.
 
-### Blockchain
-All Bitcoin transactions are recorded in bundles called **blocks**. Each block is linked to the previous one, forming a chain. Once recorded, transactions cannot be altered.
+**Mining.** Creating a new block requires burning real-world energy to solve a mathematical puzzle. This is [Proof of Work](/ideas/proof-of-work/) — the mechanism that makes Bitcoin secure without a central authority.
 
-### Mining
-The process of creating new blocks is called mining. Miners use computing power to solve mathematical problems and are rewarded with Bitcoin in return. This process is **Proof of Work**.
+**Halving.** Roughly every four years, the reward miners receive is cut in half. New supply enters the system more and more slowly, making Bitcoin's scarcity increase over time. The [halving](/ideas/halving/) is Bitcoin's built-in monetary policy — and no committee can override it.
 
-### Halving
-Approximately every four years, the mining reward is cut in half. This mechanism causes Bitcoin's inflation rate to converge toward zero over time.
-
-### TXID (Transaction ID)
-Every Bitcoin transaction has a unique identifier. That is the **TXID** — which also happens to be the name of this site.
+**TXID.** Every Bitcoin transaction gets a unique identifier called a **Transaction ID** — or TXID. It's an immutable receipt that proves exactly what happened, when, and between whom. (It's also the name of this site.)
 
 ## Go Deeper
 
-- [What Is Sound Money?](/ideas/sound-money/)
-- [The Meaning of Proof of Work](/ideas/proof-of-work/)
-- [Time Preference and Bitcoin](/ideas/time-preference/)
+- [What Is Sound Money?](/ideas/sound-money/) — The properties that make money trustworthy
+- [The Meaning of Proof of Work](/ideas/proof-of-work/) — Why burning energy is not waste
+- [Time Preference and Bitcoin](/ideas/time-preference/) — How sound money changes the way people think about the future
 
 ## Recommended Reading
 
-- **The Bitcoin Standard** (Saifedean Ammous) — Essential reading for understanding Bitcoin
-- **Bitcoin Whitepaper** (Satoshi Nakamoto) — The original 9-page paper
+- **The Bitcoin Standard** (Saifedean Ammous) — The essential case for Bitcoin as sound money
+- **Bitcoin Whitepaper** (Satoshi Nakamoto) — Satoshi's original 9-page design document

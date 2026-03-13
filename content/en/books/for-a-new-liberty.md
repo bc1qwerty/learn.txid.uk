@@ -3,7 +3,7 @@ title: "In Search of a New Liberty"
 slug: "for-a-new-liberty"
 date: 2026-01-12T10:00:00+09:00
 author: "Murray Rothbard"
-cover: "/images/books/새로운 자유를 찾아서.jpg"
+cover: "/images/books/en/for-a-new-liberty.jpg"
 originalTitle: "For a New Liberty"
 translator: "정연교, 권기붕, 정혜영, 한학성"
 publisher: "한국문화사"
@@ -13,12 +13,27 @@ weight: 12
 draft: false
 ---
 
-## Key Content
+This is the book that radicalized a generation of libertarians — and whether you agree with Rothbard or not, you can't deny the audacity of his project. Published in 1973, *For a New Liberty* starts from a single principle and builds an entire vision of society without the state. Roads, courts, police, defense — Rothbard has an answer for all of them, and his answers are more detailed than you'd expect.
 
-A masterpiece by Murray Rothbard that presents the theoretical foundation and practical vision of libertarianism. It defends individual freedom and property rights based on natural rights theory, and argues that services monopolized by the state—such as education, healthcare, public security, and law—can be provided more effectively in the free market.
+## The Vision of a Completely Free Society
 
-## Points to Consider
+It begins with self-ownership. You own your body and the fruits of your labor. From this, Rothbard derives property rights, the non-aggression principle, and a devastating critique of the state as an institution that survives by monopolizing violence and extracting wealth from everyone else. He doesn't mince words: taxation is theft, conscription is slavery, and regulation is a protection racket for incumbents.
 
-- Raises fundamental questions about the role of the state, transcending existing political frameworks
-- Allows understanding of the philosophical foundation of decentralization and individual sovereignty that Bitcoin pursues
-- Presents concrete scenarios for how the free market can solve public goods problems
+Then comes the part that surprises most readers. Rothbard doesn't just tear things down. He builds. Chapter by chapter, he walks through education, healthcare, infrastructure, law enforcement, and national defense, presenting detailed arguments for how voluntary market mechanisms could handle each one. You don't have to buy every argument to find the exercise valuable. It forces you to ask: do we *need* the state for this, or have we just assumed we do?
+
+The book also traces libertarian thought from its roots in classical liberalism through the American Revolution, making the case that limited government was the original American idea — and that it's been systematically betrayed ever since.
+
+## The Bitcoin Connection
+
+If you've ever wondered where Bitcoin's philosophical DNA comes from — the obsession with decentralization, individual sovereignty, and permissionless systems — a huge part of the answer is in this book. Rothbard wrote the blueprint. Satoshi wrote the code.
+
+## Related Concepts
+
+- [Natural Rights](/ideas/natural-rights/) - The philosophical foundation of Rothbard's libertarianism
+- [Non-Aggression Principle](/ideas/non-aggression-principle/) - The core ethical axiom of the book
+- [Private Property](/ideas/private-property/) - The institution Rothbard defends as the basis of civilization
+- [Self-Ownership](/ideas/self-ownership/) - The starting point of libertarian ethics
+- [Free Market](/ideas/free-market/) - The voluntary alternative to state coercion
+- [Voluntary Exchange](/ideas/voluntary-exchange/) - How society can organize without force
+- [Anarcho-Capitalism](/ideas/anarcho-capitalism/) - The political philosophy Rothbard champions
+- [Libertarianism](/learn/libertarianism/) - The broader tradition this book defines

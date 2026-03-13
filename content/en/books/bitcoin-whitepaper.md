@@ -3,7 +3,7 @@ title: "Bitcoin Whitepaper"
 slug: "bitcoin-whitepaper"
 date: 2026-01-06T10:00:00+09:00
 author: "Satoshi Nakamoto (Commentary by Philemon)"
-cover: "/images/books/비트코인 백서.jpg"
+cover: "/images/books/en/bitcoin-whitepaper.jpg"
 originalTitle: "Bitcoin: A Peer-to-Peer Electronic Cash System"
 translator: ""
 publisher: "Phileusis"
@@ -13,12 +13,27 @@ weight: 6
 draft: false
 ---
 
-## Key Content
+Nine pages. That's all it took to launch a trillion-dollar monetary revolution. Satoshi Nakamoto's 2008 whitepaper is the founding document of Bitcoin, and this annotated Korean edition makes it accessible even if you don't have a computer science background. If you're going to understand Bitcoin deeply, you have to start here.
 
-A Korean commentary edition of the Bitcoin whitepaper published by Satoshi Nakamoto in 2008. It provides detailed explanations of the core concepts of a P2P electronic cash system—proof of work, blockchain, prevention of double spending, and incentive structures—alongside the original text.
+## What Satoshi Actually Solved
 
-## Points to Consider
+The core breakthrough is deceptively simple to state: how do you prevent someone from spending the same digital money twice without relying on a trusted middleman? Every previous attempt at digital cash had failed at this problem. Satoshi's answer was a peer-to-peer network using proof of work to achieve consensus on the order of transactions. For the first time ever, digital scarcity became possible.
 
-- You can appreciate Satoshi's genius in designing an entirely new currency system through just a 9-page paper
-- It's an excellent example of how solving technical problems and designing economic incentives combine together
-- With commentary included, parts that would be difficult to understand from the original text alone become easy to grasp
+The paper describes how miners expend real computational energy to validate transactions and build blocks, creating an incentive structure where honesty pays better than cheating. These blocks are chained together with cryptographic hashes, so altering any historical transaction would mean redoing all the work that came after it — an impossibly expensive task. It's elegant engineering, but what really sets the whitepaper apart is how it weaves together technical solutions with economic incentive design. Block rewards and transaction fees motivate people to secure the network without any central coordinator. Satoshi even anticipated that most users wouldn't want to run full nodes, describing simplified payment verification for lightweight clients.
+
+The Korean commentary in this edition is genuinely helpful, unpacking the dense technical passages into clear explanations. But beyond accessibility, reading the original source matters for a deeper reason: it cuts through years of competing narratives about what Bitcoin is "supposed" to be and lets you judge for yourself.
+
+## Why Start Here
+
+Every debate about Bitcoin's development and direction traces back to this document. Understanding the whitepaper isn't just academic — it's the foundation for having informed opinions about everything that came after.
+
+## Related Concepts
+
+- [Proof of Work](/ideas/proof-of-work/) - The consensus mechanism at the heart of the whitepaper
+- [Merkle Tree](/ideas/merkle-tree/) - The data structure enabling efficient transaction verification
+- [UTXO](/ideas/utxo/) - The transaction model Satoshi designed
+- [Difficulty Adjustment](/ideas/difficulty-adjustment/) - How the network self-regulates
+- [Mempool](/ideas/mempool/) - Where transactions wait before confirmation
+- [Node](/ideas/node/) - The software that enforces the protocol rules
+- [Bitcoin Technical](/learn/bitcoin-technical/) - Deeper exploration of the protocol
+- [Bitcoin](/learn/bitcoin/) - The broader context of Bitcoin's significance

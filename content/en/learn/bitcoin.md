@@ -28,6 +28,12 @@ next_path:
   url: "/learn/austrian-economics/"
 ---
 
+Most people first hear about Bitcoin as an investment. *"Should I buy some?"* But that question skips the more interesting one: **Why does Bitcoin exist at all?**
+
+The short answer is that our money is broken. Governments print it, banks multiply it, and ordinary people slowly lose purchasing power without realizing why. Bitcoin was designed as an alternative — digital money that no one controls, with a supply that can never be inflated.
+
+This course won't ask you to install anything or look at a single line of code. Instead, we'll start with a simple idea — *what makes good money good?* — and build from there. By the final step, you'll understand not just how Bitcoin works, but why someone felt the need to create it and then quietly disappear.
+
 {{< mermaid >}}
 graph LR
     S1["Step 1<br/>What is Bitcoin?"] --> S2["Step 2<br/>Sound Money"]
@@ -39,4 +45,4 @@ graph LR
     style S6 fill:#3fb950,stroke:#3fb950,color:#fff
 {{< /mermaid >}}
 
-To understand Bitcoin, you must first understand **money** before technology. This path starts from the question "Why do we need Bitcoin?" and guides you through Bitcoin's operating principles and design philosophy.
+No technical background needed. Just curiosity and about 40 minutes.

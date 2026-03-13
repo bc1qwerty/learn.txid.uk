@@ -8,19 +8,15 @@ weight: 1
 
 ## What is Sound Money?
 
-Sound money refers to **currency whose supply cannot be arbitrarily increased by governments or central banks**. Historically, gold played this role, and in the digital age, Bitcoin has taken on this function.
+Drop a real gold coin on a hard surface and listen. It rings — a clear, sustained tone that fakes can't reproduce. That's where the word "sound" in sound money comes from: money you can *hear* is genuine.
 
-The term "sound" derives from the clear ring that a gold coin makes when dropped on the ground. Genuine gold coins produce a different sound than counterfeits.
+Today the idea goes deeper than gold coins. Sound money is **money whose supply nobody can manipulate** — not a king clipping coins, not a central bank running a printing press, not a politician promising free programs. When the money supply is fixed or predictable, it stays honest. When it isn't, everything downstream breaks.
 
-## Why Sound Money Matters
+## Why it matters more than you think
 
-Currency is not merely a medium of exchange. **Currency is the signaling system of the entire economy**.
+Money isn't just something you spend. It's the **signaling system of the entire economy**. Prices tell producers what to make. Interest rates tell entrepreneurs when to invest. Profits tell everyone whether resources are going to the right places.
 
-- **Prices**: Signals about resource scarcity
-- **Interest Rates**: Signals reflecting society's time preference
-- **Profits**: Signals that resources are being allocated correctly
-
-When currency breaks down (= can be printed infinitely), all these signals become distorted. Decisions based on false signals produce wrong outcomes.
+When money can be created at will, those signals get scrambled. Prices lie. Interest rates send false invitations. Businesses invest in projects that should never have started. The economy booms on fiction, then crashes on reality.
 
 ## Attributes of Sound Money
 

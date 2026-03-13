@@ -28,6 +28,12 @@ next_path:
   url: "/learn/thinkers/"
 ---
 
+*"Taxation is theft."* You've probably seen this slogan online and thought it was a joke, or maybe just rude. But behind it lies a serious question that philosophers have debated for centuries: **Where does the government's authority over you actually come from?**
+
+Libertarianism starts with a deceptively simple idea — you own yourself. Your body, your time, and the things you create with your effort belong to *you*, not to a king, a parliament, or a majority vote. From that one principle, an entire framework unfolds: what rights really mean, why markets work better than mandates, and how newly printed money quietly moves wealth from the many to the few.
+
+This course isn't about party politics or left-versus-right. It's about tracing a line of thought from "I own myself" all the way to "so *that's* how inflation actually works."
+
 {{< mermaid >}}
 graph LR
     S1["Step 1<br/>What is Libertarianism?"] --> S2["Step 2<br/>Self-Ownership"]
@@ -39,4 +45,4 @@ graph LR
     style S6 fill:#3fb950,stroke:#3fb950,color:#fff
 {{< /mermaid >}}
 
-Libertarianism is not simply the argument that "government should be smaller." It is the philosophy that **individual freedom is the foundation of all social order**. This path starts from the philosophical basis of freedom and guides you to the concrete mechanisms by which state power infringes on liberty.
+Best enjoyed after the Bitcoin and Austrian Economics courses — but works just fine on its own if this is where your curiosity starts.

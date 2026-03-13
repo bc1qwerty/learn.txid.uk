@@ -3,7 +3,7 @@ title: "The Psychology of Money"
 slug: "psychology-of-money"
 date: 2026-02-19T10:00:00+09:00
 author: "Morgan Housel"
-cover: "/images/books/돈의 심리학.jpg"
+cover: "/images/books/en/psychology-of-money.jpg"
 originalTitle: "The Psychology of Money"
 publisher: "Influential"
 publishYear: "2021"
@@ -12,12 +12,24 @@ weight: 17
 draft: false
 ---
 
-## Key Insights
+Forget spreadsheets. The most important thing about money isn't math — it's behavior. Morgan Housel makes this case through 20 short stories that are so good you'll finish the book in a day and think about it for a year.
 
-A book that demonstrates through 20 stories how financial decision-making is driven by psychology rather than spreadsheets. It addresses the power of compound interest, the concept of enough, and the relationship between wealth and freedom.
+## What This Book Gets Right
 
-## Points to Consider
+Housel's central insight is that everyone plays a different money game based on their own life experience. Someone who grew up during hyperinflation makes completely different financial decisions than someone raised during a decades-long bull market — and neither is "wrong." They're just running different software. Once you understand this, you stop judging other people's financial choices and start examining your own biases.
 
-- The insight that time, not investment returns, is the most important variable in wealth accumulation
-- The perspective that the purpose of saving can be freedom itself rather than a specific goal
-- It helps understand the difference between being rational and being reasonable
+The chapters on compounding and patience are worth the price alone. Warren Buffett's fortune isn't primarily about skill. It's about the fact that he started investing at age 10 and never stopped. Time in the market beats timing the market, and it's not even close. Housel pairs this with a crucial distinction most finance books miss: getting wealthy requires risk-taking and optimism, but *staying* wealthy requires humility, frugality, and a healthy dose of paranoia. They're completely different skill sets.
+
+Perhaps the most powerful idea in the book is "enough." Without knowing what enough looks like, even billionaires take catastrophic risks chasing more. And wealth itself is invisible — it's the money you *don't* spend. The cars not bought, the upgrades not made. This is why you can't learn to be wealthy by watching wealthy people, because real wealth doesn't show.
+
+## A Must-Read for Bitcoiners
+
+If you hold Bitcoin through its wild volatility cycles, every lesson in this book applies directly. The psychology of hodling is the psychology of money, and Housel gives you the tools to navigate both.
+
+## Related Concepts
+
+- [Time Preference](/ideas/time-preference/) - The psychological relationship between present and future value
+- [Sound Money](/ideas/sound-money/) - How monetary systems affect saving behavior
+- [Inflation Tax](/ideas/inflation-tax/) - The hidden force eroding the savings Housel values
+- [Bitcoin Sovereignty](/learn/bitcoin-sovereignty/) - Financial freedom through self-custody
+- [Money and State](/learn/money-and-state/) - How institutional forces shape individual financial psychology

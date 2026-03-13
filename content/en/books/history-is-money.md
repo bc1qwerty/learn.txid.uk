@@ -3,18 +3,31 @@ title: "History Is Money"
 slug: "history-is-money"
 date: 2026-02-19T10:00:00+09:00
 author: "홍춘욱"
-cover: "/images/books/역사는 돈이다.jpg"
+cover: "/images/books/en/history-is-money.jpg"
 description: "A book that reinterprets major turning points in history through the lens of currency and finance from an economic history perspective"
 weight: 19
 draft: false
 ---
 
-## Main Content
+What if the real story of civilization isn't about kings, wars, and treaties — but about money? That's the premise of Hong Chun-wook's *History Is Money*, and once you see history through this lens, you can't unsee it. Behind every revolution, every empire's collapse, every great power shift, there's a monetary story hiding in plain sight.
 
-A book that reinterprets major turning points in history through the lens of currency and finance from an economic history perspective. It demonstrates through various examples how the flow of money determined the rise and fall of empires.
+## The Hidden Thread of History
 
-## Things to Consider
+Hong walks through centuries of turning points and reveals the financial machinery underneath. Empires that maintained sound monetary systems thrived. Those that debased their currency declined. The pattern holds from ancient Rome's coin clipping to modern quantitative easing, with remarkable consistency across civilizations and eras.
 
-- When viewing history from the perspective of currency, wars, revolutions, and civilizational transitions can be read in new contexts
-- The impact of inflation and deflation on society can be understood through historical examples
-- We can reflect on where the current monetary system is positioned within historical patterns
+The book is especially good at showing how inflation and deflation don't just move numbers on a chart — they reshape entire societies, redistribute wealth, and trigger upheaval. Hong also traces how financial innovations themselves became instruments of power. The invention of coinage, the rise of central banking, the creation of sovereign debt markets — each one transformed the relationship between rulers and their people in ways that political history rarely captures.
+
+What makes this book particularly valuable is its Korean-language perspective on monetary history, complementing Western-focused works like *The Bitcoin Standard*. Hong doesn't just recount the past — he invites you to locate our current fiat system within these recurring cycles and ask the obvious question: what comes next?
+
+## Who Should Read This
+
+Anyone who wants to understand why sound money has been the foundation of every great civilization — and what it means that we've abandoned it. This book makes the case through vivid storytelling rather than abstract theory, and it will permanently change how you read the news.
+
+## Related Concepts
+
+- [Sound Money](/ideas/sound-money/) - The monetary property that sustained great civilizations
+- [Fiat Money](/ideas/fiat-money/) - The recurring pattern of currency debasement
+- [Inflation Tax](/ideas/inflation-tax/) - The hidden mechanism that has toppled empires
+- [Nixon Shock](/ideas/nixon-shock/) - The latest chapter in the history of monetary debasement
+- [Hardness of Money](/ideas/hardness-of-money/) - Why some forms of money outlast others
+- [Money and State](/learn/money-and-state/) - The relationship between power and currency through history

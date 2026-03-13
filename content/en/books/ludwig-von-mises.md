@@ -3,19 +3,35 @@ title: "Ludwig von Mises"
 slug: "ludwig-von-mises"
 date: 2026-02-19T10:00:00+09:00
 author: "Jörg Guido Hülsmann"
-cover: "/images/books/루트비히 폰 미제스.jpg"
+cover: "/images/books/en/ludwig-von-mises.jpg"
 originalTitle: "Mises: The Last Knight of Liberalism"
 description: "A biography covering the life and thought of Ludwig von Mises, the most important liberal economist of the 20th century"
 weight: 21
 draft: false
 ---
 
-## Main Content
+Here's a man who proved socialism couldn't work — in 1920, seventy years before the Soviet Union collapsed. He fled the Nazis with nothing, was denied a proper university position in America for decades, and never once compromised his ideas. Ludwig von Mises is arguably the most important economist of the 20th century, and this monumental biography by Jorg Guido Hulsmann tells his full story for the first time.
 
-A biography covering the life and thought of Ludwig von Mises, the most important liberal economist of the 20th century. It traces his scholarly journey from his upbringing in the Austro-Hungarian Empire, through his victory in the socialist economic calculation debate, to his years of exile in America.
+## A Life of Intellectual Courage
 
-## Points to Consider
+Mises was born in 1881 in the Austro-Hungarian Empire and came of age in its rich intellectual world. His 1920 paper on economic calculation proved something radical: without market prices for capital goods, rational economic planning is simply impossible. No committee, no algorithm, no central planner can substitute for the information embedded in freely formed prices. This wasn't just an abstract argument — it was the most devastating critique of socialism ever produced, later expanded into his magnum opus *Human Action*.
 
-- Mises's proof of the impossibility of socialism through the economic calculation problem was a turning point in 20th-century intellectual history
-- There is much to learn from the life of an intellectual who accepted marginalization from the mainstream for the sake of scholarly conviction
-- Understanding this key figure of Austrian economics clarifies the ideological system of the entire school of thought
+His earlier work on money was equally groundbreaking. Mises integrated monetary theory with marginal utility, traced money's value back to its commodity origins, and developed the business cycle theory that Hayek would later refine. He showed how credit expansion by banks creates artificial booms that inevitably turn to bust — a theory that explains every financial crisis from the 1920s to 2008.
+
+Yet the economics profession marginalized him for most of his life. He arrived in America as a refugee at 60, never received a regular paid professorship, and watched Keynesianism sweep the field. He kept writing anyway. When the Soviet Union finally collapsed in 1991, it confirmed what Mises had argued seven decades earlier. His students — Hayek, Rothbard, Kirzner — carried his ideas forward, and today the Bitcoin movement embodies his vision of money free from government control.
+
+## Why This Story Matters
+
+This biography is about more than economics. It's about what happens when someone is right and the world isn't ready to listen. Mises's monetary theory directly anticipated the need for something like Bitcoin. His life proves that ideas dismissed by the establishment can be vindicated — it just might take a few decades.
+
+## Related Concepts
+
+- [Economic Calculation](/ideas/economic-calculation/) - Mises's most famous contribution
+- [ABCT](/ideas/abct/) - The business cycle theory Mises pioneered
+- [Praxeology](/ideas/praxeology/) - Mises's methodology for economic science
+- [Subjective Value](/ideas/subjective-value/) - The foundation of Austrian economics
+- [Marginal Utility](/ideas/marginal-utility/) - The concept Mises applied to money
+- [Regression Theorem](/ideas/regression-theorem/) - How Mises explained money's origin
+- [Sound Money](/ideas/sound-money/) - The monetary ideal Mises championed
+- [Austrian Economics](/learn/austrian-economics/) - The tradition Mises defined
+- [Austrian Economics Advanced](/learn/austrian-economics-advanced/) - Deeper exploration of Mises's thought

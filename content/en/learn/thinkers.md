@@ -28,6 +28,10 @@ next_path:
   url: "/learn/money-and-state/"
 ---
 
+Ideas don't appear out of thin air. Every breakthrough in economics and political philosophy was built on what came before — a student reading a teacher's work, disagreeing with half of it, and pushing the rest further than anyone thought possible.
+
+The Austrian School is the product of exactly that process: **a chain of thinkers passing insights from one generation to the next for over 200 years**. Bastiat saw through the state's tricks. Menger redefined value. Mises proved socialism couldn't calculate. Hayek explained why no planner could ever know enough. Rothbard took it all and asked: *what if we don't need the state at all?*
+
 {{< mermaid >}}
 graph LR
     B["Bastiat<br/>1801-1850"] --> M["Menger<br/>1840-1921"]
@@ -42,4 +46,4 @@ graph LR
     style R fill:#f7931a,stroke:#f7931a,color:#fff
 {{< /mermaid >}}
 
-The Austrian School is not the creation of a single genius. It is the product of **an intellectual lineage passed from teacher to student over 200 years**. This course follows that lineage in chronological order, exploring what each thinker inherited and what they newly contributed.
+This course follows that lineage in chronological order. By the end, you won't just know the names — you'll understand how each generation inherited, challenged, and extended the work before it.

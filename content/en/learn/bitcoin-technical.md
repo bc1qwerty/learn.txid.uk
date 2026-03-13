@@ -28,6 +28,10 @@ next_path:
   url: "/learn/bitcoin-sovereignty/"
 ---
 
+"Don't trust, verify." You'll hear this phrase a lot in Bitcoin circles. But what does verification actually look like inside the protocol? How does a network with no CEO, no headquarters, and no customer support line manage to process billions of dollars in transactions without anyone cheating?
+
+The answer is engineering — elegant, battle-tested engineering. Every piece of the Bitcoin protocol exists for a reason, and understanding those pieces transforms Bitcoin from "magic internet money" into something you can reason about with confidence.
+
 {{< mermaid >}}
 graph LR
     S1["Step 1<br/>Full Node"] --> S2["Step 2<br/>Difficulty Adj."]
@@ -39,4 +43,4 @@ graph LR
     style S6 fill:#3fb950,stroke:#3fb950,color:#fff
 {{< /mermaid >}}
 
-To truly understand Bitcoin, you need to look under the hood — not just at the surface. This course breaks down the protocol's core components one by one, explaining technically why Bitcoin is secure and censorship-resistant.
+This course opens the hood, one component at a time — from full nodes and difficulty adjustment to SegWit and the Lightning Network.

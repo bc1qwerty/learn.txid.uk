@@ -6,44 +6,43 @@ levels: "Beginner"
 tags: ["Austrian Economics"]
 ---
 
-## Austrian Economics in One Sentence
+Why do economists keep getting it wrong? They build elaborate mathematical models, plug in data, and produce forecasts that miss every major crisis. The 2008 financial collapse blindsided most mainstream economists — yet a handful of scholars following the Austrian tradition had been warning about it for years.
 
-Austrian Economics is a school of thought that explains all economic phenomena through **individual choices and actions**. It understands the economy through logical reasoning rather than mathematical models.
+The difference? **Austrians start from a different place.** Instead of treating the economy as a machine you can model with equations, they begin with a simple truth: the economy is people making choices. Real people, with imperfect knowledge, personal priorities, and limited time. Everything else — prices, interest rates, booms and busts — flows from that.
 
-## How It Differs from Mainstream Economics
+## Where it diverges from the mainstream
 
 | | Mainstream (Keynesian) | Austrian School |
 |---|---|---|
-| **Methodology** | Mathematical models, statistics | Logical deduction (praxeology) |
-| **Recessions** | Caused by insufficient demand | Caused by artificial credit expansion |
-| **Solution** | Increase government spending | Allow natural market adjustment |
-| **Money** | Must be managed by government | Should be chosen by the market |
-| **Interest rates** | Set by central banks | Determined by Time Preference |
+| **Methodology** | Mathematical models, statistics | Logical deduction from human action |
+| **Recessions** | Not enough spending | Caused by artificial credit expansion |
+| **Solution** | Government stimulus | Let the market correct itself |
+| **Money** | Must be managed by experts | Should emerge freely from the market |
+| **Interest rates** | Set by central banks | Reflect people's [time preference](/ideas/time-preference/) |
 
-## Key Figures
+## The thinkers who built this tradition
 
-- **[Carl Menger](/people/carl-menger/)** — Founder of the Austrian School. Pioneer of Marginal Utility theory
-- **[Ludwig von Mises](/people/ludwig-von-mises/)** — Systematized praxeology. Proved the impossibility of economic calculation under socialism
-- **[Friedrich Hayek](/people/friedrich-hayek/)** — Nobel Prize in Economics. Theories of Spontaneous Order and dispersed knowledge
-- **[Murray Rothbard](/people/murray-rothbard/)** — Student of Mises. Integrated libertarian economics and ethics
+Austrian economics wasn't invented overnight. It was developed across generations:
 
-## Core Concepts
+- **[Carl Menger](/people/carl-menger/)** — Founded the school in the 1870s by showing that value is subjective, not embedded in objects.
+- **[Ludwig von Mises](/people/ludwig-von-mises/)** — Built a complete system of economics from the logic of human action, and proved that socialist planning cannot work.
+- **[Friedrich Hayek](/people/friedrich-hayek/)** — Won the Nobel Prize for his work on how knowledge is dispersed across millions of minds — too dispersed for any central planner to gather.
+- **[Murray Rothbard](/people/murray-rothbard/)** — Extended Austrian economics into a full political philosophy of individual liberty.
 
-### Time Preference
-People prefer present goods over future goods. The degree of this time preference determines interest rates and shapes the patterns of saving and investment.
+## Ideas that keep coming back
 
-### Austrian Business Cycle Theory
-When a central bank artificially lowers interest rates, false signals are sent to the market. Unsustainable investments (malinvestment) occur, eventually leading to recession.
+**Time preference.** People naturally prefer having things now rather than later. The strength of this preference shapes how much a society saves, invests, and builds for the future. [Learn more →](/ideas/time-preference/)
 
-### Economic Calculation Problem
-Proved by Mises in 1920: rational economic calculation is impossible without private property and market prices. This is why socialism is doomed to fail.
+**Business cycle theory.** When central banks push interest rates artificially low, businesses get false signals and invest in projects that can't pay off. The boom feels great — until the inevitable bust arrives. [Learn more →](/ideas/abct/)
+
+**Economic calculation problem.** In 1920, Mises posed a challenge that socialism never answered: without market prices, there is no rational way to allocate resources. Central planners are flying blind. [Learn more →](/ideas/economic-calculation/)
 
 ## Go Deeper
 
-- [What Is Sound Money?](/ideas/sound-money/)
-- [Time Preference and Civilization](/ideas/time-preference/)
+- [What Is Sound Money?](/ideas/sound-money/) — Why the type of money matters for the whole economy
+- [Time Preference and Civilization](/ideas/time-preference/) — The connection between patience and prosperity
 
 ## Recommended Reading
 
-- **Economics in One Lesson** (Henry Hazlitt) — The most accessible introduction
-- **Human Action** (Ludwig von Mises) — The magnum opus of Austrian Economics
+- **Economics in One Lesson** (Henry Hazlitt) — The best starting point, written for anyone
+- **Human Action** (Ludwig von Mises) — The definitive treatise on Austrian economics

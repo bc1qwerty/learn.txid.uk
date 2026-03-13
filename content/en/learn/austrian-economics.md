@@ -28,6 +28,14 @@ next_path:
   url: "/learn/libertarianism/"
 ---
 
+Here's a puzzle: water keeps you alive, but it's almost free. A diamond does nothing useful, yet it costs a fortune. Why?
+
+Mainstream economics answers with supply-and-demand curves and equations. The Austrian School answers with something far more intuitive — **it depends on the person, the moment, and the situation.** Value isn't baked into objects. It lives in the minds of the people choosing between them.
+
+That simple insight unravels a surprising amount. Once you see that value is subjective, you start to understand why prices can't be "set" by a committee, why artificially cheap money causes bubbles, and why every attempt at central planning eventually collapses under its own weight.
+
+This course follows that thread from start to finish. No math, no graphs — just a chain of ideas, each one building on the last.
+
 {{< mermaid >}}
 graph LR
     S1["Step 1<br/>What is Austrian?"] --> S2["Step 2<br/>Subjective Value"]
@@ -39,4 +47,4 @@ graph LR
     style S6 fill:#3fb950,stroke:#3fb950,color:#fff
 {{< /mermaid >}}
 
-Austrian Economics derives economic laws not from mathematical models but from **the logic of human action**. This path guides you through a chain of thought that begins with the essence of value and prices, and leads to business cycles and the failure of socialism.
+If you've finished the Bitcoin course, this is the natural next step. Bitcoin makes a lot more sense once you understand the economics behind it.

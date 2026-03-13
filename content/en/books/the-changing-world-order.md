@@ -3,7 +3,7 @@ title: "The Big Cycle"
 slug: "the-changing-world-order"
 date: 2026-01-11T10:00:00+09:00
 author: "Ray Dalio"
-cover: "/images/books/빅 사이클.jpg"
+cover: "/images/books/en/the-changing-world-order.jpg"
 originalTitle: "How Countries Go Broke: The Big Cycle"
 translator: "Yong Bin Cho"
 publisher: "Hanbit Biz"
@@ -13,12 +13,26 @@ weight: 11
 draft: false
 ---
 
-## Key Content
+Empires rise. Empires fall. And they do it in a remarkably predictable pattern. That's the big claim Ray Dalio makes in this book, and he backs it up with 500 years of data across the Dutch, British, and American empires. If you want to understand where the dollar — and the current world order — might be heading, this is the most data-rich roadmap available.
 
-Analyzes patterns of imperial rise and fall over the past 500 years to derive the Big Cycle. Examines the succession of hegemony among the Netherlands, Britain, and the United States through indicators such as currency, debt, education, technology, and military power, and forecasts the current US-China relationship and the future of the dollar.
+## The Pattern That Keeps Repeating
 
-## Points to Consider
+Dalio calls it the "Big Cycle." An empire rises through education, innovation, and productivity. It peaks when its currency becomes the world's reserve. Then comes the slow decline: mounting debt, internal conflict, and a rising challenger. The Dutch yielded to the British. The British yielded to the Americans. Each followed the same trajectory — gaining reserve currency privilege, over-leveraging it, and eventually debasing their money to service debts they couldn't repay.
 
-- The analysis that the rise and fall of empires follow repetitive patterns is useful for understanding the current geopolitical situation
-- The relationship between shifts in reserve currency status and debt cycles supports Bitcoin's value proposition
-- The systematic analytical methodology based on historical data is impressive
+Now Dalio turns his framework to the present. He argues the United States is in the late stages of this cycle while China ascends. The indicators he tracks — education, competitiveness, technology, military strength, trade dominance, and reserve currency status — paint a consistent picture across centuries. And the endgame for declining empires is always the same: print money, debase the currency, destroy citizens' savings. It's a pattern playing out right now with the U.S. dollar.
+
+This isn't just abstract history. It explains why central banks are quietly accumulating gold, and it makes the strongest possible historical case for why a neutral, non-sovereign store of value — something like Bitcoin — may become essential in the decades ahead.
+
+## The Bottom Line
+
+Whether you agree with Dalio's conclusions or not, his methodology is rigorous and reproducible. For anyone trying to position themselves financially for a potential monetary regime change, this book provides the historical context you can't afford to ignore.
+
+## Related Concepts
+
+- [Fiat Money](/ideas/fiat-money/) - The system that empires in decline inevitably abuse
+- [Nixon Shock](/ideas/nixon-shock/) - A key inflection point in the American empire's debt cycle
+- [Inflation Tax](/ideas/inflation-tax/) - How declining empires extract wealth from citizens
+- [Sound Money](/ideas/sound-money/) - The alternative to reserve currency debasement
+- [Cantillon Effect](/ideas/cantillon-effect/) - Who benefits when empires print money
+- [Moral Hazard](/ideas/moral-hazard/) - How reserve currency privilege enables reckless policy
+- [Money and State](/learn/money-and-state/) - The interplay of power and currency through history

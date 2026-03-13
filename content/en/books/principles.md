@@ -3,7 +3,7 @@ title: "Principles"
 slug: "principles"
 date: 2026-01-08T10:00:00+09:00
 author: "Ray Dalio"
-cover: "/images/books/원칙.jpg"
+cover: "/images/books/en/principles.jpg"
 originalTitle: "Principles"
 translator: "Young Tae Ko"
 publisher: "Hanbit Biz"
@@ -13,12 +13,23 @@ weight: 8
 draft: false
 ---
 
-## Key Content
+How did Ray Dalio build the world's largest hedge fund? Not through gut instinct or lucky bets, but by codifying everything he learned — every failure, every success — into a system of explicit principles. This book is that system, and it reads less like a business memoir and more like an operating manual for clear thinking.
 
-A systematic collection of principles that Ray Dalio, founder of the world's largest hedge fund Bridgewater Associates, has learned through life and work. The book covers his core philosophies including radical transparency, idea meritocracy, and systematic decision-making.
+## The System Behind the Success
 
-## Points to Consider
+Dalio's central idea is radical transparency. Say what you actually think. Share all the data. Resolve disagreements with evidence, not rank. At Bridgewater, they record every meeting. It sounds intense, and it is. But the result is what Dalio calls an "idea meritocracy" — a place where the best argument wins regardless of who makes it.
 
-- Presents a concrete framework for converting failure into learning opportunities
-- The methodology of approaching decision-making systematically while removing emotions is practical
-- The formula "Pain + Reflection = Progress" provides a powerful framework for personal growth
+His most memorable formula is deceptively simple: Pain + Reflection = Progress. Every failure is raw material. Every mistake reveals a flaw in your thinking that, once identified, becomes a new principle for the future. Rather than running from pain, you systematize it. And that's really the book's throughline — replace gut instinct with algorithms. Build explicit rules that encode your best thinking and test them against reality. If that sounds familiar to Bitcoiners, it should. It's the same philosophy behind an algorithmic monetary policy that removes human discretion from the equation.
+
+Dalio is also refreshingly honest about what holds people back: ego (the need to be right) and blind spots (the things you can't see about yourself). He doesn't just name the problems — he offers concrete methods for overcoming both.
+
+## Who Should Read This
+
+Anyone who wants a practical, battle-tested framework for better decisions. Whether you're navigating Bitcoin's volatility or just trying to think more clearly about life, Dalio's intellectual honesty about uncertainty and fallibility makes this one of the most trustworthy business books you'll find.
+
+## Related Concepts
+
+- [Time Preference](/ideas/time-preference/) - Long-term thinking as a systematic principle
+- [Proof of Work](/ideas/proof-of-work/) - Rules-based systems that remove human discretion
+- [Sound Money](/ideas/sound-money/) - Algorithmic monetary policy over human judgment
+- [Bitcoin](/learn/bitcoin/) - A system built on transparent, immutable principles

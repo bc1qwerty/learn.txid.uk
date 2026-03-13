@@ -3,7 +3,7 @@ title: "Just Meat"
 slug: "just-meat"
 date: 2026-02-18T10:00:00+09:00
 author: "홍지수"
-cover: "/images/books/단지 소고기.jpg"
+cover: "/images/books/en/just-meat.jpg"
 originalTitle: ""
 translator: ""
 publisher: "엠아이디"
@@ -13,12 +13,21 @@ weight: 14
 draft: false
 ---
 
-## Key Content
+What does a book about eating meat have to do with Bitcoin? More than you'd think. Hong Ji-su spent 30 years suffering from autoimmune disease while faithfully following mainstream dietary advice — eat grains, minimize animal products, trust the guidelines. When she finally tried a carnivore diet and her health transformed, she did what any good investigator would do: she asked why the official advice had been so wrong.
 
-Based on the author's experience of recovering from health issues after switching to a meat-based diet following 30 years of suffering from autoimmune disease, this book questions the prevailing belief that vegetarianism is superior. It delves into the historical background and vested interests behind 150 years of demonizing meat and glorifying vegetarianism, while reexamining the nutritional value of animal-based foods as humanity's natural diet.
+## Following the Money (in Food)
 
-## Points to Consider
+The answer will sound familiar to anyone who's questioned mainstream financial narratives. Hong traces anti-meat sentiment back 150 years, from Seventh-day Adventist dietary beliefs through Ancel Keys' flawed research to the rise of a processed food industry that profits enormously from replacing meat with cheap grain-based products. Food corporations, agricultural lobbies, and pharmaceutical companies have influenced nutritional guidelines, funded favorable research, and suppressed dissenting evidence — manufacturing a "consensus" that serves industry, not public health.
 
-- We can consider the possibility that mainstream nutrition recommendations were shaped by industrial interests rather than scientific evidence
-- It awakens us to the importance of making judgments based on personal experimentation and results rather than blind trust in authority
-- It is interesting to note that the narrative structure of the food industry exhibits similar patterns to that of the currency system
+The book presents compelling archaeological, anthropological, and biochemical evidence that humans evolved eating primarily animal foods, and that meat provides the most bioavailable and complete nutrition for human health. But what makes *Just Meat* especially interesting for this reading list is how explicitly Hong draws the parallel to monetary narratives. Captured regulators. Suppressed alternatives. Manufactured consensus. The food industry's playbook and the financial establishment's playbook are remarkably similar.
+
+## Think for Yourself — About Everything
+
+This book isn't really about diet. It's about what happens when institutional authority goes unchallenged and industrial interests masquerade as science. If you've already learned to question the monetary narrative, Hong challenges you to apply that same critical thinking everywhere else. Trust your own experiments. Verify the incentives behind the "expert consensus." It's the same principle whether you're choosing what to eat or what to save in.
+
+## Related Concepts
+
+- [Individualism](/ideas/individualism/) - Taking personal responsibility for health and wealth decisions
+- [Free Market](/ideas/free-market/) - How market distortions affect both food and money
+- [Spontaneous Order](/ideas/spontaneous-order/) - Natural systems vs. centrally planned ones
+- [Bitcoin Sovereignty](/learn/bitcoin-sovereignty/) - Self-sovereignty applied beyond finance
