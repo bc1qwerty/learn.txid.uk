@@ -429,13 +429,34 @@
   }
 
   function startNip05Renewal(sec) {
-    var btn = document.getElementById('nip05-renew');
-    if (btn) { btn.disabled = true; btn.textContent = '...'; }
-    api('/nip05/renew', { method: 'POST' }).then(function(data) {
-      showNip05Payment(sec, data);
-    }).catch(function(e) {
-      if (btn) { btn.disabled = false; btn.textContent = t('nip05_renew'); }
-      alert(e.message || 'Error');
+    sec.innerHTML = '<div><span class="text-purple-400 text-xs font-bold">' + t('nip05_confirm') + '</span>' +
+      '<div class="text-[10px] text-gray-400 mt-1">' + t('nip05_confirm_msg') + '</div>' +
+      '<div class="mt-2 p-3 rounded bg-gray-800/40 border border-gray-700/50">' +
+        '<div class="text-sm text-white">' + t('nip05_renew') + ' (+1' + t('nip05_sats') + ')</div>' +
+        '<div class="text-[10px] text-gray-400 mt-1">5,000 sats</div>' +
+      '</div>' +
+      '<div class="flex gap-2 mt-3">' +
+        '<button id="nip05-renew-confirm" class="comm-btn-primary" style="padding:5px 14px;font-size:.75rem">⚡ ' + t('nip05_confirm_proceed') + '</button>' +
+        '<button id="nip05-renew-cancel" class="comm-btn" style="padding:5px 12px;font-size:.75rem">' + t('cancel') + '</button>' +
+      '</div>' +
+      '<div id="nip05-status" class="text-[10px] mt-1 h-4"></div>' +
+      '</div>';
+
+    document.getElementById('nip05-renew-confirm').addEventListener('click', function() {
+      var cbtn = document.getElementById('nip05-renew-confirm');
+      var status = document.getElementById('nip05-status');
+      cbtn.disabled = true; cbtn.textContent = '...';
+      api('/nip05/renew', { method: 'POST' }).then(function(data) {
+        showNip05Payment(sec, data);
+      }).catch(function(e) {
+        status.textContent = e.message || 'Error';
+        status.className = 'text-[10px] mt-1 h-4 text-red-400';
+        cbtn.disabled = false; cbtn.textContent = '⚡ ' + t('nip05_confirm_proceed');
+      });
+    });
+
+    document.getElementById('nip05-renew-cancel').addEventListener('click', function() {
+      loadNip05Section();
     });
   }
 
