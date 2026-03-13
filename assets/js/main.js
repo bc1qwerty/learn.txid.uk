@@ -76,9 +76,7 @@ if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
 // Mobile theme toggle
 var mobileThemeBtn = document.getElementById('mobileThemeToggle');
 if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
-// PWA install
-var pwaBtn = document.getElementById('pwa-install-btn');
-if (pwaBtn) pwaBtn.addEventListener('click', function() { if (window.installPWA) installPWA(); });
+// PWA install (bottom banner only — header button removed)
 
 // Init theme button (icon + title)
 updateThemeBtn();
@@ -1111,9 +1109,6 @@ var PWA_DISMISS_KEY = 'pwa-banner-dismissed';
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();
   _deferredInstallPrompt = e;
-  // Show header icon
-  var btn = document.getElementById('pwa-install-btn');
-  if (btn) btn.classList.remove('hidden');
   // Show banner (unless previously dismissed)
   showPwaBanner();
 });
@@ -1189,16 +1184,12 @@ window.installPWA = function() {
   _deferredInstallPrompt.prompt();
   _deferredInstallPrompt.userChoice.then(function() {
     _deferredInstallPrompt = null;
-    var btn = document.getElementById('pwa-install-btn');
-    if (btn) btn.classList.add('hidden');
     dismissPwaBanner(true);
   });
 };
 
 window.addEventListener('appinstalled', function() {
   _deferredInstallPrompt = null;
-  var btn = document.getElementById('pwa-install-btn');
-  if (btn) btn.classList.add('hidden');
   dismissPwaBanner(true);
 });
 

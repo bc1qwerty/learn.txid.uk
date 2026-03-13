@@ -30,29 +30,28 @@ window.__LANG_URLS__ = {
       </ul>
     </div>
 
-    <!-- nav-right: 검색 + 로그인 + 언어 + 테마 + PWA + 햄버거 -->
+    <!-- nav-right: 로그인 + (데스크톱: 검색/언어/테마) + 햄버거 -->
     <div class="nav-right flex items-center gap-1.5 ml-auto flex-shrink-0">
       <!-- 데스크톱 전용: 검색 -->
-      <button class="nav-icon-btn hidden md:flex" id="headerSearchBtn" aria-label="검색 (Ctrl+K)" title="검색 (Ctrl+K)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      </button>
-      <!-- 로그인 -->
-      <div id="txid-auth-mount" style="position:relative;display:inline-flex"></div>
-      <!-- 언어 (데스크톱만) -->
-      <div class="lang-dropdown hidden md:block">
-        <button class="lang-btn" id="lang-btn" title="{{ i18n "lang_label" }}" aria-label="{{ i18n "lang_label" }}" aria-expanded="false">{{ upper .Site.Language.Lang }}</button>
-        <div class="lang-menu" id="lang-menu" role="menu" aria-label="{{ i18n "lang_label" }}">
-          <button role="menuitem" data-lang="ko">한국어</button>
-          <button role="menuitem" data-lang="en">English</button>
-          <button role="menuitem" data-lang="ja">日本語</button>
-        </div>
+      <div class="hidden md:flex items-center gap-1.5">
+        <button class="nav-icon-btn" id="headerSearchBtn" aria-label="검색 (Ctrl+K)" title="검색 (Ctrl+K)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
       </div>
-      <!-- 테마 (데스크톱만) -->
-      <button class="theme-btn hidden md:flex" id="theme-btn" title="{{ i18n "theme_toggle" }}" aria-label="{{ i18n "theme_toggle" }}"></button>
-      <!-- PWA Install (데스크톱만) -->
-      <button id="pwa-install-btn" class="nav-icon-btn hidden md:flex" aria-label="{{ i18n "install_app" }}" title="{{ i18n "install_app" }}">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      </button>
+      <!-- 로그인 (항상 표시) -->
+      <div id="txid-auth-mount" style="position:relative;display:inline-flex"></div>
+      <!-- 데스크톱 전용: 언어 + 테마 -->
+      <div class="hidden md:flex items-center gap-1.5">
+        <div class="lang-dropdown">
+          <button class="lang-btn" id="lang-btn" title="{{ i18n "lang_label" }}" aria-label="{{ i18n "lang_label" }}" aria-expanded="false">{{ upper .Site.Language.Lang }}</button>
+          <div class="lang-menu" id="lang-menu" role="menu" aria-label="{{ i18n "lang_label" }}">
+            <button role="menuitem" data-lang="ko">한국어</button>
+            <button role="menuitem" data-lang="en">English</button>
+            <button role="menuitem" data-lang="ja">日本語</button>
+          </div>
+        </div>
+        <button class="theme-btn" id="theme-btn" title="{{ i18n "theme_toggle" }}" aria-label="{{ i18n "theme_toggle" }}"></button>
+      </div>
       <!-- 햄버거 (모바일만) -->
       <button id="menu-toggle" class="nav-hamburger-btn" aria-label="메뉴" aria-expanded="false" aria-controls="mobile-menu">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
