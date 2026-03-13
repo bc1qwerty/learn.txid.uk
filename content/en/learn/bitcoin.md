@@ -28,4 +28,15 @@ next_path:
   url: "/learn/austrian-economics/"
 ---
 
+{{< mermaid >}}
+graph LR
+    S1["Step 1<br/>What is Bitcoin?"] --> S2["Step 2<br/>Sound Money"]
+    S2 --> S3["Step 3<br/>Fiat Money"]
+    S3 --> S4["Step 4<br/>Proof of Work"]
+    S4 --> S5["Step 5<br/>Halving"]
+    S5 --> S6["Step 6<br/>Satoshi Nakamoto"]
+    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
+    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 To understand Bitcoin, you must first understand **money** before technology. This path starts from the question "Why do we need Bitcoin?" and guides you through Bitcoin's operating principles and design philosophy.

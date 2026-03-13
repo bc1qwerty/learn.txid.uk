@@ -9,6 +9,16 @@ weight: 26
 
 **Mempool (Memory Pool)** is a space where unconfirmed transactions that have not yet been included in a block wait. Each Bitcoin node maintains its own independent mempool, so strictly speaking there is no single "the mempool" but rather tens of thousands of individual mempools distributed across the network.
 
+{{< mermaid >}}
+graph LR
+    USER["👤 User"] -->|"Create Tx"| NODE["📡 Node"]
+    NODE -->|"Broadcast"| MEMPOOL["🔄 Mempool<br/>(Unconfirmed Tx Queue)"]
+    MEMPOOL -->|"Miner Selects<br/>(Higher Fee First)"| BLOCK["⛏️ Block"]
+    BLOCK -->|"Verified & Added"| CHAIN["⛓️ Blockchain"]
+    style MEMPOOL fill:#f7931a,stroke:#f7931a,color:#fff
+    style CHAIN fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 ## Transaction Lifecycle
 
 A Bitcoin transaction passes through distinct stages from creation to final confirmation.

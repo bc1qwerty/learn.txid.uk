@@ -33,6 +33,29 @@ A simplified representation of raw transaction data looks like this:
 
 **version** indicates the set of rules the transaction follows. Version 2 supports BIP 68 (relative time locks). A **locktime** of 0 means the transaction is immediately valid; if a specific block height is set, the transaction can only be included after that block. The heart of the matter lies in the inputs and outputs. These two fields carry the information about "who sent how much to whom."
 
+{{< mermaid >}}
+graph LR
+    subgraph Inputs
+        I1["UTXO #1<br/>0.5 BTC<br/>(with signature)"]
+        I2["UTXO #2<br/>0.3 BTC<br/>(with signature)"]
+    end
+    subgraph Transaction
+        TX["Bitcoin<br/>Transaction"]
+    end
+    subgraph Outputs
+        O1["Recipient<br/>0.7 BTC"]
+        O2["Change Address<br/>0.0999 BTC"]
+    end
+    I1 --> TX
+    I2 --> TX
+    TX --> O1
+    TX --> O2
+    FEE["Fee: 0.0001 BTC<br/>(Sum of Inputs - Sum of Outputs)"]
+    TX -.-> FEE
+    style TX fill:#f7931a,stroke:#f7931a,color:#fff
+    style FEE fill:none,stroke:none,color:#8b949e
+{{< /mermaid >}}
+
 ## Reading Inputs
 
 An input specifies "where the bitcoin is coming from." Each input references and spends a specific output from a previous transaction.

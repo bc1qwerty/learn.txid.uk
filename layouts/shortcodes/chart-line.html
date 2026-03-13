@@ -1,0 +1,53 @@
+{{- $title := .Get "title" -}}
+{{- $labels := split (.Get "labels") "," -}}
+{{- $valuesStr := split (.Get "values") "," -}}
+{{- $unit := .Get "unit" | default "" -}}
+
+{{- /* SVG dimensions */ -}}
+{{- $w := 600 -}}
+{{- $h := 200 -}}
+{{- $pad := 40 -}}
+{{- $chartW := sub $w (mul $pad 2) -}}
+{{- $chartH := sub $h (mul $pad 2) -}}
+
+{{- /* Calculate min/max */ -}}
+{{- $maxVal := 0.0 -}}
+{{- $minVal := 999999.0 -}}
+{{- range $valuesStr -}}
+  {{- $v := float . -}}
+  {{- if gt $v $maxVal }}{{ $maxVal = $v }}{{ end -}}
+  {{- if lt $v $minVal }}{{ $minVal = $v }}{{ end -}}
+{{- end -}}
+{{- if eq $maxVal $minVal }}{{ $maxVal = add $maxVal 1.0 }}{{ end -}}
+{{- $range := sub $maxVal $minVal -}}
+
+{{- /* Build points */ -}}
+{{- $count := len $labels -}}
+{{- $points := "" -}}
+{{- $circles := slice -}}
+{{- range $i, $_ := $labels -}}
+  {{- $val := index $valuesStr $i | float -}}
+  {{- $x := add $pad (div (mul (float $i) (float $chartW)) (sub (float $count) 1.0)) -}}
+  {{- $y := sub (add $pad (float $chartH)) (div (mul (sub $val $minVal) (float $chartH)) $range) -}}
+  {{- $points = printf "%s%v,%v " $points $x $y -}}
+  {{- $circles = $circles | append (dict "x" $x "y" $y "val" $val "label" (index $labels $i)) -}}
+{{- end -}}
+
+<div class="viz-container">
+  {{ with $title }}<div class="viz-title">{{ . }}</div>{{ end }}
+  <svg class="chart-line-svg" viewBox="0 0 {{ $w }} {{ $h }}" preserveAspectRatio="xMidYMid meet">
+    <!-- Grid lines -->
+    <line x1="{{ $pad }}" y1="{{ $pad }}" x2="{{ $pad }}" y2="{{ sub $h $pad }}" class="chart-line-axis"/>
+    <line x1="{{ $pad }}" y1="{{ sub $h $pad }}" x2="{{ sub $w $pad }}" y2="{{ sub $h $pad }}" class="chart-line-axis"/>
+    <!-- Line -->
+    <polyline points="{{ $points }}" class="chart-line-path" fill="none"/>
+    <!-- Area fill -->
+    <polygon points="{{ $pad }},{{ sub $h $pad }} {{ $points }}{{ sub $w $pad }},{{ sub $h $pad }}" class="chart-line-area"/>
+    <!-- Points + labels -->
+    {{- range $circles }}
+    <circle cx="{{ .x }}" cy="{{ .y }}" r="4" class="chart-line-dot"/>
+    <text x="{{ .x }}" y="{{ add .y -10.0 }}" class="chart-line-val" text-anchor="middle">{{ .val }}{{ with $unit }}{{ . }}{{ end }}</text>
+    <text x="{{ .x }}" y="{{ add (float (sub $h $pad)) 16.0 }}" class="chart-line-label" text-anchor="middle">{{ .label }}</text>
+    {{- end }}
+  </svg>
+</div>

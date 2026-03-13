@@ -9,6 +9,29 @@ weight: 24
 
 비트코인 블록체인은 트랜잭션의 연속이다. 블록은 트랜잭션을 담는 그릇이고, 주소는 트랜잭션의 입출력에 등장하는 식별자일 뿐이다. 트랜잭션 하나를 읽을 줄 알면 비트코인의 작동 원리 대부분을 이해한 셈이다. 이 글에서는 트랜잭션의 내부 구조를 분해하고, 각 필드의 의미를 하나씩 짚어본다.
 
+{{< mermaid >}}
+graph LR
+    subgraph 입력
+        I1["UTXO #1<br/>0.5 BTC<br/>(서명 포함)"]
+        I2["UTXO #2<br/>0.3 BTC<br/>(서명 포함)"]
+    end
+    subgraph 트랜잭션
+        TX["비트코인<br/>트랜잭션"]
+    end
+    subgraph 출력
+        O1["수신 주소<br/>0.7 BTC"]
+        O2["잔돈 주소<br/>0.0999 BTC"]
+    end
+    I1 --> TX
+    I2 --> TX
+    TX --> O1
+    TX --> O2
+    FEE["수수료: 0.0001 BTC<br/>(입력 합 - 출력 합)"]
+    TX -.-> FEE
+    style TX fill:#f7931a,stroke:#f7931a,color:#fff
+    style FEE fill:none,stroke:none,color:#8b949e
+{{< /mermaid >}}
+
 ## 트랜잭션의 전체 구조
 
 비트코인 트랜잭션은 네 가지 핵심 필드로 구성된다.

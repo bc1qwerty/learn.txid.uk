@@ -1,0 +1,31 @@
+{{- $title := .Get "title" -}}
+{{- $labels := split (.Get "labels") "," -}}
+{{- $valuesStr := split (.Get "values") "," -}}
+{{- $unit := .Get "unit" | default "" -}}
+{{- $color := .Get "color" | default "bitcoin" -}}
+
+{{- /* Calculate max value */ -}}
+{{- $maxVal := 0.0 -}}
+{{- range $valuesStr -}}
+  {{- $v := float . -}}
+  {{- if gt $v $maxVal }}{{ $maxVal = $v }}{{ end -}}
+{{- end -}}
+{{- if eq $maxVal 0.0 }}{{ $maxVal = 1.0 }}{{ end -}}
+
+<div class="viz-container">
+  {{ with $title }}<div class="viz-title">{{ . }}</div>{{ end }}
+  <div class="chart-bar-wrap">
+    {{- range $i, $label := $labels -}}
+      {{- $val := index $valuesStr $i | float -}}
+      {{- $pct := mul (div $val $maxVal) 100 -}}
+      {{- $h := math.Max $pct 2.0 -}}
+      <div class="chart-bar-col">
+        <div class="chart-bar-value">{{ $val }}{{ with $unit }} {{ . }}{{ end }}</div>
+        <div class="chart-bar-track">
+          <div class="chart-bar-fill chart-bar-{{ $color }}" style="height:{{ $h }}%"></div>
+        </div>
+        <div class="chart-bar-label">{{ $label }}</div>
+      </div>
+    {{- end -}}
+  </div>
+</div>

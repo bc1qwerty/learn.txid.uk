@@ -13,6 +13,22 @@ weight: 2
 - **高い時間選好**：今すぐの満足を求める。貯蓄より消費を優先
 - **低い時間選好**：未来のより大きな報酬のために現在を抑制。貯蓄と投資を優先
 
+{{< mermaid >}}
+graph TD
+    Q["💭 資源をどう使うか？"]
+    Q --> HIGH["🔴 高い時間選好<br/>即時消費を好む"]
+    Q --> LOW["🟢 低い時間選好<br/>将来への投資を好む"]
+    HIGH --> H1["即時消費"]
+    HIGH --> H2["債務増加"]
+    HIGH --> H3["資本蓄積困難"]
+    LOW --> L1["貯蓄・投資"]
+    LOW --> L2["資本形成"]
+    LOW --> L3["長期的繁栄"]
+    style HIGH fill:#f85149,stroke:#f85149,color:#fff
+    style LOW fill:#3fb950,stroke:#3fb950,color:#fff
+    style L3 fill:#f7931a,stroke:#f7931a,color:#fff
+{{< /mermaid >}}
+
 ## 時間選好と文明
 
 人類文明の発展は、時間選好の低下と軌を一にしています。

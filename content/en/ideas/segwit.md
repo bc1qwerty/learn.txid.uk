@@ -9,6 +9,19 @@ weight: 36
 
 **SegWit (Segregated Witness)** is a Bitcoin protocol upgrade activated in August 2017 that increases the practical capacity of blocks by separating signature data (witness) from transactions. Beyond a mere technical improvement, SegWit was the outcome of the most intense governance debate in Bitcoin's history -- the Blocksize War.
 
+{{< mermaid >}}
+graph LR
+    subgraph "Legacy Transaction"
+        A1["Version"] --- A2["Inputs<br/>(Script+Signature)"] --- A3["Outputs"] --- A4["Locktime"]
+    end
+    subgraph "SegWit Transaction"
+        B1["Version"] --- B2["Marker+Flag"] --- B3["Inputs<br/>(Script only)"] --- B4["Outputs"] --- B5["Witness<br/>(Signature separated)"] --- B6["Locktime"]
+    end
+    style A2 fill:#f85149,stroke:#f85149,color:#fff
+    style B3 fill:#3fb950,stroke:#3fb950,color:#fff
+    style B5 fill:#58a6ff,stroke:#58a6ff,color:#fff
+{{< /mermaid >}}
+
 ## The Context of the Blocksize War (2015-2017)
 
 As Bitcoin's transaction throughput approached the 1 MB block size limit, scalability became the community's central issue. Two main factions opposed each other.

@@ -12,6 +12,8 @@ Halving is a **pre-programmed event in the Bitcoin network where the amount of n
 
 Halving is the most critical element of Bitcoin's monetary policy. It is not decided at a central bank meeting, but rather is an **immutable rule automatically executed by code**.
 
+{{< chart-bar title="Bitcoin Block Reward Over Time" labels="2009,2012,2016,2020,2024,2028" values="50,25,12.5,6.25,3.125,1.5625" unit="BTC" >}}
+
 ## The Technical Mechanism of Halving
 
 In the Bitcoin network, miners create new blocks through [Proof of Work](/ideas/proof-of-work/). When a miner successfully creates a block, they receive newly issued Bitcoin as a **block reward**. Halving is the event where this block reward is cut in half.

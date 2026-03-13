@@ -35,6 +35,18 @@ Good money should have the following properties:
 
 Bitcoin surpasses gold in all these properties. Particularly in **portability** and **verifiability**, it is overwhelmingly superior.
 
+{{< compare-table >}}
+| Property | Bitcoin | Gold | Fiat |
+|---|---|---|---|
+| Scarcity | 21M cap (absolute) | ~200,000t above ground (relative) | Unlimited issuance |
+| Durability | Permanent (digital) | Permanent (physical) | Wear & tear |
+| Portability | Instant global transfer | Heavy, costly to transport | Border controls |
+| Divisibility | 100M satoshis | Practically 1g minimum | 1 cent unit |
+| Verifiability | Instant software verification | Requires specialized equipment | Can be counterfeited |
+| Censorship Resistance | Very high | Can be confiscated | Accounts can be frozen |
+| S2F Ratio | ~120 (post-2024 halving) | ~62 | 0 |
+{{< /compare-table >}}
+
 ## Consequences of Unsound Money
 
 Since the United States abandoned the gold standard in 1971:

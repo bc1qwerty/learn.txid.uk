@@ -28,4 +28,15 @@ next_path:
   url: "/learn/bitcoin-sovereignty/"
 ---
 
+{{< mermaid >}}
+graph LR
+    S1["Step 1<br/>Full Node"] --> S2["Step 2<br/>Difficulty Adj."]
+    S2 --> S3["Step 3<br/>Mempool"]
+    S3 --> S4["Step 4<br/>Merkle Tree"]
+    S4 --> S5["Step 5<br/>SegWit"]
+    S5 --> S6["Step 6<br/>Lightning"]
+    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
+    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 To truly understand Bitcoin, you need to look under the hood — not just at the surface. This course breaks down the protocol's core components one by one, explaining technically why Bitcoin is secure and censorship-resistant.

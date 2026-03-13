@@ -24,6 +24,17 @@ The process goes like this. The government issues bonds to cover its deficit. Th
 
 The key is timing. The government is the first user of new money. It can spend before prices rise. You are last. You feel the impact only after prices have already gone up.
 
+{{< mermaid >}}
+graph TD
+    GOV["🏛️ Government<br/>Fiscal Deficit"] -->|"Issue Bonds"| CB["🏦 Central Bank"]
+    CB -->|"Buy Bonds<br/>(Print Money)"| SUPPLY["💵 Money Supply Increase"]
+    SUPPLY --> INFLATION["📈 Price Increase"]
+    INFLATION --> TAX["💸 Inflation Tax<br/>(Savers Lose Purchasing Power)"]
+    TAX -->|"Wealth Transfer"| GOV
+    style GOV fill:#f85149,stroke:#f85149,color:#fff
+    style TAX fill:#f7931a,stroke:#f7931a,color:#fff
+{{< /mermaid >}}
+
 ## The Cantillon Effect
 
 The burden of inflation is not distributed equally. This phenomenon, observed by 18th-century economist Richard Cantillon, is the most unjust aspect of the [fiat money](/ideas/fiat-money/) system.

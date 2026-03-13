@@ -166,6 +166,12 @@
     {{ $pe = $pe | minify | fingerprint "sha512" }}
     <script src="{{ $pe.RelPermalink }}" integrity="{{ $pe.Data.Integrity }}" defer></script>
   {{ end }}
+{{ if .Page.Store.Get "hasMermaid" }}
+  {{ $mjs := resources.Get "js/vendor/mermaid.min.js" | fingerprint "sha512" }}
+  <script src="{{ $mjs.RelPermalink }}" integrity="{{ $mjs.Data.Integrity }}" defer></script>
+  {{ $minit := resources.Get "js/mermaid-init.js" | minify | fingerprint "sha512" }}
+  <script src="{{ $minit.RelPermalink }}" integrity="{{ $minit.Data.Integrity }}" defer></script>
+{{ end }}
 <script src="https://api.txid.uk/txid-auth.js" integrity="sha384-4ypSrxWWAoLM4G84SC4K19d3wyPo9ri3Ch6Dc1t5i46IIWCW2WWlnGm4GtDB77Mk" crossorigin="anonymous" defer></script>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js").catch(function(){})}</script>
 </body>

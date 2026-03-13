@@ -51,6 +51,8 @@ During the COVID-19 pandemic, central banks around the world began unlimited mon
 
 Following the fourth halving in April 2024, the market has shown a trajectory similar to past patterns, though there is no guarantee that past patterns will necessarily repeat.
 
+{{< chart-bar title="Block Reward Per Halving" labels="2009,2012,2016,2020,2024" values="50,25,12.5,6.25,3.125" unit="BTC" >}}
+
 The pattern is clear. The percentage gain diminishes each time (9,000% → 3,000% → 690%), but the absolute price increase grows larger. The $1,088 increase in the first cycle is dwarfed by the $60,300 increase in the third cycle. This is a natural phenomenon as the market matures in scale.
 
 ## The Economic Principles Behind the Halving's Price Impact

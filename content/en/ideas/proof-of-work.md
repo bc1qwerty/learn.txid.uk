@@ -12,6 +12,21 @@ Proof of Work (PoW) is **a mechanism that proves computational work has been per
 
 Key characteristic: **Verification is easy, but production is hard.**
 
+{{< mermaid >}}
+graph TD
+    A["Collect Transactions"] --> B["Build Block Header<br/>(Prev Hash + Timestamp + Nonce)"]
+    B --> C["Calculate SHA-256 Hash"]
+    C --> D{{"Hash < Target?"}}
+    D -->|No| E["Change Nonce"]
+    E --> C
+    D -->|Yes| F["Valid Block Found!"]
+    F --> G["Broadcast to Network"]
+    G --> H["Other Nodes Verify"]
+    H --> I["Added to Blockchain"]
+    style F fill:#3fb950,stroke:#3fb950,color:#fff
+    style D fill:#f7931a,stroke:#f7931a,color:#fff
+{{< /mermaid >}}
+
 ## Why is Proof of Work Needed?
 
 The most difficult problem in the digital world is **double spending**. Digital files can be copied infinitely.

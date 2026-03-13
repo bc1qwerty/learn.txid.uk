@@ -102,6 +102,15 @@ vbyte = （トランザクション重量 weight）/ 4
 
 ## 手数料節約戦略
 
+{{< compare-table >}}
+| アドレス種類 | 接頭辞 | 入力サイズ (vbyte) | 削減率 |
+|---|---|---|---|
+| Legacy (P2PKH) | 1... | 148 | 基準 |
+| Nested SegWit (P2SH) | 3... | 91 | -38% |
+| Native SegWit (P2WPKH) | bc1q... | 68 | -54% |
+| Taproot (P2TR) | bc1p... | 57.5 | -61% |
+{{< /compare-table >}}
+
 ### 1. SegWitまたはTaprootアドレスを使用
 
 レガシーアドレス（1始まり）の代わりにSegWit（bc1q）やTaproot（bc1p）を使うと、トランザクションサイズが縮小し手数料が節約される。入力1つ基準でレガシー148 vbytes vs SegWit 68 vbytesと、約54%削減される。

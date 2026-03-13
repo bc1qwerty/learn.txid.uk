@@ -46,6 +46,8 @@ From 1971 onward, major economic indicators all shifted direction simultaneously
 
 **The housing crisis.** Printed money flowed into asset markets. In 1971, a house in America cost about 2.5 times annual income. Today it is about 5-6 times. Seoul: 15-18 times. The era when the parents' generation could buy a home after a few years of saving is over. Houses have not gotten more expensive. Money has gotten cheaper.
 
+{{< chart-line title="US Dollar Purchasing Power (1971 = $100)" labels="1971,1980,1990,2000,2010,2024" values="100,47,30,23,18,12" unit="$" >}}
+
 ## There Is One Root Cause
 
 Declining purchasing power, wage stagnation, inequality, debt, the housing crisis. These are not separate problems. They are all symptoms growing from the same root: **the destruction of monetary soundness.**

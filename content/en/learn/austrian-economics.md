@@ -28,4 +28,15 @@ next_path:
   url: "/learn/libertarianism/"
 ---
 
+{{< mermaid >}}
+graph LR
+    S1["Step 1<br/>What is Austrian?"] --> S2["Step 2<br/>Subjective Value"]
+    S2 --> S3["Step 3<br/>Marginal Utility"]
+    S3 --> S4["Step 4<br/>Time Preference"]
+    S4 --> S5["Step 5<br/>ABCT"]
+    S5 --> S6["Step 6<br/>Econ. Calculation"]
+    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
+    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 Austrian Economics derives economic laws not from mathematical models but from **the logic of human action**. This path guides you through a chain of thought that begins with the essence of value and prices, and leads to business cycles and the failure of socialism.

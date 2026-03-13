@@ -14,6 +14,8 @@ Fiat Money is **money that is accepted as currency by legal decree (fiat) of the
 
 All currencies in the world today — won, dollars, euros, yen — are fiat currencies.
 
+{{< chart-line title="US Dollar Purchasing Power (1913 = $100)" labels="1913,1933,1950,1971,1980,2000,2024" values="100,80,52,20,12,7,3.2" unit="$" >}}
+
 ## History of Fiat Money
 
 Fiat money is a relatively recent experiment in human history:

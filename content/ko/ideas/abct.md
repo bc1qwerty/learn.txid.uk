@@ -10,6 +10,20 @@ weight: 7
 
 오스트리아 경기변동이론(ABCT)은 [미제스](/ko/people/ludwig-von-mises/)와 [하이에크](/ko/people/friedrich-hayek/)가 발전시킨 이론으로, **호황-불황 사이클의 원인이 중앙은행의 인위적 신용팽창**에 있다고 설명합니다.
 
+{{< mermaid >}}
+graph LR
+    A["🏦 중앙은행<br/>금리 인하"] --> B["💰 신용 확장<br/>대출 증가"]
+    B --> C["📈 인위적 붐<br/>과잉 투자"]
+    C --> D["⚠️ 왜곡 누적<br/>잘못된 자원 배분"]
+    D --> E["💥 버스트<br/>불황·파산"]
+    E --> F["🔄 구조 조정<br/>자원 재배분"]
+    F --> G["📊 건전한 회복"]
+    style A fill:#f85149,stroke:#f85149,color:#fff
+    style C fill:#f7931a,stroke:#f7931a,color:#fff
+    style E fill:#f85149,stroke:#f85149,color:#fff
+    style G fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 ## 메커니즘
 
 ### 1단계: 인위적 금리 인하

@@ -28,4 +28,18 @@ next_path:
   url: "/learn/money-and-state/"
 ---
 
+{{< mermaid >}}
+graph LR
+    B["バスティア<br/>1801-1850"] --> M["メンガー<br/>1840-1921"]
+    M --> BB["ベーム＝バヴェルク<br/>1851-1914"]
+    BB --> MI["ミーゼス<br/>1881-1973"]
+    MI --> H["ハイエク<br/>1899-1992"]
+    MI --> R["ロスバード<br/>1926-1995"]
+    style B fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style M fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style MI fill:#f7931a,stroke:#f7931a,color:#fff
+    style H fill:#f7931a,stroke:#f7931a,color:#fff
+    style R fill:#f7931a,stroke:#f7931a,color:#fff
+{{< /mermaid >}}
+
 オーストリア学派は一人の天才が作った学問ではありません。**200年にわたって師から弟子へと受け継がれてきた知的系譜**の産物です。このコースはその系譜を時系列で辿り、各思想家が何を受け継ぎ、何を新たに貢献したかを探求します。

@@ -9,6 +9,20 @@ weight: 25
 
 **ライトニングネットワーク (Lightning Network)**はビットコインブロックチェーン上に構築されたレイヤー2決済ネットワークで、少額の即時決済を可能にします。2015年にジョセフ・プーン(Joseph Poon)とタデウス・ドライヤ(Thaddeus Dryja)が発表したホワイトペーパーで提案され、セグウィットのトランザクション可変性解決を基盤として実現されました。
 
+{{< mermaid >}}
+sequenceDiagram
+    participant A as Alice
+    participant CH as チャネル
+    participant B as Bob
+    A->>CH: チャネル開設 (オンチェーンTx)
+    Note over CH: マルチシグロック
+    A->>B: 決済1 (オフチェーン)
+    B->>A: 決済2 (オフチェーン)
+    A->>B: 決済3 (オフチェーン)
+    B->>CH: チャネル閉鎖 (オンチェーンTx)
+    Note over A,B: 最終残高精算
+{{< /mermaid >}}
+
 ## HTLC (Hash Time-Locked Contract) の動作メカニズム
 
 HTLCはライトニングネットワークにおいて、直接チャネルを持たない2者間の決済を中間ノードを通じて安全にルーティングする核心的なメカニズムです。2つの条件を組み合わせたスマートコントラクトです。

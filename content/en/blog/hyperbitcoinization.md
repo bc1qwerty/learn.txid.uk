@@ -44,6 +44,8 @@ Is this merely a theoretical scenario? In reality, signs pointing toward hyperbi
 
 **Adoption in countries with severe inflation**: In countries like Argentina, Turkey, and Lebanon where national currencies are rapidly losing value, Bitcoin adoption is not theory — it is reality. In Argentina, saving in Bitcoin or dollar stablecoins instead of the domestic peso has become commonplace. In these countries, hyperbitcoinization could already be considered partially underway.
 
+{{< chart-line title="Technology Adoption S-Curve (% Users)" labels="Early,Introduction,Growth,Tipping Point,Mainstream,Saturation" values="1,5,15,50,85,95" unit="%" >}}
+
 ## Critical Perspectives and a Realistic Outlook
 
 It would be an overreach to view hyperbitcoinization as imminent or inevitable.

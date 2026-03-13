@@ -10,6 +10,20 @@ weight: 7
 
 オーストリア景気循環理論(ABCT)は[ミーゼス](/people/ludwig-von-mises/)と[ハイエク](/people/friedrich-hayek/)が発展させた理論で、**好況-不況サイクルの原因は中央銀行の人為的信用膨張**にあると説明しています。
 
+{{< mermaid >}}
+graph LR
+    A["🏦 中央銀行<br/>金利引下げ"] --> B["💰 信用拡大<br/>融資増加"]
+    B --> C["📈 人為的ブーム<br/>過剰投資"]
+    C --> D["⚠️ 歪み蓄積<br/>誤った資源配分"]
+    D --> E["💥 バスト<br/>不況・倒産"]
+    E --> F["🔄 構造調整<br/>資源再配分"]
+    F --> G["📊 健全な回復"]
+    style A fill:#f85149,stroke:#f85149,color:#fff
+    style C fill:#f7931a,stroke:#f7931a,color:#fff
+    style E fill:#f85149,stroke:#f85149,color:#fff
+    style G fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 ## メカニズム
 
 ### 第1段階：人為的な金利引き下げ

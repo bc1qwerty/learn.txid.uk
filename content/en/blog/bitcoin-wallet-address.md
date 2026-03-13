@@ -80,6 +80,15 @@ Introduced with the SegWit upgrade in 2017. The cheapest format in terms of tran
 
 The newest address format, introduced with the Taproot upgrade in 2021. Improves privacy and efficiency. Adoption is growing rapidly.
 
+{{< compare-table >}}
+| Address Type | Prefix | Feature | Fee Level |
+|---|---|---|---|
+| Legacy (P2PKH) | 1... | Original format | Highest |
+| Script (P2SH) | 3... | Multisig / Nested SegWit | Medium |
+| Native SegWit (Bech32) | bc1q... | SegWit native | Low |
+| Taproot (Bech32m) | bc1p... | Schnorr / MAST | Lowest |
+{{< /compare-table >}}
+
 ## Address Reuse: Why You Should Avoid It
 
 Bitcoin addresses can technically be reused. But **reusing an address is strongly discouraged.**

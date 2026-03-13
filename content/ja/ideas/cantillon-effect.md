@@ -12,6 +12,26 @@ weight: 9
 
 カンティヨンの洞察は驚くほどシンプルです。新しいお金が経済に投入されるとき、そのお金は**すべての人の財布に同時に現れません**。誰かが先に受け取り、誰かは後で受け取ります。この時間差が重要なのです。
 
+{{< mermaid >}}
+graph TD
+    CB["🏦 中央銀行<br/>通貨発行"]
+    BANK["🏛️ 金融機関<br/>最初の受益者"]
+    ASSET["📈 資産市場<br/>株式・不動産上昇"]
+    BIZ["🏢 大企業<br/>低金利融資"]
+    PEOPLE["👥 一般市民<br/>最後に到達"]
+    PRICE["💰 物価上昇<br/>購買力低下"]
+    CB --> BANK
+    BANK --> ASSET
+    BANK --> BIZ
+    ASSET --> PEOPLE
+    BIZ --> PEOPLE
+    PEOPLE --> PRICE
+    style CB fill:#f85149,stroke:#f85149,color:#fff
+    style BANK fill:#f7931a,stroke:#f7931a,color:#fff
+    style PEOPLE fill:#21262d,stroke:#30363d,color:#8b949e
+    style PRICE fill:#21262d,stroke:#f85149,color:#f85149
+{{< /mermaid >}}
+
 ## メカニズム：お金の流れを追う
 
 新しい通貨が経済に進入するプロセスを段階的に見てみましょう。

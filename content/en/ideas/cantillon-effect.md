@@ -12,6 +12,26 @@ The Cantillon Effect refers to **the phenomenon where newly issued currency does
 
 Cantillon's insight is remarkably simple. When new money enters the economy, that money **does not appear in everyone's wallet simultaneously**. Someone receives it first, and someone else receives it later. This time difference is the key.
 
+{{< mermaid >}}
+graph TD
+    CB["🏦 Central Bank<br/>Money Creation"]
+    BANK["🏛️ Financial Institutions<br/>First Recipients"]
+    ASSET["📈 Asset Markets<br/>Stocks & Real Estate Rise"]
+    BIZ["🏢 Large Corporations<br/>Low-Interest Loans"]
+    PEOPLE["👥 General Public<br/>Last to Receive"]
+    PRICE["💰 Price Increase<br/>Purchasing Power Decline"]
+    CB --> BANK
+    BANK --> ASSET
+    BANK --> BIZ
+    ASSET --> PEOPLE
+    BIZ --> PEOPLE
+    PEOPLE --> PRICE
+    style CB fill:#f85149,stroke:#f85149,color:#fff
+    style BANK fill:#f7931a,stroke:#f7931a,color:#fff
+    style PEOPLE fill:#21262d,stroke:#30363d,color:#8b949e
+    style PRICE fill:#21262d,stroke:#f85149,color:#f85149
+{{< /mermaid >}}
+
 ## Mechanism: Following the Flow of Money
 
 Let's examine step-by-step how new currency enters the economy.

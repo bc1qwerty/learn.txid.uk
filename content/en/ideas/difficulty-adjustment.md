@@ -9,6 +9,21 @@ weight: 21
 
 **Difficulty Adjustment** is a mechanism that automatically adjusts mining difficulty every 2,016 blocks (approximately 2 weeks) to maintain an average block generation time of roughly 10 minutes. It is the core device that technically guarantees Bitcoin's monetary policy, enabling the network to maintain equilibrium autonomously without any external administrator.
 
+{{< mermaid >}}
+graph TD
+    A["Check Every 2,016 Blocks"] --> B{{"Average Block Time?"}}
+    B -->|"< 10 min"| C["Difficulty Up"]
+    B -->|"= 10 min"| D["Difficulty Unchanged"]
+    B -->|"> 10 min"| E["Difficulty Down"]
+    C --> F["Responds to Hashrate Increase"]
+    E --> G["Responds to Hashrate Decrease"]
+    F --> H["Maintains 10-min Block Interval"]
+    G --> H
+    D --> H
+    style B fill:#f7931a,stroke:#f7931a,color:#fff
+    style H fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 ## Difficulty Target and the nBits Field
 
 Mining is the process of finding a nonce such that the hash of the block header falls below a specific **target**. This target is a 256-bit integer; the lower the target, the harder it is to find a valid hash. In the block header, this target is stored in a compressed 4-byte format called **nBits**.

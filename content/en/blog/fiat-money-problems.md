@@ -32,6 +32,8 @@ Korea was no exception. According to the Bank of Korea, the M2 money supply incr
 
 If more money is printed but the total quantity of real goods and services in the economy does not increase proportionally, the value of each currency unit inevitably falls. This is a matter of arithmetic.
 
+{{< chart-line title="US M2 Money Supply (Trillion $)" labels="1980,1990,2000,2008,2020,2024" values="1.6,3.3,4.9,8.2,19.4,21.0" unit="T$" >}}
+
 ## Inflation: Taxation Without Legislation
 
 When the government raises taxes, people get angry and resist. But when it dilutes the purchasing power of existing currency by printing money, most people do not perceive it as a tax. Economist Milton Friedman called inflation "taxation without legislation."

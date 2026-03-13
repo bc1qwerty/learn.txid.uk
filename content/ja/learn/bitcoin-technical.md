@@ -28,4 +28,15 @@ next_path:
   url: "/learn/bitcoin-sovereignty/"
 ---
 
+{{< mermaid >}}
+graph LR
+    S1["ステップ1<br/>フルノード"] --> S2["ステップ2<br/>難易度調整"]
+    S2 --> S3["ステップ3<br/>メムプール"]
+    S3 --> S4["ステップ4<br/>マークルツリー"]
+    S4 --> S5["ステップ5<br/>SegWit"]
+    S5 --> S6["ステップ6<br/>ライトニング"]
+    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
+    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 ビットコインを本当に理解するには、表面ではなく**エンジン内部**を覗く必要があります。このコースはプロトコルの核心構成要素を一つずつ分解し、ビットコインがなぜ安全で検閲に強いのかを技術的に説明します。

@@ -10,6 +10,20 @@ weight: 7
 
 The Austrian Business Cycle Theory (ABCT), developed by [Mises](/people/ludwig-von-mises/) and [Hayek](/people/friedrich-hayek/), explains that **the cause of boom-bust cycles lies in artificial credit expansion by central banks**.
 
+{{< mermaid >}}
+graph LR
+    A["🏦 Central Bank<br/>Rate Cut"] --> B["💰 Credit Expansion<br/>Loan Increase"]
+    B --> C["📈 Artificial Boom<br/>Overinvestment"]
+    C --> D["⚠️ Distortion<br/>Misallocation"]
+    D --> E["💥 Bust<br/>Recession"]
+    E --> F["🔄 Restructuring<br/>Reallocation"]
+    F --> G["📊 Sound Recovery"]
+    style A fill:#f85149,stroke:#f85149,color:#fff
+    style C fill:#f7931a,stroke:#f7931a,color:#fff
+    style E fill:#f85149,stroke:#f85149,color:#fff
+    style G fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 ## Mechanism
 
 ### Step 1: Artificial Interest Rate Reduction

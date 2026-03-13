@@ -29,3 +29,17 @@ next_path:
 ---
 
 오스트리아학파는 한 사람의 천재가 만든 학문이 아닙니다. **200년에 걸쳐 스승에서 제자로 이어진 지적 계보**의 산물입니다. 이 코스는 그 계보를 시간순으로 따라가며, 각 사상가가 무엇을 물려받고 무엇을 새롭게 기여했는지를 탐구합니다.
+
+{{< mermaid >}}
+graph LR
+    B["바스티아<br/>1801-1850"] --> M["멩거<br/>1840-1921"]
+    M --> BB["뵘바베르크<br/>1851-1914"]
+    BB --> MI["미제스<br/>1881-1973"]
+    MI --> H["하이에크<br/>1899-1992"]
+    MI --> R["로스바드<br/>1926-1995"]
+    style B fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style M fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style MI fill:#f7931a,stroke:#f7931a,color:#fff
+    style H fill:#f7931a,stroke:#f7931a,color:#fff
+    style R fill:#f7931a,stroke:#f7931a,color:#fff
+{{< /mermaid >}}

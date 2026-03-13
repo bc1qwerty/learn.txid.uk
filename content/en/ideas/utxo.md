@@ -8,6 +8,29 @@ weight: 39
 
 **UTXO (Unspent Transaction Output)** is the fundamental way Bitcoin manages balances. Rather than recording an "account balance" like a bank, Bitcoin calculates your balance as the sum of individual outputs that have not yet been spent.
 
+{{< mermaid >}}
+graph LR
+    subgraph Inputs
+        U1["UTXO A<br/>0.5 BTC"]
+        U2["UTXO B<br/>0.3 BTC"]
+    end
+    subgraph Transaction
+        TX["Transaction"]
+    end
+    subgraph Outputs
+        O1["Recipient<br/>0.7 BTC"]
+        O2["Change<br/>0.0999 BTC"]
+    end
+    U1 --> TX
+    U2 --> TX
+    TX --> O1
+    TX --> O2
+    FEE["Fee: 0.0001 BTC"]
+    TX -.-> FEE
+    style TX fill:#f7931a,stroke:#f7931a,color:#fff
+    style FEE fill:none,stroke:none,color:#8b949e
+{{< /mermaid >}}
+
 ## The Coin Model
 
 Think of a cash transaction. If your wallet holds two ¥10,000 notes and one ¥5,000 note, your balance is not a single number "¥25,000" — it is **the sum of three separate bills**. Bitcoin works the same way.

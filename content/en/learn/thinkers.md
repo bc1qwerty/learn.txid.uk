@@ -28,4 +28,18 @@ next_path:
   url: "/learn/money-and-state/"
 ---
 
+{{< mermaid >}}
+graph LR
+    B["Bastiat<br/>1801-1850"] --> M["Menger<br/>1840-1921"]
+    M --> BB["Böhm-Bawerk<br/>1851-1914"]
+    BB --> MI["Mises<br/>1881-1973"]
+    MI --> H["Hayek<br/>1899-1992"]
+    MI --> R["Rothbard<br/>1926-1995"]
+    style B fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style M fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style MI fill:#f7931a,stroke:#f7931a,color:#fff
+    style H fill:#f7931a,stroke:#f7931a,color:#fff
+    style R fill:#f7931a,stroke:#f7931a,color:#fff
+{{< /mermaid >}}
+
 The Austrian School is not the creation of a single genius. It is the product of **an intellectual lineage passed from teacher to student over 200 years**. This course follows that lineage in chronological order, exploring what each thinker inherited and what they newly contributed.

@@ -102,6 +102,15 @@ For peer-to-peer transfers or sends to your own address, submitting at a low fee
 
 ## Fee Reduction Strategies
 
+{{< compare-table >}}
+| Address Type | Prefix | Input Size (vbyte) | Savings |
+|---|---|---|---|
+| Legacy (P2PKH) | 1... | 148 | Baseline |
+| Nested SegWit (P2SH) | 3... | 91 | -38% |
+| Native SegWit (P2WPKH) | bc1q... | 68 | -54% |
+| Taproot (P2TR) | bc1p... | 57.5 | -61% |
+{{< /compare-table >}}
+
 ### 1. Use SegWit or Taproot Addresses
 
 Switching from legacy (`1`) to SegWit (`bc1q`) or Taproot (`bc1p`) reduces transaction size dramatically. One P2PKH input costs 148 vbytes; one P2WPKH input costs only 68 vbytes — roughly 54% savings.

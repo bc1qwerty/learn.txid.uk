@@ -8,6 +8,29 @@ weight: 39
 
 **UTXO（Unspent Transaction Output、未使用トランザクション出力）**は、ビットコインが残高を管理する根本的な方式である。銀行のように「口座残高」を記録するのではなく、まだ使用されていない個々の出力値の合計で残高を計算する。
 
+{{< mermaid >}}
+graph LR
+    subgraph 入力
+        U1["UTXO A<br/>0.5 BTC"]
+        U2["UTXO B<br/>0.3 BTC"]
+    end
+    subgraph トランザクション
+        TX["トランザクション"]
+    end
+    subgraph 出力
+        O1["受取人<br/>0.7 BTC"]
+        O2["お釣り<br/>0.0999 BTC"]
+    end
+    U1 --> TX
+    U2 --> TX
+    TX --> O1
+    TX --> O2
+    FEE["手数料: 0.0001 BTC"]
+    TX -.-> FEE
+    style TX fill:#f7931a,stroke:#f7931a,color:#fff
+    style FEE fill:none,stroke:none,color:#8b949e
+{{< /mermaid >}}
+
 ## コインモデル
 
 現金取引を思い浮かべると理解しやすい。財布に1万円札2枚と5千円札1枚があれば、残高は「25,000円」という数字ではなく、**3枚の個別紙幣の合計**である。ビットコインも同様だ。

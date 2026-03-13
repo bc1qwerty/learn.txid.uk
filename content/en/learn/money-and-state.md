@@ -28,4 +28,15 @@ next_path:
   url: "/learn/bitcoin/"
 ---
 
+{{< mermaid >}}
+graph LR
+    S1["Step 1<br/>Nixon Shock"] --> S2["Step 2<br/>Inflation Tax"]
+    S2 --> S3["Step 3<br/>Moral Hazard"]
+    S3 --> S4["Step 4<br/>Capital Controls"]
+    S4 --> S5["Step 5<br/>Payment Censorship"]
+    S5 --> S6["Step 6<br/>Bitcoin Solution"]
+    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
+    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 Money originally arose spontaneously in the marketplace. But the state seized money, and the result is recurring inflation, inequality, and business cycles. This course traces the process by which money became a tool of the state and its consequences, while exploring why Bitcoin emerged as an alternative.

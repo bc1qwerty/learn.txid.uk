@@ -22,6 +22,8 @@ There is one comparison almost nobody makes. The U.S. military, which maintains 
 
 Bitcoin protects a monetary system with no tanks, no aircraft carriers — just mathematics and electricity.
 
+{{< chart-bar title="Annual Energy Consumption (TWh)" labels="Bitcoin,Banking,Gold Mining,Data Centers" values="150,260,240,200" unit="TWh" color="bitcoin" >}}
+
 ## What Proof of Work Does
 
 [Proof of Work](/ideas/proof-of-work/) is not transaction processing. It is a security system protecting over $1 trillion in market capitalization. Attacking the network requires more energy than all honest miners combined spend. The laws of physics protect Bitcoin.

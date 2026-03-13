@@ -58,6 +58,20 @@ While Bitcoin surpasses gold in many attributes, there are areas where gold reta
 
 **Psychological acceptance.** Central banks around the world hold approximately 36,000 tons of gold. Institutional investors, individuals, and governments all understand and accept gold. While institutional acceptance of Bitcoin is growing rapidly, it has not yet achieved the universal trust that gold enjoys.
 
+## Comparison at a Glance
+
+{{< compare-table >}}
+| Property | Bitcoin | Gold |
+|---|---|---|
+| Scarcity | 21 million cap (mathematical) | ~200,000t above ground (estimated) |
+| Durability | Permanent (digital) | Permanent (physical) |
+| Portability | Instant transfer via internet | Heavy, high transport cost |
+| Divisibility | 100 million satoshis | Practically 1g minimum |
+| Verifiability | Instant full-node verification | X-ray fluorescence needed |
+| Censorship Resistance | Very high (decentralized) | Can be confiscated |
+| Track Record | 15 years | 5,000+ years |
+{{< /compare-table >}}
+
 ## Digital Gold, and Something More
 
 Many people call Bitcoin "digital gold." This is not a simple metaphor. Bitcoin performs the role that gold has fulfilled for thousands of years — preserving value across time — more efficiently and with greater censorship resistance.

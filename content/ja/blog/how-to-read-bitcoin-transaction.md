@@ -93,6 +93,29 @@ scriptPubKeyの種類はアドレス形式によって異なります。
 
 一般的な送金トランザクションでは出力が2つ以上あります。1つは受取人のアドレス、残りは送信者の**お釣り（change）アドレス**です。入力のUTXOは部分的に消費できないため、余った金額を自分自身に送り返す必要があります。
 
+{{< mermaid >}}
+graph LR
+    subgraph 入力
+        I1["UTXO #1<br/>0.5 BTC<br/>(署名付き)"]
+        I2["UTXO #2<br/>0.3 BTC<br/>(署名付き)"]
+    end
+    subgraph トランザクション
+        TX["ビットコイン<br/>トランザクション"]
+    end
+    subgraph 出力
+        O1["受取アドレス<br/>0.7 BTC"]
+        O2["お釣りアドレス<br/>0.0999 BTC"]
+    end
+    I1 --> TX
+    I2 --> TX
+    TX --> O1
+    TX --> O2
+    FEE["手数料: 0.0001 BTC<br/>(入力合計 - 出力合計)"]
+    TX -.-> FEE
+    style TX fill:#f7931a,stroke:#f7931a,color:#fff
+    style FEE fill:none,stroke:none,color:#8b949e
+{{< /mermaid >}}
+
 ## 手数料の計算方法
 
 ビットコイントランザクションには手数料を明示するフィールドがありません。手数料は暗黙的に計算されます。

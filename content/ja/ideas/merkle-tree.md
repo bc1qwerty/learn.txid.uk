@@ -9,6 +9,38 @@ weight: 27
 
 **マークルツリー (Merkle Tree)**は大量のデータを1つのハッシュ値(マークルルート)で要約し、効率的に整合性を検証できるバイナリハッシュツリー構造です。1979年にラルフ・マークル(Ralph Merkle)が発明したこのデータ構造は、ビットコインのブロック構造において中心的な役割を果たし、軽量クライアントの効率的な検証を可能にしています。
 
+{{< mermaid >}}
+graph TD
+    ROOT["ルートハッシュ<br/>Hash(H12+H34)"]
+    H12["Hash(H1+H2)"]
+    H34["Hash(H3+H4)"]
+    H1["Hash(Tx1)"]
+    H2["Hash(Tx2)"]
+    H3["Hash(Tx3)"]
+    H4["Hash(Tx4)"]
+    TX1["Tx1"]
+    TX2["Tx2"]
+    TX3["Tx3"]
+    TX4["Tx4"]
+    ROOT --> H12
+    ROOT --> H34
+    H12 --> H1
+    H12 --> H2
+    H34 --> H3
+    H34 --> H4
+    H1 --> TX1
+    H2 --> TX2
+    H3 --> TX3
+    H4 --> TX4
+    style ROOT fill:#f7931a,stroke:#f7931a,color:#fff
+    style H12 fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style H34 fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style H1 fill:#161b22,stroke:#30363d,color:#8b949e
+    style H2 fill:#161b22,stroke:#30363d,color:#8b949e
+    style H3 fill:#161b22,stroke:#30363d,color:#8b949e
+    style H4 fill:#161b22,stroke:#30363d,color:#8b949e
+{{< /mermaid >}}
+
 ## バイナリハッシュツリーの構造
 
 マークルツリーは最下位のリーフ（leaf）ノードから最上位のルートまでボトムアップで構築されます。具体的な手順は以下の通りです。

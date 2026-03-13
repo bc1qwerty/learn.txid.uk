@@ -23,6 +23,29 @@ weight: 39
 - 약 0.3999 BTC UTXO가 거스름돈으로 자신에게 돌아온다
 - 나머지 0.0001 BTC는 채굴자에게 수수료로 지급된다
 
+{{< mermaid >}}
+graph LR
+    subgraph 입력
+        U1["UTXO A<br/>0.5 BTC"]
+        U2["UTXO B<br/>0.3 BTC"]
+    end
+    subgraph 트랜잭션
+        TX["트랜잭션"]
+    end
+    subgraph 출력
+        O1["수신자<br/>0.7 BTC"]
+        O2["잔돈<br/>0.0999 BTC"]
+    end
+    U1 --> TX
+    U2 --> TX
+    TX --> O1
+    TX --> O2
+    FEE["수수료: 0.0001 BTC"]
+    TX -.-> FEE
+    style TX fill:#f7931a,stroke:#f7931a,color:#fff
+    style FEE fill:none,stroke:none,color:#8b949e
+{{< /mermaid >}}
+
 ## 왜 계좌 모델이 아닌가
 
 이더리움은 은행처럼 계좌 잔액 모델을 사용한다. 비트코인이 굳이 복잡해 보이는 UTXO 모델을 선택한 이유:

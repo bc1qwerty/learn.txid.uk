@@ -13,6 +13,22 @@ Time Preference refers to **the degree to which people prefer goods in the prese
 - **High time preference**: Seeking immediate satisfaction. Preferring consumption over saving
 - **Low time preference**: Restraint in the present for greater future rewards. Preferring saving and investment
 
+{{< mermaid >}}
+graph TD
+    Q["💭 How to Use Resources?"]
+    Q --> HIGH["🔴 High Time Preference<br/>Prefer Immediate Consumption"]
+    Q --> LOW["🟢 Low Time Preference<br/>Prefer Future Investment"]
+    HIGH --> H1["Instant Consumption"]
+    HIGH --> H2["Debt Increase"]
+    HIGH --> H3["Difficult to Accumulate Capital"]
+    LOW --> L1["Save & Invest"]
+    LOW --> L2["Capital Formation"]
+    LOW --> L3["Long-term Prosperity"]
+    style HIGH fill:#f85149,stroke:#f85149,color:#fff
+    style LOW fill:#3fb950,stroke:#3fb950,color:#fff
+    style L3 fill:#f7931a,stroke:#f7931a,color:#fff
+{{< /mermaid >}}
+
 ## Time Preference and Civilization
 
 The development of human civilization has progressed in parallel with the decline of time preference.

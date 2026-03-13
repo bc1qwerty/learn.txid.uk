@@ -9,6 +9,20 @@ weight: 25
 
 **The Lightning Network** is a Layer 2 payment network built on top of the Bitcoin blockchain, enabling small instant payments. Proposed in a 2015 whitepaper by Joseph Poon and Thaddeus Dryja, it was made possible by SegWit's resolution of the transaction malleability problem.
 
+{{< mermaid >}}
+sequenceDiagram
+    participant A as Alice
+    participant CH as Channel
+    participant B as Bob
+    A->>CH: Open Channel (on-chain Tx)
+    Note over CH: Multisig Lock
+    A->>B: Payment 1 (off-chain)
+    B->>A: Payment 2 (off-chain)
+    A->>B: Payment 3 (off-chain)
+    B->>CH: Close Channel (on-chain Tx)
+    Note over A,B: Final Balance Settlement
+{{< /mermaid >}}
+
 ## HTLC (Hash Time-Locked Contract) Mechanism
 
 HTLC is the core mechanism in the Lightning Network that safely routes payments between two parties who do not share a direct channel through intermediary nodes. It is a smart contract combining two conditions.

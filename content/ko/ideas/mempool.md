@@ -9,6 +9,16 @@ weight: 26
 
 **멤풀 (Mempool, Memory Pool)**은 아직 블록에 포함되지 않은 미확인 트랜잭션들이 대기하는 공간입니다. 각 비트코인 노드는 자신만의 독립적인 멤풀을 유지하므로, 엄밀히 말해 "하나의 멤풀"이 아니라 네트워크에 분산된 수만 개의 개별 멤풀이 존재합니다.
 
+{{< mermaid >}}
+graph LR
+    USER["👤 사용자"] -->|"트랜잭션 생성"| NODE["📡 노드"]
+    NODE -->|"전파"| MEMPOOL["🔄 멤풀<br/>(미확인 트랜잭션 대기)"]
+    MEMPOOL -->|"채굴자가 선택<br/>(높은 수수료 우선)"| BLOCK["⛏️ 블록"]
+    BLOCK -->|"검증 후 추가"| CHAIN["⛓️ 블록체인"]
+    style MEMPOOL fill:#f7931a,stroke:#f7931a,color:#fff
+    style CHAIN fill:#3fb950,stroke:#3fb950,color:#fff
+{{< /mermaid >}}
+
 ## 트랜잭션의 라이프사이클
 
 비트코인 트랜잭션은 생성부터 최종 확인까지 명확한 단계를 거칩니다.

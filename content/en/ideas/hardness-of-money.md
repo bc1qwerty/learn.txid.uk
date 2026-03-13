@@ -9,6 +9,8 @@ weight: 23
 
 **Hardness of Money** refers to how difficult it is to produce new units of a monetary good. The metric used to quantify this property is the **Stock-to-Flow (S2F)** ratio.
 
+{{< chart-bar title="Stock-to-Flow Ratio (Higher = Harder Money)" labels="Bitcoin,Gold,Silver,Fiat" values="120,62,22,0" >}}
+
 ## Definition and Calculation of the S2F Ratio
 
 The S2F ratio is calculated as follows: **S2F = Existing Stock / Annual New Production (Flow)**. For example, if the total above-ground gold stock is approximately 205,000 tonnes and annual new mining output is roughly 3,500 tonnes, then gold's S2F is about 58.6. This means it would take roughly 59 years at the current production rate to replicate the existing stock. The higher the S2F, the more negligible new supply is relative to existing stock, making value dilution from supply shocks difficult. This is the essence of "hard money."

@@ -12,6 +12,26 @@ weight: 9
 
 칸티용의 통찰은 놀라울 정도로 단순합니다. 새로운 돈이 경제에 투입될 때, 그 돈은 **모든 사람의 지갑에 동시에 나타나지 않습니다**. 누군가가 먼저 받고, 누군가는 나중에 받습니다. 이 시간 차이가 핵심입니다.
 
+{{< mermaid >}}
+graph TD
+    CB["🏦 중앙은행<br/>화폐 발행"]
+    BANK["🏛️ 금융기관<br/>최초 수혜자"]
+    ASSET["📈 자산시장<br/>주식·부동산 상승"]
+    BIZ["🏢 대기업<br/>저금리 대출"]
+    PEOPLE["👥 일반 시민<br/>마지막 도달"]
+    PRICE["💰 물가 상승<br/>구매력 하락"]
+    CB --> BANK
+    BANK --> ASSET
+    BANK --> BIZ
+    ASSET --> PEOPLE
+    BIZ --> PEOPLE
+    PEOPLE --> PRICE
+    style CB fill:#f85149,stroke:#f85149,color:#fff
+    style BANK fill:#f7931a,stroke:#f7931a,color:#fff
+    style PEOPLE fill:#21262d,stroke:#30363d,color:#8b949e
+    style PRICE fill:#21262d,stroke:#f85149,color:#f85149
+{{< /mermaid >}}
+
 ## 메커니즘: 돈의 흐름을 따라가다
 
 새로운 화폐가 경제에 진입하는 과정을 단계별로 살펴봅시다.

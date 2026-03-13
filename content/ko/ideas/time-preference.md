@@ -13,6 +13,22 @@ weight: 2
 - **높은 시간선호**: 지금 당장의 만족을 추구. 저축보다 소비를 선호
 - **낮은 시간선호**: 미래의 더 큰 보상을 위해 현재를 절제. 저축과 투자를 선호
 
+{{< mermaid >}}
+graph TD
+    Q["💭 자원을 어떻게 사용할까?"]
+    Q --> HIGH["🔴 높은 시간선호<br/>즉각적 소비 선호"]
+    Q --> LOW["🟢 낮은 시간선호<br/>미래 투자 선호"]
+    HIGH --> H1["즉시 소비"]
+    HIGH --> H2["부채 증가"]
+    HIGH --> H3["자본 축적 어려움"]
+    LOW --> L1["저축·투자"]
+    LOW --> L2["자본 형성"]
+    LOW --> L3["장기적 번영"]
+    style HIGH fill:#f85149,stroke:#f85149,color:#fff
+    style LOW fill:#3fb950,stroke:#3fb950,color:#fff
+    style L3 fill:#f7931a,stroke:#f7931a,color:#fff
+{{< /mermaid >}}
+
 ## 시간선호와 문명
 
 인류 문명의 발전은 시간선호의 저하와 궤를 같이합니다.

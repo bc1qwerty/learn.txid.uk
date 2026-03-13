@@ -9,6 +9,38 @@ weight: 27
 
 **머클 트리 (Merkle Tree)**는 대량의 데이터를 하나의 해시값(머클 루트)으로 요약하여 효율적으로 무결성을 검증할 수 있는 이진 해시 트리 구조입니다. 1979년 랠프 머클(Ralph Merkle)이 발명한 이 자료구조는 비트코인의 블록 구조에서 핵심적인 역할을 담당하며, 경량 클라이언트의 효율적 검증을 가능하게 합니다.
 
+{{< mermaid >}}
+graph TD
+    ROOT["루트 해시<br/>Hash(H12+H34)"]
+    H12["Hash(H1+H2)"]
+    H34["Hash(H3+H4)"]
+    H1["Hash(Tx1)"]
+    H2["Hash(Tx2)"]
+    H3["Hash(Tx3)"]
+    H4["Hash(Tx4)"]
+    TX1["Tx1"]
+    TX2["Tx2"]
+    TX3["Tx3"]
+    TX4["Tx4"]
+    ROOT --> H12
+    ROOT --> H34
+    H12 --> H1
+    H12 --> H2
+    H34 --> H3
+    H34 --> H4
+    H1 --> TX1
+    H2 --> TX2
+    H3 --> TX3
+    H4 --> TX4
+    style ROOT fill:#f7931a,stroke:#f7931a,color:#fff
+    style H12 fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style H34 fill:#21262d,stroke:#f7931a,color:#e6edf3
+    style H1 fill:#161b22,stroke:#30363d,color:#8b949e
+    style H2 fill:#161b22,stroke:#30363d,color:#8b949e
+    style H3 fill:#161b22,stroke:#30363d,color:#8b949e
+    style H4 fill:#161b22,stroke:#30363d,color:#8b949e
+{{< /mermaid >}}
+
 ## 이진 해시 트리의 구조
 
 머클 트리는 최하위 리프(leaf) 노드에서 시작하여 최상위 루트까지 상향식으로 구축됩니다. 구체적인 단계는 다음과 같습니다.
