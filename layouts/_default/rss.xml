@@ -1,20 +1,33 @@
 {{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ .Site.Title }}</title>
-    <link>{{ .Site.BaseURL }}</link>
-    <description>{{ .Site.Params.description }}</description>
+    <title>{{ if eq .Title .Site.Title }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ with .Param "description" }}{{ . | plainify }}{{ else }}{{ .Site.Params.description }}{{ end }}</description>
     <language>{{ .Site.LanguageCode }}</language>
     <lastBuildDate>{{ now.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</lastBuildDate>
-    <atom:link href="{{ "index.xml" | absURL }}" rel="self" type="application/rss+xml" />
-    {{- range (where (where .Site.RegularPages "Section" "in" (slice "blog" "ideas" "books")) "Type" "!=" "section") }}
+    <atom:link href="{{ with .OutputFormats.Get "RSS" }}{{ .Permalink }}{{ else }}{{ "index.xml" | absURL }}{{ end }}" rel="self" type="application/rss+xml" />
+    <image>
+      <url>{{ "/favicon-32x32.png" | absURL }}</url>
+      <title>{{ .Site.Title }}</title>
+      <link>{{ .Site.BaseURL }}</link>
+    </image>
+    {{- $pages := slice -}}
+    {{- if .IsHome -}}
+      {{- $pages = where (where .Site.RegularPages "Section" "in" (slice "blog" "ideas" "learn" "people" "books")) "Type" "!=" "section" -}}
+    {{- else -}}
+      {{- $pages = .Pages -}}
+    {{- end -}}
+    {{- range $pages.ByDate.Reverse | first 50 }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
       <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
       <guid>{{ .Permalink }}</guid>
-      <description>{{ .Summary | html }}</description>
-      {{ with .Params.tags }}<category>{{ range . }}{{ . }}{{ end }}</category>{{ end }}
+      <dc:creator>{{ $.Site.Params.author }}</dc:creator>
+      {{ with .Params.tags }}{{ range . }}<category>{{ . }}</category>{{ end }}{{ end }}
+      <description>{{ with .Description }}{{ . | plainify | htmlEscape }}{{ else }}{{ .Summary | plainify | htmlEscape }}{{ end }}</description>
+      <content:encoded><![CDATA[{{ .Content }}]]></content:encoded>
     </item>
     {{- end }}
   </channel>

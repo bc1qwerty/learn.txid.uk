@@ -214,3 +214,21 @@ other = "FAQ"
 
 [skip_to_content]
 other = "Skip to content"
+
+[error_404]
+other = "Page not found"
+
+[error_404_desc]
+other = "The page you're looking for doesn't exist or has been moved."
+
+[error_404_home]
+other = "Go Home"
+
+[error_404_search]
+other = "Search"
+
+[error_404_popular]
+other = "Popular Pages"
+
+[install_app]
+other = "Install App"

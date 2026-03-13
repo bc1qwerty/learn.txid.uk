@@ -214,3 +214,21 @@ other = "よくある質問"
 
 [skip_to_content]
 other = "本文へスキップ"
+
+[error_404]
+other = "ページが見つかりません"
+
+[error_404_desc]
+other = "お探しのページは存在しないか、移動された可能性があります。"
+
+[error_404_home]
+other = "ホームに戻る"
+
+[error_404_search]
+other = "検索する"
+
+[error_404_popular]
+other = "人気ページ"
+
+[install_app]
+other = "アプリをインストール"

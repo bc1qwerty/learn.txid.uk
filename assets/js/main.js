@@ -1102,6 +1102,31 @@ const LearnProgress = (() => {
   return { getProgress, markRead, isRead, getStats, countCompleted, getStepURLs, initAutoTrack, updateProgressIndicators, initSync };
 })();
 
+// ── PWA Install Prompt ──
+var _deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  _deferredInstallPrompt = e;
+  var btn = document.getElementById('pwa-install-btn');
+  if (btn) btn.classList.remove('hidden');
+});
+
+window.installPWA = function() {
+  if (!_deferredInstallPrompt) return;
+  _deferredInstallPrompt.prompt();
+  _deferredInstallPrompt.userChoice.then(function() {
+    _deferredInstallPrompt = null;
+    var btn = document.getElementById('pwa-install-btn');
+    if (btn) btn.classList.add('hidden');
+  });
+};
+
+window.addEventListener('appinstalled', function() {
+  _deferredInstallPrompt = null;
+  var btn = document.getElementById('pwa-install-btn');
+  if (btn) btn.classList.add('hidden');
+});
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
   LearnProgress.initAutoTrack();

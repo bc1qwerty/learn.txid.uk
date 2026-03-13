@@ -3,11 +3,31 @@
 {{ end }}
 
 {{ define "main" }}
-<div class="max-w-3xl mx-auto px-4 sm:px-6 py-20 text-center">
-  <h1 class="text-6xl font-bold text-bitcoin mb-4">404</h1>
-  <p class="text-xl text-gray-400 mb-8">페이지를 찾을 수 없습니다.</p>
-  <a href="/" class="inline-flex items-center px-6 py-3 bg-bitcoin hover:bg-bitcoin-light text-white font-semibold rounded-lg transition-colors">
-    홈으로 돌아가기
-  </a>
+<div class="max-w-2xl mx-auto px-4 sm:px-6 py-16 text-center">
+  <div class="text-8xl font-bold text-bitcoin mb-2 select-none">404</div>
+  <h1 class="text-2xl font-semibold text-[var(--color-text)] mb-2">{{ i18n "error_404" }}</h1>
+  <p class="text-gray-400 mb-8">{{ i18n "error_404_desc" }}</p>
+
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
+    <a href="{{ .Site.LanguagePrefix }}/" class="inline-flex items-center px-6 py-3 bg-bitcoin hover:bg-bitcoin-light text-white font-semibold rounded-lg transition-colors">
+      {{ i18n "error_404_home" }}
+    </a>
+    <button onclick="document.getElementById('cmdPalette').hidden=false;document.getElementById('cmdInput').focus();" class="inline-flex items-center px-6 py-3 border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 rounded-lg transition-colors">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mr-2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      {{ i18n "error_404_search" }} <kbd class="ml-2 text-xs px-1.5 py-0.5 rounded bg-white/10">Ctrl+K</kbd>
+    </button>
+  </div>
+
+  <div class="text-left">
+    <h2 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">{{ i18n "error_404_popular" }}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      {{ range .Site.Menus.main | first 6 }}
+      <a href="{{ .URL }}" class="flex items-center gap-2 px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 text-[var(--color-text)] transition-colors">
+        <span class="text-bitcoin">&rarr;</span>
+        <span>{{ .Name }}</span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
 </div>
 {{ end }}

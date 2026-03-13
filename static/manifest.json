@@ -1,14 +1,46 @@
 {
-  "name": "TXID.uk",
+  "id": "/",
+  "name": "TXID - Bitcoin Education",
   "short_name": "TXID",
   "description": "비트코인, 오스트리아 경제학, 자유주의를 배우는 곳",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#09090b",
   "theme_color": "#f7931a",
+  "categories": ["education", "finance"],
   "icons": [
     { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
     { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
-    { "src": "/mstile-144x144.png", "sizes": "144x144", "type": "image/png" }
+    { "src": "/mstile-144x144.png", "sizes": "144x144", "type": "image/png" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-192.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "TXID Homepage"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "공부방",
+      "short_name": "Learn",
+      "url": "/ko/learn/",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    },
+    {
+      "name": "커뮤니티",
+      "short_name": "Community",
+      "url": "/ko/community/",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    }
   ]
 }
