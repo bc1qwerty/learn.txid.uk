@@ -7,8 +7,15 @@
   </div>
 </div>
 
-{{ $js := resources.Get "js/community.js" | fingerprint }}
-{{ with $js }}
-<script src="{{ .RelPermalink }}"></script>
-{{ end }}
+{{ $js := slice
+  (resources.Get "js/comm/_00_start.js")
+  (resources.Get "js/comm/_01_i18n.js")
+  (resources.Get "js/comm/_02_helpers.js")
+  (resources.Get "js/comm/_03_icons.js")
+  (resources.Get "js/comm/_04_nip05.js")
+  (resources.Get "js/comm/_05_views.js")
+  (resources.Get "js/comm/_06_profile.js")
+  (resources.Get "js/comm/_99_init.js")
+  | resources.Concat "js/community.bundle.js" | minify | fingerprint "sha512" }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 {{ end }}
