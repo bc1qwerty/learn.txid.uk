@@ -250,7 +250,7 @@
       '<div class="flex gap-2 items-center">' +
       '<input id="nip05-input" class="comm-input" style="max-width:140px;padding:5px 8px;font-size:.78rem" placeholder="' + t('nip05_username') + '" maxlength="30">' +
       '<span class="text-xs text-gray-500">@txid.uk</span>' +
-      '<button id="nip05-reg-btn" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem" disabled>' + t('nip05_register') + '</button>' +
+      '<button id="nip05-reg-btn" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_register') + '</button>' +
       '</div>' +
       '<div id="nip05-status" class="text-[10px] mt-1 h-4"></div>' +
       '</div>';
@@ -258,44 +258,19 @@
     var input = document.getElementById('nip05-input');
     var btn = document.getElementById('nip05-reg-btn');
     var status = document.getElementById('nip05-status');
-    var checkTimer = null;
 
-    input.addEventListener('input', function() {
-      var val = input.value.toLowerCase().trim();
-      input.value = val;
-      btn.disabled = true;
+    btn.addEventListener('click', function() {
+      var username = input.value.toLowerCase().trim();
+      input.value = username;
       status.textContent = '';
       status.className = 'text-[10px] mt-1 h-4';
-      clearTimeout(checkTimer);
-      if (val.length < 3) {
-        if (val.length > 0) { status.textContent = t('nip05_invalid'); status.className = 'text-[10px] mt-1 h-4 text-red-400'; }
-        return;
-      }
-      if (!/^[a-z0-9][a-z0-9_-]*[a-z0-9]$/.test(val)) {
+
+      if (username.length < 3 || !/^[a-z0-9][a-z0-9_-]*[a-z0-9]$/.test(username)) {
         status.textContent = t('nip05_invalid');
         status.className = 'text-[10px] mt-1 h-4 text-red-400';
         return;
       }
-      status.textContent = t('nip05_checking');
-      status.className = 'text-[10px] mt-1 h-4 text-gray-400';
-      checkTimer = setTimeout(function() {
-        api('/nip05/check/' + encodeURIComponent(val)).then(function(d) {
-          if (input.value.toLowerCase().trim() !== val) return;
-          if (d.available) {
-            status.textContent = t('nip05_available') + ' ✓';
-            status.className = 'text-[10px] mt-1 h-4 text-green-400';
-            btn.disabled = false;
-          } else {
-            status.textContent = d.error || t('nip05_taken');
-            status.className = 'text-[10px] mt-1 h-4 text-red-400';
-          }
-        }).catch(function() {});
-      }, 400);
-    });
 
-    btn.addEventListener('click', function() {
-      var username = input.value.toLowerCase().trim();
-      if (!username) return;
       btn.disabled = true;
       btn.textContent = '...';
       api('/nip05/register', {
