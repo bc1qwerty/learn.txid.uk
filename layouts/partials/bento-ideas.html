@@ -1,6 +1,6 @@
 <h2 class="tile-title">{{ i18n "ideas_section_title" }}</h2>
 <div class="tile-list">
-    {{ $maxPosts := site.Params.concepts.maxPosts | default 6 }}
+    {{ $maxPosts := site.Params.concepts.maxPosts | default 5 }}
     {{ range first $maxPosts (where site.RegularPages "Section" "ideas").ByDate.Reverse }}
     <a href="{{ .RelPermalink }}" class="tile-item">
         <span class="tile-item-name">{{ .Title }}</span>
