@@ -2325,9 +2325,9 @@ body.theme-transition *::after {
 }
 
 
-/* ── Language Dropdown ── */
-.lang-dropdown-learn { position: relative; }
-.lang-dropdown-btn {
+/* ── Language Dropdown (서브도메인 통일 패턴) ── */
+.lang-dropdown { position: relative; }
+.lang-btn {
   height: 32px;
   padding: 0 8px;
   border: 1px solid #374151;
@@ -2341,11 +2341,8 @@ body.theme-transition *::after {
   letter-spacing: .05em;
   transition: all .2s;
 }
-.lang-dropdown-btn:hover {
-  border-color: #f7931a;
-  color: #f7931a;
-}
-.lang-dropdown-menu {
+.lang-btn:hover { border-color: #f7931a; color: #f7931a; }
+.lang-menu {
   display: none;
   position: absolute;
   top: calc(100% + 6px);
@@ -2358,8 +2355,8 @@ body.theme-transition *::after {
   box-shadow: 0 8px 24px rgba(0,0,0,.5);
   overflow: hidden;
 }
-.lang-dropdown-menu.open { display: block; }
-.lang-dropdown-item {
+.lang-menu.open { display: block; }
+.lang-menu button {
   display: block;
   width: 100%;
   text-align: left;
@@ -2372,10 +2369,31 @@ body.theme-transition *::after {
   font-family: var(--font-sans);
   transition: background .15s, color .15s;
 }
-.lang-dropdown-item:hover {
-  background: #1f2937;
-  color: #f7931a;
+.lang-menu button:hover { background: #1f2937; color: #f7931a; }
+
+/* ── Theme Button (서브도메인 통일 패턴) ── */
+.theme-btn {
+  background: none;
+  border: 1px solid #374151;
+  color: #9ca3af;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
 }
+.theme-btn:hover { border-color: #f7931a; color: #f7931a; }
+
+[data-theme='light'] .lang-btn { border-color: rgba(0,0,0,.12); color: #6b7280; }
+[data-theme='light'] .lang-btn:hover { border-color: #f7931a; color: #f7931a; }
+[data-theme='light'] .lang-menu { background: #fff; border-color: rgba(0,0,0,.08); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+[data-theme='light'] .lang-menu button { color: #6b7280; }
+[data-theme='light'] .lang-menu button:hover { background: #f3f4f6; color: #f7931a; }
+[data-theme='light'] .theme-btn { border-color: rgba(0,0,0,.12); color: #6b7280; }
+[data-theme='light'] .theme-btn:hover { border-color: #f7931a; color: #f7931a; }
 
 
 /* ── 320px 초소형 화면 대응 ── */

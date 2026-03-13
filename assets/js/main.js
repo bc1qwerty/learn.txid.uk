@@ -19,19 +19,18 @@ html.setAttribute('data-theme', savedTheme);
 
 function updateThemeBtn() {
     var isDark = html.getAttribute('data-theme') !== 'light';
-    var icon = document.getElementById('theme-icon');
-    if (icon) icon.innerHTML = isDark
-        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
-        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-    var label = document.getElementById('themeLabel');
-    if (label) {
+    var btn = document.getElementById('theme-btn');
+    if (btn) {
+        btn.innerHTML = isDark
+            ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>'
+            : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
         var lang = document.documentElement.lang || 'ko';
         var labels = {
-            ko: isDark ? '라이트 모드로 변경' : '다크 모드로 변경',
+            ko: isDark ? '라이트 모드로 전환' : '다크 모드로 전환',
             en: isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode',
-            ja: isDark ? 'ライトモードに変更' : 'ダークモードに変更'
+            ja: isDark ? 'ライトモードへ' : 'ダークモードへ'
         };
-        label.textContent = labels[lang] || labels.ko;
+        btn.title = labels[lang] || labels.en;
     }
 }
 
@@ -49,30 +48,39 @@ function toggleTheme() {
     }, 400);
 }
 
-// Settings panel toggle (txid.uk pattern)
-window.toggleSettings = function() {
-    var panel = document.getElementById('settings-panel');
-    var btn = document.getElementById('settings-btn');
-    if (!panel) return;
-    var open = panel.classList.toggle('open');
-    if (btn) {
-        btn.setAttribute('aria-expanded', open);
-        btn.style.borderColor = open ? '#f7931a' : '';
-        btn.style.color = open ? '#f7931a' : '';
-    }
-};
-window.closeSettings = function() {
-    var panel = document.getElementById('settings-panel');
-    var btn = document.getElementById('settings-btn');
-    if (panel) panel.classList.remove('open');
-    if (btn) { btn.setAttribute('aria-expanded', 'false'); btn.style.borderColor = ''; btn.style.color = ''; }
-};
+// Lang dropdown toggle
 document.addEventListener('click', function(e) {
-    var dd = document.getElementById('settings-dropdown');
-    if (dd && !dd.contains(e.target)) closeSettings();
+    var langMenu = document.getElementById('lang-menu');
+    var langBtn = document.getElementById('lang-btn');
+    if (langBtn && langBtn === e.target) {
+        langMenu.classList.toggle('open');
+        langBtn.setAttribute('aria-expanded', langMenu.classList.contains('open'));
+        return;
+    }
+    if (langMenu && !e.target.closest('.lang-dropdown')) {
+        langMenu.classList.remove('open');
+        if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
+    }
 });
+// Lang menu item clicks
+document.querySelectorAll('#lang-menu button[data-lang]').forEach(function(btn) {
+    btn.addEventListener('click', function() { setLang(btn.dataset.lang); });
+});
+// Mobile lang buttons
+document.querySelectorAll('.mobile-lang-row button[data-lang]').forEach(function(btn) {
+    btn.addEventListener('click', function() { setLang(btn.dataset.lang); });
+});
+// Theme button
+var themeBtn = document.getElementById('theme-btn');
+if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+// Mobile theme toggle
+var mobileThemeBtn = document.getElementById('mobileThemeToggle');
+if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
+// PWA install
+var pwaBtn = document.getElementById('pwa-install-btn');
+if (pwaBtn) pwaBtn.addEventListener('click', function() { if (window.installPWA) installPWA(); });
 
-// Init theme button (icon + label)
+// Init theme button (icon + title)
 updateThemeBtn();
 
 // ── Throttle Utility ──
@@ -827,7 +835,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   window.setLang = function(l) {
-    if (window.closeSettings) closeSettings();
+    // lang-menu 닫기
+    var langMenu = document.getElementById('lang-menu');
+    if (langMenu) langMenu.classList.remove('open');
+    var langBtn = document.getElementById('lang-btn');
+    if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
     // Hugo 다국어 URL이 있으면 페이지 이동
     if (window.__LANG_URLS__ && window.__LANG_URLS__[l]) {
       try { localStorage.setItem('preferred-lang', l); } catch(e) {}
@@ -838,16 +850,6 @@ document.addEventListener('DOMContentLoaded', function() {
     _lang = l; localStorage.setItem('lang', l);
     applyLang(l);
   };
-  window.toggleLang = function() {
-    const m = document.getElementById('lang-menu');
-    if (!m) return;
-    m.style.display = m.style.display === 'block' ? 'none' : 'block';
-  };
-
-  document.addEventListener('click', e => {
-    const m = document.getElementById('lang-menu');
-    if (m && !e.target.closest('.lang-dropdown-learn')) m.style.display = 'none';
-  });
 
   // 초기화 (DOM 준비 후)
   document.addEventListener('DOMContentLoaded', () => applyLang(_lang));
