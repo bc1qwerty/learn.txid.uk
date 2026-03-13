@@ -12,5 +12,5 @@
     {{ end }}
 </div>
 {{ with site.Params.concepts.moreURL }}
-<a href="{{ . }}" class="tile-more">{{ i18n "view_all" }} &rarr;</a>
+<a href="{{ $.Site.LanguagePrefix }}{{ . }}" class="tile-more">{{ i18n "view_all" }} &rarr;</a>
 {{ end }}
