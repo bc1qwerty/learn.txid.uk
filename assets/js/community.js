@@ -39,6 +39,7 @@
       confirm_nickname: '닉네임을 변경하시겠습니까?', confirm_nickname_clear: '닉네임을 삭제하시겠습니까?',
       icons: '아이콘', select_icon: '적용', icon_locked: '미획득',
       icon_selected: '사용 중', icon_default: '기본',
+      nostr_pubkey: 'Nostr 공개키', view_on_nostr: 'Nostr에서 보기', copy: '복사', copied: '복사됨',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -65,6 +66,7 @@
       confirm_nickname: 'Change nickname?', confirm_nickname_clear: 'Clear nickname?',
       icons: 'Icons', select_icon: 'Apply', icon_locked: 'Locked',
       icon_selected: 'In Use', icon_default: 'Default',
+      nostr_pubkey: 'Nostr Public Key', view_on_nostr: 'View on Nostr', copy: 'Copy', copied: 'Copied',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -91,6 +93,7 @@
       confirm_nickname: 'ニックネームを変更しますか？', confirm_nickname_clear: 'ニックネームを削除しますか？',
       icons: 'アイコン', select_icon: '適用', icon_locked: '未獲得',
       icon_selected: '使用中', icon_default: 'デフォルト',
+      nostr_pubkey: 'Nostr公開鍵', view_on_nostr: 'Nostrで見る', copy: 'コピー', copied: 'コピー済み',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
@@ -380,6 +383,7 @@
               ${currentUser ? `<button class="hover:text-bitcoin${post.isBookmarked ? ' text-bitcoin' : ''}" id="bookmark-btn">${svgBookmark} ${post.isBookmarked ? t('unbookmark') : t('bookmark')}</button>` : ''}
             </div>
             <div class="article-prose text-sm text-gray-300 leading-relaxed whitespace-pre-wrap">${renderMarkdown(post.body)}</div>
+            ${post.nostrEventId ? `<div class="mt-4 pt-3 border-t border-gray-800/30"><a href="https://njump.me/${post.nostrEventId}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-[11px] text-purple-400 hover:text-purple-300 font-mono"><span>⚡</span> ${t('view_on_nostr')}</a></div>` : ''}
           </div>
         </div>
       </article>
@@ -775,6 +779,7 @@
               <div class="text-white font-semibold flex items-center gap-2" id="profile-name">${esc(displayName)}${profile.isAdmin ? ' <span class="text-[10px] px-1 py-0.5 rounded bg-bitcoin/20 text-bitcoin font-bold leading-none">ADMIN</span>' : ''}</div>
               <div class="text-xs text-gray-500 font-mono">${shortKey(pubkey)}</div>
               <div class="text-xs text-gray-600 mt-1">${profile.postCount} ${t('tab_posts')} · ${profile.commentCount} ${t('tab_comments')}</div>
+              <div id="nostr-pubkey-row" class="hidden text-xs text-gray-600 mt-1 flex items-center gap-1"><span class="text-purple-400">⚡</span> <span id="nostr-npub" class="font-mono"></span> <button id="nostr-copy" class="text-[10px] px-1.5 py-0.5 rounded bg-gray-800 hover:bg-gray-700 text-gray-400">${t('copy')}</button></div>
             </div>
           </div>
           ${isOwner ? `
@@ -804,6 +809,28 @@
       </div>
       ${pg && pg.totalPages > 1 ? myPagHtml(pg, base + '/' + tab) : ''}
     `;
+
+    // Nostr pubkey display (fetch async)
+    if (isOwner) {
+      api('/nostr/me').then(function(data) {
+        if (data && data.npub) {
+          var row = document.getElementById('nostr-pubkey-row');
+          var npubEl = document.getElementById('nostr-npub');
+          if (row && npubEl) {
+            row.classList.remove('hidden');
+            npubEl.textContent = data.npub.slice(0, 12) + '…' + data.npub.slice(-6);
+            npubEl.title = data.npub;
+            document.getElementById('nostr-copy').addEventListener('click', function(e) {
+              e.preventDefault();
+              navigator.clipboard.writeText(data.npub).then(function() {
+                e.target.textContent = t('copied');
+                setTimeout(function() { e.target.textContent = t('copy'); }, 1500);
+              });
+            });
+          }
+        }
+      }).catch(function() { /* Nostr not configured or error — hide silently */ });
+    }
 
     // Nickname save (owner only)
     if (isOwner) {
