@@ -1454,9 +1454,30 @@ details[open] > *:not(summary) {
 }
 
 /* Book grid responsive */
-@media (max-width: 479px) {
+@media (max-width: 639px) {
   .book-grid {
-    grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
+    column-gap: 0.5rem;
+  }
+  .book-title {
+    font-size: 0.65rem;
+  }
+  .book-author {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 379px) {
+  .book-grid {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 0.4rem;
+  }
+  .book-title,
+  .book-author {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 }
 
@@ -2401,7 +2422,7 @@ body.theme-transition *::after {
     body { font-size: 13px; }
     .container { padding: 0 10px; }
     .bento-grid { gap: 8px; padding: 10px; }
-    .book-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .book-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .post-card { padding: 12px; }
     .hero-title { font-size: 1.4rem; }
     .nav-logo { font-size: 1rem; }
