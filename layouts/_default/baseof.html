@@ -117,7 +117,7 @@
     gtag('js', new Date());
     gtag('config', 'G-V5NL9WRTYR');
   </script>
-  <script src="https://apps.txid.uk/global-nav.js" integrity="sha384-yxxlCQmTpGUKXOJDoou1pbzCcwLCEd+pipHpYIJrcEIJnPbIPCFkpE9H+J0ej0rz" crossorigin="anonymous" defer></script>
+  <script src="https://apps.txid.uk/global-nav.js" integrity="sha384-8YEG3Yg7ZrFV5M8mA31L+UYxU3BPV3eZdHUpgNi66QqsrwaoDzJFrtHMT9Jx6gAs" crossorigin="anonymous" defer></script>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col">
   <div class="scroll-progress" id="scrollProgress"></div>
@@ -189,7 +189,7 @@
   {{ $minit := resources.Get "js/mermaid-init.js" | minify | fingerprint "sha512" }}
   <script src="{{ $minit.RelPermalink }}" integrity="{{ $minit.Data.Integrity }}" defer></script>
 {{ end }}
-<script src="https://api.txid.uk/txid-auth.js" integrity="sha384-4ypSrxWWAoLM4G84SC4K19d3wyPo9ri3Ch6Dc1t5i46IIWCW2WWlnGm4GtDB77Mk" crossorigin="anonymous" defer></script>
+<script src="https://api.txid.uk/txid-auth.js" integrity="sha384-p5wx3c2Q93oNS7uBGaHC3S2vyK2gzVuHQ6bXne1l/mL9Yk3TpwgOoI9wdsRnr675" crossorigin="anonymous" defer></script>
 <script>
 (function(){
   if(!("serviceWorker"in navigator))return;
