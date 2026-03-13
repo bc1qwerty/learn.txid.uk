@@ -1357,19 +1357,22 @@ details[open] > *:not(summary) {
    9. BOOK GRID (bento tile)
    ============================================================ */
 .book-grid {
-  display: flex;
-  gap: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+  grid-template-rows: auto;
+  grid-auto-rows: 0;
+  gap: 0.75rem 0.75rem;
   overflow: hidden;
 }
 
 .book-grid.expanded {
-  flex-wrap: wrap;
+  grid-auto-rows: auto;
 }
 
 .book-card {
   display: flex;
   flex-direction: column;
-  flex: 0 0 5.5rem;
+  min-width: 0;
   gap: 0.4rem;
   text-decoration: none;
   color: inherit;
@@ -1451,10 +1454,8 @@ details[open] > *:not(summary) {
 
 /* Book grid responsive */
 @media (max-width: 639px) {
-  .book-card {
-    flex: 0 0 4.5rem;
-  }
   .book-grid {
+    grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
     gap: 0.5rem;
   }
   .book-title {
@@ -2406,8 +2407,7 @@ body.theme-transition *::after {
     body { font-size: 13px; }
     .container { padding: 0 10px; }
     .bento-grid { gap: 8px; padding: 10px; }
-    .book-grid { gap: 6px; }
-    .book-card { flex: 0 0 4rem; }
+    .book-grid { grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); gap: 6px; }
     .post-card { padding: 12px; }
     .hero-title { font-size: 1.4rem; }
     .nav-logo { font-size: 1rem; }
