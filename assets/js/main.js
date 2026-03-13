@@ -1104,12 +1104,83 @@ const LearnProgress = (() => {
 
 // ── PWA Install Prompt ──
 var _deferredInstallPrompt = null;
+var PWA_DISMISS_KEY = 'pwa-banner-dismissed';
+
 window.addEventListener('beforeinstallprompt', function(e) {
   e.preventDefault();
   _deferredInstallPrompt = e;
+  // Show header icon
   var btn = document.getElementById('pwa-install-btn');
   if (btn) btn.classList.remove('hidden');
+  // Show banner (unless previously dismissed)
+  showPwaBanner();
 });
+
+function showPwaBanner() {
+  if (!_deferredInstallPrompt) return;
+  var dismissed = safeGet(PWA_DISMISS_KEY);
+  if (dismissed) return; // user clicked "나중에"
+  // Don't show if already in standalone mode
+  if (window.matchMedia('(display-mode: standalone)').matches) return;
+
+  var existing = document.getElementById('pwa-install-banner');
+  if (existing) return;
+
+  var lang = document.documentElement.lang || 'ko';
+  var texts = {
+    ko: { title: 'TXID 앱 설치', desc: '홈 화면에 추가하면 더 빠르게 접속할 수 있습니다.', install: '설치', later: '나중에' },
+    en: { title: 'Install TXID App', desc: 'Add to home screen for faster access.', install: 'Install', later: 'Later' },
+    ja: { title: 'TXIDアプリをインストール', desc: 'ホーム画面に追加して素早くアクセス。', install: 'インストール', later: '後で' }
+  };
+  var t = texts[lang] || texts.ko;
+
+  var banner = document.createElement('div');
+  banner.id = 'pwa-install-banner';
+  banner.className = 'pwa-install-banner';
+  banner.innerHTML =
+    '<div class="pwa-banner-inner">' +
+      '<div class="pwa-banner-icon"><svg width="24" height="24" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" fill="#f7931a"/><rect x="18.5" y="1" width="3" height="38" fill="#0d1117"/><rect x="10" y="18.5" width="29" height="3" fill="#0d1117"/><rect x="1" y="18.5" width="6" height="3" fill="#0d1117"/></svg></div>' +
+      '<div class="pwa-banner-text"><strong>' + t.title + '</strong><span>' + t.desc + '</span></div>' +
+      '<div class="pwa-banner-actions">' +
+        '<button class="pwa-banner-install" id="pwa-banner-install-btn">' + t.install + '</button>' +
+        '<button class="pwa-banner-later" id="pwa-banner-later-btn">' + t.later + '</button>' +
+      '</div>' +
+    '</div>';
+
+  document.body.appendChild(banner);
+  // Animate in
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() { banner.classList.add('pwa-banner-visible'); });
+  });
+
+  document.getElementById('pwa-banner-install-btn').addEventListener('click', function() {
+    installPWA();
+    dismissPwaBanner(true);
+  });
+  document.getElementById('pwa-banner-later-btn').addEventListener('click', function() {
+    dismissPwaBanner(false);
+  });
+}
+
+function dismissPwaBanner(installed) {
+  var banner = document.getElementById('pwa-install-banner');
+  if (banner) {
+    banner.classList.remove('pwa-banner-visible');
+    setTimeout(function() { banner.remove(); }, 300);
+  }
+  if (!installed) {
+    // Dismiss for 7 days
+    safeSet(PWA_DISMISS_KEY, String(Date.now() + 7 * 86400000));
+  }
+}
+
+// Check if dismiss has expired
+(function() {
+  var dismissed = safeGet(PWA_DISMISS_KEY);
+  if (dismissed && Number(dismissed) < Date.now()) {
+    try { localStorage.removeItem(PWA_DISMISS_KEY); } catch(e) {}
+  }
+})();
 
 window.installPWA = function() {
   if (!_deferredInstallPrompt) return;
@@ -1118,6 +1189,7 @@ window.installPWA = function() {
     _deferredInstallPrompt = null;
     var btn = document.getElementById('pwa-install-btn');
     if (btn) btn.classList.add('hidden');
+    dismissPwaBanner(true);
   });
 };
 
@@ -1125,6 +1197,7 @@ window.addEventListener('appinstalled', function() {
   _deferredInstallPrompt = null;
   var btn = document.getElementById('pwa-install-btn');
   if (btn) btn.classList.add('hidden');
+  dismissPwaBanner(true);
 });
 
 // Initialize on page load

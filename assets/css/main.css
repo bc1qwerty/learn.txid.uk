@@ -2697,3 +2697,111 @@ img:not([alt]) {
 .info-box-tip .info-box-icon { color: #3fb950; }
 .info-box-warning { border-color: #f7931a; background: rgba(247,147,26,0.06); }
 .info-box-warning .info-box-icon { color: #f7931a; }
+
+/* ============================================================
+   PWA INSTALL BANNER
+   ============================================================ */
+.pwa-install-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 1rem 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+.pwa-install-banner.pwa-banner-visible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.pwa-banner-inner {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 14px;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+}
+.pwa-banner-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pwa-banner-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pwa-banner-text strong {
+  font-size: 0.875rem;
+  color: #e6edf3;
+}
+.pwa-banner-text span {
+  font-size: 0.75rem;
+  color: #8b949e;
+  line-height: 1.3;
+}
+.pwa-banner-actions {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pwa-banner-install {
+  padding: 6px 16px;
+  background: #f7931a;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.pwa-banner-install:hover { background: #ffab40; }
+.pwa-banner-later {
+  padding: 4px 16px;
+  background: none;
+  color: #8b949e;
+  font-size: 0.7rem;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.pwa-banner-later:hover { color: #e6edf3; }
+
+/* Light theme */
+[data-theme='light'] .pwa-banner-inner {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+}
+[data-theme='light'] .pwa-banner-text strong { color: #111827; }
+[data-theme='light'] .pwa-banner-text span { color: #6b7280; }
+[data-theme='light'] .pwa-banner-later { color: #9ca3af; }
+[data-theme='light'] .pwa-banner-later:hover { color: #374151; }
+
+/* Shift banner up when appbar is visible */
+@media (min-width: 769px) {
+  .pwa-install-banner { bottom: 70px; }
+}
+
+/* Mobile: compact layout */
+@media (max-width: 480px) {
+  .pwa-banner-inner { gap: 10px; padding: 12px; }
+  .pwa-banner-icon { width: 32px; height: 32px; }
+  .pwa-banner-icon svg { width: 20px; height: 20px; }
+}
