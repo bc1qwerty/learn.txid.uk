@@ -2525,10 +2525,12 @@ h4.md-h { font-size: .9rem; }
    ACCESSIBILITY IMPROVEMENTS
    ============================================================ */
 
-/* Minimum touch target size (WCAG 2.5.8 Target Size) */
-button,
+/* Minimum touch target size (WCAG 2.5.8 Target Size)
+   — 헤더 아이콘 버튼(.nav-icon-btn, .lang-btn, .theme-btn, .nav-hamburger-btn)은
+     자체 크기(32px)를 유지하므로 제외 */
 a.nav-link,
 .mobile-menu a,
+.mobile-menu-link,
 .tag-chip,
 .cmd-result,
 .sidebar-link,
