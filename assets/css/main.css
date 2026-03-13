@@ -1357,23 +1357,19 @@ details[open] > *:not(summary) {
    9. BOOK GRID (bento tile)
    ============================================================ */
 .book-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
-  column-gap: 0.75rem;
-  row-gap: 0;
-  grid-template-rows: auto;
-  grid-auto-rows: 0;
+  display: flex;
+  gap: 0.75rem;
   overflow: hidden;
 }
 
 .book-grid.expanded {
-  grid-auto-rows: auto;
-  row-gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .book-card {
   display: flex;
   flex-direction: column;
+  flex: 0 0 5.5rem;
   gap: 0.4rem;
   text-decoration: none;
   color: inherit;
@@ -1455,29 +1451,17 @@ details[open] > *:not(summary) {
 
 /* Book grid responsive */
 @media (max-width: 639px) {
+  .book-card {
+    flex: 0 0 4.5rem;
+  }
   .book-grid {
-    grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr));
-    column-gap: 0.5rem;
+    gap: 0.5rem;
   }
   .book-title {
     font-size: 0.65rem;
   }
   .book-author {
     font-size: 0.6rem;
-  }
-}
-
-@media (max-width: 379px) {
-  .book-grid {
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 0.4rem;
-  }
-  .book-title,
-  .book-author {
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
   }
 }
 
@@ -2422,7 +2406,8 @@ body.theme-transition *::after {
     body { font-size: 13px; }
     .container { padding: 0 10px; }
     .bento-grid { gap: 8px; padding: 10px; }
-    .book-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .book-grid { gap: 6px; }
+    .book-card { flex: 0 0 4rem; }
     .post-card { padding: 12px; }
     .hero-title { font-size: 1.4rem; }
     .nav-logo { font-size: 1rem; }
