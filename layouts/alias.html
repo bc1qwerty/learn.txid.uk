@@ -1,14 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-language" content="ko">
+<title>TXID — 비트코인을 제대로 배우는 곳</title>
+<meta name="description" content="오스트리아 경제학과 자유주의 사상으로 비트코인의 본질을 풀어내는 학습 사이트. 건전 화폐, 자유 시장, 개인 주권.">
+<link rel="canonical" href="https://learn.txid.uk/ko/">
+<link rel="alternate" hreflang="ko" href="https://learn.txid.uk/ko/">
+<link rel="alternate" hreflang="en" href="https://learn.txid.uk/en/">
+<link rel="alternate" hreflang="ja" href="https://learn.txid.uk/ja/">
+<link rel="alternate" hreflang="x-default" href="https://learn.txid.uk/en/">
+<meta property="og:title" content="TXID — 비트코인을 제대로 배우는 곳">
+<meta property="og:description" content="오스트리아 경제학과 자유주의 사상으로 비트코인의 본질을 풀어내는 학습 사이트.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://learn.txid.uk/ko/">
+<meta property="og:image" content="https://learn.txid.uk/images/txid-og-image.png">
+<meta property="og:site_name" content="TXID">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="ja_JP">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"TXID","url":"https://learn.txid.uk/","description":"오스트리아 경제학과 자유주의 사상으로 비트코인의 본질을 풀어내는 학습 사이트.","inLanguage":["ko","en","ja"],"publisher":{"@type":"Organization","name":"txid","logo":"https://learn.txid.uk/favicon.svg"}}
+</script>
 <script>
 (function() {
-  // 이미 언어 서브디렉토리에 있으면 아무것도 하지 않음
   var path = window.location.pathname;
   if (/^\/(ko|en|ja)(\/|$)/.test(path)) return;
 
-  // localStorage에 저장된 언어 우선 사용
   var saved = null;
   try { saved = localStorage.getItem('preferred-lang'); } catch(e) {}
   if (saved === 'en' || saved === 'ja' || saved === 'ko') {
@@ -16,9 +35,8 @@
     return;
   }
 
-  // 브라우저 언어 감지
   var langs = navigator.languages || [navigator.language || navigator.userLanguage || 'en'];
-  var dest = '/en/'; // default: English
+  var dest = '/en/';
   for (var i = 0; i < langs.length; i++) {
     var l = langs[i].toLowerCase();
     if (l.startsWith('ko')) { dest = '/ko/'; break; }
@@ -28,8 +46,16 @@
   window.location.replace(dest);
 })();
 </script>
-<meta http-equiv="refresh" content="0; url={{ .Permalink }}">
-<title>Redirecting...</title>
+<noscript><meta http-equiv="refresh" content="0; url=https://learn.txid.uk/en/"></noscript>
+<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:0 auto;padding:4rem 1rem;text-align:center;color:#e4e4e7;background:#09090b}h1{font-size:1.5rem;margin-bottom:1rem}p{color:#a1a1aa;line-height:1.6;margin-bottom:2rem}nav a{margin:0 .75rem;color:#f7931a;text-decoration:none}nav a:hover{text-decoration:underline}</style>
 </head>
-<body></body>
+<body>
+<h1>TXID — 비트코인을 제대로 배우는 곳</h1>
+<p>오스트리아 경제학과 자유주의 사상으로 비트코인의 본질을 이해하세요. 건전 화폐, 자유 시장, 개인 주권의 의미를 학습합니다.</p>
+<nav>
+  <a href="/ko/">한국어</a>
+  <a href="/en/">English</a>
+  <a href="/ja/">日本語</a>
+</nav>
+</body>
 </html>

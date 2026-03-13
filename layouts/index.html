@@ -1,4 +1,26 @@
 {{ define "main" }}
+{{ if eq .RelPermalink "/" }}
+  {{/* 루트 랜딩: 봇용 한국어 콘텐츠 + 브라우저 언어감지 리다이렉트 */}}
+  <div class="max-w-3xl mx-auto px-4 py-20 text-center">
+    <h1 class="text-3xl font-bold mb-4">TXID — 비트코인을 제대로 배우는 곳</h1>
+    <p class="text-lg text-gray-400 mb-8">
+      오스트리아 경제학과 자유주의 사상으로 비트코인의 본질을 이해하세요.
+      건전 화폐, 자유 시장, 개인 주권의 의미를 학습합니다.
+    </p>
+    <nav class="flex justify-center gap-6 text-sm">
+      <a href="/ko/" class="text-bitcoin font-bold">한국어</a>
+      <a href="/en/" class="text-gray-400 hover:text-white transition-colors">English</a>
+      <a href="/ja/" class="text-gray-400 hover:text-white transition-colors">日本語</a>
+    </nav>
+  </div>
+  <script>
+    (function(){
+      var l = (navigator.language || '').slice(0,2);
+      var m = {ko:'/ko/',ja:'/ja/',en:'/en/'};
+      location.replace(m[l] || '/en/');
+    })();
+  </script>
+{{ else }}
     <div class="max-w-5xl mx-auto px-4 sm:px-6">
         {{- partial "hero.html" . -}}
         <div class="bento-grid">
@@ -39,4 +61,5 @@
             </div>
         </div>
     </div>
+{{ end }}
 {{ end }}

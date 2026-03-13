@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}" data-theme="{{ site.Params.defaultTheme | default "dark" }}" class="scroll-smooth">
+<html lang="{{ if eq .RelPermalink "/" }}ko{{ else }}{{ .Site.LanguageCode }}{{ end }}" data-theme="{{ site.Params.defaultTheme | default "dark" }}" class="scroll-smooth">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -25,9 +25,16 @@
   <!-- SEO -->
   {{- $description := .Description | default site.Params.description -}}
   {{- $ogImage := .Params.cover | default .Params.image | default site.Params.ogImage | absURL -}}
+  {{- if eq .RelPermalink "/" }}
+  <meta http-equiv="content-language" content="ko">
+  <meta name="description" content="{{ $description }}">
+  <meta name="author" content="{{ site.Params.author }}">
+  <link rel="canonical" href="{{ site.BaseURL }}ko/">
+  {{- else }}
   <meta name="description" content="{{ $description }}">
   <meta name="author" content="{{ site.Params.author }}">
   <link rel="canonical" href="{{ .Permalink }}">
+  {{- end }}
 
   <!-- Open Graph -->
   <meta property="og:title" content="{{ .Title }}">
@@ -35,6 +42,17 @@
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:image" content="{{ $ogImage }}">
+  <meta property="og:site_name" content="{{ site.Title }}">
+  {{- $localeMap := dict "ko" "ko_KR" "en" "en_US" "ja" "ja_JP" }}
+  <meta property="og:locale" content="{{ index $localeMap .Lang | default "en_US" }}">
+  {{- range .Translations }}
+  <meta property="og:locale:alternate" content="{{ index $localeMap .Lang }}">
+  {{- end }}
+  {{- if .IsPage }}
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+  {{- if not .Lastmod.IsZero }}<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+  {{- with .Params.tags }}{{ range . }}<meta property="article:tag" content="{{ . }}">{{ end }}{{ end }}
+  {{- end }}
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -51,12 +69,12 @@
   {{ range .AllTranslations }}
   <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
   {{ end }}
-  <link rel="alternate" hreflang="x-default" href="{{ with .Translations }}{{ range . }}{{ if eq .Lang "en" }}{{ .Permalink }}{{ end }}{{ end }}{{ else }}{{ site.BaseURL }}en/{{ end }}">
+  <link rel="alternate" hreflang="x-default" href="{{ site.BaseURL }}en/">
 
   <!-- Schema.org -->
   <script type="application/ld+json">
   {{ if .IsHome -}}
-  {"@context":"https://schema.org","@type":"WebSite","name":{{ site.Title | jsonify | safeJS }},"url":{{ site.BaseURL | jsonify | safeJS }},"description":{{ site.Params.description | jsonify | safeJS }},"publisher":{"@type":"Organization","name":{{ site.Params.author | jsonify | safeJS }},"logo":{{ (print site.BaseURL "favicon.svg") | jsonify | safeJS }}}}
+  {"@context":"https://schema.org","@type":"WebSite","name":{{ site.Title | jsonify | safeJS }},"url":{{ site.BaseURL | jsonify | safeJS }},"description":{{ site.Params.description | jsonify | safeJS }},"inLanguage":["ko","en","ja"],"publisher":{"@type":"Organization","name":{{ site.Params.author | jsonify | safeJS }},"logo":{{ (print site.BaseURL "favicon.svg") | jsonify | safeJS }}}}
   {{- else if and .IsPage (not (or (eq .Section "blog") (eq .Section "learn"))) -}}
   {"@context":"https://schema.org","@type":"Article","headline":{{ .Title | jsonify | safeJS }},"description":{{ $description | jsonify | safeJS }},"datePublished":{{ .Date.Format "2006-01-02" | jsonify | safeJS }},"image":{{ $ogImage | jsonify | safeJS }},"author":{"@type":"Person","name":{{ site.Params.author | jsonify | safeJS }},"url":{{ site.BaseURL | jsonify | safeJS }}},"url":{{ .Permalink | jsonify | safeJS }}}
   {{- else -}}

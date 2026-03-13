@@ -2197,8 +2197,8 @@ body.theme-transition *::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 32px;
-  width: 32px;
+  height: 28px;
+  width: 28px;
   border: 1px solid #30363d;
   background: #21262d;
   color: #8b949e;
@@ -2222,14 +2222,19 @@ body.theme-transition *::after {
 #txid-user-btn.nav-icon-btn svg {
   flex-shrink: 0;
 }
+/* txid-auth.js 로그인 버튼 높이 오버라이드 */
+.txid-auth-user-btn {
+  height: 28px !important;
+  font-size: .7rem !important;
+}
 
 /* ── 햄버거 버튼 (모바일만) ── */
 .nav-hamburger-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
   color: #9ca3af;
   background: none;
   border: none;
