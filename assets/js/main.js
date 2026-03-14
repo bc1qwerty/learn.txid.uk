@@ -2,6 +2,13 @@
 function safeGet(key) { try { return localStorage.getItem(key); } catch(e) { return null; } }
 function safeSet(key, val) { try { localStorage.setItem(key, val); } catch(e) {} }
 
+// ── bfcache restoration fix (mobile back/forward) ──
+window.addEventListener('pageshow', function(event) {
+  if (event.persisted) {
+    window.location.reload();
+  }
+});
+
 // ── Theme Toggle ──
 var THEME_COLORS = { dark: '#09090b', light: '#fafafa' };
 var html = document.documentElement;
