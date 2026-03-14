@@ -1094,13 +1094,14 @@ details[open] > *:not(summary) {
   right: -4px;
   font-size: .5rem;
   background: #3fb950;
-  color: #fff;
+  color: #0d1117;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
 }
 
 /* Learn path step done state */
@@ -2718,6 +2719,11 @@ img:not([alt]) {
 .info-box-warning { border-color: #f7931a; background: rgba(247,147,26,0.06); }
 .info-box-warning .info-box-icon { color: #f7931a; }
 
+/* Info box — light theme: darken icons for contrast on white bg */
+[data-theme='light'] .info-box-info .info-box-icon { color: #1a73e8; }
+[data-theme='light'] .info-box-tip .info-box-icon { color: #1a7f37; }
+[data-theme='light'] .info-box-warning .info-box-icon { color: #cf7a0e; }
+
 /* ============================================================
    PWA INSTALL BANNER
    ============================================================ */
@@ -2781,7 +2787,7 @@ img:not([alt]) {
 .pwa-banner-install {
   padding: 6px 16px;
   background: #f7931a;
-  color: #fff;
+  color: #0d1117;
   font-size: 0.8rem;
   font-weight: 600;
   border: none;
