@@ -91,7 +91,6 @@
       '<button id="nip05-reg-btn" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_register') + '</button>' +
       '</div>' +
       '<div id="nip05-status" class="text-[10px] mt-1 h-4"></div>' +
-      '<div class="mt-2 text-[9px] text-gray-500">' + t('nip05_premium_link') + '</div>' +
       '</div>';
 
     var input = document.getElementById('nip05-input');
