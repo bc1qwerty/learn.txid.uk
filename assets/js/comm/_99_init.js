@@ -37,6 +37,22 @@
     await safeRoute();
     window.addEventListener('hashchange', safeRoute);
 
+    // Intercept community nav link clicks while already on community page
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest('a[href]');
+      if (!a) return;
+      var href = a.getAttribute('href');
+      if (!href || !/\/community\/#/.test(href)) return;
+      if (!document.getElementById('community-app')) return;
+      e.preventDefault();
+      var hash = href.split('#')[1] || '';
+      if (location.hash === '#' + hash) {
+        safeRoute();
+      } else {
+        location.hash = hash;
+      }
+    });
+
     // Re-render once auth resolves (shows login-dependent UI)
     authDone.then(function() {
       if (currentUser) safeRoute();
