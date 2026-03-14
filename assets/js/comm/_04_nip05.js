@@ -76,6 +76,8 @@
       '<div class="text-yellow-400 font-semibold">' + t('nip05_price_promo') + '</div>' +
       '<div class="mt-1 text-gray-400">' + t('nip05_price_original') + ': <span class="line-through">10,000 sats</span>/' + t('nip05_sats').replace('sats/', '') + '</div>' +
       '<div class="text-green-400 font-bold">' + t('nip05_price_now') + ': 5,000 sats/' + t('nip05_sats').replace('sats/', '') + '</div>' +
+      '<div class="mt-1 text-gray-500 text-[9px]">' + t('nip05_5plus_only') + '</div>' +
+      '<div class="mt-1"><a href="https://id.txid.uk" target="_blank" rel="noopener" class="inline-block text-purple-400 hover:text-purple-300 underline text-[9px]">' + t('nip05_premium_link') + ' &rarr;</a></div>' +
       '</div>';
   }
 
@@ -90,6 +92,7 @@
       '<button id="nip05-reg-btn" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_register') + '</button>' +
       '</div>' +
       '<div id="nip05-status" class="text-[10px] mt-1 h-4"></div>' +
+      '<div class="mt-2 text-[9px] text-gray-600">' + t('nip05_premium_link') + ' <a href="https://id.txid.uk" target="_blank" rel="noopener" class="text-purple-400 hover:text-purple-300 underline">id.txid.uk &rarr;</a></div>' +
       '</div>';
 
     var input = document.getElementById('nip05-input');
@@ -119,7 +122,7 @@
       '<div class="text-[10px] text-gray-400 mt-1">' + t('nip05_confirm_msg') + '</div>' +
       '<div class="mt-2 p-3 rounded bg-gray-800/40 border border-gray-700/50">' +
         '<div class="text-sm text-white font-mono">' + esc(identifier) + '</div>' +
-        '<div class="text-[10px] text-gray-400 mt-1">' + t('nip05_plan') + ' · 5,000 sats</div>' +
+        '<div class="text-[10px] text-gray-400 mt-1">' + t('nip05_plan') + ' · <span class="line-through text-gray-600">10,000</span> <span class="text-green-400 font-bold">5,000 sats</span></div>' +
       '</div>' +
       '<div class="flex gap-2 mt-3">' +
         '<button id="nip05-confirm-btn" class="comm-btn-primary" style="padding:5px 14px;font-size:.75rem">⚡ ' + t('nip05_confirm_proceed') + '</button>' +
@@ -196,7 +199,7 @@
       '<div class="text-[10px] text-gray-400 mt-1">' + t('nip05_confirm_msg') + '</div>' +
       '<div class="mt-2 p-3 rounded bg-gray-800/40 border border-gray-700/50">' +
         '<div class="text-sm text-white">' + t('nip05_renew') + ' (+1' + t('nip05_sats') + ')</div>' +
-        '<div class="text-[10px] text-gray-400 mt-1">5,000 sats</div>' +
+        '<div class="text-[10px] text-gray-400 mt-1"><span class="line-through text-gray-600">10,000</span> <span class="text-green-400 font-bold">5,000 sats</span></div>' +
       '</div>' +
       '<div class="flex gap-2 mt-3">' +
         '<button id="nip05-renew-confirm" class="comm-btn-primary" style="padding:5px 14px;font-size:.75rem">⚡ ' + t('nip05_confirm_proceed') + '</button>' +

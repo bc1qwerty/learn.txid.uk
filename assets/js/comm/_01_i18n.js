@@ -39,6 +39,8 @@
       nip05_price_promo: '🔥 기간한정 할인 중!', nip05_price_original: '정가', nip05_price_now: '할인가',
       nip05_confirm: '결제 확인', nip05_confirm_msg: '아래 내용으로 등록합니다.',
       nip05_confirm_proceed: '결제 진행', nip05_not_purchased: '미구매',
+      nip05_5plus_only: '※ 여기서는 5글자 이상 유저네임만 등록 가능 (5,000 sats/년)',
+      nip05_premium_link: '프리미엄 유저네임(1~4자)은 id.txid.uk에서 등록',
     },
     en: {
       boards: 'Boards', newPost: 'New Post', login_required: 'Lightning login required',
@@ -79,6 +81,8 @@
       nip05_price_promo: '🔥 Limited-time discount!', nip05_price_original: 'Regular', nip05_price_now: 'Now',
       nip05_confirm: 'Confirm', nip05_confirm_msg: 'You are registering the following.',
       nip05_confirm_proceed: 'Proceed to Payment', nip05_not_purchased: 'Not purchased',
+      nip05_5plus_only: '※ Only 5+ character usernames available here (5,000 sats/year)',
+      nip05_premium_link: 'Premium usernames (1-4 chars) available at id.txid.uk',
     },
     ja: {
       boards: '掲示板', newPost: '新規投稿', login_required: 'Lightningログインが必要です',
@@ -119,6 +123,8 @@
       nip05_price_promo: '🔥 期間限定割引中！', nip05_price_original: '定価', nip05_price_now: '割引価格',
       nip05_confirm: '確認', nip05_confirm_msg: '以下の内容で登録します。',
       nip05_confirm_proceed: '支払いへ進む', nip05_not_purchased: '未購入',
+      nip05_5plus_only: '※ ここでは5文字以上のユーザー名のみ登録可能 (5,000 sats/年)',
+      nip05_premium_link: 'プレミアムユーザー名(1〜4文字)はid.txid.ukで登録',
     },
   };
   const t = (k) => (T[LANG] || T.ko)[k] || k;
