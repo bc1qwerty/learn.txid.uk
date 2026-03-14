@@ -76,8 +76,7 @@
       '<div class="text-yellow-400 font-semibold">' + t('nip05_price_promo') + '</div>' +
       '<div class="mt-1 text-gray-400">' + t('nip05_price_original') + ': <span class="line-through">10,000 sats</span>/' + t('nip05_sats').replace('sats/', '') + '</div>' +
       '<div class="text-green-400 font-bold">' + t('nip05_price_now') + ': 5,000 sats/' + t('nip05_sats').replace('sats/', '') + '</div>' +
-      '<div class="mt-1 text-gray-500 text-[9px]">' + t('nip05_5plus_only') + '</div>' +
-      '<div class="mt-1"><a href="https://id.txid.uk" target="_blank" rel="noopener" class="inline-block text-purple-400 hover:text-purple-300 underline text-[9px]">' + t('nip05_premium_link') + ' &rarr;</a></div>' +
+      '<div class="mt-1 text-[9px] text-gray-500">' + t('nip05_premium_link') + '</div>' +
       '</div>';
   }
 
@@ -87,12 +86,12 @@
       '<div class="text-[10px] text-gray-600 mt-0.5">' + t('nip05_not_purchased') + '</div>' +
       nip05PriceHtml() +
       '<div class="flex gap-2 items-center mt-2">' +
-      '<input id="nip05-input" class="comm-input" style="max-width:140px;padding:5px 8px;font-size:.78rem" placeholder="' + t('nip05_username') + '" maxlength="16">' +
+      '<input id="nip05-input" class="comm-input" style="max-width:140px;padding:5px 8px;font-size:.78rem" placeholder="' + t('nip05_username') + '" minlength="5" maxlength="16">' +
       '<span class="text-xs text-gray-500">@txid.uk</span>' +
       '<button id="nip05-reg-btn" class="comm-btn-primary" style="padding:5px 12px;font-size:.75rem">' + t('nip05_register') + '</button>' +
       '</div>' +
       '<div id="nip05-status" class="text-[10px] mt-1 h-4"></div>' +
-      '<div class="mt-2 text-[9px] text-gray-600">' + t('nip05_premium_link') + ' <a href="https://id.txid.uk" target="_blank" rel="noopener" class="text-purple-400 hover:text-purple-300 underline">id.txid.uk &rarr;</a></div>' +
+      '<div class="mt-2 text-[9px] text-gray-500">' + t('nip05_premium_link') + '</div>' +
       '</div>';
 
     var input = document.getElementById('nip05-input');
@@ -105,7 +104,7 @@
       status.textContent = '';
       status.className = 'text-[10px] mt-1 h-4';
 
-      if (username.length < 3 || !/^[a-z0-9][a-z0-9_-]*[a-z0-9]$/.test(username)) {
+      if (username.length < 5 || !/^[a-z0-9][a-z0-9_-]*[a-z0-9]$/.test(username)) {
         status.textContent = t('nip05_invalid');
         status.className = 'text-[10px] mt-1 h-4 text-red-400';
         return;
