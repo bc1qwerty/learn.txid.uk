@@ -41,8 +41,8 @@ graph LR
     S3 --> S4["4단계<br/>작업증명"]
     S4 --> S5["5단계<br/>반감기"]
     S5 --> S6["6단계<br/>사토시 나카모토"]
-    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
-    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+    style S1 fill:#f7931a,stroke:#f7931a,color:#000
+    style S6 fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 사전 지식은 필요 없습니다. 호기심과 40분이면 충분합니다.

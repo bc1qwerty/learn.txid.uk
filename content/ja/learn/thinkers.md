@@ -41,9 +41,9 @@ graph LR
     MI --> R["ロスバード<br/>1926-1995"]
     style B fill:#21262d,stroke:#f7931a,color:#e6edf3
     style M fill:#21262d,stroke:#f7931a,color:#e6edf3
-    style MI fill:#f7931a,stroke:#f7931a,color:#fff
-    style H fill:#f7931a,stroke:#f7931a,color:#fff
-    style R fill:#f7931a,stroke:#f7931a,color:#fff
+    style MI fill:#f7931a,stroke:#f7931a,color:#000
+    style H fill:#f7931a,stroke:#f7931a,color:#000
+    style R fill:#f7931a,stroke:#f7931a,color:#000
 {{< /mermaid >}}
 
 このコースでは、その系譜を時系列で辿ります。終わる頃には、名前を知るだけでなく、各世代がどのように先人の仕事を受け継ぎ、批判し、さらに発展させたかが理解できるでしょう。

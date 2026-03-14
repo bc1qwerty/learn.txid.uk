@@ -41,8 +41,8 @@ graph LR
     S3 --> S4["4단계<br/>자생적 질서"]
     S4 --> S5["5단계<br/>합법적 약탈"]
     S5 --> S6["6단계<br/>칸티용 효과"]
-    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
-    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+    style S1 fill:#f7931a,stroke:#f7931a,color:#000
+    style S6 fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 비트코인과 경제학 코스를 마치고 오시면 더 좋지만, 여기서 먼저 시작해도 괜찮습니다.

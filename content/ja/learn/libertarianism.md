@@ -41,8 +41,8 @@ graph LR
     S3 --> S4["ステップ4<br/>自生的秩序"]
     S4 --> S5["ステップ5<br/>合法的略奪"]
     S5 --> S6["ステップ6<br/>カンティヨン効果"]
-    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
-    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+    style S1 fill:#f7931a,stroke:#f7931a,color:#000
+    style S6 fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 ビットコインと経済学のコースを終えてからだとベストですが、ここから始めても全く問題ありません。

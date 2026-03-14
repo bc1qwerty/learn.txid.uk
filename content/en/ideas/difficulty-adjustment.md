@@ -20,8 +20,8 @@ graph TD
     F --> H["Maintains 10-min Block Interval"]
     G --> H
     D --> H
-    style B fill:#f7931a,stroke:#f7931a,color:#fff
-    style H fill:#3fb950,stroke:#3fb950,color:#fff
+    style B fill:#f7931a,stroke:#f7931a,color:#000
+    style H fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 ## Difficulty Target and the nBits Field

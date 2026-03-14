@@ -17,9 +17,9 @@ graph LR
     subgraph "SegWitトランザクション"
         B1["バージョン"] --- B2["マーカー+フラグ"] --- B3["入力<br/>(スクリプトのみ)"] --- B4["出力"] --- B5["ウィットネス<br/>(署名分離)"] --- B6["ロックタイム"]
     end
-    style A2 fill:#f85149,stroke:#f85149,color:#fff
-    style B3 fill:#3fb950,stroke:#3fb950,color:#fff
-    style B5 fill:#58a6ff,stroke:#58a6ff,color:#fff
+    style A2 fill:#f85149,stroke:#f85149,color:#000
+    style B3 fill:#3fb950,stroke:#3fb950,color:#000
+    style B5 fill:#58a6ff,stroke:#58a6ff,color:#000
 {{< /mermaid >}}
 
 ## ブロックサイズ戦争の背景 (2015-2017)

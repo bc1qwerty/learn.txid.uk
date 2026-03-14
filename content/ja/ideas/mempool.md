@@ -15,8 +15,8 @@ graph LR
     NODE -->|"伝播"| MEMPOOL["🔄 メムプール<br/>(未確認Tx待機)"]
     MEMPOOL -->|"マイナーが選択<br/>(高手数料優先)"| BLOCK["⛏️ ブロック"]
     BLOCK -->|"検証後追加"| CHAIN["⛓️ ブロックチェーン"]
-    style MEMPOOL fill:#f7931a,stroke:#f7931a,color:#fff
-    style CHAIN fill:#3fb950,stroke:#3fb950,color:#fff
+    style MEMPOOL fill:#f7931a,stroke:#f7931a,color:#000
+    style CHAIN fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 ## トランザクションのライフサイクル

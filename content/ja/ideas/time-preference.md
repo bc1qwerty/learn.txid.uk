@@ -26,9 +26,9 @@ graph TD
     LOW --> L1["貯蓄・投資"]
     LOW --> L2["資本形成"]
     LOW --> L3["長期的繁栄"]
-    style HIGH fill:#f85149,stroke:#f85149,color:#fff
-    style LOW fill:#3fb950,stroke:#3fb950,color:#fff
-    style L3 fill:#f7931a,stroke:#f7931a,color:#fff
+    style HIGH fill:#f85149,stroke:#f85149,color:#000
+    style LOW fill:#3fb950,stroke:#3fb950,color:#000
+    style L3 fill:#f7931a,stroke:#f7931a,color:#000
 {{< /mermaid >}}
 
 ## 時間選好と文明

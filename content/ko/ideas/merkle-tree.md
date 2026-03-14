@@ -32,7 +32,7 @@ graph TD
     H2 --> TX2
     H3 --> TX3
     H4 --> TX4
-    style ROOT fill:#f7931a,stroke:#f7931a,color:#fff
+    style ROOT fill:#f7931a,stroke:#f7931a,color:#000
     style H12 fill:#21262d,stroke:#f7931a,color:#e6edf3
     style H34 fill:#21262d,stroke:#f7931a,color:#e6edf3
     style H1 fill:#161b22,stroke:#30363d,color:#8b949e

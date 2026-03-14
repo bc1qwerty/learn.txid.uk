@@ -41,7 +41,7 @@ graph LR
     MI --> R["로스바드<br/>1926-1995"]
     style B fill:#21262d,stroke:#f7931a,color:#e6edf3
     style M fill:#21262d,stroke:#f7931a,color:#e6edf3
-    style MI fill:#f7931a,stroke:#f7931a,color:#fff
-    style H fill:#f7931a,stroke:#f7931a,color:#fff
-    style R fill:#f7931a,stroke:#f7931a,color:#fff
+    style MI fill:#f7931a,stroke:#f7931a,color:#000
+    style H fill:#f7931a,stroke:#f7931a,color:#000
+    style R fill:#f7931a,stroke:#f7931a,color:#000
 {{< /mermaid >}}

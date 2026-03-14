@@ -112,7 +112,7 @@ graph LR
     TX --> O2
     FEE["手数料: 0.0001 BTC<br/>(入力合計 - 出力合計)"]
     TX -.-> FEE
-    style TX fill:#f7931a,stroke:#f7931a,color:#fff
+    style TX fill:#f7931a,stroke:#f7931a,color:#000
     style FEE fill:none,stroke:none,color:#8b949e
 {{< /mermaid >}}
 

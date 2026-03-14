@@ -31,8 +31,8 @@ graph TD
     SUPPLY --> INFLATION["📈 物価上昇"]
     INFLATION --> TAX["💸 インフレ税<br/>(貯蓄者の購買力低下)"]
     TAX -->|"実質的な富の移転"| GOV
-    style GOV fill:#f85149,stroke:#f85149,color:#fff
-    style TAX fill:#f7931a,stroke:#f7931a,color:#fff
+    style GOV fill:#f85149,stroke:#f85149,color:#000
+    style TAX fill:#f7931a,stroke:#f7931a,color:#000
 {{< /mermaid >}}
 
 ## カンティロン効果

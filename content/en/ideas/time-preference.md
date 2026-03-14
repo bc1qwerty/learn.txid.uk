@@ -26,9 +26,9 @@ graph TD
     LOW --> L1["Save & Invest"]
     LOW --> L2["Capital Formation"]
     LOW --> L3["Long-term Prosperity"]
-    style HIGH fill:#f85149,stroke:#f85149,color:#fff
-    style LOW fill:#3fb950,stroke:#3fb950,color:#fff
-    style L3 fill:#f7931a,stroke:#f7931a,color:#fff
+    style HIGH fill:#f85149,stroke:#f85149,color:#000
+    style LOW fill:#3fb950,stroke:#3fb950,color:#000
+    style L3 fill:#f7931a,stroke:#f7931a,color:#000
 {{< /mermaid >}}
 
 ## Time Preference and Civilization

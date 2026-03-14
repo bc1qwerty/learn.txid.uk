@@ -23,8 +23,8 @@ graph TD
     F --> G["Broadcast to Network"]
     G --> H["Other Nodes Verify"]
     H --> I["Added to Blockchain"]
-    style F fill:#3fb950,stroke:#3fb950,color:#fff
-    style D fill:#f7931a,stroke:#f7931a,color:#fff
+    style F fill:#3fb950,stroke:#3fb950,color:#000
+    style D fill:#f7931a,stroke:#f7931a,color:#000
 {{< /mermaid >}}
 
 ## Why is Proof of Work Needed?

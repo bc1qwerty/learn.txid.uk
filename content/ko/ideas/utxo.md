@@ -42,7 +42,7 @@ graph LR
     TX --> O2
     FEE["수수료: 0.0001 BTC"]
     TX -.-> FEE
-    style TX fill:#f7931a,stroke:#f7931a,color:#fff
+    style TX fill:#f7931a,stroke:#f7931a,color:#000
     style FEE fill:none,stroke:none,color:#8b949e
 {{< /mermaid >}}
 

@@ -52,7 +52,7 @@ graph LR
     TX --> O2
     FEE["Fee: 0.0001 BTC<br/>(Sum of Inputs - Sum of Outputs)"]
     TX -.-> FEE
-    style TX fill:#f7931a,stroke:#f7931a,color:#fff
+    style TX fill:#f7931a,stroke:#f7931a,color:#000
     style FEE fill:none,stroke:none,color:#8b949e
 {{< /mermaid >}}
 

@@ -39,8 +39,8 @@ graph LR
     S3 --> S4["ステップ4<br/>資本規制"]
     S4 --> S5["ステップ5<br/>決済検閲"]
     S5 --> S6["ステップ6<br/>ビットコイン解決策"]
-    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
-    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+    style S1 fill:#f7931a,stroke:#f7931a,color:#000
+    style S6 fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 このコースでは、貨幣がいかにして国家の道具となったか、それが一般の人々に何をもたらしたか、そしてビットコインがなぜこの仕組み全体からの構造的な脱出として設計されたかを追います。

@@ -17,9 +17,9 @@ graph LR
     subgraph "SegWit Transaction"
         B1["Version"] --- B2["Marker+Flag"] --- B3["Inputs<br/>(Script only)"] --- B4["Outputs"] --- B5["Witness<br/>(Signature separated)"] --- B6["Locktime"]
     end
-    style A2 fill:#f85149,stroke:#f85149,color:#fff
-    style B3 fill:#3fb950,stroke:#3fb950,color:#fff
-    style B5 fill:#58a6ff,stroke:#58a6ff,color:#fff
+    style A2 fill:#f85149,stroke:#f85149,color:#000
+    style B3 fill:#3fb950,stroke:#3fb950,color:#000
+    style B5 fill:#58a6ff,stroke:#58a6ff,color:#000
 {{< /mermaid >}}
 
 ## The Context of the Blocksize War (2015-2017)

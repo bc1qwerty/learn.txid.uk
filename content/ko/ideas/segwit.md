@@ -17,9 +17,9 @@ graph LR
     subgraph "SegWit 트랜잭션"
         B1["버전"] --- B2["마커+플래그"] --- B3["입력<br/>(스크립트만)"] --- B4["출력"] --- B5["위트니스<br/>(서명 분리)"] --- B6["록타임"]
     end
-    style A2 fill:#f85149,stroke:#f85149,color:#fff
-    style B3 fill:#3fb950,stroke:#3fb950,color:#fff
-    style B5 fill:#58a6ff,stroke:#58a6ff,color:#fff
+    style A2 fill:#f85149,stroke:#f85149,color:#000
+    style B3 fill:#3fb950,stroke:#3fb950,color:#000
+    style B5 fill:#58a6ff,stroke:#58a6ff,color:#000
 {{< /mermaid >}}
 
 ## 블록사이즈 전쟁의 맥락 (2015-2017)

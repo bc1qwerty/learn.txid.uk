@@ -26,8 +26,8 @@ graph TD
     ASSET --> PEOPLE
     BIZ --> PEOPLE
     PEOPLE --> PRICE
-    style CB fill:#f85149,stroke:#f85149,color:#fff
-    style BANK fill:#f7931a,stroke:#f7931a,color:#fff
+    style CB fill:#f85149,stroke:#f85149,color:#000
+    style BANK fill:#f7931a,stroke:#f7931a,color:#000
     style PEOPLE fill:#21262d,stroke:#30363d,color:#8b949e
     style PRICE fill:#21262d,stroke:#f85149,color:#f85149
 {{< /mermaid >}}

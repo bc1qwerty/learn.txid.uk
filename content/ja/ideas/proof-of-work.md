@@ -23,8 +23,8 @@ graph TD
     F --> G["ネットワークに伝播"]
     G --> H["他のノードが検証"]
     H --> I["ブロックチェーンに追加"]
-    style F fill:#3fb950,stroke:#3fb950,color:#fff
-    style D fill:#f7931a,stroke:#f7931a,color:#fff
+    style F fill:#3fb950,stroke:#3fb950,color:#000
+    style D fill:#f7931a,stroke:#f7931a,color:#000
 {{< /mermaid >}}
 
 ## なぜ作業証明が必要なのか

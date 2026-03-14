@@ -15,8 +15,8 @@ graph LR
     NODE -->|"전파"| MEMPOOL["🔄 멤풀<br/>(미확인 트랜잭션 대기)"]
     MEMPOOL -->|"채굴자가 선택<br/>(높은 수수료 우선)"| BLOCK["⛏️ 블록"]
     BLOCK -->|"검증 후 추가"| CHAIN["⛓️ 블록체인"]
-    style MEMPOOL fill:#f7931a,stroke:#f7931a,color:#fff
-    style CHAIN fill:#3fb950,stroke:#3fb950,color:#fff
+    style MEMPOOL fill:#f7931a,stroke:#f7931a,color:#000
+    style CHAIN fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 ## 트랜잭션의 라이프사이클

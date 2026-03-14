@@ -15,8 +15,8 @@ graph LR
     NODE -->|"Broadcast"| MEMPOOL["🔄 Mempool<br/>(Unconfirmed Tx Queue)"]
     MEMPOOL -->|"Miner Selects<br/>(Higher Fee First)"| BLOCK["⛏️ Block"]
     BLOCK -->|"Verified & Added"| CHAIN["⛓️ Blockchain"]
-    style MEMPOOL fill:#f7931a,stroke:#f7931a,color:#fff
-    style CHAIN fill:#3fb950,stroke:#3fb950,color:#fff
+    style MEMPOOL fill:#f7931a,stroke:#f7931a,color:#000
+    style CHAIN fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 ## Transaction Lifecycle

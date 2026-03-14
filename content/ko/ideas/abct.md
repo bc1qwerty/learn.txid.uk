@@ -18,10 +18,10 @@ graph LR
     D --> E["💥 버스트<br/>불황·파산"]
     E --> F["🔄 구조 조정<br/>자원 재배분"]
     F --> G["📊 건전한 회복"]
-    style A fill:#f85149,stroke:#f85149,color:#fff
-    style C fill:#f7931a,stroke:#f7931a,color:#fff
-    style E fill:#f85149,stroke:#f85149,color:#fff
-    style G fill:#3fb950,stroke:#3fb950,color:#fff
+    style A fill:#f85149,stroke:#f85149,color:#000
+    style C fill:#f7931a,stroke:#f7931a,color:#000
+    style E fill:#f85149,stroke:#f85149,color:#000
+    style G fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 ## 메커니즘

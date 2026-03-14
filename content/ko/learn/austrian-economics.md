@@ -43,8 +43,8 @@ graph LR
     S3 --> S4["4단계<br/>시간선호"]
     S4 --> S5["5단계<br/>경기변동이론"]
     S5 --> S6["6단계<br/>경제계산 문제"]
-    style S1 fill:#f7931a,stroke:#f7931a,color:#fff
-    style S6 fill:#3fb950,stroke:#3fb950,color:#fff
+    style S1 fill:#f7931a,stroke:#f7931a,color:#000
+    style S6 fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 비트코인 입문 코스를 마치셨다면, 여기가 자연스러운 다음 단계입니다. 비트코인은 경제학을 알면 훨씬 깊이 이해됩니다.

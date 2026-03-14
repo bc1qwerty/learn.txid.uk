@@ -23,8 +23,8 @@ graph TD
     F --> G["네트워크에 전파"]
     G --> H["다른 노드가 검증"]
     H --> I["블록체인에 추가"]
-    style F fill:#3fb950,stroke:#3fb950,color:#fff
-    style D fill:#f7931a,stroke:#f7931a,color:#fff
+    style F fill:#3fb950,stroke:#3fb950,color:#000
+    style D fill:#f7931a,stroke:#f7931a,color:#000
 {{< /mermaid >}}
 
 ## 왜 작업증명이 필요한가

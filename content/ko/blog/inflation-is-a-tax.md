@@ -21,8 +21,8 @@ graph TD
     SUPPLY --> INFLATION["📈 물가 상승"]
     INFLATION --> TAX["💸 인플레이션 세금<br/>(저축자의 구매력 감소)"]
     TAX -->|"실질적 부의 이전"| GOV
-    style GOV fill:#f85149,stroke:#f85149,color:#fff
-    style TAX fill:#f7931a,stroke:#f7931a,color:#fff
+    style GOV fill:#f85149,stroke:#f85149,color:#000
+    style TAX fill:#f7931a,stroke:#f7931a,color:#000
 {{< /mermaid >}}
 
 ## 작동 방식

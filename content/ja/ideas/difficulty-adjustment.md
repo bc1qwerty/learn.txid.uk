@@ -20,8 +20,8 @@ graph TD
     F --> H["10分のブロック間隔を維持"]
     G --> H
     D --> H
-    style B fill:#f7931a,stroke:#f7931a,color:#fff
-    style H fill:#3fb950,stroke:#3fb950,color:#fff
+    style B fill:#f7931a,stroke:#f7931a,color:#000
+    style H fill:#3fb950,stroke:#3fb950,color:#000
 {{< /mermaid >}}
 
 ## 難易度ターゲットとnBitsフィールド
