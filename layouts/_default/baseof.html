@@ -189,7 +189,7 @@
   {{ $minit := resources.Get "js/mermaid-init.js" | minify | fingerprint "sha512" }}
   <script src="{{ $minit.RelPermalink }}" integrity="{{ $minit.Data.Integrity }}" defer></script>
 {{ end }}
-<script src="https://api.txid.uk/txid-auth.js" integrity="sha384-k9MGGZf33p3pOv4L605gyOu5TcAfGx4grzBJ2spYDMux87ovkiLjKIrkdf4d8DzZ" crossorigin="anonymous" defer></script>
+<script src="https://api.txid.uk/txid-auth.js" integrity="sha384-R6mRGjmmN4RariIlZCRkEiu4nTQG9MzKMwrrFTfKCsjsu3pFTnOS9PBPaWSGgUmh" crossorigin="anonymous" defer></script>
 <script>
 (function(){
   if(!("serviceWorker"in navigator))return;
